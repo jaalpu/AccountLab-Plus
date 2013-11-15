@@ -77,19 +77,31 @@ if (!empty($this->REQUEST['dom_period']))
 {
     $years= $this->REQUEST['dom_period'];
 }
+if (empty($this->REQUEST['country']))
+{
+    $country = 'US';
+}
+if (empty($this->REQUEST['dom_pass']))
+{
+    $dom_pass = substr(md5(uniqid(rand())), 0, 10);
+}
 
 //split data\
 $name_array = explode(" ",$name,2);
 $first_name = $name_array[0];
 $last_name  = $name_array[1];
-$telepone   = str_replace("-","",$phone);
-$telepone   = str_replace("+","",$telepone);
-$country_code=isset($this->props->phone_codes[$this->REQUEST['country']])?$this->props->phone_codes[$this->REQUEST['country']]:"91";
+if(empty($last_name))
+{
+	$last_name = $first_name;
+}
+$phone   = preg_replace("/^\+1\./","",$phone);
+$phone   = preg_replace("/\D/","",$phone);
+$country_code=isset($this->props->phone_codes[$this->REQUEST['country']])?$this->props->phone_codes[$this->REQUEST['country']]:"1";
 if(empty($country_code))
 {
-    $country_code = "91";
+    $country_code = "1";
 }
-$phone      = $country_code."-".$telepone;
+$phone      = "+".$country_code.".".$phone;
 if(empty($r_ip))
 {
     $r_ip   = $this->utils->realip();
@@ -112,12 +124,12 @@ $xml = '<?xml version=\'1.0\' encoding=\'UTF-8\' standalone=\'no\' ?>
 <item key=\'object\'>DOMAIN</item>
 <item key=\'attributes\'>
 <dt_assoc>
-<item key=\'auto_renew\'></item>
+<item key=\'auto_renew\'>N</item>
 <item key=\'link_domains\'>0</item>
 <item key=\'reg_domain\'></item>
 <item key=\'f_lock_domain\'>'.$f_lock_domain.'</item>
 <item key=\'f_whois_privacy\'>'.$f_whois_privacy.'</item>
-<item key=\'f_parkp\'>Y</item>
+<item key=\'f_parkp\'>N</item>
 <item key=\'domain\'>'.$domain.'</item>
 <item key=\'affiliate_id\'></item>
 <item key=\'period\'>'.$years.'</item>
@@ -234,23 +246,18 @@ else
         $result .= fgets ($fp, 1024);
     fclose ($fp);
 }
-preg_match_all("|<[^>]+>(.*)</[^>]+>|U", $result, $out, PREG_PATTERN_ORDER);
 $response_text = "";
+
 $id            = "";
-foreach ($out[0] as $k => $v)
+$result = str_replace("\r"," ", $result);
+$result = str_replace("\n"," ", $result);
+if (preg_match("|<item key=\"response_text\">(.*?)</item>|", $result, $out))
 {
-    if (ereg("\"response_text\"", $v))
-    {
-        $v1 = str_replace("<item key=\"response_text\">", "", $v);
-        $v1 = str_replace("</item>", "", $v1);
-        $response_text = $v1;
-    }
-    if (ereg("\"id\"", $v))
-    {
-        $v1 = str_replace("<item key=\"id\">", "", $v);
-        $v1 = str_replace("</item>", "", $v1);
-        $id = $v1;
-    }
+	$response_text = $out[1];
+}
+if (preg_match("|<item key=\"id\">(.*?)</item>|", $result, $out))
+{
+	$id = $out[1];
 }
 $time   = date('Y-m-d H:i:s');
 $result1= $response_text." : ".$id;
