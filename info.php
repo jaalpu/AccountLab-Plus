@@ -232,10 +232,29 @@ if(isset($REQUEST['cmd']) && ($REQUEST['cmd']=='PDF' || $REQUEST['cmd']=='VPDF')
         {
             $html_buffer = $BL->mailInvoice($REQUEST['invoice_no'],true);
             $file_name   = $BL->conf['invoice_prefix'] . $REQUEST['invoice_no'] . $BL->conf['invoice_suffix'].".pdf";
-            require_once  LIBRARIES  . "html2fpdf".PATH_SEP."html2fpdf.php";
-            $pdf         = new HTML2FPDF();
+            require_once  LIBRARIES  . "tcpdf_min".PATH_SEP."tcpdf.php";
+            $pdf         = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+			// set margins
+			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+			$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+			// set auto page breaks
+			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+			// remove default header/footer
+			$pdf->setPrintHeader(false);
+			$pdf->setPrintFooter(false);
+
+			// set image scale factor
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
             $pdf->AddPage();
-            $pdf->WriteHTML($html_buffer);
+
+			// output the HTML content
+			$pdf->writeHTML($html_buffer, true, false, true, false, '');
+
 			if ($REQUEST['cmd']=='VPDF')
 			{
 				header("Content-type: application/pdf");
@@ -251,10 +270,29 @@ if(isset($REQUEST['cmd']) && ($REQUEST['cmd']=='PDF' || $REQUEST['cmd']=='VPDF')
     {
         $html_buffer = urldecode($REQUEST['html']);
         $file_name   = date('H:i_d-M-Y').".pdf";
-        require_once  LIBRARIES  . "html2fpdf".PATH_SEP."html2fpdf.php";
-        $pdf         = new HTML2FPDF();
-        $pdf->AddPage();
-        $pdf->WriteHTML($html_buffer);
+        require_once  LIBRARIES  . "tcpdf_min".PATH_SEP."tcpdf.php";
+        $pdf         = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+		// set margins
+		$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+		$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+		$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+		// set auto page breaks
+		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+		// remove default header/footer
+		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+
+		// set image scale factor
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+		$pdf->AddPage();
+
+		// output the HTML content
+		$pdf->writeHTML($html_buffer, true, false, true, false, '');
+
         $pdf->Output($file_name,'D');
     }
     else
