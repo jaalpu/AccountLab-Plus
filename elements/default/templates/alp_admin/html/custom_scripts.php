@@ -113,7 +113,7 @@
                 &nbsp;<b><?php echo $BL->props->lang['available_post_vars']; ?></b>
                 </div>
                 <div id="form1_field">
-                <textarea name="post_variables[<?php echo $k; ?>]" id="post_variables[<?php echo $k; ?>]" class='search' rows="10" cols="55" wrap="on"><?php echo $value['post_variables']; ?></textarea>
+                <textarea name="post_variables[<?php echo $k; ?>]" id="post_variables[<?php echo $k; ?>]" class='search' rows="10" cols="55" wrap="soft"><?php echo $value['post_variables']; ?></textarea>
                 </div>
                 </td>
             </tr>  

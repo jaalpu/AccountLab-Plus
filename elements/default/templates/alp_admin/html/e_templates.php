@@ -113,7 +113,7 @@
                         <div id="form2_label"> 
                            <b><?php echo $BL->props->lang['email_body']; ?></b></div>
                            <div id="form2_field"> 
-                           <textarea name='email_text' id='email_text' cols='70' rows='20' class='search' wrap="on"><?php echo $value['email_text']; ?></textarea>
+                           <textarea name='email_text' id='email_text' cols='70' rows='20' class='search' wrap="soft"><?php echo $value['email_text']; ?></textarea>
                            </div>
                         </td>
                         </tr>  

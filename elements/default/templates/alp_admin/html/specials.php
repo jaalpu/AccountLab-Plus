@@ -102,7 +102,7 @@
 						<?php echo $BL->props->lang['Description']; ?>
 							</div>
 							<div id="form1_field">
-                            <textarea name="special_desc" id="special_desc" rows="3" cols="25" wrap="on"><?php if(isset($REQUEST['special_desc']))echo $REQUEST['special_desc']; elseif($cmd=="edit_special")echo $special['special_desc']; ?></textarea>
+                            <textarea name="special_desc" id="special_desc" rows="3" cols="25" wrap="soft"><?php if(isset($REQUEST['special_desc']))echo $REQUEST['special_desc']; elseif($cmd=="edit_special")echo $special['special_desc']; ?></textarea>
                           </div>
                          </td>
                       </tr>
