@@ -81,16 +81,16 @@
         <?php if($ORDER_DATA['product_id']){ ?>
         <tr>
           <td><?php echo $BL->getFriendlyName($ORDER_DATA['product_id']); ?></td>
-          <td><?php echo $BL->props->lang['setup_fee']." ".$BL->toCurrency($INVOICE_DATA['setup_fee'],null,1); ?></td>
+          <td><?php if ($INVOICE_DATA['setup_fee']) { echo $BL->props->lang['setup_fee']." ".$BL->toCurrency($INVOICE_DATA['setup_fee'],null,1); } ?></td>
           <td>
           <div align='right'>
-          <?php if($INVOICE_DATA['inv_plan_disc']) echo $BL->toCurrency(($INVOICE_DATA['setup_fee'])*($INVOICE_DATA['inv_plan_disc']/100),null,1); ?>
+          <?php if($INVOICE_DATA['inv_plan_disc'] && $INVOICE_DATA['setup_fee']) echo $BL->toCurrency(($INVOICE_DATA['setup_fee'])*($INVOICE_DATA['inv_plan_disc']/100),null,1); ?>
           </div>
           </td>
           <td></td>
           <td>
           <div align='right'>
-          <?php echo $BL->toCurrency($INVOICE_DATA['setup_fee']-($INVOICE_DATA['setup_fee'])*($INVOICE_DATA['inv_plan_disc']/100),null,1); ?>
+          <?php if ($INVOICE_DATA['setup_fee']) { echo $BL->toCurrency($INVOICE_DATA['setup_fee']-($INVOICE_DATA['setup_fee'])*($INVOICE_DATA['inv_plan_disc']/100),null,1); } ?>
           </div>
           </td>
         </tr>
@@ -118,16 +118,19 @@
         <?php $addon_fee = $Addon_Fees[$addon['addon_name']]; ?>
         <tr>
           <td><?php echo $addon['addon_name']; ?></td>
-          <td><?php echo $BL->props->lang['setup_fee']." ".$BL->toCurrency($addon_fee['SETUP'],null,1)." ".$BL->props->lang['Recurring']." ".$BL->toCurrency($addon_fee['CYCLE'],null,1);?></td>
+          <td><?php if ($addon_fee['SETUP']) {
+						echo $BL->props->lang['setup_fee']." ".$BL->toCurrency($addon_fee['SETUP'],null,1)." ";
+					}
+					echo $BL->props->lang['Recurring']." ".$BL->toCurrency($addon_fee['CYCLE'],null,1);?></td>
           <td>
           <div align='right'>
-          <?php if($INVOICE_DATA['inv_addon_disc']) echo $BL->toCurrency(($addon_fee['SETUP']+$addon_fee['CYCLE'])*($INVOICE_DATA['inv_addon_disc']/100),null,1); ?>
+          <?php if($INVOICE_DATA['inv_addon_disc'] && $addon_fee['SETUP']) echo $BL->toCurrency(($addon_fee['SETUP']+$addon_fee['CYCLE'])*($INVOICE_DATA['inv_addon_disc']/100),null,1); ?>
           </div>
           </td>
           <td><?php echo $BL->props->lang[$BL->props->cycles[$ORDER_DATA['bill_cycle']]]; ?></td>
           <td>
           <div align='right'>
-          <?php echo $BL->toCurrency(($addon_fee['SETUP']+$addon_fee['CYCLE']) - ($addon_fee['SETUP']+$addon_fee['CYCLE'])*($INVOICE_DATA['inv_addon_disc']/100),null,1); ?>
+          <?php if ($addon_fee['SETUP']) { echo $BL->toCurrency(($addon_fee['SETUP']+$addon_fee['CYCLE']) - ($addon_fee['SETUP']+$addon_fee['CYCLE'])*($INVOICE_DATA['inv_addon_disc']/100),null,1); } ?>
           </div>
           </td>
         </tr>

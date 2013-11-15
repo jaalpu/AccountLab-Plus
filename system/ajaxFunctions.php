@@ -62,13 +62,14 @@ function updateBasket()
     $product_data = $BL->products->hasAnyOne(array("WHERE `plan_price_id`='".$_SESSION['product_id']."'"));
     $product_name = $BL->getFriendlyName($_SESSION['product_id']);
     $cycles_data  = $BL->products->getCycles($_SESSION['product_id']);
-    $product_desc = $BL->props->lang['setup_fee'] . " " . $BL->toCurrency($product_data['host_setup_fee'], null, 1);
+    $product_desc = $product_data['host_setup_fee']>0?$BL->props->lang['setup_fee'] . " " . $BL->toCurrency($product_data['host_setup_fee'], null, 1):'';
     $product_cost = $product_data['host_setup_fee'];
 
     if($_SESSION['bill_cycle']>0)
     {
         $cycle_name   = $BL->props->cycles[$_SESSION['bill_cycle']];
-        $product_desc.= " + " . $BL->props->lang[$cycle_name] . " " . $BL->toCurrency($cycles_data[$cycle_name], null, 1);
+		$product_desc.= $product_data['host_setup_fee']>0?" + ":"";
+        $product_desc.= $BL->props->lang[$cycle_name] . " " . $BL->toCurrency($cycles_data[$cycle_name], null, 1);
         $product_cost = $product_cost + $cycles_data[$cycle_name];
     }
     if($_SESSION['product_id']){
@@ -91,11 +92,12 @@ function updateBasket()
         $show_basket= true;
         $addon_data = $BL->addons->hasAnyOne(array("WHERE `addon_id`='".$addon_id."'"));
         $cycles_data= $BL->addons->getCycles($addon_id);
-        $addon_desc = $BL->props->lang['setup_fee'] . " " . $BL->toCurrency($addon_data['addon_setup'], null, 1);
+        $addon_desc = $addon_data['addon_setup']>0?$BL->props->lang['setup_fee'] . " " . $BL->toCurrency($addon_data['addon_setup'], null, 1):'';
         $addon_cost = $addon_data['addon_setup'];
 
         $cycle_name = $BL->props->cycles[$_SESSION['bill_cycle']];
-        $addon_desc.= " + " . $BL->props->lang[$cycle_name] . " " . $BL->toCurrency(($product_data['default_cycle']==0)?0:$cycles_data[$cycle_name], null, 1);
+		$addon_desc.= $addon_data['addon_setup']>0?" + ":'';
+        $addon_desc.= $BL->props->lang[$cycle_name] . " " . $BL->toCurrency(($product_data['default_cycle']==0)?0:$cycles_data[$cycle_name], null, 1);
         $addon_cost = $addon_cost + $cycles_data[$cycle_name];
 
         $basket_body .= "
@@ -185,26 +187,29 @@ function updateBasket()
     $tax_data  = $BL->calculateTax($sub_total);
     $tax       = $tax_data['total_tax_amount'];
     $total_text= ($tax>0)?$BL->props->lang['estimated_total']:$BL->props->lang['Total'];
+	if ($tax != 0) {
+		$basket_body .= "
+			<tr>
+			  <td></td>
+			  <td colspan=\"3\" height=\"1\" bgcolor=\"#aaaaaa\"></td>
+			  <td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td><b>".$BL->props->lang['subtotal']."</b></td>
+				<td  align='right'>".$BL->toCurrency($sub_total, null, 1)."</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td><b>".$BL->props->lang['estimated_tax']."</b></td>
+				<td  align='right'>".$BL->toCurrency($tax, null, 1)."</td>
+				<td></td>
+			</tr>";
+	}
     $basket_body .= "
-        <tr>
-          <td></td>
-          <td colspan=\"3\" height=\"1\" bgcolor=\"#aaaaaa\"></td>
-          <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td><b>".$BL->props->lang['subtotal']."</b></td>
-            <td  align='right'>".$BL->toCurrency($sub_total, null, 1)."</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td><b>".$BL->props->lang['estimated_tax']."</b></td>
-            <td  align='right'>".$BL->toCurrency($tax, null, 1)."</td>
-            <td></td>
-        </tr>
         <tr>
           <td></td>
           <td colspan=\"3\" height=\"1\" bgcolor=\"#aaaaaa\"></td>
@@ -498,8 +503,8 @@ function step1_ShowAddons()
             $addon_sec .= "<tr>";
             $addon_sec .= "<td width='1%' ><input type='checkbox' id='addon_ids[]' name='addon_ids[]' value='".$addon_id."' ".$checked." onchange=\"javascript:if(this.checked==true)xajax_step1_addAddon('" . $addon_id . "');else xajax_step1_removeAddon('" . $addon_id . "');\" /></td>";
             $addon_sec .= "<td width='20%'>".$addon_data['addon_name']."</td>";
-            $addon_sec .= "<td align='right'><b>" . $BL->props->lang['setup_fee'] . ":</b></td>";
-            $addon_sec .= "<td align='right'>". $BL->displayPrice($addon_data['addon_setup'], true). "</td>";
+            $addon_sec .= "<td align='right'><b>" . $addon_data['addon_setup']>0?$BL->props->lang['setup_fee']:'' . ":</b></td>";
+            $addon_sec .= "<td align='right'>". $addon_data['addon_setup']>0?$BL->displayPrice($addon_data['addon_setup'], true):''. "</td>";
             $addon_sec .= "<td align='right'><b>" . $BL->props->parseLang($BL->props->cycles[$bill_cycle]) . "</b></td>";
             $addon_sec .= "<td align='right'>" . $BL->displayPrice(($product['default_cycle']==0)?0:$cycle_amounts[$BL->props->cycles[$bill_cycle]], true)."</td>";
             $addon_sec .= "</tr>";
@@ -590,7 +595,7 @@ function step1_ShowProducts()
         $product      = $BL->products->getByKey($product_id);
         $product_name = $BL->getFriendlyName($product_id);
         $price_tag    = '';
-        if($BL->conf['show_price'])
+        if($BL->conf['show_price'] && $product['host_setup_fee']>0)
         {
         	$price_tag = " (" . $BL->props->lang['setup_fee'] . ": " . $BL->displayPrice($product['host_setup_fee']) . ")";
         }
@@ -763,7 +768,8 @@ function step2_whois($type,$sld,$tld)
             foreach ($available_domains as $t1)
             {
                 $count++;
-                if ($count == count($available_domains))
+                #if ($count == count($available_domains))
+                if ($count == 1)
                 {
                     $pre_select    = $t1['price_id'];
                     $whois_result .= "<input type='radio' name='dom_reg_year' id='dom_reg_year' checked  class='accountlabInput' value='" . $t1['dom_period'] . "' onclick=\"javascript:xajax_step2_addDomain(" . $type . ",xajax.$('sld').value,xajax.$('tld').value, ".$t1['dom_price']." ,".$t1['dom_period'].");\" />&nbsp;";
