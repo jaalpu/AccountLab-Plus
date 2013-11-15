@@ -2491,6 +2491,8 @@ class busLogic
         foreach($this->customfields->find() as $customfield)
         {
             $data_array['client_'.$customfield['field_name']]= $this->getCustomerFieldValue($customfield['field_name'],$invoice['customer_id']);
+			$body   = empty($data_array['client_'.$customfield['field_name']])?
+						$this->utils->clnTag('if_client_'.$customfield['field_name'],"",$body):$body;
         }
         $data_array['client_country']   = $this->props->country[$this->getCustomerFieldValue("country",$invoice['customer_id'])];
         $data_array['company_email']    = $this->conf['comp_email'];
