@@ -1,4 +1,4 @@
-<?
+<?php
 require_once "PayPal/SOAP/Value.php";
 require_once "PayPal/Type/XSDType.php";
 

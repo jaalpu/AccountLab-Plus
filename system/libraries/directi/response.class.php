@@ -474,7 +474,7 @@ function printData3($dataToPrint)
 				</TR>
 			</TABLE>
 		</form>
-		<?
+		<?php
 	}
 
     function PrintContactData($dataToPrint)
@@ -554,7 +554,7 @@ function printData3($dataToPrint)
 				</TR>
 			</TABLE>
 		</form>
-		<?
+		<?php
 	}
 
 }

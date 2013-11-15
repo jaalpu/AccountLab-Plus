@@ -59,7 +59,7 @@ Port.......: <?=$url->port?>
 
 File/path..: <?=$url->path?>
 
-Querystring: <?print_r($url->querystring)?>
+Querystring: <?php print_r($url->querystring)?>
 
 Anchor.....: <?=$url->anchor?>
 
