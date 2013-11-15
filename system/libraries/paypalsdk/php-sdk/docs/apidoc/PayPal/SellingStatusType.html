@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class SellingStatusType</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class SellingStatusType</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">SellingStatusType</p>
+<p class="description"><p>Contains the listed items price details which consists of following information:  BuyItNowPrice, ConvertedBuyItNowPrice, ConvertedPrice, ConvertedStartPrice,  CurrentPrice, MinimumToBid, ReservePrice, and StartPrice. need to take in  account get seller events when defining minoccurs = 0</p></p>
+		<p class="notes">
+			Located in <a class="field" href="_PayPal_Type_SellingStatusType_php.html">/PayPal/Type/SellingStatusType.php</a> (line <span class="field">21</span>)
+		</p>
+		
+				
+		<pre><a href="../PayPal/XSDType.html">XSDType</a>
+   |
+   --SellingStatusType</pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$BidCount" title="details" class="var-name">$BidCount</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$BidIncrement" title="details" class="var-name">$BidIncrement</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$ConvertedCurrentPrice" title="details" class="var-name">$ConvertedCurrentPrice</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$CurrentPrice" title="details" class="var-name">$CurrentPrice</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$HighBidder" title="details" class="var-name">$HighBidder</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$LeadCount" title="details" class="var-name">$LeadCount</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$MinimumToBid" title="details" class="var-name">$MinimumToBid</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$QuantitySold" title="details" class="var-name">$QuantitySold</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$ReserveMet" title="details" class="var-name">$ReserveMet</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$SecondChanceEligible" title="details" class="var-name">$SecondChanceEligible</a>
+				</div>
+							</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+								
+				<div class="method-definition">
+											<span class="method-result">SellingStatusType</span>
+										<a href="#SellingStatusType" title="details" class="method-name">SellingStatusType</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getBidCount" title="details" class="method-name">getBidCount</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getBidIncrement" title="details" class="method-name">getBidIncrement</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getConvertedCurrentPrice" title="details" class="method-name">getConvertedCurrentPrice</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getCurrentPrice" title="details" class="method-name">getCurrentPrice</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getHighBidder" title="details" class="method-name">getHighBidder</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getLeadCount" title="details" class="method-name">getLeadCount</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getMinimumToBid" title="details" class="method-name">getMinimumToBid</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getQuantitySold" title="details" class="method-name">getQuantitySold</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getReserveMet" title="details" class="method-name">getReserveMet</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getSecondChanceEligible" title="details" class="method-name">getSecondChanceEligible</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setBidCount" title="details" class="method-name">setBidCount</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$BidCount</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setBidIncrement" title="details" class="method-name">setBidIncrement</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$BidIncrement</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setConvertedCurrentPrice" title="details" class="method-name">setConvertedCurrentPrice</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ConvertedCurrentPrice</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setCurrentPrice" title="details" class="method-name">setCurrentPrice</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$CurrentPrice</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setHighBidder" title="details" class="method-name">setHighBidder</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$HighBidder</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setLeadCount" title="details" class="method-name">setLeadCount</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$LeadCount</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setMinimumToBid" title="details" class="method-name">setMinimumToBid</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$MinimumToBid</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setQuantitySold" title="details" class="method-name">setQuantitySold</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$QuantitySold</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setReserveMet" title="details" class="method-name">setReserveMet</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ReserveMet</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setSecondChanceEligible" title="details" class="method-name">setSecondChanceEligible</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$SecondChanceEligible</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+							</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$BidCount" id="$BidCount"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$BidCount</span>
+						(line <span class="line-number">27</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Number of bids placed so far against the item. Not returned for International  Fixed Price items.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$BidIncrement" id="$BidIncrement"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$BidIncrement</span>
+						(line <span class="line-number">33</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Smallest amount a bid must be above the current high bid. Not returned  International Fixed Price items.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$ConvertedCurrentPrice" id="$ConvertedCurrentPrice"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$ConvertedCurrentPrice</span>
+						(line <span class="line-number">38</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Converted current price of listed item.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$CurrentPrice" id="$CurrentPrice"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$CurrentPrice</span>
+						(line <span class="line-number">47</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">For auction-format listings, current minimum asking price or the current highest</p>
+<p class="description"><p>bid for the item if bids have been placed. Shows minimum bid if no bids have  been placed against the item. This field does not reflect the actual current  price of the item if it's a Type=7 or Type=9 (Fixed Price) item and the price  has been revised. (See StartPrice for revised asking price.)</p></p>
+	
+	
+		
+		
+
+</div>
+<a name="var$HighBidder" id="$HighBidder"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$HighBidder</span>
+						(line <span class="line-number">55</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Contains one User node representing the current high bidder. GetItem returns a  high bidder for auctions that have ended and have a winning bidder. For Fixed  Price listings, in-progress auctions, or auction items that received no bids,  GetItem returns a HighBidder node with empty tags.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$LeadCount" id="$LeadCount"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$LeadCount</span>
+						(line <span class="line-number">62</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Applicable to ad-format items only. Indicates how many leads to potential buyers  are associated with this item. For other item types (other than ad-format  items), returns a value of 0 (zero).</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$MinimumToBid" id="$MinimumToBid"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$MinimumToBid</span>
+						(line <span class="line-number">68</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Minimum acceptable bid for the item. Not returned for International Fixed Price  items.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$QuantitySold" id="$QuantitySold"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$QuantitySold</span>
+						(line <span class="line-number">74</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Number of items purchased so far. (Subtract from the value returned in the</p>
+<p class="description"><p>Quantity field to calculate the number of items remaining.)</p></p>
+	
+	
+		
+		
+
+</div>
+<a name="var$ReserveMet" id="$ReserveMet"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$ReserveMet</span>
+						(line <span class="line-number">79</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns true if the reserve price was met or no reserve price was specified.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$SecondChanceEligible" id="$SecondChanceEligible"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$SecondChanceEligible</span>
+						(line <span class="line-number">81</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../PayPal/XSDType.html">XSDType</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../PayPal/XSDType.html#var$_attributes">XSDType::$_attributes</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PayPal/XSDType.html#var$_attributeValues">XSDType::$_attributeValues</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PayPal/XSDType.html#var$_elements">XSDType::$_elements</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PayPal/XSDType.html#var$_namespace">XSDType::$_namespace</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodSellingStatusType" id="SellingStatusType"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor SellingStatusType</span> (line <span class="line-number">83</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">SellingStatusType</span>
+		<span class="method-name">
+			SellingStatusType
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetBidCount" id="getBidCount"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getBidCount</span> (line <span class="line-number">152</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getBidCount
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetBidIncrement" id="getBidIncrement"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getBidIncrement</span> (line <span class="line-number">161</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getBidIncrement
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetConvertedCurrentPrice" id="getConvertedCurrentPrice"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getConvertedCurrentPrice</span> (line <span class="line-number">170</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getConvertedCurrentPrice
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetCurrentPrice" id="getCurrentPrice"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getCurrentPrice</span> (line <span class="line-number">179</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getCurrentPrice
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetHighBidder" id="getHighBidder"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getHighBidder</span> (line <span class="line-number">188</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getHighBidder
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetLeadCount" id="getLeadCount"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getLeadCount</span> (line <span class="line-number">197</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getLeadCount
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetMinimumToBid" id="getMinimumToBid"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getMinimumToBid</span> (line <span class="line-number">206</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getMinimumToBid
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetQuantitySold" id="getQuantitySold"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getQuantitySold</span> (line <span class="line-number">215</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getQuantitySold
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetReserveMet" id="getReserveMet"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getReserveMet</span> (line <span class="line-number">224</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getReserveMet
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetSecondChanceEligible" id="getSecondChanceEligible"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSecondChanceEligible</span> (line <span class="line-number">233</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getSecondChanceEligible
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetBidCount" id="setBidCount"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setBidCount</span> (line <span class="line-number">156</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setBidCount
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$BidCount</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetBidIncrement" id="setBidIncrement"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setBidIncrement</span> (line <span class="line-number">165</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setBidIncrement
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$BidIncrement</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetConvertedCurrentPrice" id="setConvertedCurrentPrice"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setConvertedCurrentPrice</span> (line <span class="line-number">174</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setConvertedCurrentPrice
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ConvertedCurrentPrice</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetCurrentPrice" id="setCurrentPrice"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setCurrentPrice</span> (line <span class="line-number">183</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setCurrentPrice
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$CurrentPrice</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetHighBidder" id="setHighBidder"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setHighBidder</span> (line <span class="line-number">192</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setHighBidder
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$HighBidder</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetLeadCount" id="setLeadCount"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setLeadCount</span> (line <span class="line-number">201</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setLeadCount
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$LeadCount</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetMinimumToBid" id="setMinimumToBid"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setMinimumToBid</span> (line <span class="line-number">210</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setMinimumToBid
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$MinimumToBid</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetQuantitySold" id="setQuantitySold"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setQuantitySold</span> (line <span class="line-number">219</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setQuantitySold
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$QuantitySold</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetReserveMet" id="setReserveMet"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setReserveMet</span> (line <span class="line-number">228</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setReserveMet
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ReserveMet</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetSecondChanceEligible" id="setSecondChanceEligible"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setSecondChanceEligible</span> (line <span class="line-number">237</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setSecondChanceEligible
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$SecondChanceEligible</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../PayPal/XSDType.html">XSDType</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../PayPal/XSDType.html#methodXSDType">XSDType::XSDType()</a></span><br>
+													<span class="method-name"><a href="../PayPal/XSDType.html#methodgetattr">XSDType::getattr()</a></span><br>
+													<span class="method-name"><a href="../PayPal/XSDType.html#methodgetSoapValue">XSDType::getSoapValue()</a></span><br>
+													<span class="method-name"><a href="../PayPal/XSDType.html#methodsetattr">XSDType::setattr()</a></span><br>
+													<span class="method-name"><a href="../PayPal/XSDType.html#method__set_attribute">XSDType::__set_attribute()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 11 May 2006 22:39:20 -0400 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC3</a>
+	</p>
+	</div></body>
+</html>

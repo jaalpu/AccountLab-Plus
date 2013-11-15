@@ -1,0 +1,432 @@
+/*
+ * Copyright © 2005-2009 Cosmopoly Europe EOOD (http://netenberg.com).
+ * All Rights Reserved.
+ *
+ * This Cosmopoly Europe EOOD work (including software, documents, or
+ * other related items) is being provided by the copyright holder under
+ * the following license. By obtaining, using and/or copying this work,
+ * you (the licensee) agree that you have read, understood, and will
+ * comply with the following terms and conditions:
+ *
+ * Permission to use, copy, modify, and distribute this software and its
+ * documentation, with or without modification, for any purpose and
+ * without fee or royalty is hereby granted, provided that you include
+ * the following on ALL copies of the software and documentation or
+ * portions thereof, including modifications, that you make:
+ *
+ * 1. The full text of this NOTICE in a location viewable to users of the
+ * redistributed or derivative work.
+ *
+ * 2. A short notice of the following form (hypertext is preferred, text
+ * is permitted) should be used within the body of any redistributed or
+ * derivative code: "Copyright © 2005-2009 Cosmopoly Europe EOOD
+ * (http://netenberg.com). All Rights Reserved."
+ *
+ * 3. Notice of any changes or modifications to the W3C files, including
+ * the date changes were made. (We recommend you provide URIs to the
+ * location from which the code is derived.)
+ *
+ * THIS SOFTWARE AND DOCUMENTATION IS PROVIDED "AS IS," AND COPYRIGHT
+ * HOLDERS MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY OR FITNESS
+ * FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE SOFTWARE OR
+ * DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS,
+ * TRADEMARKS OR OTHER RIGHTS.
+ * COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL
+ * OR CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE SOFTWARE OR
+ * DOCUMENTATION.
+ *
+ * The name and trademarks of copyright holders may NOT be used in
+ * advertising or publicity pertaining to the software without specific,
+ * written prior permission. Title to copyright in this software and any
+ * associated documentation will at all times remain with copyright
+ * holders.
+ */
+
+/***********************************************/
+/* default.css                                 */
+/* Use with template index.php                 */
+/***********************************************/
+
+/***********************************************/
+/* HTML tag styles                             */
+/***********************************************/ 
+
+body{
+	font-family: Verdana, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	margin-left: 5px;
+	background-color: #FFFFFF;
+}
+.tdheading {
+	font-weight: bold;
+	background-color: #006699;
+	color: #FFFFFF;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.tdheading1 {
+	font-weight: bold;
+	background-color: #FFCC00;
+	color: #006699;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+a:link, a:visited, a:hover {
+	color: #006699;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* overrides decoration from previous rule for hovered links */
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0px;
+	padding: 0px;
+}
+
+h1{
+	 font-size: 14px;
+}
+
+h2{
+	 font-size: 16px;
+}
+
+h3{
+	 font-size: 18px;
+}
+
+h4{
+	 font-size: 20px;
+}
+
+h5{
+	 font-size: 22px;
+}
+
+ul{
+	list-style: square;
+}
+
+ul ul{
+	 list-style-type: disc;
+}
+
+ul ul ul{
+	 list-style-type: none;
+}
+				
+
+/***********************************************/
+/* Layout Divs                                 */
+/***********************************************/
+
+#masthead{
+	margin: 0;
+	padding: 10px;
+	border-bottom: 0px solid #cccccc;
+	width: 99%;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+#masthead1{
+	margin: 0;
+	border-bottom: 0px solid #cccccc;
+	width: 100%;
+	background-color: #FFCC00;
+	height: 5px;
+	padding-right: 0px;
+	padding-left: 0px;	
+}
+
+/************* #siteInfo styles ***************/
+
+#siteInfo{
+	clear: both;
+	font-weight: bold;
+	background-color: #FFCC00;
+	color: #333333;
+	font-size: 9px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+#navBar {
+	background-color: #F0F0F0;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 20%;
+	float: right;
+	padding-bottom: 10%;
+	border-top-color: #333333;
+	border-right-color: #333333;
+	border-bottom-color: #333333;
+	border-left-color: #333333;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	padding-top: 10px;
+	vertical-align:top;
+}
+#sidemenu {
+	padding-left: 2px;
+	padding-right: 2px;
+	width: 20%;
+	float: left;
+	border-top-color: #333333;
+	border-right-color: #333333;
+	border-bottom-color: #333333;
+	border-left-color: #333333;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	padding-top: 10px;
+	vertical-align:top;
+}
+
+#content{
+	float:left;
+	width: 55%;
+	margin: 0;
+	padding-left: 1%;
+}
+#form_title {
+	font-weight: bold;
+}
+#form_note {
+	font-weight: normal;
+	font-style: italic;
+}
+#form {
+	line-height:18px;
+	width: 90%;
+}
+#form_label {
+	width: 60%;
+	vertical-align:middle;
+	font-weight: normal;
+	line-height: 20px;
+	float: left;
+}
+#form_field {
+	width: 40%;
+	vertical-align:middle;
+	font-weight: normal;
+	float:right;
+}
+#form1_label {
+	width: 30%;
+	vertical-align:middle;
+	font-weight: normal;
+	line-height: 20px;
+	float: left;
+}
+#form1_field {
+	width: 70%;
+	vertical-align:middle;
+	font-weight: normal;
+	float:right;
+}
+#form2_label {
+	width: 20%;
+	vertical-align:middle;
+	font-weight: normal;
+	line-height: 20px;
+	float: left;
+}
+#form2_field {
+	width: 80%;
+	vertical-align:middle;
+	font-weight: normal;
+	float:right;
+}
+#login_label {
+	width: 50%;
+	vertical-align:middle;
+	font-weight: normal;
+	line-height: 20px;
+	float: left;
+}
+#login_field {
+	width: 50%;
+	vertical-align:middle;
+	font-weight: normal;
+	float:right;
+}
+#display_list {
+	float: left;
+}
+
+.search {
+	margin: 0px;
+	padding-right: 1px;
+	padding-left: 1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border-width: 0;
+	background-color: #FFFFFF;
+	color: #006699;
+	font-weight: normal;
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 2px;
+	border-left-width: 1px;
+	border-top-color: #999999;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	border-left-color: #999999;
+	font-size: 11px;
+}
+.search1 {
+	margin: 0px;
+	padding-right: 1px;
+	padding-left: 1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border-width: 0;
+	background-color: #006699;
+	color: #FFCC00;
+	font-weight: bold;
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 2px;
+	border-left-width: 1px;
+	border-top-color: #999999;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	border-left-color: #999999;
+	font-size: 11px;
+}
+#videoLayer {
+	position:relative;
+	z-index: -1;
+}
+.text_grey{
+	font-weight: normal;
+	color: #333333;
+}
+.list_table {
+	border-top-color: #333333;
+	border-right-color: #333333;
+	border-bottom-color: #333333;
+	border-left-color: #333333;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+}
+.alert_table {
+	border: 1px solid #CCCCCC;
+	background-color: #FF0000;
+}
+.alert_tdhead {
+	padding:1px;
+	font-weight: bold;
+	color: #ffffff;
+}
+.alert_text {
+	padding:4px;
+	font-weight: normal;
+	color: #003348;
+}
+tbody.on  
+{ 
+    display:table-row-group; 
+}
+tbody.off 
+{ 
+    display:none; 
+}
+.tabs
+{
+  float:left;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-bottom-width: 0px;
+  padding: 4px 2px 4px 2px;
+  text-decoration: none; 
+  font-weight: bold;   
+  font-size: x-small;
+  color: #000000;
+}
+.tabs1
+{
+  float:left;
+  background-color: #c0c0c0;
+  border: 1px solid #000000;
+  border-bottom-width: 0px;
+  padding: 4px 2px 4px 2px;
+  text-decoration: none; 
+  font-weight: bold;   
+  font-size: x-small;
+  color: #000000;
+  cursor: hand;
+}
+.tabs2
+{
+  float:left;
+  background-color: #006699;
+  border: 1px solid #000000;
+  border-bottom-width: 0px;
+  padding: 4px 2px 4px 2px;
+  text-decoration: none;
+  font-weight: bold; 
+  font-size: x-small;
+  color: #FFFFFF;
+}
+.tab_separator
+{
+  float:left;
+  background-color: #ffffff;
+  border: 0px solid #000000;
+  padding: 0px;
+  text-decoration: none;    
+}
+div.tabContent
+{
+  display: none;
+}
+.tabs A:link {text-decoration: none;color:#000000;}
+.tabs A:visited {text-decoration: none;color:#000000;}
+.tabs A:active {text-decoration: none;color:#000000;}
+.tabs A:hover {text-decoration: none;color:#000000;}
+.tabs1 A:link {text-decoration: none;color:#000000;}
+.tabs1 A:visited {text-decoration: none;color:#000000;}
+.tabs1 A:active {text-decoration: none;color:#000000;}
+.tabs1 A:hover {text-decoration: none;color:#000000;}

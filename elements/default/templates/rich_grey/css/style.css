@@ -1,0 +1,453 @@
+/*
+ * Copyright © 2005-2009 Cosmopoly Europe EOOD (http://netenberg.com).
+ * All Rights Reserved.
+ *
+ * This Cosmopoly Europe EOOD work (including software, documents, or
+ * other related items) is being provided by the copyright holder under
+ * the following license. By obtaining, using and/or copying this work,
+ * you (the licensee) agree that you have read, understood, and will
+ * comply with the following terms and conditions:
+ *
+ * Permission to use, copy, modify, and distribute this software and its
+ * documentation, with or without modification, for any purpose and
+ * without fee or royalty is hereby granted, provided that you include
+ * the following on ALL copies of the software and documentation or
+ * portions thereof, including modifications, that you make:
+ *
+ * 1. The full text of this NOTICE in a location viewable to users of the
+ * redistributed or derivative work.
+ *
+ * 2. A short notice of the following form (hypertext is preferred, text
+ * is permitted) should be used within the body of any redistributed or
+ * derivative code: "Copyright © 2005-2009 Cosmopoly Europe EOOD
+ * (http://netenberg.com). All Rights Reserved."
+ *
+ * 3. Notice of any changes or modifications to the W3C files, including
+ * the date changes were made. (We recommend you provide URIs to the
+ * location from which the code is derived.)
+ *
+ * THIS SOFTWARE AND DOCUMENTATION IS PROVIDED "AS IS," AND COPYRIGHT
+ * HOLDERS MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY OR FITNESS
+ * FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE SOFTWARE OR
+ * DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS,
+ * TRADEMARKS OR OTHER RIGHTS.
+ * COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL
+ * OR CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE SOFTWARE OR
+ * DOCUMENTATION.
+ *
+ * The name and trademarks of copyright holders may NOT be used in
+ * advertising or publicity pertaining to the software without specific,
+ * written prior permission. Title to copyright in this software and any
+ * associated documentation will at all times remain with copyright
+ * holders.
+ */
+
+/* ====================================================================
+  GENERAL MARKUP
+-------------------------------------------------------------------- */
+
+* {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	line-height: 1.16em;
+
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	font-size: 12px;
+	font-family: Arial, Geneva, Helvetica, sans-serif;
+	font-weight: normal;
+	background: #FFFFFF url("../images/background.png") repeat-x top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #16588c;
+}
+h1 { font-size: 1.33em; }
+h2 { font-size: 1.2em; }
+h3 { font-size: 1.15em; }
+h4 { font-size: 1.1em; }
+h5 { font-size: 1.0em; }
+h1 em, h2 em, h3 em, h4 em, h5 em, h6 em{
+	color: #16588c;	
+	font-style: normal;
+}
+
+p {
+	margin-top: 10px;
+}
+
+ul.data {
+	list-style: none;
+}
+
+hr {
+	margin: 8px 0px;
+	color: #b8b7b3;
+	background-color: #b8b7b3;
+	height: 1px;
+}
+
+a:link { color: #16588c; text-decoration: none; }
+a:visited { color: #16588c; text-decoration: none; }
+a:hover { color: #16588c; text-decoration: underline; }
+a:active { color: #16588c; text-decoration: underline; }
+		 
+.border {
+	border: 1px solid #e2dcc4;
+}
+
+.borderThick {
+	border: 2px solid #bfb27c;
+}
+
+/* ====================================================================
+  SHADOWS - PNG HACKS
+-------------------------------------------------------------------- */
+
+/* works for IE5+ win and IE5mac, but FF/moz ignore */
+#shadowLeft {
+	width: 5px;
+	/* works for IE5+ win */
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='"../images/shadow-left.png"', sizingMethod='scale');
+
+	/* hides from everything but IE5mac */
+	/*\*//*/
+	background: url(shadow-left.png") repeat-y right;
+	/**/
+}
+/* FF/Moz see this [class]fine and render it fine */
+#shadowLeft[class] {
+	background: url("../images/shadow-left.png") repeat-y right;
+}
+
+/* works for IE5+ win and IE5mac, but FF/moz ignore */
+#shadowRight {
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='"../images/shadow-right.png"', sizingMethod='scale');
+	/*\*//*/
+	background: url(shadow-left.png") repeat-y right;
+	/**/
+}
+/* FF/Moz see this fine and render it fine */
+#shadowRight[class] {
+	background: url("../images/shadow-right.png") repeat-y left;
+}
+
+/* works for IE5+ win and IE5mac, but FF/moz ignore */
+#shadowTop {
+	height: 5px;
+	/* works for IE5+ win */
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='"../images/shadow-top.png"', sizingMethod='scale');
+	/* hides from everything but IE5mac */
+	/*\*//*/
+	background: url(shadow-top.png") no-repeat;
+	/**/
+}
+/* FF/Moz see this fine and render it fine */
+#shadowTop[class] {
+	background: url("../images/shadow-top.png") no-repeat;
+}
+
+/* works for IE5+ win and IE5mac, but FF/moz ignore */
+#shadowBottom {
+	height: 5px;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='"../images/shadow-bottom.png"', sizingMethod='scale');
+	/*\*//*/
+	background: url(shadow-bottom.png") no-repeat;
+	/**/
+}
+/* FF/Moz see this fine and render it fine */
+#shadowBottom[class] {
+	background: url("../images/shadow-bottom.png") no-repeat;
+}
+
+
+
+/* ====================================================================
+  LAYOUT
+-------------------------------------------------------------------- */
+
+#innerTable{
+	background-color: #FFFFFF;
+	padding: 1px;
+}
+
+#headerTop {
+	height: 66px;
+	background: url("../images/header-continue.png") no-repeat right;
+}
+
+#header {
+	height: 102px;
+	background: url("../images/header.png") right no-repeat;
+}
+
+#navigation {
+	height: 28px;
+	background: url("../images/navigation.png") repeat-x;
+}
+
+#content {
+	padding: 10px 40px 30px 30px;
+}
+
+#footerTop {
+	height: 27px;
+	background: url("../images/footer-top.png");
+}
+
+#footer {
+	height: 35px;
+	background: url("../images/footer.png") repeat-x;
+	
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 11px;
+	color: #8d9092;
+}
+
+/* ====================================================================
+  STYLES
+-------------------------------------------------------------------- */
+
+#welcome {
+	padding: 20px;
+}
+#news {
+	padding: 20px 10px;
+}
+
+h1.company-name {
+	margin: 0px;
+	padding: 0px;
+	line-height: 50px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #00486f;
+}
+h1.header-info {
+	margin: 0px;
+	padding: 0px 0px 0px 35px;
+	line-height: 80px;
+	font-size: 26px;
+	font-weight: Normal;
+	color: #FFFFFF;
+}
+
+/* >> Main Menu Links */
+
+/* >> Menu System - #HMAINS# */
+
+/* This is the main hsub table */
+table.hmains {
+   border: 0px;
+   padding: 0px;
+
+	margin: 0px 5px;
+	height: 20px;
+
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 12px;
+   font-weight: normal;
+	color: #2983a6;
+}
+
+/* This cell contains a submenu link */
+td.hmains {
+   	border: 0px;
+	padding: 0px 10px 0px 0px;
+	margin: 0px;
+	background: url("../images/list.png") no-repeat left;
+}
+
+a.hmains { line-height: 21px; margin-left: 15px; }
+a.hmains:link { color: #00486f; text-decoration: none; }
+a.hmains:visited { color: #00486f; text-decoration: none; }
+a.hmains:hover { color: #bd790d; text-decoration: none; }
+a.hmains:active { color: #bd790d; text-decoration: none; }
+
+.logohead {
+	font-family : Arial;
+	font-size : 25pt;
+	font-weight : bold;
+}
+
+.logosub {
+	font-family : Arial;
+	font-size : 8pt;
+	font-weight : bold;
+}
+
+.menusys {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+/*
+ * ##################################################################
+ * Default style sheet
+ * ##################################################################
+ */
+BODY, TABLE, TH, TR, TD, UL, OL, LI, P, FONT, A, BLOCKQUOTE, LABEL
+{
+	font-family: Arial;
+	font-size: 12px;
+}
+.accountlabPageBODY
+{
+}
+
+.accountlabFormTABLE
+{
+	border-top: 1px solid #9C929C;
+	border-left: 1px solid #9C929C;
+	border-bottom: 1px solid #9C929C;
+	border-right: 1px solid #9C929C;
+}
+.accountlabFormHeaderFont
+{
+	color: #000000;
+	font-size: 16px;
+	font-weight: bold;
+}
+.accountlabFieldCaptionTD
+{
+	border: 1px solid #CFC6D0;
+	background-color: #E3DAB3;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+}
+.accountlabAltDataTD
+{
+	border-top: 1px solid #9C929C;
+	border-left: 1px solid #9C929C;
+	border-bottom: 1px solid #FFFFFF;
+	border-right: 1px solid #FFFFFF;
+	background-color: #F1F1F1;
+	color: #000000;
+	font-size: 12px;
+}
+.accountlabColumnTD{
+	border-top: 1px solid #E3DAB3;
+	border-left: 1px solid #E3DAB3;
+	border-bottom: 1px solid #E3DAB3;
+	border-right: 1px solid #E3DAB3;
+	background-color: #00a4d1;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+}
+.accountlabColumnTDred{
+	border-top: 1px solid #F4F0E0;
+	border-left: 1px solid #F4F0E0;
+	border-bottom: 1px solid #F4F0E0;
+	border-right: 1px solid #F4F0E0;
+	background-color: #00baee;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+}
+.accountlabDataTD
+{
+	border-top: 1px solid #9C929C;
+	border-left: 1px solid #9C929C;
+	border-bottom: 1px solid #FFFFFF;
+	border-right: 1px solid #FFFFFF;
+	background-color: #00baee;
+	color: #000000;
+	font-size: 12px;
+}
+.accountlabSeparatorTD
+{
+	height: 0px;
+}
+.accountlabFooterTD
+{
+	border: 1px solid #CFC6D0;
+	border-color: #336699;
+	background-color: #CFC6D0;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+}
+a.accountlabSorterLink:link,a.accountlabSorterLink:visited
+{
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+a.accountlabSorterLink:hover,a.accountlabSorterLink:active
+{
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none; 
+}
+a.accountlabDataLink:link,a.accountlabDataLink:visited
+{
+	color: #000000;
+	font-size: 12px;
+	text-decoration: underline;
+}
+a.accountlabDataLink:hover,a.accountlabDataLink:active
+{
+	color: #000000;
+	font-size: 12px;
+	text-decoration: none;
+}
+a.accountlabNavigatorLink:link,a.accountlabNavigatorLink:visited
+{
+	color: #000000;
+	font-size: 12px;
+	text-decoration: underline;
+}
+a.accountlabNavigatorLink:hover,a.accountlabNavigatorLink:active
+{
+	color: #000000;
+	font-size: 12px;
+	text-decoration: none;
+}
+.accountlabButton
+{
+	border-bottom:1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	background-color: #EDE7EE;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Verdana, sans-serif;
+}
+.accountlabInput
+{
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	background-color: #FFFFFF;
+	font-size: 12px;
+	font-family: Verdana, sans-serif;
+}
+.accountlabTextarea
+{
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	background-color: #FFFFFF;
+	font-size: 12px;
+	font-family: Verdana, sans-serif;
+}
+.accountlabSelect
+{
+	font-size: 12px;
+	font-family: Verdana, sans-serif;
+}

@@ -1,0 +1,411 @@
+/*
+ * Copyright © 2005-2009 Cosmopoly Europe EOOD (http://netenberg.com).
+ * All Rights Reserved.
+ *
+ * This Cosmopoly Europe EOOD work (including software, documents, or
+ * other related items) is being provided by the copyright holder under
+ * the following license. By obtaining, using and/or copying this work,
+ * you (the licensee) agree that you have read, understood, and will
+ * comply with the following terms and conditions:
+ *
+ * Permission to use, copy, modify, and distribute this software and its
+ * documentation, with or without modification, for any purpose and
+ * without fee or royalty is hereby granted, provided that you include
+ * the following on ALL copies of the software and documentation or
+ * portions thereof, including modifications, that you make:
+ *
+ * 1. The full text of this NOTICE in a location viewable to users of the
+ * redistributed or derivative work.
+ *
+ * 2. A short notice of the following form (hypertext is preferred, text
+ * is permitted) should be used within the body of any redistributed or
+ * derivative code: "Copyright © 2005-2009 Cosmopoly Europe EOOD
+ * (http://netenberg.com). All Rights Reserved."
+ *
+ * 3. Notice of any changes or modifications to the W3C files, including
+ * the date changes were made. (We recommend you provide URIs to the
+ * location from which the code is derived.)
+ *
+ * THIS SOFTWARE AND DOCUMENTATION IS PROVIDED "AS IS," AND COPYRIGHT
+ * HOLDERS MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY OR FITNESS
+ * FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE SOFTWARE OR
+ * DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS,
+ * TRADEMARKS OR OTHER RIGHTS.
+ * COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL
+ * OR CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE SOFTWARE OR
+ * DOCUMENTATION.
+ *
+ * The name and trademarks of copyright holders may NOT be used in
+ * advertising or publicity pertaining to the software without specific,
+ * written prior permission. Title to copyright in this software and any
+ * associated documentation will at all times remain with copyright
+ * holders.
+ */
+
+/* ====================================================================
+  LINKS AND BODY SECTION
+-------------------------------------------------------------------- */
+
+body{
+  margin: 0px;
+  background-color: #FFFFFF;
+  font-family: Tahoma
+}
+
+a{
+  font-size: 12;
+  font-weight: normal;
+  color: #000080;
+  text-decoration: underline
+}
+
+a:hover{
+  font-size: 12;
+  font-weight: normal;
+  color: #800000;
+  text-decoration: underline
+}
+
+H1{
+  color: #000080;
+  font-family: Tahoma;
+  font-size: 15px;
+  font-weight: bold;
+  margin:0px;
+  padding-top:5px;
+  padding-bottom:5px; padding-left:0px; padding-right:0px
+}
+
+H2{
+  color: #000080;
+  font-family: Tahoma;
+  font-size: 12px;
+  font-weight: bold;
+  margin:0px;
+  padding-top:5px;
+  padding-bottom:5px; padding-left:0px; padding-right:0px; text-decoration:underline
+}
+
+H3{
+  color: #000080;
+  font-family: Tahoma;
+  font-size: 13px;
+  font-weight: bold;
+  margin:0px;
+  padding-bottom:5px; padding-left:0px; padding-right:0px
+}
+
+H4{
+  color: #000080;
+  font-family: Tahoma;
+  font-size: 15px;
+  font-weight: bold;
+  margin:0px;
+  padding-bottom:5px; padding-left:0px; padding-right:0px
+}
+
+.menu a {
+  color: #000000;
+  text-decoration: none underline;
+  font-size: 11px;
+  font-family: Tahoma; text-align:center; font-weight:bold
+}
+
+.menu a:hover {
+  color: #800000;
+  text-decoration: none underline;
+  font-size: 11px;
+  font-family: Tahoma; text-align:center; font-weight:bold
+}
+
+.sublink a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: Tahoma; text-align:center
+}
+
+.sublink a:hover {
+  color: #800000;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: Tahoma; text-align:center
+}
+
+
+
+/* ====================================================================
+  TABLES SECTION
+-------------------------------------------------------------------- */
+
+.maintable{
+   padding:0; 
+   width:760;
+   margin: 0px;
+   align:center
+}
+.contenttable{
+   padding:5px; 
+   width:700;
+   margin: 0px;
+   align:center;
+   height:400px;
+}
+
+.shadowleft{
+   padding:0; 
+   width:21;
+   background-image:url("../images/shadowleft.gif")
+}
+
+.shadowright{
+   padding:0; 
+   width:17;
+   background-image:url("../images/shadowright.gif")
+}
+
+.headerlogo{
+  width:720; 
+  height:166;
+  letter-spacing:-2pt; 
+  font-family:HeliosBlack; 
+  color:#000000; 
+  padding-left:0px; 
+  padding-top:0px; 
+  padding-bottom:0px; font-size:25pt; text-align:center 
+}
+
+.block{
+  width:172;
+  height:283;
+  text-align:left; background-image:url("../images/block.gif"); 
+  font-family:Tahoma; 
+  font-size:12; 
+  color:#000000; padding-left:12px; padding-right:20px; padding-top:5; padding-bottom:10px
+ 
+}
+
+.headerlinks{
+  width:720;
+  height:31;
+  padding:0px;
+}
+
+.sublinkspanel{
+  width:720px;
+  height:26;
+  padding:0px; background-image:url("../images/sublinks.gif")
+}
+
+.tablecontents{
+  width:548;
+  height:283;
+  background-image:url("../images/tablecontents.gif");
+  font-family:Tahoma; font-size:12;
+  color:#000000; 
+  padding-left:15px; padding-right:12px; padding-top:3px; padding-bottom:12px
+}
+
+.tablefooter{
+  padding:8px;
+  width:720;
+  height:37;
+  background-color:#A4D8FB;
+  font-family:Tahoma; font-size:12; color:#0000000; text-transform:uppercase; font-weight:bold; text-align:center
+}
+
+/* ====================================================================
+  BOXES SECTION
+-------------------------------------------------------------------- */
+
+.package{
+  border:0 solid #C0B6A3; 
+  padding:4px; width:100%; 
+  font-family:Tahoma; font-size:12; text-align:center 
+}
+
+.package_header{ 
+  padding:4px; width:25%; 
+  height:20;
+  text-align:center;
+  font-family:Tahoma; font-size:12; text-transform:uppercase; font-weight:bold; background-color:#E6E6E6; color:#000080 
+}
+
+.package_row1{
+  padding:4px; width:25%; 
+  height:20;
+  text-align:center;
+  font-family:Tahoma; font-size:12; background-color:#F0F0F0 
+}
+
+.package_row2{
+  padding:4px; width:25%;
+  height:20;
+  text-align:center;
+  font-family:Tahoma; font-size:12; background-color:#F5F5F5 
+}
+/*
+ * ##################################################################
+ * Default style sheet
+ * ##################################################################
+ */
+BODY, TABLE, TH, TR, TD, UL, OL, LI, P, FONT, A, BLOCKQUOTE, LABEL
+{
+	font-family: Arial;
+	font-size: 12px;
+}
+.accountlabPageBODY
+{
+}
+
+.accountlabFormTABLE
+{
+	border-top: 1px solid #666666;
+	border-left: 1px solid #666666;
+	border-bottom: 1px solid #666666;
+	border-right: 1px solid #666666;
+}
+.accountlabFormHeaderFont
+{
+	color: #000000;
+	font-size: 16px;
+	font-weight: bold;
+}
+.accountlabFieldCaptionTD
+{
+	border: 1px solid #CFC6D0;
+	background-color: #A4D8FB;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+}
+.accountlabAltDataTD
+{
+	border-top: 1px solid #666666;
+	border-left: 1px solid #666666;
+	border-bottom: 1px solid #FFFFFF;
+	border-right: 1px solid #FFFFFF;
+	background-color: #F1F1F1;
+	color: #000000;
+	font-size: 12px;
+}
+.accountlabColumnTD{
+	border-top: 1px solid #A4D8FB;
+	border-left: 1px solid #A4D8FB;
+	border-bottom: 1px solid #A4D8FB;
+	border-right: 1px solid #A4D8FB;
+	background-color: #46B0F7;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+}
+.accountlabColumnTDred{
+	border-top: 1px solid #F4F0E0;
+	border-left: 1px solid #F4F0E0;
+	border-bottom: 1px solid #F4F0E0;
+	border-right: 1px solid #F4F0E0;
+	background-color: #A4D8FB;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+}
+.accountlabDataTD
+{
+	border-top: 1px solid #9C929C;
+	border-left: 1px solid #9C929C;
+	border-bottom: 1px solid #FFFFFF;
+	border-right: 1px solid #FFFFFF;
+	background-color: #46B0F7;
+	color: #000000;
+	font-size: 12px;
+}
+.accountlabSeparatorTD
+{
+	height: 0px;
+}
+.accountlabFooterTD
+{
+	border: 1px solid #CFC6D0;
+	border-color: #336699;
+	background-color: #CFC6D0;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+}
+a.accountlabSorterLink:link,a.accountlabSorterLink:visited
+{
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+a.accountlabSorterLink:hover,a.accountlabSorterLink:active
+{
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none; 
+}
+a.accountlabDataLink:link,a.accountlabDataLink:visited
+{
+	color: #000000;
+	font-size: 12px;
+	text-decoration: underline;
+}
+a.accountlabDataLink:hover,a.accountlabDataLink:active
+{
+	color: #000000;
+	font-size: 12px;
+	text-decoration: none;
+}
+a.accountlabNavigatorLink:link,a.accountlabNavigatorLink:visited
+{
+	color: #000000;
+	font-size: 12px;
+	text-decoration: underline;
+}
+a.accountlabNavigatorLink:hover,a.accountlabNavigatorLink:active
+{
+	color: #000000;
+	font-size: 12px;
+	text-decoration: none;
+}
+.accountlabButton
+{
+	border-bottom:1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	background-color: #EDE7EE;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Verdana, sans-serif;
+}
+.accountlabInput
+{
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	background-color: #FFFFFF;
+	font-size: 12px;
+	font-family: Verdana, sans-serif;
+}
+.accountlabTextarea
+{
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	background-color: #FFFFFF;
+	font-size: 12px;
+	font-family: Verdana, sans-serif;
+}
+.accountlabSelect
+{
+	font-size: 12px;
+	font-family: Verdana, sans-serif;
+}

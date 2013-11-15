@@ -1,0 +1,178 @@
+Source: http://www.netenberg.com/forum/index.php?topic=3041.0
+
+HOW TO: Install AccountLab Plus
+
+Sections:
+REQUIREMENTS
+BEFORE YOU START
+DOWNLOAD
+UPGRADE
+INSTALLATION
+POST INSTALL SETUP
+
+REQUIREMENTS
+AccountLab requires a *nix or Windows server with PHP and MySQL already installed.
+As a minimum, use a modern browser, have PHP 4.2 or above installed and MySQL 3, 4 or 5.
+
+DEPENDENCIES
+- allow_url_fopen must be set to On in your php.ini
+- cURL is needed for: Whois, Account Creation, Domain Registration and some Payment Methods
+- mhash is needed for Authorize.net
+- iconv and mbstring is needed for non utf-8 characters, specially if you use non-english languages
+- OpenSSL is needed for OpenSRS
+- GD2 and FreeType is needed for Reports
+ 
+DOWNLOAD
+http://sourceforge.net/projects/accountlabplus/files/accountlab_plus.tgz/download
+
+INSTALLATION
+If you have SSH access to your server, wget the files and uncompress them directly on the server using
+tar -xzpf filename.tgz
+It is compulsory to use the -xzpf switches!!!
+
+If not, download the application tarball to your PC, uncompress and ftp the files to your server. We recommend that you create a directory in your public_html folder to upload the files to, such as "accountlab_plus", this will make the files accessible from http://yoursite.com/accountlab_plus/
+
+Upload all files found in the "accountlab_plus" directory.
+
+Once uploaded ensure you change the file permissions on
+./elements/default/sysvar/db.php
+to 666. This allows the installer to write information to these files.
+
+You now need to create a MySQL database and a MySQL database user with a valid password. Grant all permissions on the database to the database user. Make a note of each for use during install.
+
+You are now ready to start the install, point your browser to
+http://yoursite.com/accountlab_plus/install.php
+(this assumes you installed into a directory called "accountlab_plus")
+
+You will be prompted to enter:
+hostname (probably localhost)
+database name
+database username and password
+
+Fill out and click create, this will populate ./elements/default/sysvar/db.php with your details and the appropriate tables into your database, if successful you will be forwarded to the next page.
+ 
+Enter a password for the user "admin" to access AccountLab admin scripts.
+The install path should be the absolute path, so it will look something like:
+/home/httpd/vhosts/domain.com/httpdocs/accountlab_plus
+
+The install URL would be
+http://accountlab.com/accountlab_plus
+
+Finally your admin email address.
+
+Once submitted you will see the final page.
+
+To secure your installation you must delete the install.php script and chmod ./elements/default/sysvar/db.php back to 644 -- if you don't, you will allow any web surfer to access your system.
+
+UPDATE
+MAKE A BACKUP! AccountLabPlus 2.2 significantly changes the database structure of older AccountLab and AccountLab Plus versions. We could not test the Upgrade procedure with all previous versions of AccountLab, so we strongly recommend to make a backup of your old installation and your database before proceeding!!!
+
+Open your "./admin/database_include.php" file (AccountLab and AccountLab Plus pre 2.2) or your "./elements/default/sysvar/db.php" file (AccountLab Plus 2.2) and write down the values.
+
+Upload the new files and modify "./elements/custom/sysvar/db.php" to reflect the values of the old "./admin/database_include.php" resp. "./elements/default/sysvar/db.php" file. In your browser load "./install.php" which will update your database.
+
+AUTO-BILLING
+For the invoicing system to work you need to setup a cron task to hit billing.php (in the root folder) every day. This checks to see if any invoices are due and if so sends them out. The actual value of the cron depends a lot on your server config. If your server has lynx or curl installed then you could use a value such as
+30 2 * * * /usr/bin/lynx -dump http://domain.com/accountlab_plus/billing.php
+or
+30 2 * * * curl -s -o /dev/null http://domain.com/accountlab_plus/billing.php
+
+The above would run the cron at 2.30 am every day.
+
+You will also need to call following URL through a cron job:
+http://domain.com/accountlab_plus/billing.php?action=autosuspend
+http://domain.com/accountlab_plus/billing.php?action=gen_upcoming
+http://domain.com/accountlab_plus/billing.php?action=send_pending
+
+POST INSTALL SETUP
+
+Configuration
+
+Login to admin.php and click on "Main menu->Settings->Configuration"
+
+Complete all of the information here, it is used in various parts of the AccountLab Plus system.
+
+IMPORTANT: Please make sure that the field "Site URL" and "Absolute path" point to your current installation (No trailing "/").
+
+NOTE: You MUST set the followings in order to use AccountLab Plus.
+Add at least one Server as default.
+Add at least one Plan.
+Add at least one Payment Method.
+
+BEGINNER'S GUIDE
+http://netenberg.com/alpguide.html
+
+QUICK START
+
+Add a Server
+It is important that you add at least one server and have at least one server set as default. The default server is used to populate new customers, name server and IP.
+
+Click On:
+   Main menu-> Settings-> Servers
+Then (On Right Side) Click On
+   Add New Server
+After adding one server set it to be the default one from
+   Main menu-> Settings-> Servers
+
+Server Name
+We recommend you use the hostname of the server. However you can use a friendly name if you wish, such as 'server1'.
+
+Server IP, NS1, NS2
+The IP would be the shared IP for the server, used for shared hosting accounts, NS1 and NS2 are the name servers you use for hosting accounts on this server.
+
+Server Type
+Choose from the drop down list of server types.
+
+Server User
+If you have a cpanel, plesk or directadmin server and are using this application to setup accounts on it then you need to input the username of the user accounts will be created under, this could be root/admin but a better solution would be a reseller username created in WHM or Directadmin.
+
+NOTE: In case of plesk you have to give "admin" as the "Server User".
+
+Server Hash - cpanel
+If you are using this applications auto-create utilities, then you need to enter the hash from your cpanel server. This is obtained from within WHM from Main >> Cluster/Remote Access >> Setup Remote Access Key
+
+Server Hash - directadmin
+If you are using this applications auto-create utilities, then you need to enter the password of the directadmin user you entered above.
+
+Server Hash - plesk
+If you are using this applications auto-create utilities, you need to enter the admin password.
+
+Server Hash - other
+Leave this blank.
+
+Server Auto
+Set to yes if you want to auto-create accounts on this server. Only has an effect on plesk, directadmin and cpanel servers.
+
+Server SSL (cpanel and directadmin only)
+Only important if you are adding a cpanel or directadmin server with auto-create functionality. If you set this to SSL the application will connect to your cpanel/directadmin server to create accounts using SSL, much safer. However this will require PHP with CURL and OpenSSL built in, which is probably not standard in your PHP setup.
+
+Add a Plan
+
+It is important that you add AT LEAST one category and make it "visible" on the order page and also add AT LEAST one Hosting Plan ("Product") or your order page will stay blank!
+
+Click On
+   Main menu-> Products -> Categories
+to add your categories.
+
+Click On
+   Main menu-> Products -> Products
+to add your hosting plans.
+
+The Plan name must be the Package/Plan name as defined on your server.
+
+Example:
+If user WHM username is "alpuser" and you have a package in WHM called "alpuser_Plan1"
+Then you have to set the Plan name (In AccountLab Plus) to "Plan1"
+
+Note: While adding to AccountLab Plus the prefix of the WHM package name is not added. (i.e. only "Plan1" in where as the package name is "alpuser_Plan1")
+Add Payment Method
+
+Add a Payment Method
+
+It is important that you add at least one Payment Method.
+
+Click On
+   Main menu->Settings->Payment Methods
+and fill out as needed.
+
+The above is the minimum requirements in order to have a functional installation of ALP. Many more options can be configured (admins, ticketing system, specials, discounts etc).

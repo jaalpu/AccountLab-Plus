@@ -1,0 +1,415 @@
+/*
+ * Copyright © 2005-2009 Cosmopoly Europe EOOD (http://netenberg.com).
+ * All Rights Reserved.
+ *
+ * This Cosmopoly Europe EOOD work (including software, documents, or
+ * other related items) is being provided by the copyright holder under
+ * the following license. By obtaining, using and/or copying this work,
+ * you (the licensee) agree that you have read, understood, and will
+ * comply with the following terms and conditions:
+ *
+ * Permission to use, copy, modify, and distribute this software and its
+ * documentation, with or without modification, for any purpose and
+ * without fee or royalty is hereby granted, provided that you include
+ * the following on ALL copies of the software and documentation or
+ * portions thereof, including modifications, that you make:
+ *
+ * 1. The full text of this NOTICE in a location viewable to users of the
+ * redistributed or derivative work.
+ *
+ * 2. A short notice of the following form (hypertext is preferred, text
+ * is permitted) should be used within the body of any redistributed or
+ * derivative code: "Copyright © 2005-2009 Cosmopoly Europe EOOD
+ * (http://netenberg.com). All Rights Reserved."
+ *
+ * 3. Notice of any changes or modifications to the W3C files, including
+ * the date changes were made. (We recommend you provide URIs to the
+ * location from which the code is derived.)
+ *
+ * THIS SOFTWARE AND DOCUMENTATION IS PROVIDED "AS IS," AND COPYRIGHT
+ * HOLDERS MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY OR FITNESS
+ * FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE SOFTWARE OR
+ * DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS,
+ * TRADEMARKS OR OTHER RIGHTS.
+ * COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL
+ * OR CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE SOFTWARE OR
+ * DOCUMENTATION.
+ *
+ * The name and trademarks of copyright holders may NOT be used in
+ * advertising or publicity pertaining to the software without specific,
+ * written prior permission. Title to copyright in this software and any
+ * associated documentation will at all times remain with copyright
+ * holders.
+ */
+
+body{
+  background-image: url("../images/bg2.gif" );
+  margin: 0px;
+}
+
+/*Style for headers*/
+H1{
+  color: #9D3E12;
+  font-family: Arial;
+  font-size: 16px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+H2{
+  color: #000000;
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 17px;
+  vertical-align: middle;
+}
+
+/*Content (with gray border)*/
+.a_content{
+  font-family: Arial;
+  width: 470px;
+  font-weight: normal;
+  font-size: 12px;
+  padding-left: 12px;
+  margin-left: 1px;
+  border-left: 5px solid #D8D4C6;
+}
+
+.promo {
+  background-color: #FFFFFF;
+  background-image: url("../images/promo_bg.gif");
+  width: 157px;
+  height: 206px;
+  border: 2px #FFFFFF solid;
+}
+.promo H1{
+  color: #9D3E12;
+  font-family: Arial;
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 0px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.promo_text{
+  padding-left: 17px;
+  padding-right: 10px;
+  font-family: Arial;
+  font-weight: normal;
+  font-size: 11px;
+}
+
+.separator{
+  width: 8px;
+}
+
+.custom_ul{
+  list-style-image:url("../images/bullet3.gif");
+  padding-left: 17px;
+  line-height: 17px;
+  margin-left: 0px;
+}
+
+.promo_bottom{
+  padding-left: 7px;
+  vertical-align: bottom;
+  padding-bottom: 0px;
+  margin: 0px;
+  padding-right: 0px;
+}
+
+.price1{
+  color: #A84913;
+  padding: 0px;
+  font-family: Arial;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.price2{
+  padding: 0px;
+  color: #AAA791;
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.copyright{
+  padding-left: 13px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: Arial;
+  font-size: 11px;
+}
+
+.misc{
+  color: #C15B19;
+  padding-right: 11px;
+  font-family: Arial;
+}
+
+.misc a {
+  color: #C15B19;
+  text-decoration: none;
+  font-size: 11px;
+  font-family: Arial;
+}
+.misc a:hover {
+  color: #C15B19;
+  text-decoration: underline;
+  font-size: 11px;
+  font-family: Arial;
+}
+
+.hmenu a {
+  color: #CECECE;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: bold;
+  font-family: Arial;
+}
+
+.hmenu a:hover {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 11px;
+  font-family: Arial;
+}
+.news_date{
+  color: #8DE9FA;
+  font-size: 10px;
+  font-family: Arial;
+}
+.news_head{
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: Arial;
+}
+.news{
+  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 14px;
+  color: #000000;
+  font-size: 11px;
+  font-family: Arial;
+}
+
+a.submenu{
+  display: block;
+  width: 231px;
+  vertical-align: middle;
+  height: 22px;
+  line-height: 22px;
+  font-size: 11px;
+  font-family: Arial;
+  color: #000000;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #C5C2A8;
+}
+a.submenu:hover{
+  vertical-align: middle;
+  display: block;
+  width: 231px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 11px;
+  font-family: Arial;
+  color: #CD671D;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #CDCAAF;
+}
+
+.logo{
+  font-family: Helvetica;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+.slogan{
+  font-family: Helvetica;
+  font-size: 12px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+/*
+ * ##################################################################
+ * Default style sheet
+ * ##################################################################
+ */
+BODY, TABLE, TH, TR, TD, UL, OL, LI, P, FONT, A, BLOCKQUOTE, LABEL
+{
+	font-family: Arial;
+	font-size: 12px;
+}
+.accountlabPageBODY
+{
+}
+
+.accountlabFormTABLE
+{
+	border-top: 1px solid #9C929C;
+	border-left: 1px solid #9C929C;
+	border-bottom: 1px solid #9C929C;
+	border-right: 1px solid #9C929C;
+}
+.accountlabFormHeaderFont
+{
+	color: #000000;
+	font-size: 16px;
+	font-weight: bold;
+}
+.accountlabFieldCaptionTD
+{
+	border: 1px solid #CFC6D0;
+	background-color: #E3DAB3;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+}
+.accountlabAltDataTD
+{
+	border-top: 1px solid #9C929C;
+	border-left: 1px solid #9C929C;
+	border-bottom: 1px solid #FFFFFF;
+	border-right: 1px solid #FFFFFF;
+	background-color: #F1F1F1;
+	color: #000000;
+	font-size: 12px;
+}
+.accountlabColumnTD{
+	border-top: 1px solid #E3DAB3;
+	border-left: 1px solid #E3DAB3;
+	border-bottom: 1px solid #E3DAB3;
+	border-right: 1px solid #E3DAB3;
+	background-color: #E3DAB3;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+}
+.accountlabColumnTDred{
+	border-top: 1px solid #F4F0E0;
+	border-left: 1px solid #F4F0E0;
+	border-bottom: 1px solid #F4F0E0;
+	border-right: 1px solid #F4F0E0;
+	background-color: #F4F0E0;
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+}
+.accountlabDataTD
+{
+	border-top: 1px solid #9C929C;
+	border-left: 1px solid #9C929C;
+	border-bottom: 1px solid #FFFFFF;
+	border-right: 1px solid #FFFFFF;
+	background-color: #EDE7EE;
+	color: #000000;
+	font-size: 12px;
+}
+.accountlabSeparatorTD
+{
+	height: 0px;
+}
+.accountlabFooterTD
+{
+	border: 1px solid #CFC6D0;
+	border-color: #336699;
+	background-color: #CFC6D0;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+}
+a.accountlabSorterLink:link,a.accountlabSorterLink:visited
+{
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+a.accountlabSorterLink:hover,a.accountlabSorterLink:active
+{
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none; 
+}
+a.accountlabDataLink:link,a.accountlabDataLink:visited
+{
+	color: #000000;
+	font-size: 12px;
+	text-decoration: underline;
+}
+a.accountlabDataLink:hover,a.accountlabDataLink:active
+{
+	color: #000000;
+	font-size: 12px;
+	text-decoration: none;
+}
+a.accountlabNavigatorLink:link,a.accountlabNavigatorLink:visited
+{
+	color: #000000;
+	font-size: 12px;
+	text-decoration: underline;
+}
+a.accountlabNavigatorLink:hover,a.accountlabNavigatorLink:active
+{
+	color: #000000;
+	font-size: 12px;
+	text-decoration: none;
+}
+.accountlabButton
+{
+	border-bottom:1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	background-color: #EDE7EE;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Verdana, sans-serif;
+}
+.accountlabInput
+{
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	background-color: #FFFFFF;
+	font-size: 12px;
+	font-family: Verdana, sans-serif;
+}
+.accountlabTextarea
+{
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-top: 1px solid #000000;
+	background-color: #FFFFFF;
+	font-size: 12px;
+	font-family: Verdana, sans-serif;
+}
+.accountlabTextarea1
+{
+	border-bottom: 0px solid #000000;
+	border-left: 0px solid #000000;
+	border-right: 0px solid #000000;
+	border-top: 0px solid #000000;
+	background-color: #F4F0E0;
+	font-size: 12px;
+	font-family: Verdana, sans-serif;
+}
+.accountlabSelect
+{
+	font-size: 12px;
+	font-family: Verdana, sans-serif;
+}

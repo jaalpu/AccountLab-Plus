@@ -1,0 +1,1293 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class TransactionType</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class TransactionType</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">TransactionType</p>
+<p class="description"><p>Contains information about a single transaction. A transaction contains  information about the sale of a particular item. The system creates a  transaction when a buyer has made a purchase (Fixed Price items) or is the  winning bidder (BIN and auction items). A listing can be associated with one or  more transactions in these cases: Multi-Item Fixed Price Listings Dutch Auction  Listings A listing is associated with a single transaction in these cases:  Single-Item Fixed Price Listings Single-Item Auction Listings</p></p>
+		<p class="notes">
+			Located in <a class="field" href="_PayPal_Type_TransactionType_php.html">/PayPal/Type/TransactionType.php</a> (line <span class="field">24</span>)
+		</p>
+		
+				
+		<pre><a href="../PayPal/XSDType.html">XSDType</a>
+   |
+   --TransactionType</pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$AmountPaid" title="details" class="var-name">$AmountPaid</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$AuthorizationID" title="details" class="var-name">$AuthorizationID</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$Buyer" title="details" class="var-name">$Buyer</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$ConvertedAmountPaid" title="details" class="var-name">$ConvertedAmountPaid</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$ConvertedTransactionPrice" title="details" class="var-name">$ConvertedTransactionPrice</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$CreatedDate" title="details" class="var-name">$CreatedDate</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$DepositType" title="details" class="var-name">$DepositType</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$Item" title="details" class="var-name">$Item</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$QuantityPurchased" title="details" class="var-name">$QuantityPurchased</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$ShippingDetails" title="details" class="var-name">$ShippingDetails</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$ShippingHandlingTotal" title="details" class="var-name">$ShippingHandlingTotal</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$Status" title="details" class="var-name">$Status</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$TransactionID" title="details" class="var-name">$TransactionID</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$TransactionPrice" title="details" class="var-name">$TransactionPrice</a>
+				</div>
+								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$VATPercent" title="details" class="var-name">$VATPercent</a>
+				</div>
+							</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+								
+				<div class="method-definition">
+											<span class="method-result">TransactionType</span>
+										<a href="#TransactionType" title="details" class="method-name">TransactionType</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getAmountPaid" title="details" class="method-name">getAmountPaid</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getAuthorizationID" title="details" class="method-name">getAuthorizationID</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getBuyer" title="details" class="method-name">getBuyer</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getConvertedAmountPaid" title="details" class="method-name">getConvertedAmountPaid</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getConvertedTransactionPrice" title="details" class="method-name">getConvertedTransactionPrice</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getCreatedDate" title="details" class="method-name">getCreatedDate</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getDepositType" title="details" class="method-name">getDepositType</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getItem" title="details" class="method-name">getItem</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getQuantityPurchased" title="details" class="method-name">getQuantityPurchased</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getShippingDetails" title="details" class="method-name">getShippingDetails</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getShippingHandlingTotal" title="details" class="method-name">getShippingHandlingTotal</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getStatus" title="details" class="method-name">getStatus</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getTransactionID" title="details" class="method-name">getTransactionID</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getTransactionPrice" title="details" class="method-name">getTransactionPrice</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getVATPercent" title="details" class="method-name">getVATPercent</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAmountPaid" title="details" class="method-name">setAmountPaid</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$AmountPaid</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAuthorizationID" title="details" class="method-name">setAuthorizationID</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$AuthorizationID</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setBuyer" title="details" class="method-name">setBuyer</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$Buyer</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setConvertedAmountPaid" title="details" class="method-name">setConvertedAmountPaid</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ConvertedAmountPaid</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setConvertedTransactionPrice" title="details" class="method-name">setConvertedTransactionPrice</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ConvertedTransactionPrice</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setCreatedDate" title="details" class="method-name">setCreatedDate</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$CreatedDate</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setDepositType" title="details" class="method-name">setDepositType</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$DepositType</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setItem" title="details" class="method-name">setItem</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$Item</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setQuantityPurchased" title="details" class="method-name">setQuantityPurchased</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$QuantityPurchased</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setShippingDetails" title="details" class="method-name">setShippingDetails</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ShippingDetails</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setShippingHandlingTotal" title="details" class="method-name">setShippingHandlingTotal</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ShippingHandlingTotal</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setStatus" title="details" class="method-name">setStatus</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$Status</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setTransactionID" title="details" class="method-name">setTransactionID</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$TransactionID</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setTransactionPrice" title="details" class="method-name">setTransactionPrice</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$TransactionPrice</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setVATPercent" title="details" class="method-name">setVATPercent</a>
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$VATPercent</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+									</div>
+							</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$AmountPaid" id="$AmountPaid"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$AmountPaid</span>
+						(line <span class="line-number">35</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">The amount the buyer paid for the item or agreed to pay, depending on how far</p>
+<p class="description"><p>into the checkout process the item is. If the seller allowed the buyer to change  the item total, the buyer is able to change the total until the time that the  transaction's status moves to Complete. Determine whether the buyer changed the  amount by calling GetSellerTransactions or GetSellerTransactions and comparing  the AmountPaid value to what the seller expected. For Motors items, AmountPaid  is the amount paid by the buyer for the deposit.</p></p>
+	
+	
+		
+		
+
+</div>
+<a name="var$AuthorizationID" id="$AuthorizationID"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$AuthorizationID</span>
+						(line <span class="line-number">102</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Unique identifier for an authorization.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$Buyer" id="$Buyer"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$Buyer</span>
+						(line <span class="line-number">40</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Container for buyer data.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$ConvertedAmountPaid" id="$ConvertedAmountPaid"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$ConvertedAmountPaid</span>
+						(line <span class="line-number">51</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Value returned in the Transaction/AmountPaid element, converted to the currency  indicated by SiteCurrency.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$ConvertedTransactionPrice" id="$ConvertedTransactionPrice"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$ConvertedTransactionPrice</span>
+						(line <span class="line-number">57</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Value returned in the Transaction/TransactionPrice element, converted to the  currency indicated by SiteCurrency.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$CreatedDate" id="$CreatedDate"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$CreatedDate</span>
+						(line <span class="line-number">64</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">For fixed-price, Stores, and BIN items indicates when the purchase (or BIN)  occurred. For all other item types indicates when the transaction was created  (the time when checkout was initiated).</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$DepositType" id="$DepositType"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$DepositType</span>
+						(line <span class="line-number">70</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Deposit type for Motors items. If item is not a Motors item, then returns a</p>
+<p class="description"><p>DepositType of None. Possible values: None Other Method Fast Deposit</p></p>
+	
+	
+		
+		
+
+</div>
+<a name="var$Item" id="$Item"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$Item</span>
+						(line <span class="line-number">75</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Item info associated with the transaction.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$QuantityPurchased" id="$QuantityPurchased"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$QuantityPurchased</span>
+						(line <span class="line-number">80</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Contains the number of individual items the buyer purchased in the transaction.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$ShippingDetails" id="$ShippingDetails"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$ShippingDetails</span>
+						(line <span class="line-number">45</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Includes shipping payment data.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$ShippingHandlingTotal" id="$ShippingHandlingTotal"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$ShippingHandlingTotal</span>
+						(line <span class="line-number">85</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Shipping cost totals shown to user (for both flat and calculated rates).</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$Status" id="$Status"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$Status</span>
+						(line <span class="line-number">90</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Container node for transaction status data.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$TransactionID" id="$TransactionID"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$TransactionID</span>
+						(line <span class="line-number">97</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Unique identifier for a transaction. Returns 0 when Type=1 (Chinese auction).</p>
+<p class="description"><p>Typically, an ItemID and a TransactionID uniquely identify a checkout  transaction.</p></p>
+	
+	
+		
+		
+
+</div>
+<a name="var$TransactionPrice" id="$TransactionPrice"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$TransactionPrice</span>
+						(line <span class="line-number">108</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Price of the item, before shipping and sales tax. For Motors, TransactionPrice  is the deposit amount.</p>
+	
+	
+		
+		
+
+</div>
+<a name="var$VATPercent" id="$VATPercent"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$VATPercent</span>
+						(line <span class="line-number">117</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">VAT rate for the item, if the item price includes the VAT rate. Specify the</p>
+<p class="description"><p>VATPercent if you want include the net price in addition to the gross price in  the listing. VAT rates vary depending on the item and on the user's country of  residence; therefore a business seller is responsible for entering the correct  VAT rate (it will not be calculated by eBay).</p></p>
+	
+	
+		
+		
+
+</div>
+							<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../PayPal/XSDType.html">XSDType</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../PayPal/XSDType.html#var$_attributes">XSDType::$_attributes</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PayPal/XSDType.html#var$_attributeValues">XSDType::$_attributeValues</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PayPal/XSDType.html#var$_elements">XSDType::$_elements</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../PayPal/XSDType.html#var$_namespace">XSDType::$_namespace</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodTransactionType" id="TransactionType"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor TransactionType</span> (line <span class="line-number">119</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">TransactionType</span>
+		<span class="method-name">
+			TransactionType
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetAmountPaid" id="getAmountPaid"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getAmountPaid</span> (line <span class="line-number">218</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getAmountPaid
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetAuthorizationID" id="getAuthorizationID"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getAuthorizationID</span> (line <span class="line-number">326</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getAuthorizationID
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetBuyer" id="getBuyer"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getBuyer</span> (line <span class="line-number">227</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getBuyer
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetConvertedAmountPaid" id="getConvertedAmountPaid"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getConvertedAmountPaid</span> (line <span class="line-number">245</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getConvertedAmountPaid
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetConvertedTransactionPrice" id="getConvertedTransactionPrice"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getConvertedTransactionPrice</span> (line <span class="line-number">254</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getConvertedTransactionPrice
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetCreatedDate" id="getCreatedDate"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getCreatedDate</span> (line <span class="line-number">263</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getCreatedDate
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetDepositType" id="getDepositType"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getDepositType</span> (line <span class="line-number">272</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getDepositType
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetItem" id="getItem"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getItem</span> (line <span class="line-number">281</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getItem
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetQuantityPurchased" id="getQuantityPurchased"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getQuantityPurchased</span> (line <span class="line-number">290</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getQuantityPurchased
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetShippingDetails" id="getShippingDetails"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getShippingDetails</span> (line <span class="line-number">236</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getShippingDetails
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetShippingHandlingTotal" id="getShippingHandlingTotal"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getShippingHandlingTotal</span> (line <span class="line-number">299</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getShippingHandlingTotal
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetStatus" id="getStatus"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getStatus</span> (line <span class="line-number">308</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getStatus
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetTransactionID" id="getTransactionID"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getTransactionID</span> (line <span class="line-number">317</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getTransactionID
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetTransactionPrice" id="getTransactionPrice"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getTransactionPrice</span> (line <span class="line-number">335</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getTransactionPrice
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodgetVATPercent" id="getVATPercent"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getVATPercent</span> (line <span class="line-number">344</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getVATPercent
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetAmountPaid" id="setAmountPaid"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAmountPaid</span> (line <span class="line-number">222</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAmountPaid
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$AmountPaid</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetAuthorizationID" id="setAuthorizationID"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAuthorizationID</span> (line <span class="line-number">330</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAuthorizationID
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$AuthorizationID</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetBuyer" id="setBuyer"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setBuyer</span> (line <span class="line-number">231</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setBuyer
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$Buyer</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetConvertedAmountPaid" id="setConvertedAmountPaid"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setConvertedAmountPaid</span> (line <span class="line-number">249</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setConvertedAmountPaid
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ConvertedAmountPaid</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetConvertedTransactionPrice" id="setConvertedTransactionPrice"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setConvertedTransactionPrice</span> (line <span class="line-number">258</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setConvertedTransactionPrice
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ConvertedTransactionPrice</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetCreatedDate" id="setCreatedDate"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setCreatedDate</span> (line <span class="line-number">267</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setCreatedDate
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$CreatedDate</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetDepositType" id="setDepositType"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setDepositType</span> (line <span class="line-number">276</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setDepositType
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$DepositType</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetItem" id="setItem"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setItem</span> (line <span class="line-number">285</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setItem
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$Item</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetQuantityPurchased" id="setQuantityPurchased"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setQuantityPurchased</span> (line <span class="line-number">294</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setQuantityPurchased
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$QuantityPurchased</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetShippingDetails" id="setShippingDetails"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setShippingDetails</span> (line <span class="line-number">240</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setShippingDetails
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ShippingDetails</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetShippingHandlingTotal" id="setShippingHandlingTotal"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setShippingHandlingTotal</span> (line <span class="line-number">303</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setShippingHandlingTotal
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$ShippingHandlingTotal</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetStatus" id="setStatus"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setStatus</span> (line <span class="line-number">312</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setStatus
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$Status</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetTransactionID" id="setTransactionID"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setTransactionID</span> (line <span class="line-number">321</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setTransactionID
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$TransactionID</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetTransactionPrice" id="setTransactionPrice"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setTransactionPrice</span> (line <span class="line-number">339</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setTransactionPrice
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$TransactionPrice</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+<a name="methodsetVATPercent" id="setVATPercent"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setVATPercent</span> (line <span class="line-number">348</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setVATPercent
+		</span>
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$VATPercent</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$charset</span> = <span class="var-default">'iso-8859-1'</span>])
+			</div>
+	
+		
+		
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../PayPal/XSDType.html">XSDType</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../PayPal/XSDType.html#methodXSDType">XSDType::XSDType()</a></span><br>
+													<span class="method-name"><a href="../PayPal/XSDType.html#methodgetattr">XSDType::getattr()</a></span><br>
+													<span class="method-name"><a href="../PayPal/XSDType.html#methodgetSoapValue">XSDType::getSoapValue()</a></span><br>
+													<span class="method-name"><a href="../PayPal/XSDType.html#methodsetattr">XSDType::setattr()</a></span><br>
+													<span class="method-name"><a href="../PayPal/XSDType.html#method__set_attribute">XSDType::__set_attribute()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Thu, 11 May 2006 22:39:23 -0400 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC3</a>
+	</p>
+	</div></body>
+</html>

@@ -1,0 +1,25 @@
+PayPal SDK for PHP
+Change Log
+===========================================================================
+Version 4.3: 01-14-2007
+Added samples for MassPay and ReAuth
+Proxy support provided
+=============================================================================
+Version 4.2.2: 10-11-2006
+* Updated WSDL
+============================================================================
+Version 4.2.1: 09/18/2006
+* Sample Clean up for Test Automation Script.
+- File name changed for Consistent.
+Updated to 42.0 WSDL
+=============================================================================
+Version 4.2: 07-19-2006
+* Updated WSDL
+
+=============================================================================
+Version 4.1.1: 05-24-2006
+* Documented refactoring changes in README file.
+
+=============================================================================
+Version 4.1: 05-15-2006
+* Updated WSDL
