@@ -223,7 +223,7 @@ if(isset($REQUEST['cmd']) && $REQUEST['cmd']=='PRINT')
     $BL->Disconnect();
 }
 //GET PDF INVOICE
-if(isset($REQUEST['cmd']) && $REQUEST['cmd']=='PDF')
+if(isset($REQUEST['cmd']) && ($REQUEST['cmd']=='PDF' || $REQUEST['cmd']=='VPDF'))
 {
     if(isset($REQUEST['invoice_no']))
     {
@@ -236,7 +236,15 @@ if(isset($REQUEST['cmd']) && $REQUEST['cmd']=='PDF')
             $pdf         = new HTML2FPDF();
             $pdf->AddPage();
             $pdf->WriteHTML($html_buffer);
-            $pdf->Output($file_name,'D');
+			if ($REQUEST['cmd']=='VPDF')
+			{
+				header("Content-type: application/pdf");
+	            $pdf->Output($file_name,'I');
+			}
+			else
+			{
+            	$pdf->Output($file_name,'D');
+			}
         }
     }
     elseif(isset($REQUEST['html']) && $BL->auth->IsSESSION("admin"))

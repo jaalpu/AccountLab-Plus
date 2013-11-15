@@ -55,9 +55,11 @@ var t    = ["t1"];
 <!--tabs//-->
 <div class="tabs" name='t1' id='t1' onclick="javascript:showTab('tab1', tabs, 't1', t);" onmouseover="javascript:overTab('t1', t);" onmouseout="javascript:outTab(t);" ><?php echo $BL->props->lang['Invoice']; ?></div>
 <div class="tab_separator">&nbsp;</div>
-<div class="tabs" name='t2' id='t2'><a href='info.php?cmd=PDF&invoice_no=<?php echo $invoice['invoice_no']; ?>' target='_blank'><?php echo $BL->props->lang['PDF']; ?></a></div>
+<div class="tabs" name='t2' id='t2'><a href='info.php?cmd=VPDF&invoice_no=<?php echo $invoice['invoice_no']; ?>' target='_blank'><?php echo $BL->props->lang['PDF']; ?></a></div>
 <div class="tab_separator">&nbsp;</div>
-<div class="tabs" name='t3' id='t3'><a href='info.php?cmd=PRINT&invoice_no=<?php echo $invoice['invoice_no']; ?>' target='_blank'><?php echo $BL->props->lang['Print']; ?></a></div>
+<div class="tabs" name='t2' id='t2'><a href='info.php?cmd=PDF&invoice_no=<?php echo $invoice['invoice_no']; ?>' target='_blank'><?php echo $BL->props->lang['Download_PDF']; ?></a></div>
+<div class="tab_separator">&nbsp;</div>
+<div class="tabs" name='t4' id='t4'><a href='info.php?cmd=PRINT&invoice_no=<?php echo $invoice['invoice_no']; ?>' target='_blank'><?php echo $BL->props->lang['Print']; ?></a></div>
 <div class="tab_separator">&nbsp;</div>
 <div>
 <div id="tab1" name="tab1" class="tabContent" style="display:none">

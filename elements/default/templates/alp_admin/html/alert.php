@@ -84,6 +84,8 @@ function showMe(){
                   <td class="alert_tdhead">
                   <div align='right'>
                   <?php if($BL->utils->PDF){ ?>
+                  <a href="info.php?cmd=VPDF&html=<?php echo urlencode($BL->utils->alert_text); ?>" target='_blank'"><b>[<?php echo $BL->props->lang['PDF']; ?>]</b></a>
+                  &nbsp;&nbsp;
                   <a href="info.php?cmd=PDF&html=<?php echo urlencode($BL->utils->alert_text); ?>" target='_blank'"><b>[<?php echo $BL->props->lang['Download_PDF']; ?>]</b></a>
                   &nbsp;&nbsp;
                   <?php } ?>

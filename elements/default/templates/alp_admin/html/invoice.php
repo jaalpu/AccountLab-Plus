@@ -797,6 +797,11 @@
     </tr>
     <tr>
         <td class='text_grey'>
+            <a href='info.php?cmd=VPDF&invoice_no=<?php echo $REQUEST['invoice_no']; ?>' target='_blank'><b><?php echo $BL->props->lang['PDF']; ?></b></a>
+        </td>
+    </tr>
+    <tr>
+        <td class='text_grey'>
             <a href='info.php?cmd=PDF&invoice_no=<?php echo $REQUEST['invoice_no']; ?>' target='_blank'><b><?php echo $BL->props->lang['Download_PDF']; ?></b></a>
         </td>
     </tr>

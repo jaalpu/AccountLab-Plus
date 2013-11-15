@@ -75,7 +75,8 @@
           <td class='<?php echo $bgcolor; ?>'><?php echo $BL->props->lang[$value['status']]; ?></td>
           <td class='<?php echo $bgcolor; ?>'>
           &nbsp;<a class='accountlabPlanLink' href='<?php echo $PHP_SELF; ?>?cmd=<?php if($value['status']==$BL->props->invoice_status[1])echo "viewInvoice"; else echo "pay"; ?>&invoice_no=<?php echo $value['invoice_no']; ?>'><?php echo $BL->props->lang['View']; ?></a>
-          &nbsp;<a class='accountlabPlanLink' href='info.php?cmd=PDF&invoice_no=<?php echo $value['invoice_no']; ?>' target='_blank'><?php echo $BL->props->lang['PDF']; ?></a>
+          &nbsp;<a class='accountlabPlanLink' href='info.php?cmd=VPDF&invoice_no=<?php echo $value['invoice_no']; ?>' target='_blank'><?php echo $BL->props->lang['PDF']; ?></a>
+          &nbsp;<a class='accountlabPlanLink' href='info.php?cmd=PDF&invoice_no=<?php echo $value['invoice_no']; ?>' target='_blank'><?php echo $BL->props->lang['Download_PDF']; ?></a>
           </td>
         </tr>
         <?php } ?>

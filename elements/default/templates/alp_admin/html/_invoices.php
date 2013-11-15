@@ -102,8 +102,10 @@
         <td class='text_grey'><div align='left'><?php echo $BL->props->lang[$Invoice['status']]; ?></div></td>
         <td class='text_grey'>
             <div align='left'>
-            <a href='info.php?cmd=PDF&invoice_no=<?php echo $Invoice['invoice_no']; ?>' target='_blank'>          
+            <a href='info.php?cmd=VPDF&invoice_no=<?php echo $Invoice['invoice_no']; ?>' target='_blank'>          
             <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>pdf.gif' alt='<?php echo $BL->props->lang['PDF']; ?>' border='0' /></a>
+            <a href='info.php?cmd=PDF&invoice_no=<?php echo $Invoice['invoice_no']; ?>' target='_blank'>          
+            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>down.gif' alt='<?php echo $BL->props->lang['Download_PDF']; ?>' border='0' /></a>
             &nbsp;
             <?php if($BL->getCmd("editinvoice")){ ?>
             <a href='<?php echo $PHP_SELF; ?>?cmd=editinvoice&invoice_no=<?php echo $Invoice['invoice_no']; ?>'class='text_link'><img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' border='0'></a>&nbsp;
