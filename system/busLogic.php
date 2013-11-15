@@ -2587,7 +2587,7 @@ class busLogic
         $body   = $this->utils->clnTag('if_cycle',$this->utils->strInTag('if_cycle',$body),$body);
         $body   = $this->utils->clnTag('if_order_addon',$this->utils->strInTag('if_order_addon',$body),$body);
         $body   = $this->utils->clnTag('if_discount',$this->utils->strInTag('if_discount',$body),$body);
-        $body   = $this->utils->clnTag('if_dedit_credit',$this->utils->strInTag('if_debit_credit',$body),$body);
+        $body   = $this->utils->clnTag('if_debit_credit',$this->utils->strInTag('if_debit_credit',$body),$body);
         $body   = $this->utils->clnTag('if_prorate',$this->utils->strInTag('if_prorate',$body),$body);
         $body   = $this->utils->clnTag('if_tax',$this->utils->strInTag('if_tax',$body),$body);
         if($return_data_array)return $data_array;
