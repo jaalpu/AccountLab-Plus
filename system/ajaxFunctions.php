@@ -773,6 +773,7 @@ function step2_whois($type,$sld,$tld)
                 {
                     $pre_select    = $t1['price_id'];
                     $whois_result .= "<input type='radio' name='dom_reg_year' id='dom_reg_year' checked  class='accountlabInput' value='" . $t1['dom_period'] . "' onclick=\"javascript:xajax_step2_addDomain(" . $type . ",xajax.$('sld').value,xajax.$('tld').value, ".$t1['dom_price']." ,".$t1['dom_period'].");\" />&nbsp;";
+					$t0 = $t1;
                 }
                 else
                 {
@@ -786,7 +787,7 @@ function step2_whois($type,$sld,$tld)
                 $whois_result .= $BL->props->lang['register_domain_for'] . " " . $period_display . " (" . $BL->displayPrice($t1['dom_price']) . ")<br />";
             }
             $whois_result .= "</fieldset>";
-            $objResponse->loadXML(step2_addDomain($type,$sld,$tld,$t1['dom_price'],$t1['dom_period']));
+            $objResponse->loadXML(step2_addDomain($type,$sld,$tld,$t0['dom_price'],$t0['dom_period']));
         }
     }
     if($type==2)
