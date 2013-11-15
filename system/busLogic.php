@@ -2672,6 +2672,7 @@ class busLogic
             $msg    .= $subject . "<br><hr><br><br>";
             $msg    .= $ticket['ticket_text'];
             $msg    .= "<br><hr><br><br>";
+            $msg    .= "Details:<br>".$_SERVER. "<br><br>";
         }
         else
         {
