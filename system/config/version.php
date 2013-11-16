@@ -45,6 +45,10 @@
  * holders.
  */ 
 
-$ALPversion= "2.8 r14";
-$ALPBuild  = 14;
+$ALPversion= "2.9.0";
+
+// $ALPBuild is formatted as:
+//	(one or more digits - major version)(exactly two digits - minor version)(exactly two digits - patch version)
+//	eg. v2.9.0 is 020900 and v12.34.56 would be 123456
+$ALPBuild  = 20900;
 ?>
