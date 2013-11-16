@@ -198,7 +198,7 @@ var t    = ["t1"];
     <input type="hidden" name="payment_method" id="payment_method" value="<?php echo $payment_method; ?>" />  
     <?php } ?>                  
     <?php echo $post_vars; ?>
-    <?php if(!empty($BL->pg_name[$payment_method])){ ?>
+    <?php if(!empty($BL->pg_name[$payment_method]) && !empty($add_fields)) { ?>
     <input type="submit" class='accountlabInput' name="alp_pay_now" id='alp_pay_now' value="<?php echo $BL->pg_name[$payment_method]; ?>" />
     <?php } ?>
     </td>
