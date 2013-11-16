@@ -208,7 +208,7 @@ if(isset($REQUEST['cmd']) && $REQUEST['cmd']=='PRINT')
         $html_buffer = $BL->mailInvoice($REQUEST['invoice_no'],true);
         ?>
         <html>
-        <body onload="javascript:window.print();window.close();">
+        <body onload="javascript:window.print();" onfocus="window.close()">
         <?php
         echo $html_buffer;
         ?>
