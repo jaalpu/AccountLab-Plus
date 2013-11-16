@@ -76,5 +76,6 @@
 </tr>
 </table>
 </form>
-<br />
+<br /><br />
+<b style="align: center;"><?php echo $BL->props->lang['quickpay_note']; ?></b>
 <?php include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/footer.php"); ?>
