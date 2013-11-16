@@ -1567,4 +1567,7 @@ $lang['opensrs']="OpenSRS";
 $lang['planetdomain']="Planetdomain";
 $lang['resellerone']="ResellerOne";
 $lang['pass_private']= "Password/Private Key";
+//lang below was added Nov 2013
+$lang['en_quickpay']="Enable Quick Pay";
+$lang['quickpay']="Quick Pay";
 ?>

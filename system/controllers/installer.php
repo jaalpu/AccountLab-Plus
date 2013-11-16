@@ -920,6 +920,13 @@ class installer_controller extends controller
             $sql_errors .= $this->updateBuild(14);
             $upgrade= 1;
         }
+        //Upgrade to Version 2.9.0
+        if ($this->getBuild() < 20900)
+        {
+            $sql_errors .= $this->runVersionSqls('2_9_0');
+            $sql_errors .= $this->updateBuild(20900);
+            $upgrade= 1;
+        }
         ///////////////////////////
         if ($upgrade)
         {

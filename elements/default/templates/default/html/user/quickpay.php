@@ -47,44 +47,34 @@
 
 ?>
 
-<div id="masthead"> 
-  <h1 id="siteName"><?php echo !empty($BL->conf['company_name'])?$BL->conf['company_name']:$BL->props->lang['accountlabplus']; ?></h1>
-</div> 
-<div id="pagecell1">
-  <div id="pageName" align="right"> 
-    <?php include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/theme_lang_selector.php"); ?>
-  </div> 
-  <?php if($BL->auth->IsAuth("user")) { ?>
-  <div id="pageNav"> 
-    <div id="sectionLinks"> 
-      <a href="<?php echo $PHP_SELF; ?>"><?php echo $BL->props->lang['Dashboard']; ?></a> 
-      <a href="<?php echo $PHP_SELF; ?>?cmd=edit"><?php echo $BL->props->lang['Edit_Profile']; ?></a> 
-      <a href="<?php echo $PHP_SELF; ?>?cmd=orders"><?php echo $BL->props->lang['Orders']; ?></a> 
-      <a href="<?php echo $PHP_SELF; ?>?cmd=invoices"><?php echo $BL->props->lang['^invoices']; ?></a>
-      <?php if($conf['en_support']){ ?>
-      <a href="<?php echo $PHP_SELF; ?>?cmd=tickets"><?php echo $BL->props->lang['^tickets']; ?></a>
-      <?php } ?>
-      <?php if(count($faqs)){ ?>
-      <a href="<?php echo $PHP_SELF; ?>?cmd=faq"><?php echo $BL->props->lang['FAQs']; ?></a>
-      <?php } ?>
-      <a href="logout.php?&user=customer"><?php echo $BL->props->lang['Logout']; ?></a>
-    </div> 
-  </div> 
-  <?php }elseif($general_section) { ?>
-  <div id="pageNav"> 
-    <div id="sectionLinks"> 
-      <a href="customer.php"><?php echo $BL->props->lang['login']; ?></a> 
-      <?php if($conf['en_quickpay']){ ?>
-      <a href="customer.php?cmd=quickpay"><?php echo $BL->props->lang['quickpay']; ?></a> 
-      <?php } ?>
-      <?php if($conf['en_support']){ ?>
-      <a href="support.php"><?php echo $BL->props->lang['add_ticket']; ?></a>
-      <?php } ?>
-      <?php if(count($faqs)){ ?>
-      <a href="faq.php"><?php echo $BL->props->lang['FAQs']; ?></a>
-      <?php } ?>
-    </div> 
-  </div> 
-  <?php } ?>
-  <div id="content"> 
-    <div class="story">
+<?php include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/header.php"); ?>
+<form name='form1' id='form1' action='<?php echo $PHP_SELF; ?>' method='POST' class='alpform'>
+<table width='100%' border='0' cellspacing='0' cellpadding='0'>            
+<tr> 
+  <td colspan='2'>
+  <b><?php echo $BL->props->lang['quickpay']; ?></b>
+  </td>
+</tr>
+<tr> 
+  <td width='40%'><span class='alplabel'><?php echo $BL->props->lang['Email']; ?></span></td>
+  <td>
+  <input name='email' type='text' class='alpinput' id='email' size='20' />
+  </td>
+</tr>
+<tr> 
+  <td width='40%'><span class='alplabel'><?php echo $BL->props->lang['Invoice_No']; ?></span></td>
+  <td>
+  <input name='invoice_no' type='text' class='alpinput' id='invoice_no' size='20' />
+  </td>
+</tr>
+<tr> 
+  <td>&nbsp;</td>
+  <td>
+  <input name="cmd" type="hidden" value="quickpay">
+  <input name='submit_login' type='submit' class='alpinput' value='<?php echo $BL->props->lang['quickpay']; ?>' />
+  </td>
+</tr>
+</table>
+</form>
+<br />
+<?php include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/footer.php"); ?>

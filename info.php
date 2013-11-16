@@ -203,7 +203,10 @@ if(isset($REQUEST['cmd']) && $REQUEST['cmd']=='PRINT')
 {
     $temp    = $BL->invoices->get("WHERE `invoice_no`='".$REQUEST['invoice_no']."'");
     $invoice = $temp[0];
-    if ($REQUEST['invoice_no']>0 && (($_SESSION['user_id'] == $invoice['customer_id'] && $BL->auth->IsSESSION("user")) || $BL->auth->IsSESSION("admin")))
+    if ($REQUEST['invoice_no']>0 && (
+		($_SESSION['user_id'] == $invoice['customer_id'] && $BL->auth->IsSESSION("user"))
+		|| $BL->auth->IsSESSION("admin")
+		|| $_SESSION['quickpay'] == $REQUEST['invoice_no'] ))
     {
         $html_buffer = $BL->mailInvoice($REQUEST['invoice_no'],true);
         ?>
@@ -219,6 +222,7 @@ if(isset($REQUEST['cmd']) && $REQUEST['cmd']=='PRINT')
     else
     {
         echo "OOPS! Your session can not be verified, Please try again.";
+		echo $_SESSION['quickpay'];
     }
     $BL->Disconnect();
 }
@@ -228,7 +232,10 @@ if(isset($REQUEST['cmd']) && ($REQUEST['cmd']=='PDF' || $REQUEST['cmd']=='VPDF')
     if(isset($REQUEST['invoice_no']))
     {
         $Invoice  = $BL->invoices->get("WHERE `invoice_no` ='".$REQUEST['invoice_no']."'");
-        if (isset($Invoice[0]['customer_id']) && ((isset($_SESSION['user_id']) && $_SESSION['user_id'] == $Invoice[0]['customer_id'] && $BL->auth->IsSESSION("user")) || $BL->auth->IsSESSION("admin")))
+        if (isset($Invoice[0]['customer_id']) && (
+			(isset($_SESSION['user_id']) && $_SESSION['user_id'] == $Invoice[0]['customer_id'] && $BL->auth->IsSESSION("user"))
+			|| $BL->auth->IsSESSION("admin")
+			|| $_SESSION['quickpay'] == $REQUEST['invoice_no']))
         {
             $html_buffer = $BL->mailInvoice($REQUEST['invoice_no'],true);
             $file_name   = $BL->conf['invoice_prefix'] . $REQUEST['invoice_no'] . $BL->conf['invoice_suffix'].".pdf";

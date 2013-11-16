@@ -45,6 +45,10 @@
  * holders.
  */ 
 
+//sqls to upgrade from 2.8 r12 to 2.9.0
+$Queries['2_9_0'][] = "ALTER TABLE `order_conf` ADD `en_quickpay`           ENUM( '0', '1' )      NOT NULL DEFAULT '0'";
+
+
 //sqls to upgrade from 2.8 r10 to 2.8 r12 (build no 14)
 $Queries['2_8r12'][] = "
 CREATE TABLE `registrars` (

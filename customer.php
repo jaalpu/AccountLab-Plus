@@ -75,6 +75,21 @@ if($cmd=='custompage'){
     	$cmd="";
     }
 }
+if ($cmd=='quickpay' && isset($BL->REQUEST['email']) && isset($BL->REQUEST['invoice_no']) && $BL->conf['en_quickpay'])
+{
+	$skiplogin = true;
+	$cmd='pay';
+}
+elseif($cmd=='quickpay' && $BL->conf['en_quickpay'])
+{
+	include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/quickpay.php");
+    $BL->Disconnect();
+}
+elseif($cmd=='pay' && $_SESSION['quickpay'] == $BL->REQUEST['invoice_no'] && $BL->conf['en_quickpay'])
+{
+	$skiplogin = true;
+}
+
 if (isset($BL->REQUEST['email']) && isset($BL->REQUEST['password']))
 {
     foreach ($BL->REQUEST as $k => $v)
@@ -123,7 +138,8 @@ if (!$skiplogin && !$BL->auth->IsAuth("user"))
 	include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/login.php");
     $BL->Disconnect();
 }
-//Deside where to go
+
+//Decide where to go
 switch ($cmd)
 {
     case "custompage" :
@@ -144,7 +160,7 @@ switch ($cmd)
             $invoice_no     = $BL->REQUEST['invoice_no'];
             $payment_method = isset($BL->REQUEST['payment_method'])?$BL->REQUEST['payment_method']:$ACTIVE_PAYMENT_METHODS[0];
             $BL->invoices->update(array("payment_method"=>$payment_method,"invoice_no"=>$invoice_no));
-            //CHANGE PATMENT METHOD
+            //CHANGE PAYMENT METHOD
             if (isset ($BL->REQUEST['pp']))
             {
                 $BL->invoices->update(array("payment_method"=>$BL->REQUEST['pp'],"invoice_no"=>$BL->REQUEST['invoice_no']));
@@ -181,7 +197,10 @@ switch ($cmd)
             $invoice = $temp[0];
             $temp    = $BL->orders->get("WHERE `customers`.id='".$invoice['id']."'");
             $order   = $temp[0];
-            $payment_method = $invoice['payment_method'];
+			if (!empty($invoice['payment_method']))
+			{
+				$payment_method = $invoice['payment_method'];
+			}
             if(!isset($BL->REQUEST['pp']) || empty($BL->REQUEST['pp']))
             {
                 $BL->REQUEST['pp'] = $payment_method;
@@ -217,6 +236,7 @@ switch ($cmd)
             $disp_msg      = $BL->pp_disp_msg[$payment_method];
             $show_add_curr = $BL->pp_add_curr[$payment_method];
             $pay           = $BL->pp_objs[$payment_method];
+
             $pay->sendVariables($BL->conf['path_url'], $BL->pp_vals->getByKey($payment_method));
             $post_url      = isset($pay->pay_url)?$pay->pay_url:($BL->conf['path_url']."/customer.php");
             $send_method   = isset($BL->pp_send_method[$payment_method])?$BL->pp_send_method[$payment_method]:"POST";
@@ -253,16 +273,30 @@ switch ($cmd)
                 include_once $BL->include_page("invoice_view.php", "user");
                 break;
             }
+            elseif (isset($invoice['customer_id']) && $BL->REQUEST['email'] == $invoice['email'] && $BL->conf['en_quickpay'])
+            {
+				$_SESSION['quickpay'] = $BL->REQUEST['invoice_no'];
+                $html_buffer = $BL->mailInvoice($BL->REQUEST['invoice_no'],true);
+				include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/invoice_view.php");
+                break;
+            }
+            elseif (isset($invoice['customer_id']) && $_SESSION['quickpay'] == $BL->REQUEST['invoice_no'])
+            {
+                $html_buffer = $BL->mailInvoice($BL->REQUEST['invoice_no'],true);
+				include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/invoice_view.php");
+                break;
+            }
             else
             {
-                //$BL->Redirect("invoices","user");
+                // $BL->Redirect("invoices","user");
             }
         }
     case "viewInvoice" :
         {
             $temp    = $BL->invoices->get("WHERE `invoices`.invoice_no='".$BL->REQUEST['invoice_no']."'");
             $invoice = $temp[0];
-            if (isset($temp[0]['id']) && $_SESSION['user_id'] == $invoice['id'])
+            if (isset($temp[0]['id']) && 
+				($_SESSION['user_id'] == $invoice['id']) || ($_SESSION['quickpay'] == $invoice['invoice_no']))
             {
                 $html_buffer = $BL->mailInvoice($BL->REQUEST['invoice_no'],true);
                 include_once $BL->include_page("invoice_view.php", "user");
