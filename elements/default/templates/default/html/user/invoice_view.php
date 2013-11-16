@@ -173,11 +173,11 @@ var t    = ["t1"];
               </td>
               <td>
                  <?php if($field[4]=="text"){ ?>
-                 <input name="<?php echo $field[1]; ?>" type="text" id="<?php echo $field[1]; ?>" value="<?php echo $ext_fields[$field[1]]; ?>" size="<?php echo $field[5]; ?>" class='accountlabInput' />
+                 <input name="<?php echo $field[1]; ?>" type="text" id="<?php echo $field[1]; ?>" <?php if ($field[3]==0) {?>value="<?php echo $ext_fields[$field[1]]; ?>"<?php } ?> size="<?php echo $field[5]; ?>" class='accountlabInput' />
                  <?php }elseif($field[4]=="select"){ ?>
                  <select name="<?php echo $field[1]; ?>" id="<?php echo $field[1]; ?>" class='accountlabInput' size="<?php echo $field[5]; ?>">
                  <?php for($i=8;$i<count($field);$i++){ ?>
-                    <option value='<?php echo $field[$i]; ?>' <?php if($ext_fields[$field[1]]==$field[$i])echo "selected=\"selected\""; ?>><?php echo $field[$i]; ?></option>
+                    <option value='<?php echo $field[$i]; ?>' <?php if($ext_fields[$field[1]]==$field[$i] && $field[3]==0)echo "selected=\"selected\""; ?>><?php echo $field[$i]; ?></option>
                  <?php } ?>
                  <?php $_SESSION[$field[1]]=$field[8];?>
                  </select>
