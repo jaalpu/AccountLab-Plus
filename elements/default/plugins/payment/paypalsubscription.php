@@ -50,7 +50,8 @@ $paypalsubscription = array (
                         array ("Email"      , "paypal_s_email"), 
                         array ("Currency"   , "paypal_s_currency", "USD", "GBP", "EUR", "CAD", "JPY", "AUD"), 
                         array ("Active"     , "active", "No", "Yes"), 
-                        array ("Title"      , "title")
+                        array ("Title"      , "title"),
+                        array ("Submit label", "submit_label")
                         );
 $send_method        = "POST";
 $pay                = new paypalsubscription($demo_mode);

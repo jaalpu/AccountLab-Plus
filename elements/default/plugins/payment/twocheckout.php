@@ -51,7 +51,8 @@ $twocheckout    = array (
                     array ("Secret Word"    , "tco_secret_word"), 
 		            array ("Parameters"     ,"tco_params", "Own", "Authorize.net"),
                     array ("Active"         , "active", "No", "Yes"), 
-                    array ("Title"          , "title")
+                    array ("Title"          , "title"),
+					array ("Submit label"   , "submit_label")
                     );
 $send_method    = "POST";
 $pay            = new twocheckout($demo_mode);

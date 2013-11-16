@@ -50,7 +50,8 @@ $clickbank  = array (
             	array ("ClickBank ID"  , "cb_id"),
             	array ("Secret Key"    , "cb_sk"),
             	array ("Active"        , "active", "No", "Yes"),
-            	array ("Title"         , "title")
+            	array ("Title"         , "title"),
+				array ("Submit label"  , "submit_label")
             );
 $send_method= "GET";
 $pay        = new clickbank($demo_mode);

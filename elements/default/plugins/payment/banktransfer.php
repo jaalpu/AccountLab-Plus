@@ -50,7 +50,8 @@ $banktransfer   = array (
                     array ("Instructions message"       , "disp_msg"), 
                     array ("Show additional currencies" , "add_curr", "No", "Yes"), 
                     array ("Active"                     , "active", "No", "Yes"), 
-                    array ("Title"                      , "title")
+                    array ("Title"                      , "title"),
+					array ("Submit label"               , "submit_label")
                     );
 //Extra fields for order form and customer backend                        
 $ext_fields     = array (
@@ -61,6 +62,26 @@ $ext_fields     = array (
                         );                       
 $send_method    = "DIRECT";
 $pay            = new banktransfer();
+$validate = "
+function validatepayment(btn) {
+    if (btn.form.acct_holder.value.length < 1) {
+        alert('Please enter the account holder name.');
+        return false;
+    }
+
+    if (btn.form.cheque_no.value.length < 4) {
+        alert('Please enter the cheque number.');
+        return false;
+    }
+
+    if (btn.form.cheque_date.value.length < 3) {
+        alert('Please enter the cheque date.');
+        return false;
+    }
+
+    return true;
+}
+";
 /*
  * Class to do all banktransfer
  * banktransfer Version 1.0

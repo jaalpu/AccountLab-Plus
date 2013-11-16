@@ -51,6 +51,7 @@
 <script language="JavaScript" type="text/javascript">
 var tabs = ["tab1"];
 var t    = ["t1"];
+<?php echo $BL->pg_validate[$payment_method]; ?>
 </script>  
 <!--tabs//-->
 <div class="tabs" name='t1' id='t1' onclick="javascript:showTab('tab1', tabs, 't1', t);" onmouseover="javascript:overTab('t1', t);" onmouseout="javascript:outTab(t);" ><?php echo $BL->props->lang['Invoice']; ?></div>
@@ -173,11 +174,11 @@ var t    = ["t1"];
               </td>
               <td>
                  <?php if($field[4]=="text"){ ?>
-                 <input name="<?php echo $field[1]; ?>" type="text" id="<?php echo $field[1]; ?>" value="<?php echo $ext_fields[$field[1]]; ?>" size="<?php echo $field[5]; ?>" class='accountlabInput' />
+                 <input name="<?php echo $field[1]; ?>" type="text" id="<?php echo $field[1]; ?>" <?php if ($field[3]==0) {?>value="<?php echo $ext_fields[$field[1]]; ?>"<?php } ?> size="<?php echo $field[5]; ?>" class='accountlabInput' />
                  <?php }elseif($field[4]=="select"){ ?>
                  <select name="<?php echo $field[1]; ?>" id="<?php echo $field[1]; ?>" class='accountlabInput' size="<?php echo $field[5]; ?>">
                  <?php for($i=8;$i<count($field);$i++){ ?>
-                    <option value='<?php echo $field[$i]; ?>' <?php if($ext_fields[$field[1]]==$field[$i])echo "selected=\"selected\""; ?>><?php echo $field[$i]; ?></option>
+                    <option value='<?php echo $field[$i]; ?>' <?php if($ext_fields[$field[1]]==$field[$i] && $field[3]==0)echo "selected=\"selected\""; ?>><?php echo $field[$i]; ?></option>
                  <?php } ?>
                  <?php $_SESSION[$field[1]]=$field[8];?>
                  </select>
@@ -198,8 +199,8 @@ var t    = ["t1"];
     <input type="hidden" name="payment_method" id="payment_method" value="<?php echo $payment_method; ?>" />  
     <?php } ?>                  
     <?php echo $post_vars; ?>
-    <?php if(!empty($BL->pg_name[$payment_method])){ ?>
-    <input type="submit" class='accountlabInput' name="alp_pay_now" id='alp_pay_now' value="<?php echo $BL->pg_name[$payment_method]; ?>" />
+    <?php if(!empty($BL->pg_name[$payment_method])) { ?>
+    <input type="submit" class='accountlabInput' name="alp_pay_now" id='alp_pay_now' value="<?php echo $BL->pg_submitlabel[$payment_method]; ?>" onclick="return validatepayment(this);"/>
     <?php } ?>
     </td>
 </tr>  

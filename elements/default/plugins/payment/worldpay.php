@@ -50,7 +50,8 @@ $worldpay   = array (
                 array ("WorldPay Installation ID", "wp_instId"), 
                 array ("Currency", "wp_currency"), 
                 array ("Active", "active", "No", "Yes"), 
-                array ("Title", "title")
+                array ("Title", "title"),
+				array ("Submit label", "submit_label")
                 );
 $send_method= "POST";
 $pay        = new worldpay($demo_mode);

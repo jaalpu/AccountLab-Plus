@@ -50,7 +50,8 @@ $epay = array (
                 array ("Merchant ID"    , "epay_id"), 
                 array ("Currency"       , "epay_currency", "USD", "EUR"), 
                 array ("Active"         , "active", "No", "Yes"), 
-                array ("Title"          , "title")
+                array ("Title"          , "title"),
+				array ("Submit label"   , "submit_label")
                 );
 $send_method = "POST";
 $pay         = new epay($demo_mode);

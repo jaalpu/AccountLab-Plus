@@ -50,7 +50,8 @@ $eway = array (
             array ("Customer ID", "eway_CustomerID"), 
             array ("Site Title" , "eway_SiteTitle"),
             array ("Active"     , "active", "No", "Yes"), 
-            array ("Title"      , "title")
+            array ("Title"      , "title"),
+			array ("Submit label", "submit_label")
             );
 $send_method = "POST";
 $pay         = new eway($demo_mode);

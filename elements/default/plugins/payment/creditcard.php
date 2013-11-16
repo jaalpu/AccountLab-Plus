@@ -51,7 +51,8 @@ $creditcard     = array (
                         array ("Instructions message"       , "disp_msg"),
                         array ("Show additional currencies" , "add_curr", "No", "Yes"),
                         array ("Active"                     , "active", "No", "Yes"),
-                        array ("Title"                      , "title")
+                        array ("Title"                      , "title"),
+						array ("Submit label"               , "submit_label")
                         );
 //Extra fields for order form and customer backend                        
 $ext_fields     = array (
@@ -63,6 +64,78 @@ $ext_fields     = array (
                         array("CVV2_Code"           ,"CVV2"             ,1,1,"text"     ,4  ,1,2)
                         );                        
 $send_method    = "DIRECT";
+$validate       = "
+function validatepayment(btn) {
+    if (btn.form.card_no.value.length < 5) {
+        alert('Please enter your credit card number.');
+        return false;
+    }
+
+    if (!luhnCheck(btn.form.card_no.value)) {
+        alert('This credit card number is not valid.');
+        return false;
+    }
+
+    if (!isNumeric(btn.form.card_no.value)) {
+        alert('Credit card number can\'t contain spaces or non-numbers.');
+        return false;
+    }
+
+    if (btn.form.card_no.value.length < 5) {
+        alert('Please enter your credit card number.');
+        return false;
+    }
+
+    if (btn.form.card_holder.value.length < 1) {
+        alert('Please enter the credit card name.');
+        return false;
+    }
+
+    if ((btn.form.exp_date.value.length != 4) || !isNumeric(btn.form.exp_date.value)) {
+        alert('Please enter the credit card expiration date in the form MMYY.');
+        return false;
+    }
+
+    if ((btn.form.CVV2.value.length < 3) || !isNumeric(btn.form.CVV2.value)) {
+        alert('Please enter the CVV2 (card verification code) from the back of your card.');
+        return false;
+    }
+
+    return true;
+}
+
+function isNumeric(sText) {
+   var ValidChars = '0123456789';
+   for (i = 0; i < sText.length && isNumeric == true; i++) 
+      if (ValidChars.indexOf(sText.charAt(i)) == -1) 
+         return false;
+   return true;
+   
+}
+
+function luhnCheck(CardNumber) {
+    if (!isNumeric(CardNumber))
+        return false;
+
+    var no_digit = CardNumber.length;
+    var oddoeven = no_digit & 1;
+    var sum = 0;
+
+    for (var count = 0; count < no_digit; count++) {
+        var digit = parseInt(CardNumber.charAt(count));
+        if (!((count & 1) ^ oddoeven)) {
+            digit *= 2;
+            if (digit > 9)
+                digit -= 9;
+        }
+        sum += digit;
+    }
+    if (sum % 10 == 0)
+        return true;
+    else
+        return false;
+}
+";
 $pay            = new creditcard();
 /*
  * Class to do all offline

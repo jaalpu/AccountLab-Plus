@@ -52,7 +52,8 @@ $mokejimai  = array (
                     array ("Mokejimai Language"     , "mokejimai_Lang", "ENG", "ESP", "EST", "FIN", "FRE", "GEO", "GER", "ITA", "LAV", "LIT", "NOR", "POL", "ROU", "RUS", "SPA", "SWE"), 
                     array ("Mokejimai Currency"     , "mokejimai_Currency", "LTL","USD","EUR"), 
                     array ("Active"                 , "active", "No", "Yes"), 
-                    array ("Title"                  , "title")
+                    array ("Title"                  , "title"),
+					array ("Submit label"           , "submit_label")
                     );
 $send_method= "POST";
 $pay        = new mokejimai($demo_mode);

@@ -50,7 +50,8 @@ $chronopay  = array (
                 array ("Product Id"     , "chronopay_product_id"), 
                 array ("Currency"       , "chronopay_currency", "USD"), 
                 array ("Active"         , "active", "No", "Yes"), 
-                array ("Title"          , "title")
+                array ("Title"          , "title"),
+				array ("Submit label"   , "submit_label")
                 );
 $send_method= "POST";
 $pay        = new chronopay($demo_mode);

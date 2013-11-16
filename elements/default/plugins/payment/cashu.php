@@ -51,7 +51,8 @@ $cashu  = array (
             array ("Currency"       , "cu_currency", "USD", "CSH"), 
             array ("Encryption Key" , "cu_enkey"), 
             array ("Active"         , "active", "No", "Yes"), 
-            array ("Title"          , "title")
+            array ("Title"          , "title"),
+			array ("Submit label"   , "submit_label")
             );
 $send_method    = "POST";
 $pay            = new cashu($demo_mode);

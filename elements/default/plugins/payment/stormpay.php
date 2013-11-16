@@ -50,7 +50,8 @@ $stormpay   = array (
                 array ("Stormpay email" , "payee_email"), 
                 array ("Secret Code"    , "sp_secret_code"),
                 array ("Active"         , "active", "No", "Yes"), 
-                array ("Title"          , "title")
+                array ("Title"          , "title"),
+				array ("Submit label"   , "submit_label")
                 );
 $send_method= "POST";
 $pay        = new stormpay($demo_mode);

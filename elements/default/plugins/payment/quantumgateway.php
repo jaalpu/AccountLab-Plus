@@ -49,7 +49,8 @@ $name   = "Quantum Gateway";
 $quantumgateway = array (
             array ("Gateway Login" , "quantumgateway_gwlogin"), 
             array ("Active" , "active", "No", "Yes"), 
-            array ("Title" , "title")
+            array ("Title" , "title"),
+			array ("Submit label", "submit_label")
             );
 $send_method = "POST";
 $pay         = new quantumgateway($demo_mode);

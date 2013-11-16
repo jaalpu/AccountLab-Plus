@@ -281,6 +281,8 @@ class busLogic
         $this->pp_ext_fields = array();
         $this->arrays      = array();
         $this->pp_send_method = array();
+        $this->pg_submitlabel = array();
+        $this->pg_validate = array();
 
         $demo_mode = isset($this->props->payment_method_demo_mode)?$this->props->payment_method_demo_mode:0;
 
@@ -294,12 +296,15 @@ class busLogic
                 {
                     $proxy_url = isset($data['server_url'])?$data['server_url']:"";
                 }
+				$validate = "";
                 require_once $this->props->get_page("plugins/payment/" . $v . ".php", "file", 1);
                 $this->pp_objs[$v]      = $pay;
                 $this->pp_disp_msg[$v]  = !empty($data['disp_msg'])?$data['disp_msg']:"";
                 $this->pp_active[$v]    = !empty($data['active'])?$data['active']:"No";
                 $this->pp_add_curr[$v]  = !empty($data['add_curr'])?$data['add_curr']:"";
                 $this->pg_name[$v]      = !empty($data['title'])?$data['title']:(isset($name)?$name:$v);
+				$this->pg_submitlabel[$v]=!empty($data['submit label'])?$data['Submit label']:$this->pg_name[$v];
+				$this->pg_validate[$v]  = !empty($validate)?$validate : "function validatepayment(btn) { return true; }";
                 $this->pp_ext_fields[$v]= $ext_fields;
                 $this->arrays[$v]       = isset(${$v})?${$v}:array();
                 $this->pp_send_method[$v]= isset($send_method)?$send_method:"POST";

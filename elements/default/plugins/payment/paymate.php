@@ -50,7 +50,8 @@ $paymate    = array (
             array ("ID"         , "mid"), 
             array ("Currency"   , "paymate_currency", "USD", "AUD"), 
             array ("Active"     , "active", "No", "Yes"), 
-            array ("Title"      , "title")
+            array ("Title"      , "title"),
+            array ("Submit label", "submit_label")
             );
 $send_method= "GET";
 $pay        = new paymate($demo_mode);

@@ -52,7 +52,8 @@ $asianpay = array (
                 array ("Account ID"     , "ap_account_id"), 
                 array ("Secret Code"    , "ap_secretcode"),
                 array ("Active"         , "active", "No", "Yes"), 
-                array ("Title"          , "title")
+                array ("Title"          , "title"),
+				array ("Submit label"   , "submit_label")
                 );
 $send_method = "POST";
 $pay         = new asianpay($demo_mode);

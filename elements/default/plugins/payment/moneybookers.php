@@ -50,7 +50,8 @@ $moneybookers   = array (
                     array ("Email"      , "pay_to_email"), 
                     array ("Currency"   , "mb_currency"), 
                     array ("Active"     , "active", "No", "Yes"), 
-                    array ("Title"      , "title")
+                    array ("Title"      , "title"),
+                    array ("Submit label", "submit_label")
                     );
 $send_method    = "POST";
 $pay            = new moneybookers($demo_mode);

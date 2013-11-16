@@ -50,7 +50,8 @@ $linkpointapi   = array (
                     array ("Store Number"   , "lpapi_storenumber"), 
                     array ("PEM FILE"       , "lpapi_pemfile"), 
                     array ("Active"         , "active", "No", "Yes"), 
-                    array ("Title"          , "title")
+                    array ("Title"          , "title"),
+					array ("Submit label"   , "submit_label")
                     );
 //Extra fields for order form and customer backend                
 $ext_fields     = array (
@@ -62,6 +63,78 @@ $ext_fields     = array (
                         );   
 for($i=date('Y');$i<(date('Y')+20);$i++)$ext_fields[2][]=substr($i,2,2);
 $send_method = "POST";
+$validate       = "
+function validatepayment(btn) {
+    if (btn.form.lpapi_cardnumber.value.length < 5) {
+        alert('Please enter your credit card number.');
+        return false;
+    }
+
+    if (!luhnCheck(btn.form.lpapi_cardnumber.value)) {
+        alert('This credit card number is not valid.');
+        return false;
+    }
+
+    if (!isNumeric(btn.form.lpapi_cardnumber.value)) {
+        alert('Credit card number can\'t contain spaces or non-numbers.');
+        return false;
+    }
+
+    if (btn.form.lpapi_cardnumber.value.length < 5) {
+        alert('Please enter your credit card number.');
+        return false;
+    }
+
+    if (!isNumeric(btn.form.lpapi_cardexpmonth.value) || (btn.form.lpapi_cardexpmonth.value < 1) || (btn.form.lpapi_cardexpmonth.value > 12)) {
+        alert('Please enter the credit card expiration month.');
+        return false;
+    }
+
+    if (!isNumeric(btn.form.lpapi_cardexpyear.value) || (btn.form.lpapi_cardexpyear.value < 1) || (btn.form.lpapi_cardexpyear.value > 99)) {
+        alert('Please enter the credit card expiration year.');
+        return false;
+    }
+
+    if ((btn.form.lpapi_cvmvalue.value.length < 3) || !isNumeric(btn.form.lpapi_cvmvalue.value)) {
+        alert('Please enter the CVV2 (card verification code) from the back of your card.');
+        return false;
+    }
+
+    return true;
+}
+
+function isNumeric(sText) {
+   var ValidChars = '0123456789';
+   for (i = 0; i < sText.length && isNumeric == true; i++) 
+      if (ValidChars.indexOf(sText.charAt(i)) == -1) 
+         return false;
+   return true;
+   
+}
+
+function luhnCheck(CardNumber) {
+    if (!isNumeric(CardNumber))
+        return false;
+
+    var no_digit = CardNumber.length;
+    var oddoeven = no_digit & 1;
+    var sum = 0;
+
+    for (var count = 0; count < no_digit; count++) {
+        var digit = parseInt(CardNumber.charAt(count));
+        if (!((count & 1) ^ oddoeven)) {
+            digit *= 2;
+            if (digit > 9)
+                digit -= 9;
+        }
+        sum += digit;
+    }
+    if (sum % 10 == 0)
+        return true;
+    else
+        return false;
+}
+";
 $pay         = new linkpointapi($demo_mode);
 /*
  * Class to do all linkpoint

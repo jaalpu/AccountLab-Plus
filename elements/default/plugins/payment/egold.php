@@ -52,7 +52,8 @@ $egold      = array (
                 array ("Metal for Payment"  , "eg_metal", "Any", "Gold", "Silver", "Platinum", "Palladium"), 
                 array ("Currency"           , "eg_currency", "USD", "CAD", "FRF", "CHF", "GBP", "DEM", "AUD", "JPY", "EUR", "BEF", "ATS", "GRD", "ESP", "IEP", "ITL", "LUF", "NLG", "PTE", "FIM", "EEK", "LTL", "g", "oz"), 
                 array ("Active"             , "active", "No", "Yes"), 
-                array ("Title"              , "title")
+                array ("Title"              , "title"),
+				array ("Submit label"       , "submit_label")
                 );
 $send_method= "POST";
 $pay        = new egold($demo_mode);

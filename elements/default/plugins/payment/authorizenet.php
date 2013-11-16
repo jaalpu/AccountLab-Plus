@@ -51,7 +51,8 @@ $authorizenet   = array (
                     array ("Transaction Key", "auth_tid"), 
                     array ("Currency"       , "auth_currency"), 
                     array ("Active"         , "active", "No", "Yes"), 
-                    array ("Title"          , "title")
+                    array ("Title"          , "title"),
+					array ("Submit label"   , "submit_label")
                     );
 $send_method    = "POST";
 $pay            = new authorizenet($demo_mode);

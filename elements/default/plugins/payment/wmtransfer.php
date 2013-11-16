@@ -49,7 +49,8 @@ $name       = "WebMoney Transfer";
 $wmtransfer = array (
                 array ("Merchant's purse"   , "purse_id"), 
                 array ("Active"             , "active", "No", "Yes"), 
-                array ("Title"              , "title")
+                array ("Title"              , "title"),
+				array ("Submit label"       , "submit_label")
                 );
 $send_method= "POST";
 $pay        = new wmtransfer($demo_mode);

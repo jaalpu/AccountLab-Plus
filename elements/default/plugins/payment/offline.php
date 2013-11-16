@@ -50,7 +50,8 @@ $offline    = array (
                 array ("Instructions message"       , "disp_msg"), 
                 array ("Show additional currencies" , "add_curr", "No", "Yes"), 
                 array ("Active"                     , "active", "No", "Yes"), 
-                array ("Title"                      , "title")
+                array ("Title"                      , "title"),
+                array ("Submit label"               , "submit_label")
                 );
 $send_method= "DIRECT";
 $pay        = new offline();

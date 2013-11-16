@@ -53,7 +53,8 @@ $paypalwpp      = array (
                     array ("Signature"      , "paypalwpp_signature"), 
                     array ("Encrypted API Certificate" , "paypalwpp_certFile"), 
                     array ("Active"         , "active", "No", "Yes"), 
-                    array ("Title"          , "title")
+                    array ("Title"          , "title"),
+					array ("Submit label"   , "submit_label")
                     );
 //Extra fields for order form and customer backend                
 $ext_fields     = array (
@@ -70,6 +71,110 @@ $ext_fields     = array (
                         array("State"               ,"paypalwpp_state"           ,1,0,"select"   ,1  ,1,2 , "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY", "AA", "AE", "AP", "AS", "FM", "GU", "MH", "MP", "PR", "PW", "VI"),
                         array("Zip"                 ,"paypalwpp_zip"             ,1,0,"text"     ,35 ,1,2),
                         );   
+
+$validate = "
+function validatepayment(btn) {
+    if (btn.form.paypalwpp_creditCardNumber.value.length < 5) {
+        alert('Please enter your credit card number.');
+        return false;
+    }
+
+    if (!luhnCheck(btn.form.paypalwpp_creditCardNumber.value)) {
+        alert('This credit card number is not valid.');
+        return false;
+    }
+
+    if (!isNumeric(btn.form.paypalwpp_creditCardNumber.value)) {
+        alert('Credit card number can\'t contain spaces or non-numbers.');
+        return false;
+    }
+
+    if (btn.form.paypalwpp_creditCardNumber.value.length < 5) {
+        alert('Please enter your credit card number.');
+        return false;
+    }
+
+    if (btn.form.paypalwpp_firstName.value.length < 1) {
+        alert('Please enter the credit card first name.');
+        return false;
+    }
+
+    if (btn.form.paypalwpp_lastName.value.length < 1) {
+        alert('Please enter the credit card last name.');
+        return false;
+    }
+
+    if (!isNumeric(btn.form.paypalwpp_expDateMonth.value) || (btn.form.paypalwpp_expDateMonth.value < 1) || (btn.form.paypalwpp_expDateMonth.value > 12)) {
+        alert('Please enter the credit card expiration month.');
+        return false;
+    }
+
+    if (!isNumeric(btn.form.paypalwpp_expDateYear.value) || (btn.form.paypalwpp_expDateYear.value < 1) || (btn.form.paypalwpp_expDateYear.value > 99)) {
+        alert('Please enter the credit card expiration year.');
+        return false;
+    }
+
+    if ((btn.form.paypalwpp_cvv2Number.value.length < 3) || !isNumeric(btn.form.paypalwpp_cvv2Number.value)) {
+        alert('Please enter the CVV2 (card verification code) from the back of your card.');
+        return false;
+    }
+
+    if (btn.form.paypalwpp_address1.value.length < 1) {
+        alert('Please enter the credit card address.');
+        return false;
+    }
+
+    if (btn.form.paypalwpp_city.value.length < 1) {
+        alert('Please enter the credit card city.');
+        return false;
+    }
+
+    if (btn.form.paypalwpp_state.value.length < 1) {
+        alert('Please enter the credit card state.');
+        return false;
+    }
+
+    if (btn.form.paypalwpp_zip.value.length < 1) {
+        alert('Please enter the credit card ZIP or postal code.');
+        return false;
+    }
+
+    return true;
+}
+
+function isNumeric(sText) {
+   var ValidChars = '0123456789';
+   for (i = 0; i < sText.length && isNumeric == true; i++) 
+      if (ValidChars.indexOf(sText.charAt(i)) == -1) 
+         return false;
+   return true;
+   
+}
+
+function luhnCheck(CardNumber) {
+    if (!isNumeric(CardNumber))
+        return false;
+
+    var no_digit = CardNumber.length;
+    var oddoeven = no_digit & 1;
+    var sum = 0;
+
+    for (var count = 0; count < no_digit; count++) {
+        var digit = parseInt(CardNumber.charAt(count));
+        if (!((count & 1) ^ oddoeven)) {
+            digit *= 2;
+            if (digit > 9)
+                digit -= 9;
+        }
+        sum += digit;
+    }
+    if (sum % 10 == 0)
+        return true;
+    else
+        return false;
+}
+";						
+						
 for($i=date('Y');$i<(date('Y')+20);$i++)
 {
     $ext_fields[5][]=$i;

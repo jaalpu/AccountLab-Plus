@@ -49,7 +49,8 @@ $name       = "NOCHEX";
 $nochex     = array (
             array ("Email"  , "nc_email"), 
             array ("Active" , "active", "No", "Yes"), 
-            array ("Title"  , "title")
+            array ("Title"  , "title"),
+            array ("Submit label", "submit_label")
             );
 $send_method= "GET";
 $pay        = new nochex($demo_mode);

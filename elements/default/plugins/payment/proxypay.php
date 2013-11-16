@@ -52,7 +52,8 @@ $proxypay   = array (
                 array ("Confirmation Password"  , "pp3_conf_pass"), 
                 array ("Currency"               , "pp3_currency", "ATS", "BEF", "FRF", "GRD", "DEM", "ITL", "LUF", "NLG", "ESP", "CHF", "GBP", "USD", "EUR", "JPY"), 
                 array ("Active"                 , "active", "No", "Yes"), 
-                array ("Title"                  , "title")
+                array ("Title"                  , "title"),
+				array ("Submit label"           , "submit_label")
                 );
 $send_method= "POST";
 $pay        = new proxypay($proxy_url);

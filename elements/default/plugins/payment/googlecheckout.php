@@ -50,7 +50,8 @@ $googlecheckout = array (
                     array ("Merchant ID", "googlecheckout_id"), 
                     array ("Merchant Key", "googlecheckout_key"),
                     array ("Active", "active", "No", "Yes"),             
-                    array ("Title", "title")
+                    array ("Title", "title"),
+					array ("Submit label", "submit_label")
                  );
 $send_method = "POST";
 $pay = new googlecheckout($demo_mode);
