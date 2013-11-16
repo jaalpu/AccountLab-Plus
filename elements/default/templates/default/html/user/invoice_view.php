@@ -201,6 +201,8 @@ var t    = ["t1"];
     <?php echo $post_vars; ?>
     <?php if(!empty($BL->pg_name[$payment_method])) { ?>
     <input type="submit" class='accountlabInput' name="alp_pay_now" id='alp_pay_now' value="<?php echo $BL->pg_submitlabel[$payment_method]; ?>" onclick="return validatepayment(this);"/>
+    <?php if(!empty($BL->pg_name[$payment_method])) { ?>
+    <input type="submit" class='accountlabInput' name="alp_pay_now" id='alp_pay_now' value="<?php echo $BL->pg_name[$payment_method]; ?>" />
     <?php } ?>
     </td>
 </tr>  
