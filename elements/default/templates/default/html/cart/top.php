@@ -54,7 +54,7 @@
 <?php echo $conf['metatags']; ?>
 <title><?php echo !empty($conf['title'])?$conf['title']:$BL->props->lang['accountlabplus']; ?></title>
 <link rel="stylesheet" href="<?php echo $BL->props->get_page("templates/".THEMEDIR."/css/style.css"); ?>" type="text/css" />
-<?php isset($xajax)?$xajax->printJavascript("system".PATH_SEP."libraries".PATH_SEP."xajax".PATH_SEP.""):""; ?>
+<?php isset($xajax)?$xajax->printJavascript("system/libraries/xajax"):""; ?>
 <script language="JavaScript" type="text/JavaScript">
 <!--
   function toggleTbody(id) {
