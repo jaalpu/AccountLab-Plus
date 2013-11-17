@@ -48,6 +48,8 @@
 class addons extends model
 {
 	var $tableName = "addons";
+	var $indexname='addon_index';
+	var $keyname='addon_id';
     function updateBillingCycles($addon_id,$data=array())
     {
         $sql = "DELETE FROM `billings_products` WHERE `product_id`='".$addon_id."' AND `product_table`='addons'";
@@ -61,7 +63,7 @@ class addons extends model
     function getAvailable($product_id)
     {
         $addon_ids = array();
-        $sql         = "SELECT `addon_id` FROM `products_addons` WHERE `product_id`='".$product_id."'";
+        $sql         = "SELECT `addons`.`addon_id` FROM `products_addons` LEFT JOIN `addons` ON `addons`.`addon_id`=`products_addons`.`addon_id` WHERE `product_id`='".$product_id."' ".$this->orderby;
         $temp        = $this->query($sql);
         foreach($temp as $t)
         {

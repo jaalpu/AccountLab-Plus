@@ -77,6 +77,7 @@
 				</tr>
 		       <?php } else { ?>														
                     <tr> 
+					  <td class='text_grey'>&nbsp;&nbsp;</td>
 					  <td class="text_grey" width="10%"><b>&nbsp;<b><?php echo $BL->props->lang['Nu']; ?></b></b></td>
                       <td class="text_grey"><b><?php echo $BL->props->lang['group_name']; ?></b></td>
                       <td class="text_grey"><b><?php echo $BL->props->lang['group_url']; ?></b></td>
@@ -88,6 +89,18 @@
 					  <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
                     </tr>					
 					<tr>
+					  <td class='text_grey'>
+					  <?php if($g['group_index'] > 1){ ?>
+					  &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=groups&group_id=<?php echo $g['group_id']; ?>&group_index=<?php echo $g['group_index']; ?>&action=up'>
+					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>up.gif' border='0' /></a>
+					  <?php }if($g['group_index'] > 1 && $g['group_index'] < count($groups)){ ?>
+					  <br />
+					  <?php }if($g['group_index'] < count($groups)){ ?>
+					  &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=groups&group_id=<?php echo $g['group_id']; ?>&group_index=<?php echo $g['group_index']; ?>&action=down'>
+					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>down.gif' border='0' /></a>
+					  <?php } ?>
+					  <?php $cycle_data = $BL->products->getCycles($g['group_id']); ?>
+					  </td>
 					  <td class='text_grey'><div align='left'>&nbsp;<?php echo $g['group_id']; ?></div></td>
 		  			  <td class='text_grey'><div align='left'><?php echo $g['group_name']; ?></div></td>
                       <td class='text_grey'><div align='left'>./index.php?category=<?php echo $g['group_url']; ?></div></td>

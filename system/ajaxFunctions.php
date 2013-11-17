@@ -488,6 +488,7 @@ function step1_ShowAddons()
     $bill_cycle = $_SESSION['bill_cycle'];
     $product_id = $_SESSION['product_id'];
     $product    = $BL->products->hasAnyOne(array("WHERE `plan_price_id`='".$product_id."'"));
+	$BL->addons->setOrder("addon_index");
     $addons     = $BL->addons->getAvailable($product_id);
     $addon_sec = "&#160;";
     if(count($addons))
@@ -582,7 +583,7 @@ function step1_ShowProducts()
     $group_id   = $_SESSION['group_id'];
     $select_tag = "<select name='product_id' id='product_id' class='accountlabInput' onchange=\"javascript:xajax_step1_selectProduct(xajax.$('product_id').value);\">";
     $select_tag.= "<option>" . $BL->props->lang['select_a_product'] . "</option>";
-    $BL->products->setOrder("`plan_index`");
+    $BL->products->setOrder("plan_index");
     $sorted_prods = array();
     foreach($BL->products->getAvailable($group_id) as $product_id)
     {

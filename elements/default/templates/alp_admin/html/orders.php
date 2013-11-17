@@ -106,7 +106,10 @@
                 <div id="form1_field">
                 <select name='group_id' id='group_id' class='search' onchange="javascript:jumpMenu('1');">
                 <option value='0'><?php if($show_tlds){echo $BL->props->lang['Register_a_domain_only'];}else{echo $BL->props->lang['select'];} ?></option>
-                <?php foreach($BL->groups->find() as $Groups){ ?>
+                <?php 
+					$BL->groups->setOrder((isset($BL->REQUEST['orderby'])?$BL->REQUEST['orderby']:"group_index"));
+					foreach($BL->groups->find() as $Groups){
+				?>
                     <option value='<?php echo $Groups['group_id']; ?>' <?php echo (isset($REQUEST['group_id']) && $REQUEST['group_id']==$Groups['group_id'])?"selected":"";?>><?php echo $Groups['group_name']; ?></option>
                 <?php } ?>
                 </select>

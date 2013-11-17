@@ -48,22 +48,8 @@
 class products extends model
 {
 	var $tableName = "products";
-    function moveUp($id,$index)
-    {
-        $index1 = $index - 1;
-        $sql    = "UPDATE ".$this->tableName." SET `plan_index` = '$index' WHERE `plan_index` = '$index1'";
-        $this->dbL->executeUPDATE($sql);
-        $sql    = "UPDATE ".$this->tableName." SET `plan_index` = '$index1' WHERE `plan_price_id`='$id'";
-        $this->dbL->executeUPDATE($sql);
-    }
-    function moveDown($id,$index)
-    {
-        $index1 = $index + 1;
-        $sql    = "UPDATE ".$this->tableName." SET `plan_index` = '$index' WHERE `plan_index` = '$index1'";
-        $this->dbL->executeUPDATE($sql);
-        $sql    = "UPDATE ".$this->tableName." SET `plan_index` = '$index1' WHERE `plan_price_id`='$id'";
-        $this->dbL->executeUPDATE($sql);
-    }
+	var $indexname='plan_index';
+	var $keyname='plan_price_id';
     function updateBillingCycles($product_id,$data=array())
     {
         $sql = "DELETE FROM `billings_products` WHERE `product_id`='".$product_id."' AND `product_table`='products'";

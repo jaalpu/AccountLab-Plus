@@ -48,9 +48,12 @@
 class groups extends model
 {
 	var $tableName = "groups";
+	var $indexname='group_index';
+	var $keyname='group_id';
+    var $orderby=' ORDER BY `group_name` ASC';
     function getAvailable()
     {
-    	$groups = $this->find(array("WHERE `group_active`='1' ORDER BY `group_name` ASC"));
+    	$groups = $this->find(array("WHERE `group_active`='1'"));
         if (!count($groups))
         {
             $groups[0]['group_id']  = 1;

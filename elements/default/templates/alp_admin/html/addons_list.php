@@ -82,6 +82,7 @@
 		{
 		?>
 					<td class='text_grey' width="1%"></td>
+					<td class='text_grey'>&nbsp;&nbsp;</td>
                       <td class='text_grey'>
 					  <b><?php echo $BL->props->lang['Name']; ?></b></td>
                       <td class='text_grey' width='10%'></td>
@@ -97,6 +98,18 @@
                     </tr>							
 					<tr>
 					<td class='text_grey' width="1%"></td>
+					  <td class='text_grey'>
+					  <?php if($temp['addon_index'] > 1){ ?>
+					  &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=addons&addon_id=<?php echo $temp['addon_id']; ?>&addon_index=<?php echo $temp['addon_index']; ?>&action=up'>
+					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>up.gif' border='0' /></a>
+					  <?php }if($temp['addon_index'] > 1 && $temp['addon_index '] < count($addons)){ ?>
+					  <br />
+					  <?php }if($temp['addon_index'] < count($addons)){ ?>
+					  &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=addons&addon_id=<?php echo $temp['addon_id']; ?>&addon_index=<?php echo $temp['addon_index']; ?>&action=down'>
+					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>down.gif' border='0' /></a>
+					  <?php } ?>
+					  <?php $cycle_data = $BL->products->getCycles($temp['addon_id']); ?>
+					  </td>
                       <td class='text_grey'>
 					  <?php echo $temp['addon_name']; ?></td>
                       <td class='text_grey' width='10%'><div align='right'>

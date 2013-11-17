@@ -715,6 +715,7 @@ switch ($cmd)
         {
             if (isset($BL->REQUEST['submit']) && $BL->REQUEST['submit']==$BL->props->lang['add'])
             {
+                $BL->REQUEST['addon_index'] = count($BL->addons->find())+1;
                 $insert_id = $BL->addons->insert($BL->REQUEST);
                 if($insert_id)
                 {
@@ -730,6 +731,15 @@ switch ($cmd)
         }
     case "addons" :
         {
+            if(isset($BL->REQUEST['action']) && $BL->REQUEST['action']=="up")
+            {
+                $BL->addons->moveUp($BL->REQUEST['addon_id'],$BL->REQUEST['addon_index']);
+            }
+            if(isset($BL->REQUEST['action']) && $BL->REQUEST['action']=="down")
+            {
+                $BL->addons->moveDown($BL->REQUEST['addon_id'],$BL->REQUEST['addon_index']);
+            }
+            $BL->addons->setOrder((isset($BL->REQUEST['orderby'])?$BL->REQUEST['orderby']:"addon_index"));
             $addons= $BL->addons->find();
             include_once $BL->include_page("addons_list.php");
             break;
@@ -809,7 +819,9 @@ switch ($cmd)
             $conf    = $BL->conf;
             $title   = $BL->props->lang['edit_plan'];
             $servers = $BL->servers->find();
+			$BL->addons->setOrder("addon_index");
             $addons  = $BL->addons->find();
+			$BL->groups->setOrder("group_index");
             $groups  = $BL->groups->find();
             $plan    = $BL->products->getByKey($BL->REQUEST['plan_price_id']);
             $plan_cycles = $BL->products->getCycles($BL->REQUEST['plan_price_id']);
@@ -846,7 +858,9 @@ switch ($cmd)
             $conf    = $BL->conf;
             $title   = $BL->props->lang['add_plan'];
             $servers = $BL->servers->find();
+			$BL->addons->setOrder("addon_index");
             $addons  = $BL->addons->find();
+			$BL->groups->setOrder("group_index");
             $groups  = $BL->groups->find();
             include_once $BL->include_page("plans.php");
             break;
@@ -914,6 +928,7 @@ switch ($cmd)
             if (isset($BL->REQUEST['submit']) && $BL->REQUEST['submit']==$BL->props->lang['add'])
             {
             	$BL->REQUEST['group_url'] = count($BL->groups->find())+1;
+            	$BL->REQUEST['group_index'] = count($BL->groups->find())+1;
                 $insert_id            = $BL->groups->insert($BL->REQUEST);
                 if($insert_id)
                 {
@@ -936,6 +951,15 @@ switch ($cmd)
         }
     case "groups" :
         {
+            if(isset($BL->REQUEST['action']) && $BL->REQUEST['action']=="up")
+            {
+                $BL->groups->moveUp($BL->REQUEST['group_id'],$BL->REQUEST['group_index']);
+            }
+            if(isset($BL->REQUEST['action']) && $BL->REQUEST['action']=="down")
+            {
+                $BL->groups->moveDown($BL->REQUEST['group_id'],$BL->REQUEST['group_index']);
+            }
+            $BL->groups->setOrder((isset($BL->REQUEST['orderby'])?$BL->REQUEST['orderby']:"group_index"));
             $groups = $BL->groups->find();
             include_once $BL->include_page("group_list.php");
             break;
@@ -1132,8 +1156,10 @@ switch ($cmd)
             $special    = $BL->specials->getByKey($special_id);
             $conf       = $BL->conf;
             $tlds       = $BL->tlds->find();
+			$BL->addons->setOrder("addon_index");
             $addons     = $BL->addons->find();
             $subdomains = $BL->subdomains->find();
+			$BL->products->setOrder("plan_index");
             $plans      = $BL->products->find();
             $title      = $BL->props->lang['Edit_special'];
             include_once $BL->include_page("specials.php");
@@ -1153,8 +1179,10 @@ switch ($cmd)
             }
             $conf       = $BL->conf;
             $tlds       = $BL->tlds->find();
+			$BL->addons->setOrder("addon_index");
             $addons     = $BL->addons->find();
             $subdomains = $BL->subdomains->find();
+			$BL->products->setOrder("plan_index");
             $plans      = $BL->products->find();
             $title      = $BL->props->lang['Add_Special'];
             include_once $BL->include_page("specials.php");

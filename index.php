@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright © 2005-2009 Cosmopoly Europe EOOD (http://netenberg.com).
+ * Copyright Â© 2005-2009 Cosmopoly Europe EOOD (http://netenberg.com).
  * All Rights Reserved.
  *
  * This Cosmopoly Europe EOOD work (including software, documents, or
@@ -21,7 +21,7 @@
  *
  * 2. A short notice of the following form (hypertext is preferred, text
  * is permitted) should be used within the body of any redistributed or
- * derivative code: "Copyright © 2005-2009 Cosmopoly Europe EOOD
+ * derivative code: "Copyright Â© 2005-2009 Cosmopoly Europe EOOD
  * (http://netenberg.com). All Rights Reserved."
  *
  * 3. Notice of any changes or modifications to the W3C files, including
@@ -346,6 +346,7 @@ switch ($cmd)
     default :
     {
         $special_display = $BL->specialAutoDescription();
+		$BL->groups->setOrder("group_index");
         $groups          = $BL->groups->getAvailable();
         break;
     }

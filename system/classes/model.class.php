@@ -52,8 +52,10 @@ class model
     var $props;
     var $utils;
     var $error;
-    var $limit;
-    var $orderby;
+    var $limit='';
+    var $orderby='';
+    var $indexname='index';
+    var $keyname='id';
 
     function model(& $dbL, & $props, & $utils, &$REQUEST, & $errorHandler)
     {
@@ -62,16 +64,12 @@ class model
         $this->props            = & $props;
         $this->utils            = & $utils;
         $this->errorHandler     = & $errorHandler;
-        $this->limit            = '';
-        $this->orderby          = '';
     }
     function setOrder($orderby=false)
     {
-        // Next line makes sure the $orderby field exists in the table.
-        $orderby = array_search($orderby, $this->getFieldList());
-        if($orderby)
+        if($orderby && array_search($orderby, $this->getFieldList()))
         {
-            $this->orderby = " ORDER BY ".$orderby;
+            $this->orderby = " ORDER BY $orderby";
         }
         else
         {
@@ -212,6 +210,20 @@ class model
             return $this->update($data,$key);
         }
         return $this->insert($data,$key);
+    }
+	function moveUp($id,$index)
+    {
+        $sql    = "UPDATE ".$this->tableName." SET `".$this->indexname."` = `".$this->indexname."`-1 WHERE `".$this->keyname."` = $id";
+        $this->dbL->executeUPDATE($sql);
+        $sql    = "UPDATE ".$this->tableName." SET `".$this->indexname."` = `".$this->indexname."`+1 WHERE `".$this->indexname."` = ".($index-1)." AND NOT `".$this->keyname."`= $id";
+        $this->dbL->executeUPDATE($sql);
+    }
+    function moveDown($id,$index)
+    {
+        $sql    = "UPDATE ".$this->tableName." SET `".$this->indexname."` = `".$this->indexname."`+1 WHERE `".$this->keyname."` = $id";
+        $this->dbL->executeUPDATE($sql);
+        $sql    = "UPDATE ".$this->tableName." SET `".$this->indexname."` = `".$this->indexname."`-1 WHERE `".$this->indexname."` = ".($index+1)." AND NOT `".$this->keyname."`= $id";
+        $this->dbL->executeUPDATE($sql);
     }
 }
 ?>
