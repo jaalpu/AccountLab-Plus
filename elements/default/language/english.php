@@ -1570,5 +1570,5 @@ $lang['pass_private']= "Password/Private Key";
 //lang below was added Nov 2013
 $lang['en_quickpay']="Enable Quick Pay";
 $lang['quickpay']="Quick Pay";
-$lang['quickpay_note']="Quickpay will only allow access to one invoice.  You must log in for complete access.";
+$lang['quickpay_note']="Quickpay will only allow access to one invoice.  Please log in for complete access.";
 ?>
