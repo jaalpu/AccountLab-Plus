@@ -58,19 +58,19 @@
 	<div id="display_list">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list_table">
 					<tr> 
-                      <td class="tdheading" colspan="3">
+                      <td class="tdheading" colspan="4">
 					  <b>&nbsp;</b>
 					  </td>
                     </tr>					
 					<tr> 
-                      <td colspan="3" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="4" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>
 		<?php
 		if (!count($addons))
 		{
 		?>
 				<tr>
-					<td class="text_grey" colspan="3">
+					<td class="text_grey" colspan="4">
                     	<div align='center'>
                     	<?php echo $BL->props->lang['No_addons']; ?>
                     	</div>
@@ -81,19 +81,18 @@
 		else
 		{
 		?>
-					<td class='text_grey' width="1%"></td>
-					<td class='text_grey'>&nbsp;&nbsp;</td>
-                      <td class='text_grey'>
-					  <b><?php echo $BL->props->lang['Name']; ?></b></td>
-                      <td class='text_grey' width='10%'></td>
+					<td class='text_grey' width="1%">&nbsp;&nbsp;</td>
+					<td class='text_grey' width="10%"></td>
+                    <td class='text_grey'><b><?php echo $BL->props->lang['Name']; ?></b></td>
+                    <td class='text_grey' width='10%'></td>
                     </tr>		
 					<?php
 					foreach($addons as $temp)
 					{
 					?>
                     <tr> 
-                      <td colspan='3' class='text_grey'>
-                      <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                      <td colspan='4' class='text_grey'>
+                      <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                       </td>
                     </tr>							
 					<tr>
@@ -101,24 +100,23 @@
 					  <td class='text_grey'>
 					  <?php if($temp['addon_index'] > 1){ ?>
 					  &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=addons&addon_id=<?php echo $temp['addon_id']; ?>&addon_index=<?php echo $temp['addon_index']; ?>&action=up'>
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>up.gif' border='0' /></a>
+					  <img src='elements/default/templates/alp_admin/images/up.gif' border='0' /></a>
 					  <?php }if($temp['addon_index'] > 1 && $temp['addon_index '] < count($addons)){ ?>
 					  <br />
 					  <?php }if($temp['addon_index'] < count($addons)){ ?>
 					  &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=addons&addon_id=<?php echo $temp['addon_id']; ?>&addon_index=<?php echo $temp['addon_index']; ?>&action=down'>
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>down.gif' border='0' /></a>
+					  <img src='elements/default/templates/alp_admin/images/down.gif' border='0' /></a>
 					  <?php } ?>
-					  <?php $cycle_data = $BL->products->getCycles($temp['addon_id']); ?>
 					  </td>
                       <td class='text_grey'>
 					  <?php echo $temp['addon_name']; ?></td>
                       <td class='text_grey' width='10%'><div align='right'>
                       <?php if($BL->getCmd("edit_addon")){ ?>
-                      <a href='<?php echo $PHP_SELF; ?>?cmd=edit_addon&addon_id=<?php echo $temp['addon_id']; ?>' class='text_link'><img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0'></a>
+                      <a href='<?php echo $PHP_SELF; ?>?cmd=edit_addon&addon_id=<?php echo $temp['addon_id']; ?>' class='text_link'><img src='elements/default/templates/alp_admin/images/edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0'></a>
                       <?php } ?>
                       &nbsp;
                       <?php if($BL->getCmd("del_addon")){ ?>
-                      <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_this_addon']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=del_addon&addon_id=<?php echo $temp['addon_id']; ?>'" class='text_link'><img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0'></a>
+                      <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_this_addon']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=del_addon&addon_id=<?php echo $temp['addon_id']; ?>'" class='text_link'><img src='elements/default/templates/alp_admin/images/delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0'></a>
                       &nbsp;
                       <?php } ?>
                       &nbsp;</div></td>
@@ -130,7 +128,7 @@
 		}
 		?>
 					<tr> 
-                      <td colspan="3" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="4" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>
                   </table>
 				  <br />
@@ -138,9 +136,9 @@
 					<tr> 
                       <td class="text_grey" align="center">
 					  <div style="vertical-align:middle">
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif'> <?php echo $BL->props->lang['Edit']; ?>
+					  <img src='elements/default/templates/alp_admin/images/edit_all.gif'> <?php echo $BL->props->lang['Edit']; ?>
 					  &nbsp;
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif'> <?php echo $BL->props->lang['Delete']; ?>
+					  <img src='elements/default/templates/alp_admin/images/delete.gif'> <?php echo $BL->props->lang['Delete']; ?>
 					  </div>
 					  </td>
                     </tr>
