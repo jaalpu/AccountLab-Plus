@@ -73,7 +73,7 @@ class model
         }
         else
         {
-            $this->orderby = $this->getPrimaryKey();
+            $this->orderby = " ORDER BY ".$this->getPrimaryKey();
         }
     }
     function setLimit($limit=false)
