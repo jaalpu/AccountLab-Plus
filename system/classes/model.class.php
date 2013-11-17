@@ -67,20 +67,28 @@ class model
     }
     function setOrder($orderby=false)
     {
+        // Next line makes sure the $orderby field exists in the table.
+        $orderby = array_search($orderby, $this->getFieldList());
         if($orderby)
         {
             $this->orderby = " ORDER BY ".$orderby;
         }
         else
         {
-            $this->orderby = '';
+            $this->orderby = $this->getPrimaryKey();
         }
     }
     function setLimit($limit=false)
     {
+        // Sanity check and client min and max
+        $min = preg_replace('/\D/','',$this->REQUEST['l1']);
+        $min = empty($min)?0:$min;
+        $max = preg_replace('/\D/','',$this->REQUEST['l2']);
+        $max = empty($max)?50:$max;
+
         if($limit)
         {
-            $this->limit = " LIMIT ".$this->REQUEST['l1']." , ".$this->REQUEST['l2'];
+            $this->limit = " LIMIT ".$min." , ".$max;
         }
         else
         {
