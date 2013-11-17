@@ -94,7 +94,7 @@ foreach($custom_fields as $cf){
           </td>
           <td valign='top' class='accountlabPlanDataTD'>
           <?php if($cf['field_type']=="text"){ ?>
-             <input name='<?php echo $cf['field_name']; ?>' id='<?php echo $cf['field_name']; ?>' type='text' class='accountlabInput' size='25'  />
+             <input name='<?php echo $cf['field_name']; ?>' id='<?php echo $cf['field_name']; ?>' type='text' class='accountlabInput' size='25' value="<?php echo $cf['field_value']?>" />
           <?php }else{ ?>
             <select name='<?php echo $cf['field_name']; ?>' id='<?php echo $cf['field_name']; ?>' class='accountlabInput'>
             <?php 
@@ -119,7 +119,7 @@ foreach($custom_fields as $cf){
               <select name='country' id='country' class='accountlabInput' onblur="javascript:xajax_step3_listStates(xajax.$('country').value,'');">
                 <option><?php echo $BL->props->lang['select_country']; ?></option>
                 <?php foreach ($BL->props->country as $key => $value) { ?>
-                 <option value='<?php echo $key; ?>'><?php echo $value; ?></option>
+                 <option value='<?php echo $key; ?>'<?php if (($cf['field_value']==$value) || ($cf['field_value']==$key)) { echo " selected"; }?>><?php echo $value; ?></option>
                 <?php } ?>
               </select>
            </td>
@@ -130,8 +130,37 @@ foreach($custom_fields as $cf){
             <?php echo $BL->props->parseLang($cf['field_name']); ?><?php if(!$cf['field_optional'])echo "<font color='red'>*</font>"; ?>
           </td>
           <td valign='top' class='accountlabPlanDataTD'>
-            <div id='state_selection' name='state_selection'> 
+            <div id='state_selection' name='state_selection'>
+			<?php
+			/* If there is a predefined value in the country field, use it to populate the state/province/region field */
+			$country = '';
+			foreach($custom_fields as $cf2){
+			  if($cf2['field_name']=="country")
+			  {
+			    $country = $cf2['field_value'];
+			    break;
+			  }
+			}
+			$find = array_search($country, $BL->props->country);
+			$country = $find ? $find : $country;
+
+			if (!empty($country) && isset($BL->props->allstates[$country]))
+			{ ?>
+              <select name='state' id='state' class='accountlabInput'>
+                <option><?php echo $BL->props->lang['select_state']; ?></option>
+                <?php foreach ($BL->props->allstates[$country] as $key => $value) { ?>
+                 <option value='<?php echo $key; ?>'<?php if (($cf['field_value']===$value) || ($cf['field_value']===$key)) { echo " selected"; }?>><?php echo $value; ?></option>
+                <?php } ?>
+              </select>
+			<?php
+			}
+			else
+			{
+			?>
             <input type='text' size='25' name='state' id='state' class='accountlabInput' />
+			<?php
+			}
+			?>
             </div>
           </td>
         </tr> 

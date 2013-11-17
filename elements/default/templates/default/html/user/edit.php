@@ -124,18 +124,42 @@ var t    = ["t1"];
                      <option value='<?php echo $key; ?>' <?php if(isset($customer[$cf['field_name']]) && $customer[$cf['field_name']]==$key)echo "selected"; ?> ><?php echo $value; ?></option>
                     <?php } ?>
                   </select>
-                  <?php if(isset($customer[$cf['field_name']])){ ?>
-                  <script language="JavaScript" type="text/javascript">updateStates('<?php echo $customer[$cf['field_name']]; ?>');</script>
-                  <?php } ?>
                 </td>
               </tr>
               <?php }elseif($cf['field_name']=="state"){ ?>
               <tr> 
                 <td height='22' class='accountlabAltDataTD'><?php echo $BL->props->parseLang($cf['field_name']); ?><?php if(!$cf['field_optional'])echo "<font color='red'>*</font>"; ?></td>
                 <td class='accountlabAltDataTD'>
-                  <select name="state" id="state" size="1" class="search">
-                    <option><?php echo $BL->props->lang['select']; ?></option>
-                  </select>  
+    			<?php
+    			/* If there is a predefined value in the country field, use it to populate the state/province/region field */
+    			$country = '';
+    			foreach($custom_fields as $cf2){
+    			  if($cf2['field_name']=="country")
+	    		  {
+		    	    $country = $cf2['field_value'];
+			        break;
+    			  }
+	    		}
+		    	$find = array_search($country, $BL->props->country);
+			    $country = $find ? $find : $country;
+
+    			if (!empty($country) && isset($BL->props->allstates[$country]))
+    			{ ?>
+                  <select name='state' id='state' class='search'>
+                    <option><?php echo $BL->props->lang['select_state']; ?></option>
+                    <?php foreach ($BL->props->allstates[$country] as $key => $value) { ?>
+                     <option value='<?php echo $key; ?>'<?php if(isset($customer[$cf['field_name']]) && $customer[$cf['field_name']]==$key) { echo " selected"; }?>><?php echo $value; ?></option>
+                    <?php } ?>
+                  </select>
+    			<?php
+    			}
+    			else
+    			{
+    			?>
+                <input type='text' size='25' name='state' id='state' class='search' value="<?php ?>"/>
+    			<?php
+    			}
+			?>
                 </td>
               </tr>
               <?php }elseif($cf['field_name']=="vat_no"){ ?>        
