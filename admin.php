@@ -288,6 +288,7 @@ switch ($cmd)
             {
                 $oOrder = $oOrders[$BL->REQUEST['orphanorder_id']];
                 $str  = "<table border='0' cellpadding='0' cellspacing='0'>";
+				$BL->customfields->setOrder("customfields_index");
                 foreach($BL->customfields->find() as $customfield)
                 {
                     if($customfield['field_name']!="country")
@@ -627,7 +628,7 @@ switch ($cmd)
 		}
 	case "editcustomers" :
 		{
-            //$custom_fields = $BL->customfields->getAvailable();
+			$BL->customfields->setOrder("customfields_index");
             $custom_fields = $BL->customfields->find();
             if(isset($BL->REQUEST['submit']) && $BL->REQUEST['submit']==$BL->props->lang['Update'])
             {
@@ -656,7 +657,7 @@ switch ($cmd)
 		}
 	case "addcustomer" :
 		{
-            //$custom_fields = $BL->customfields->getAvailable();
+			$BL->customfields->setOrder("customfields_index");
             $custom_fields = $BL->customfields->find();
             if(isset($BL->REQUEST['submit']) && $BL->REQUEST['submit']==$BL->props->lang['add'])
             {
@@ -2863,6 +2864,7 @@ switch ($cmd)
             if (isset($BL->REQUEST['submit']) && $BL->REQUEST['submit']==$BL->props->lang['add'])
             {
                 $BL->REQUEST['field_name'] = str_replace(" ","_",$BL->REQUEST['field_name']);
+                $BL->REQUEST['customfields_index'] = count($BL->customfields->find())+1;
                 if($BL->customfields->insert($BL->REQUEST))
                 {
                     $BL->Redirect("customfields");
@@ -2880,6 +2882,15 @@ switch ($cmd)
         }
     case "customfields" :
         {
+            if(isset($BL->REQUEST['action']) && $BL->REQUEST['action']=="up")
+            {
+                $BL->customfields->moveUp($BL->REQUEST['field_id'],$BL->REQUEST['field_index']);
+            }
+            if(isset($BL->REQUEST['action']) && $BL->REQUEST['action']=="down")
+            {
+                $BL->customfields->moveDown($BL->REQUEST['field_id'],$BL->REQUEST['field_index']);
+            }
+			$BL->customfields->setOrder("customfields_index");
             $customfields = $BL->customfields->find();
             include_once $BL->include_page("customfield_list.php");
             break;

@@ -121,6 +121,7 @@ $conf = $BL->conf;
 
 $tlds          = $BL->tlds->getAvailable();
 $subdomains    = $BL->subdomains->getAvailable();
+$BL->customfields->setOrder("customfields_index");
 $custom_fields = $BL->customfields->getAvailable();
 $add_cur       = $BL->currencies->find();
 
@@ -303,6 +304,7 @@ switch ($cmd)
     }
     case "step3" :
     {
+    	$BL->customfields->setOrder("customfields_index");
     	$custom_fields = $BL->customfields->getAvailable();
         break;
     }
@@ -338,6 +340,7 @@ switch ($cmd)
         }
         if(!$show_tlds && !$show_subdomains && !$show_owndomain)
         {
+        	$BL->customfields->setOrder("customfields_index");
         	$custom_fields = $BL->customfields->getAvailable();
             $cmd="step3";
         }

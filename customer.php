@@ -226,6 +226,7 @@ switch ($cmd)
             $BL->REQUEST['force_inv_no']  = $BL->REQUEST['invoice_no'];
             $BL->REQUEST['friendly_desc'] = $BL->getFriendlyDesc($invoice['desc'],0,$invoice['domain_name']);
             $BL->REQUEST['next_bill_date']= $order['rec_next_date'];
+			$BL->customfields->setOrder("customfields_index");
             foreach($BL->customfields->find() as $customfield)
             {
                 $BL->REQUEST[$customfield['field_name']]= $BL->getCustomerFieldValue($customfield['field_name'],$invoice['customer_id']);
@@ -414,6 +415,7 @@ switch ($cmd)
         }
     case "edit" :
         {
+            $BL->customfields->setOrder("customfields_index");
             $custom_fields = $BL->customfields->getAvailable();
             if(isset($BL->REQUEST['submit']) && $BL->REQUEST['submit']==$BL->props->lang['submit'])
             {
@@ -433,6 +435,7 @@ switch ($cmd)
         }
     default :
 		{
+            $BL->customfields->setOrder("customfields_index");
             $custom_fields = $BL->customfields->getAvailable();
             $customer = $BL->customers->getByKey($_SESSION['user_id']);
             $orders   = $BL->orders->get("WHERE `customers`.id='".$_SESSION['user_id']."' AND `orders`.order_deleted != '1'");

@@ -48,6 +48,9 @@
 class customfields extends model
 {
 	var $tableName = "customfields";
+	var $indexname='customfields_index';
+	var $keyname='field_id';
+
     function getAvailable()
     {
     	return $this->find(array("WHERE `field_active`='1'"));

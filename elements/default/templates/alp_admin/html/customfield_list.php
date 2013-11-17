@@ -58,14 +58,15 @@
 	<div id="display_list">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list_table">
     <tr> 
-      <td colspan="5" class="tdheading">
+      <td colspan="6" class="tdheading">
       <b>&nbsp;</b>
       </td>
     </tr>
     <tr> 
-    <td colspan="5" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+    <td colspan="6" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
     </tr>
     <tr> 
+	<td class='text_grey'>&nbsp;</td>
     <td class='text_grey'><div align='left'>&nbsp;<b><?php echo $BL->props->lang['language_str']; ?></b></div></td>
     <td class='text_grey'><div align='left'><b><?php echo $BL->props->lang['field_name']; ?></b></div></td>
     <td class='text_grey'><div align='left'><b><?php echo $BL->props->lang['field_obligatory']; ?></b></div></td>
@@ -74,11 +75,22 @@
     </tr>
     <?php foreach ($customfields as $temp){ ?>
     <tr>
-      <td colspan='5' class='text_grey'>
+      <td colspan='6' class='text_grey'>
       <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1" />
       </td>
     </tr>
     <tr>
+        <td class='text_grey'>
+          <?php if($temp['customfields_index'] > 1){ ?>
+          &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=customfields&field_id=<?php echo $temp['field_id']; ?>&field_index=<?php echo $temp['customfields_index']; ?>&action=up'>
+          <img src='elements/default/templates/alp_admin/images/up.gif' border='0' /></a>
+          <?php }if($temp['customfields_index'] > 1 && $temp['customfields_index'] < count($customfields)){ ?>
+          <br />
+          <?php }if($temp['customfields_index'] < count($customfields)){ ?>
+          &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=customfields&field_id=<?php echo $temp['field_id']; ?>&field_index=<?php echo $temp['customfields_index']; ?>&action=down'>
+          <img src='elements/default/templates/alp_admin/images/down.gif' border='0' /></a>
+          <?php } ?>
+        </td>
         <td class='text_grey'><div align='left'>&nbsp;<?php if(isset($BL->props->lang[$temp['field_name']]))echo $BL->props->lang[$temp['field_name']]; else echo $BL->props->lang['lang_not_found']; ?></div></td>
         <td class='text_grey'><div align='left'><?php echo $temp['field_name']; ?></div></td>
         <td class='text_grey'><div align='left'><?php echo ($temp['field_optional'])?$BL->props->lang['No']:$BL->props->lang['Yes']; ?></div></td>
@@ -102,7 +114,7 @@
     </tr>
     <?php } ?>
     <tr> 
-    <td colspan="5" class="text_grey">
+    <td colspan="6" class="text_grey">
     <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
     </td>
     </tr>

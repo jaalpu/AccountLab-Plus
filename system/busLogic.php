@@ -1151,6 +1151,7 @@ class busLogic
             {
                 $customer = $this->customers->hasAnyOne(array("WHERE `email`='".$customer['existing_email']."'"));
             }
+			$BL->customfields->setOrder("customfields_index");
             foreach($this->customfields->getAvailable() as $customfield)
             {
             	$customer[$customfield['field_name']]= $this->getCustomerFieldValue($customfield['field_name'],$customer['id']);
@@ -1421,6 +1422,7 @@ class busLogic
         }
         else
         {
+            $BL->customfields->setOrder("customfields_index");
             $this->REQUEST['customer_id'] = $this->customers->add($this->customfields->getAvailable());
         }
         $temp = $this->customers->getByKey($this->REQUEST['customer_id']);
@@ -1988,6 +1990,7 @@ class busLogic
 		$conf       = $this->conf;
 
 		/*data for the registrar*/
+		$BL->customfields->setOrder("customfields_index");
         foreach($this->customfields->find() as $customfield)
         {
             $this->REQUEST[$customfield['field_name']]= $this->getCustomerFieldValue($customfield['field_name'],$order_data['id']);
@@ -2493,6 +2496,7 @@ class busLogic
         $this->_invoiceValuesTaxAmount('discount_amount',$invoice['other_amount'],& $data_array,$invoice_tax_string, $tax_names);
 
         $data_array['client_email'] = $invoice['email'];
+		$BL->customfields->setOrder("customfields_index");
         foreach($this->customfields->find() as $customfield)
         {
             $data_array['client_'.$customfield['field_name']]= $this->getCustomerFieldValue($customfield['field_name'],$invoice['customer_id']);
@@ -2782,6 +2786,7 @@ class busLogic
         $data_array['login_link']   = "<a href=\"" . $this->conf['path_url'] . "/customer.php\" target=\"_blank\">" . $this->props->lang['Click_Here'] . "</a>" . $this->props->lang['login_link'];
         $data_array['order_no']     = $this->conf['order_prefix'] . $order['sub_id'] . $this->conf['order_suffix'];
         $data_array['client_email'] = $order['email'];
+		$BL->customfields->setOrder("customfields_index");
         foreach($this->customfields->find() as $customfield)
         {
             $data_array['client_'.$customfield['field_name']]= $this->getCustomerFieldValue($customfield['field_name'],$order['customer_id']);
