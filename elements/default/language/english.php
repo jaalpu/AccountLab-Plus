@@ -1572,4 +1572,5 @@ $lang['en_quickpay']="Enable Quick Pay";
 $lang['quickpay']="Quick Pay";
 $lang['quickpay_note']="Quickpay will only allow access to one invoice.  Please log in for complete access.";
 $lang['invoice_delivery']="Invoice Delivery";
+$lang['del_customfield_country']= "Do you want to delete this field ?\\nAll customer data for this field will be unavailable!\\n\\nIf you remove the Country field, the State/Province/Region field will not work properly, because it is automatically generated based upon the Country selection!";
 ?>

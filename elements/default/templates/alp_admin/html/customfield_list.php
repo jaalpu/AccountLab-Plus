@@ -104,7 +104,7 @@
         &nbsp;
         <?php } ?>
         <?php if($BL->getCmd("del_cycle")){ ?>
-        <a href="javascript:if(confirm('<?php echo $BL->props->lang['del_customfield']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=del_customfield&field_id=<?php echo $temp['field_id']; ?>'" class='text_link'>
+        <a onclick="return confirm('<?php echo $BL->props->lang[$temp['field_name']=='country'?'del_customfield_country':'del_customfield']; ?>')" href="<?php echo $PHP_SELF; ?>?cmd=del_customfield&field_id=<?php echo $temp['field_id']; ?>" class='text_link'>
         <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0' />
         </a>
         &nbsp;
