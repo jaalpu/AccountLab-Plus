@@ -50,7 +50,7 @@ $conf       = $BL->conf;
 $symbol     = $conf['symbol'];
 $y          = date('Y');
 $status     = $BL->props->invoice_status[1];
-#my bit to get invoice totals for 2005
+$y-=3;
 for ($i= 0; $i < 4; $i ++)
 {
 	$y1        = $y + $i;
@@ -83,10 +83,10 @@ if($intot1[1]>$myChart->max)$myChart->max = $intot1[1]+1;
 if($intot1[2]>$myChart->max)$myChart->max = $intot1[2]+1;
 if($intot1[3]>$myChart->max)$myChart->max = $intot1[3]+1;
 // Call the addBar method to add a new bar to the chart
-$myChart->addBar("2005 (".$symbol.")", "0xFF0000", $intot1[0]);
-$myChart->addBar("2006 (".$symbol.")", "0xCC3300", $intot1[1]);
-$myChart->addBar("2007 (".$symbol.")", "0xFF0000", $intot1[2]);
-$myChart->addBar("2008 (".$symbol.")", "0xCC3300", $intot1[3]);
+$myChart->addBar($y." (".$symbol.")", "0xFF0000", $intot1[0]);
+$myChart->addBar(($y+1)." (".$symbol.")", "0xCC3300", $intot1[1]);
+$myChart->addBar(($y+2)." (".$symbol.")", "0xFF0000", $intot1[2]);
+$myChart->addBar(($y+3)." (".$symbol.")", "0xCC3300", $intot1[3]);
 // Call the toXML method to output the XML data
 $myChart->toXML();
 ?>
