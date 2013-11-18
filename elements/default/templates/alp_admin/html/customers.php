@@ -209,7 +209,7 @@ foreach($custom_fields as $cf){
               <select name='country' id='country' class='search' onblur="javascript:updateStates(this.options[this.selectedIndex].value);">
                 <option><?php echo $BL->props->lang['select_country']; ?></option>
                 <?php foreach ($BL->props->country as $key => $value) { ?>
-                 <option value='<?php echo $key; ?>' <?php if((isset($REQUEST[$cf['field_name']]) && $REQUEST[$cf['field_name']]==$key) || ($REQUEST["cmd"]=="addcustomer" && ($cf['field_value'] == $key|| $cf['field_value'] == $value)))echo "selected"; ?> ><?php echo $value; ?></option>
+                 <option value='<?php echo $key; ?>' <?php if((isset($REQUEST[$cf['field_name']]) && $REQUEST[$cf['field_name']]===$key) || ($REQUEST["cmd"]=="addcustomer" && ($cf['field_value'] === $key || $cf['field_value'] === $value)))echo "selected"; ?> ><?php echo $value; ?></option>
                 <?php } ?>
               </select>
           </div>
@@ -228,24 +228,31 @@ foreach($custom_fields as $cf){
           </div>
           <div id="form1_field">            
 			<?php
-			/* If there is a predefined value in the country field, use it to populate the state/province/region field */
-			$country = '';
-			foreach($custom_fields as $cf2){
-			  if($cf2['field_name']=="country")
-			  {
-			    $country = $cf2['field_value'];
-			    break;
+			if ($REQUEST["cmd"]=="addcustomer")
+			{
+			  /* If there is a predefined value in the country field, use it to populate the state/province/region field */
+			  $country = '';
+			  foreach($custom_fields as $cf2){
+			    if($cf2['field_name']=="country")
+			    {
+			      $country = $cf2['field_value'];
+			      break;
+			    }
 			  }
+			}
+			if (isset($REQUEST['country']))
+			{
+			  $country = $REQUEST['country'];
 			}
 			$find = array_search($country, $BL->props->country);
 			$country = $find ? $find : $country;
 
-			if (!empty($country) && isset($BL->props->allstates[$country]))
+			if (isset($REQUEST[$cf['field_name']]) || (!empty($country) && isset($BL->props->allstates[$country])))
 			{ ?>
               <select name='state' id='state' class='search'>
                 <option><?php echo $BL->props->lang['select_state']; ?></option>
                 <?php foreach ($BL->props->allstates[$country] as $key => $value) { ?>
-                 <option value='<?php echo $key; ?>'<?php if ((isset($REQUEST[$cf['field_name']]) && $REQUEST[$cf['field_name']]==$key) || ($cf['field_value']===$value || $cf['field_value']===$key)) { echo " selected"; }?>><?php echo $value; ?></option>
+                 <option value='<?php echo $key; ?>'<?php if ((isset($REQUEST[$cf['field_name']]) && ($REQUEST[$cf['field_name']]===$key || $REQUEST[$cf['field_name']]===$value)) || ($REQUEST["cmd"]=="addcustomer" && ($cf['field_value']===$value || $cf['field_value']===$key))) { echo " selected"; }?>><?php echo $value; ?></option>
                 <?php } ?>
               </select>
 			<?php
@@ -253,7 +260,7 @@ foreach($custom_fields as $cf){
 			else
 			{
 			?>
-            <input type='text' size='25' name='state' id='state' class='search' value="<?php ?>"/>
+            <input type='text' size='25' name='state' id='state' class='search'/>
 			<?php
 			}
 			?>
