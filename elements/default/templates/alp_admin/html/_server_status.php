@@ -83,12 +83,12 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list_table">          
         <tr>
           <td colspan="8" class="text_grey">
-          <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+          <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
           </td>
         </tr>
         <tr>
           <td class="text_grey" width="5%">
-          <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+          <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
           </td>
           <td class="text_grey" colspan="2">
             <div align='left'>
@@ -102,7 +102,7 @@
           </td>
         </tr>
         <tr> 
-          <td colspan="7" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+          <td colspan="7" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
         </tr>
     </table>
     </form>
@@ -114,7 +114,7 @@
           </td>
         </tr>           
         <tr> 
-          <td colspan="8" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+          <td colspan="8" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
         </tr>
         <tr> 
           <td class='text_grey' width='5%'></td>
@@ -129,12 +129,12 @@
         <?php foreach ($Servers as $Server) { ?>
         <tr>
           <td colspan='8' class='text_grey'>
-          <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
+          <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
         </tr>       
         <tr> 
           <td class='text_grey'>
           <div style="padding-left:5px;">
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?><?php echo $Server['server_type']."-icon-small"; ?>.gif' border='0' />
+            <img src='elements/default/templates/alp_admin/images/<?php echo $Server['server_type']."-icon-small"; ?>.gif' border='0' />
           </div>
           </td>
           <td class='text_grey'>&nbsp;<?php echo $Server['server_name']; ?></td>
@@ -147,7 +147,7 @@
         </tr>
          <?php } ?>
         <tr> 
-          <td colspan="8" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+          <td colspan="8" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
         </tr>           
       </table>
       <br />
@@ -181,7 +181,7 @@
         </tr>  
     
         <tr> 
-          <td colspan="8" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+          <td colspan="8" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
         </tr>
    
         <tr> 
@@ -197,7 +197,7 @@
         <?php foreach ($Whoisonline as $data) { ?>
         <tr>
           <td colspan='8' class='text_grey'>
-          <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
+          <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
         </tr>       
         <tr> 
           <td class='text_grey'>
@@ -215,7 +215,7 @@
         </tr>
          <?php } ?>
         <tr> 
-          <td colspan="8" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+          <td colspan="8" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
         </tr>           
       </table>
       </form> 

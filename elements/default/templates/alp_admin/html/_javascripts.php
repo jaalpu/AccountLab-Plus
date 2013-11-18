@@ -48,7 +48,7 @@
 ?>
 
 <?php if($BL->conf['en_html_editor']==1){ ?>
-<script language="javascript" type="text/javascript" src="system<?php echo PATH_SEP; ?>libraries<?php echo PATH_SEP; ?>tinymce<?php echo PATH_SEP; ?>jscripts<?php echo PATH_SEP; ?>tiny_mce<?php echo PATH_SEP; ?>tiny_mce_gzip.php"></script>
+<script language="javascript" type="text/javascript" src="system/libraries/tinymce/jscripts/tiny_mce/tiny_mce_gzip.php"></script>
 <script language="javascript" type="text/javascript">
 tinyMCE.init({
     mode : "textareas",
@@ -487,7 +487,7 @@ function ajax(){
         else if(http_request.readyState != 0)
         {
             toggleTbodyOn('whoisresult_div');
-            document.getElementById('whoisresult').innerHTML = '<img src=\"elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>quering.gif\" alt=\"<?php echo $BL->props->lang['quering']; ?>\" border=\"0\" />';
+            document.getElementById('whoisresult').innerHTML = '<img src=\"elements/default/templates/alp_admin/images/quering.gif\" alt=\"<?php echo $BL->props->lang['quering']; ?>\" border=\"0\" />';
         }
     }
 
@@ -498,17 +498,17 @@ function ajax(){
                 if (http_request.status == 200) {
                     status1 = http_request.responseText;
                     if(status1=='online')
-                        document.getElementById(img_id).innerHTML='<img src=\"elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>online.gif\" alt=\"---\" border=\"0\" />';
+                        document.getElementById(img_id).innerHTML='<img src=\"elements/default/templates/alp_admin/images/online.gif\" alt=\"---\" border=\"0\" />';
                     else
-                        document.getElementById(img_id).innerHTML='<img src=\"elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>offline.gif\" alt=\"---\" border=\"0\" />';
+                        document.getElementById(img_id).innerHTML='<img src=\"elements/default/templates/alp_admin/images/offline.gif\" alt=\"---\" border=\"0\" />';
                 } else {
-                    document.getElementById(img_id).innerHTML='<img src=\"elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>offline.gif\" alt=\"---\" border=\"0\" />';
+                    document.getElementById(img_id).innerHTML='<img src=\"elements/default/templates/alp_admin/images/offline.gif\" alt=\"---\" border=\"0\" />';
                 }
             }
             else
                 if(http_request.readyState != 0)
                 {
-                    document.getElementById(img_id).innerHTML='<img src=\"elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>quering.gif\" alt=\"<?php echo $BL->props->lang['quering']; ?>\" border=\"0\" />';
+                    document.getElementById(img_id).innerHTML='<img src=\"elements/default/templates/alp_admin/images/quering.gif\" alt=\"<?php echo $BL->props->lang['quering']; ?>\" border=\"0\" />';
                 }
         }
     }
