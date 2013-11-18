@@ -45,7 +45,19 @@
  * holders.
  */ 
 
-//sqls to upgrade from 2.8 r12 to 2.9.0
+
+ //sql to upgrade from 2.9.0 to 2.9.1
+$Queries['2_9_1'][] = "ALTER TABLE `groups` ADD `group_index` INT( 11 ) NOT NULL DEFAULT '0'";
+$Queries['2_9_1'][] = "SELECT @i:=0;";
+$Queries['2_9_1'][] = "UPDATE `groups` SET `group_index`=@i:=@i+1;";
+$Queries['2_9_1'][] = "ALTER TABLE `addons` ADD `addon_index` INT( 11 ) NOT NULL DEFAULT '0'";
+$Queries['2_9_1'][] = "SELECT @i:=0;";
+$Queries['2_9_1'][] = "UPDATE `addons` SET `addon_index`=@i:=@i+1;";
+$Queries['2_9_1'][] = "ALTER TABLE `customfields` ADD `customfields_index` INT( 11 ) NOT NULL DEFAULT '0'";
+$Queries['2_9_1'][] = "SELECT @i:=0;";
+$Queries['2_9_1'][] = "UPDATE `customfields` SET `customfields_index`=@i:=@i+1;";
+ 
+ //sql to upgrade from 2.8 r12 to 2.9.0
 $Queries['2_9_0'][] = "ALTER TABLE `order_conf` ADD `en_quickpay`           ENUM( '0', '1' )      NOT NULL DEFAULT '0'";
 
 
