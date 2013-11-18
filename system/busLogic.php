@@ -2065,7 +2065,7 @@ class busLogic
 
         //CHECK AND GENERATE INVOICE
         //echo $next_due_date." == ".$v_day."<br>";
-        if ($next_due_date == $v_day && $intermediate == false && $upcoming == false)
+        if ($next_due_date <= $v_day && $intermediate == false && $upcoming == false)
         {
             $temp  = $this->orders->get("WHERE `orders`.sub_id='".$order_id."'");
             $order = $temp[0];
