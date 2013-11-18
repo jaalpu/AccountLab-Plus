@@ -73,7 +73,7 @@ class model
         }
         else
         {
-            $this->orderby = " ORDER BY ".$this->getPrimaryKey();
+            $this->orderby = " ORDER BY ".($this->tableName?'`'.$this->tableName.'`':'').'`'.$this->getPrimaryKey().'`';
         }
     }
     function setLimit($limit=false)
