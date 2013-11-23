@@ -61,7 +61,7 @@ class invoices extends model
         $invoice_id = $this->insert($this->REQUEST);
         if($invoice_id)
         {
-        	$sql = "INSERT INTO `orders_invoices` VALUES('".$order_id."','".$invoice_id."')";
+        	$sql = "INSERT INTO `orders_invoices` VALUES(".intval($order_id).",".intval($invoice_id).")";
             $this->dbL->executeINSERT($sql);
         }
         return $invoice_id;
@@ -79,7 +79,7 @@ class invoices extends model
     {
         if(empty($status))
         {
-            return $this->get("WHERE `status`!='".$this->props->invoice_status[4]."' ".$filter);
+            return $this->get("WHERE `status`!='".$this->utils->quoteSmart($this->props->invoice_status[4])."' ".$filter);
         }
         return $this->get("WHERE `status`='".$status."' ".$filter);
     }

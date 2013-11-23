@@ -56,14 +56,14 @@ class addons extends model
         $this->dbL->executeDELETE($sql);
         foreach($this->dbL->executeSELECT("SELECT * FROM `billing_cycles`") as $cycle)
         {
-            $sql = "INSERT INTO `billings_products` VALUES('".$cycle['id']."','".$addon_id."','addons','".$data[$cycle['cycle_name']]."')";
+            $sql = "INSERT INTO `billings_products` VALUES('".$cycle['id']."',".intval($addon_id).",'addons','".$this->utils->quoteSmart($data[$cycle['cycle_name']])."')";
             $this->dbL->executeINSERT($sql);
         }
     }
     function getAvailable($product_id)
     {
         $addon_ids = array();
-        $sql         = "SELECT `addons`.`addon_id` FROM `products_addons` LEFT JOIN `addons` ON `addons`.`addon_id`=`products_addons`.`addon_id` WHERE `product_id`='".$product_id."' ".$this->orderby;
+        $sql         = "SELECT `addons`.`addon_id` FROM `products_addons` LEFT JOIN `addons` ON `addons`.`addon_id`=`products_addons`.`addon_id` WHERE `product_id`=".intval($product_id)." ".$this->orderby;
         $temp        = $this->query($sql);
         foreach($temp as $t)
         {
@@ -77,7 +77,7 @@ class addons extends model
         foreach($this->query("SELECT * FROM `billing_cycles` ORDER BY `cycle_month`") as $cycle)
         {
             $sql = "SELECT * FROM `billings_products`
-                    WHERE `product_id` = '".$addon_id."' AND `product_table`='addons' AND `billing_id`='".$cycle['id']."'";
+                    WHERE `product_id` = ".intval($addon_id)." AND `product_table`='addons' AND `billing_id`='".$cycle['id']."'";
             $temp_data = $this->query($sql);
             $data_array[$cycle['cycle_name']] = isset($temp_data[0]['amount'])?$temp_data[0]['amount']:0;
         }
@@ -93,7 +93,7 @@ class addons extends model
             $temp2 = explode(">",$this->utils->htmlspecialchars_decode($string),3);
             if(isset($temp2[0]) && !empty($temp2[0]))
             {
-                $temp3 = $this->hasAnyOne(array("WHERE `addon_name`='".$temp2[0]."'"));
+                $temp3 = $this->hasAnyOne(array("WHERE `addon_name`='".$this->utils->quoteSmart($temp2[0])."'"));
                 $Addons[$temp2[0]]['ADDON_ID'] = $temp3['addon_id'];
                 $Addons[$temp2[0]]['SETUP']    = $temp2[1];
                 $Addons[$temp2[0]]['CYCLE']    = $temp2[2];

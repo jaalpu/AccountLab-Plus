@@ -154,7 +154,7 @@ class model
     function getByKey($id,$key='')
     {
         $key = empty($key)?$this->getPrimaryKey():$key;
-        return $this->hasAnyOne(array("WHERE `".$key."`='".$id."'"));
+        return $this->hasAnyOne(array("WHERE `".$key."`='".$this->utils->quoteSmart($id)."'"));
     }
     function insert($data)
     {
@@ -197,14 +197,14 @@ class model
         $sql = "UPDATE ".$this->tableName." SET ".$str1;
         if($key && isset($data[$key]))
         {
-        	$sql .= "WHERE `".$key."`='".$data[$key]."'";
+        	$sql .= "WHERE `".$key."`='".$this->utils->quoteSmart($data[$key])."'";
         }
         return $this->dbL->executeUPDATE($sql);
     }
     function save($data,$key='')
     {
     	$key    = empty($key)?$this->getPrimaryKey():$key;
-        $search = isset($data[$key])?array("WHERE `".$key."`='".$data[$key]."'"):array();
+        $search = isset($data[$key])?array("WHERE `".$key."`='".$this->utils->quoteSmart($data[$key])."'"):array();
         if($this->hasAnyOne($search))
         {
             return $this->update($data,$key);
@@ -213,16 +213,16 @@ class model
     }
 	function moveUp($id,$index)
     {
-        $sql    = "UPDATE ".$this->tableName." SET `".$this->indexname."` = `".$this->indexname."`-1 WHERE `".$this->keyname."` = $id";
+        $sql    = "UPDATE ".$this->tableName." SET `".$this->indexname."` = `".$this->indexname."`-1 WHERE `".$this->keyname."` = ".intval($id);
         $this->dbL->executeUPDATE($sql);
-        $sql    = "UPDATE ".$this->tableName." SET `".$this->indexname."` = `".$this->indexname."`+1 WHERE `".$this->indexname."` = ".($index-1)." AND NOT `".$this->keyname."`= $id";
+        $sql    = "UPDATE ".$this->tableName." SET `".$this->indexname."` = `".$this->indexname."`+1 WHERE `".$this->indexname."` = ".intval($index-1)." AND NOT `".$this->keyname."`= ".intval($id);
         $this->dbL->executeUPDATE($sql);
     }
     function moveDown($id,$index)
     {
-        $sql    = "UPDATE ".$this->tableName." SET `".$this->indexname."` = `".$this->indexname."`+1 WHERE `".$this->keyname."` = $id";
+        $sql    = "UPDATE ".$this->tableName." SET `".$this->indexname."` = `".$this->indexname."`+1 WHERE `".$this->keyname."` = ".intval($id);
         $this->dbL->executeUPDATE($sql);
-        $sql    = "UPDATE ".$this->tableName." SET `".$this->indexname."` = `".$this->indexname."`-1 WHERE `".$this->indexname."` = ".($index+1)." AND NOT `".$this->keyname."`= $id";
+        $sql    = "UPDATE ".$this->tableName." SET `".$this->indexname."` = `".$this->indexname."`-1 WHERE `".$this->indexname."` = ".intval($index+1)." AND NOT `".$this->keyname."`= ".intval($id);
         $this->dbL->executeUPDATE($sql);
     }
 }

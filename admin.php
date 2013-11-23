@@ -147,7 +147,7 @@ switch ($cmd)
                 $BL->Redirect("viewinvoice");
                 break;
             }
-            $Order = $BL->orders->get("WHERE orders.`sub_id`='".$BL->REQUEST['sub_id']."'");
+            $Order = $BL->orders->get("WHERE orders.`sub_id`=".intval($BL->REQUEST['sub_id']));
             include_once $BL->include_page("invoice.php");
             break;
         }
@@ -200,7 +200,7 @@ switch ($cmd)
                 break;
             }
 
-            $Invoice            = $BL->invoices->get("WHERE `invoices`.invoice_no = '".$BL->REQUEST['invoice_no']."'");
+            $Invoice            = $BL->invoices->get("WHERE `invoices`.invoice_no = ".intval($BL->REQUEST['invoice_no']));
             $Extra_Fields       = isset($BL->pp_ext_fields[$Invoice[0]['payment_method']])?$BL->pp_ext_fields[$Invoice[0]['payment_method']]:array();
             $Extra_Field_Values = $BL->extraFields($Invoice[0]['id'],$Invoice[0]['sub_id'],$Invoice[0]['invoice_no'],$Extra_Fields,"SELECT");
 
@@ -231,22 +231,22 @@ switch ($cmd)
             $filter    = '';
             if(isset($BL->REQUEST['id']) && !empty($BL->REQUEST['id']))
             {
-            	$filter .= " AND `customers`.id='".$BL->REQUEST['id']."' ";
+            	$filter .= " AND `customers`.id=".intval($BL->REQUEST['id'])." ";
             }
             if(isset($BL->REQUEST['search_term']) && !empty($BL->REQUEST['search_term']))
             {
-                $filter .= " AND (`invoices`.desc  LIKE '%".$BL->REQUEST['search_term']."%' OR" .
-                           "     `customers`.email LIKE '%".$BL->REQUEST['search_term']."%'   " .
+                $filter .= " AND (`invoices`.desc  LIKE '%".$BL->utils->quoteSmart($BL->REQUEST['search_term'])."%' OR" .
+                           "     `customers`.email LIKE '%".$BL->utils->quoteSmart($BL->REQUEST['search_term'])."%'   " .
                            "     )";
             }
             $BL->invoices->setOrder("`invoices`.".$BL->REQUEST['orderby1']." ".$BL->REQUEST['orderby2']);
             $BL->invoices->setLimit(false);
             if(!empty($BL->conf['records_per_page']))
             {
-                $pagination = $BL->doPagination(count($BL->invoices->getByStatus($status, $filter)));
+                $pagination = $BL->doPagination(count($BL->invoices->getByStatus($BL->utils->quoteSmart($status), $filter)));
                 $BL->invoices->setLimit(true);
             }
-            $pInvoices  = $BL->invoices->getByStatus($status, $filter);
+            $pInvoices  = $BL->invoices->getByStatus($BL->utils->quoteSmart($status), $filter);
             $Invoices   = $pInvoices;
             include_once $BL->include_page("invoice_list.php");
             break;
@@ -375,7 +375,7 @@ switch ($cmd)
                 break;
             }
 
-            $order = $BL->orders->get("WHERE `orders`.sub_id='".$BL->REQUEST['sub_id']."'");
+            $order = $BL->orders->get("WHERE `orders`.sub_id=".intval($BL->REQUEST['sub_id']));
             $addon_ids = array();
             $addon_activation_dates = array();
             foreach($BL->orders->getAddons($BL->REQUEST['sub_id']) as $temp)
@@ -403,7 +403,7 @@ switch ($cmd)
             $show_owndomain  = ($BL->conf['en_owndomain']                      )?true:false;
 
             //Check group configuration
-            $group_data = $BL->groups->find(array("WHERE `group_id`='".(isset($BL->REQUEST['group_id'])?$BL->REQUEST['group_id']:0)."'"));
+            $group_data = $BL->groups->find(array("WHERE `group_id`=".(isset($BL->REQUEST['group_id'])?intval($BL->REQUEST['group_id']):0)));
             if(isset($group_data[0]['group_require_domain']) && empty($group_data[0]['group_require_domain']))
             {
                 $show_tlds       = false;
@@ -412,7 +412,7 @@ switch ($cmd)
             }
 
             //Check product configuration
-            $product_data = $BL->products->find(array("WHERE `plan_price_id`='".(isset($BL->REQUEST['product_id'])?$BL->REQUEST['product_id']:0)."'"));
+            $product_data = $BL->products->find(array("WHERE `plan_price_id`=".(isset($BL->REQUEST['product_id'])?intval($BL->REQUEST['product_id']):0)));
             if(isset($product_data[0]['domain']) && empty($product_data[0]['domain']))
             {
                 $show_tlds       = false;
@@ -535,7 +535,7 @@ switch ($cmd)
             $show_owndomain  = ($BL->conf['en_owndomain']                      )?true:false;
 
             //Check group configuration
-            $group_data = $BL->groups->find(array("WHERE `group_id`='".(isset($BL->REQUEST['group_id'])?$BL->REQUEST['group_id']:0)."'"));
+            $group_data = $BL->groups->find(array("WHERE `group_id`=".(isset($BL->REQUEST['group_id'])?intval($BL->REQUEST['group_id']):0)));
             if(isset($group_data[0]['group_require_domain']) && empty($group_data[0]['group_require_domain']))
             {
                 $show_tlds       = false;
@@ -544,7 +544,7 @@ switch ($cmd)
             }
 
             //Check product configuration
-            $product_data = $BL->products->find(array("WHERE `plan_price_id`='".(isset($BL->REQUEST['product_id'])?$BL->REQUEST['product_id']:0)."'"));
+            $product_data = $BL->products->find(array("WHERE `plan_price_id`=".(isset($BL->REQUEST['product_id'])?intval($BL->REQUEST['product_id']):0)));
             if(isset($product_data[0]['domain']) && empty($product_data[0]['domain']))
             {
                 $show_tlds       = false;
@@ -596,8 +596,8 @@ switch ($cmd)
             }
             if(isset($BL->REQUEST['search_term']) && !empty($BL->REQUEST['search_term']))
             {
-                $filter .= " AND (`orders`.domain_name  LIKE '%".$BL->REQUEST['search_term']."%' OR" .
-                           "     `customers`.email      LIKE '%".$BL->REQUEST['search_term']."%'   " .
+                $filter .= " AND (`orders`.domain_name  LIKE '%".$BL->utils->quoteSmart($BL->REQUEST['search_term'])."%' OR" .
+                           "     `customers`.email      LIKE '%".$BL->utils->quoteSmart($BL->REQUEST['search_term'])."%'   " .
                            "     )";
             }
             $BL->orders->setOrder("`orders`.".$BL->REQUEST['orderby1']." ".$BL->REQUEST['orderby2']);
@@ -680,7 +680,7 @@ switch ($cmd)
             $filter    = '';
             if(isset($BL->REQUEST['search_term']) && !empty($BL->REQUEST['search_term']))
             {
-                $filter .= " AND `customers`.email LIKE '%".$BL->REQUEST['search_term']."%'   ";
+                $filter .= " AND `customers`.email LIKE '%".$BL->utils->quoteSmart($BL->REQUEST['search_term'])."%'   ";
             }
             $BL->orders->setOrder("`customers`.".$BL->REQUEST['orderby1']." ".$BL->REQUEST['orderby2']);
 
@@ -747,7 +747,7 @@ switch ($cmd)
         }
     case "del_addon" :
         {
-            $BL->addons->delete(array("WHERE `addon_id`='".$BL->REQUEST['addon_id']."'"));
+            $BL->addons->delete(array("WHERE `addon_id`=".intval($BL->REQUEST['addon_id'])));
             $BL->Redirect("addons");
             break;
         }
@@ -792,7 +792,7 @@ switch ($cmd)
         }
     case "delmaindomain" :
         {
-            $BL->subdomains->delete(array("WHERE `main_id`='".$BL->REQUEST['main_id']."'"));
+            $BL->subdomains->delete(array("WHERE `main_id`=".intval($BL->REQUEST['main_id'])));
             $BL->Redirect("subdomains");
             break;
         }
@@ -800,8 +800,8 @@ switch ($cmd)
         {
             if (isset($BL->REQUEST['submit']) && $BL->REQUEST['submit']==$BL->props->lang['Update'])
             {
-                $BL->cpanel_reseller_profiles->delete(array("WHERE `cpr_profile_id`='".$BL->REQUEST['cpr_profile_id']."'"));
-                $BL->plesk_profiles->delete(array("WHERE `plesk_profile_id`='".$BL->REQUEST['plesk_profile_id']."'"));
+                $BL->cpanel_reseller_profiles->delete(array("WHERE `cpr_profile_id`=".intval($BL->REQUEST['cpr_profile_id'])));
+                $BL->plesk_profiles->delete(array("WHERE `plesk_profile_id`=".intval($BL->REQUEST['plesk_profile_id'])));
 
                 $BL->REQUEST['cpr_profile_id']  = (isset($BL->REQUEST['cpanel_plan']) && $BL->REQUEST['cpanel_plan'])?$BL->cpanel_reseller_profiles->insert($BL->REQUEST):0;
                 $BL->REQUEST['plesk_profile_id']= (isset($BL->REQUEST['plesk_plan']) && $BL->REQUEST['plesk_plan'])?$BL->plesk_profiles->insert($BL->REQUEST):0;
@@ -901,9 +901,9 @@ switch ($cmd)
                 $BL->products->updateAssociatedGroups($BL->REQUEST['plan_price_id']);
                 $BL->products->updateAssociatedAddons($BL->REQUEST['plan_price_id']);
                 $BL->products->updateAssociatedServers($BL->REQUEST['plan_price_id']);
-                $BL->cpanel_reseller_profiles->delete(array("WHERE `cpr_profile_id`='".$product['cpr_profile_id']."'"));
-                $BL->plesk_profiles->delete(array("WHERE `plesk_profile_id`='".$product['plesk_profile_id']."'"));
-                $BL->products->delete(array("WHERE `plan_price_id`='".$BL->REQUEST['plan_price_id']."'"));
+                $BL->cpanel_reseller_profiles->delete(array("WHERE `cpr_profile_id`=".intval($product['cpr_profile_id'])));
+                $BL->plesk_profiles->delete(array("WHERE `plesk_profile_id`=".intval($product['plesk_profile_id'])));
+                $BL->products->delete(array("WHERE `plan_price_id`=".intval($BL->REQUEST['plan_price_id'])));
             }
             $BL->Redirect("plans");
             break;
@@ -945,7 +945,7 @@ switch ($cmd)
         }
     case "del_group" :
         {
-            $BL->groups->delete(array("WHERE `group_id`='".$BL->REQUEST['group_id']."'"));
+            $BL->groups->delete(array("WHERE `group_id`=".intval($BL->REQUEST['group_id'])));
             $BL->groups->updateAvailableProducts($BL->REQUEST['group_id']);
             $BL->Redirect("groups");
             break;
@@ -1073,7 +1073,7 @@ switch ($cmd)
         }
     case "del_disc_token" :
         {
-            $BL->disc_tokens->delete(array("WHERE `disc_token_id`='".$BL->REQUEST['disc_token_id']."'"));
+            $BL->disc_tokens->delete(array("WHERE `disc_token_id`=".intval($BL->REQUEST['disc_token_id'])));
             $BL->Redirect("disc_tokens");
             break;
         }
@@ -1124,7 +1124,7 @@ switch ($cmd)
         }
     case "del_coupon" :
         {
-            $coupons = $BL->coupons->delete(array("WHERE `coupon_id`='".$BL->REQUEST['coupon_id']."'"));
+            $coupons = $BL->coupons->delete(array("WHERE `coupon_id`=".intval($BL->REQUEST['coupon_id'])));
             $BL->Redirect("coupons");
             break;
         }
@@ -1191,7 +1191,7 @@ switch ($cmd)
         }
     case "del_special" :
         {
-            $BL->specials->delete(array("WHERE `special_id`='".$BL->REQUEST['special_id']."'"));
+            $BL->specials->delete(array("WHERE `special_id`=".intval($BL->REQUEST['special_id'])));
             $BL->Redirect("specials");
             break;
         }
@@ -1236,7 +1236,7 @@ switch ($cmd)
                     $BL->Redirect("ticket");
                 }
                 $ticket     = $BL->support_tickets->getByKey($ticket_id);
-                $replies    = $BL->support_replies->find(array("WHERE `ticket_id`='".$ticket_id."'"));
+                $replies    = $BL->support_replies->find(array("WHERE `ticket_id`=".intval($ticket_id)));
                 $topic      = $BL->support_topics->getByKey($ticket['topic_id']);
                 if (count($ticket))
                 {
@@ -1270,8 +1270,8 @@ switch ($cmd)
             $tickets = array();
             foreach ($topics as $val)
             {
-                $tickets[$val['topic_id']]['open']   = $BL->support_tickets->find(array("WHERE `topic_id`='".$val['topic_id']."' AND `ticket_status`!='3'"));
-                $tickets[$val['topic_id']]['closed'] = $BL->support_tickets->find(array("WHERE `topic_id`='".$val['topic_id']."' AND `ticket_status`='3'"));
+                $tickets[$val['topic_id']]['open']   = $BL->support_tickets->find(array("WHERE `topic_id`=".intval($val['topic_id'])." AND `ticket_status`!='3'"));
+                $tickets[$val['topic_id']]['closed'] = $BL->support_tickets->find(array("WHERE `topic_id`=".intval($val['topic_id'])." AND `ticket_status`='3'"));
             }
             $ticket_status = "all";
             if (isset($BL->REQUEST['ticket_status']) && is_numeric($BL->REQUEST['ticket_status']))
@@ -1293,7 +1293,7 @@ switch ($cmd)
                 $count_close[$val['topic_id']] = 0;;
                 $count_open[$val['topic_id']]  = 0;
                 $ticket[$val['topic_id']]      = array();
-                $temp                          = $BL->support_tickets->find(array("WHERE `topic_id`='".$val['topic_id']."'"));
+                $temp                          = $BL->support_tickets->find(array("WHERE `topic_id`=".intval($val['topic_id'])));
                 foreach ($temp as $v)
                 {
                     $count_open[$val['topic_id']] = ($v['ticket_status'] != 3)?$count_open[$val['topic_id']] + 1:$count_open[$val['topic_id']];
@@ -1344,7 +1344,7 @@ switch ($cmd)
         }
     case "del_topic" :
         {
-            $BL->support_topics->delete(array("WHERE `topic_id`='".$BL->REQUEST['topic_id']."'"));
+            $BL->support_topics->delete(array("WHERE `topic_id`=".intval($BL->REQUEST['topic_id'])));
             $BL->Redirect("topics");
             break;
         }
@@ -1400,14 +1400,14 @@ switch ($cmd)
                     {
                         if($BL->REQUEST['tld_2'])
                         {
-                            $condition .= " AND `orders`.domain_name LIKE '%".$BL->REQUEST['tld_2']."' ";
+                            $condition .= " AND `orders`.domain_name LIKE '%".$BL->utils->quoteSmart($BL->REQUEST['tld_2'])."' ";
                         }
                     }
                     else
                     {
                         if($BL->REQUEST['tld_2'])
                         {
-                            $condition .= " AND `orders`.domain_name NOT LIKE '%".$BL->REQUEST['tld_2']."' ";
+                            $condition .= " AND `orders`.domain_name NOT LIKE '%".$BL->utils->quoteSmart($BL->REQUEST['tld_2'])."' ";
                         }
                         else
                         {
@@ -1427,14 +1427,14 @@ switch ($cmd)
                     {
                         if($BL->REQUEST['sd_2'])
                         {
-                            $condition .= " AND `orders`.domain_name LIKE '%".$BL->REQUEST['sd_2']."' ";
+                            $condition .= " AND `orders`.domain_name LIKE '%".$BL->utils->quoteSmart($BL->REQUEST['sd_2'])."' ";
                         }
                     }
                     else
                     {
                         if($BL->REQUEST['sd_2'])
                         {
-                            $condition .= " AND `orders`.domain_name NOT LIKE '%".$BL->REQUEST['sd_2']."' ";
+                            $condition .= " AND `orders`.domain_name NOT LIKE '%".$BL->utils->quoteSmart($BL->REQUEST['sd_2'])."' ";
                         }
                         else
                         {
@@ -1454,14 +1454,14 @@ switch ($cmd)
                     {
                         if($BL->REQUEST['product_2'])
                         {
-                            $condition .= " AND `orders`.product_id = '".$BL->REQUEST['product_2']."' ";
+                            $condition .= " AND `orders`.product_id = ".intval($BL->REQUEST['product_2'])." ";
                         }
                     }
                     else
                     {
                         if($BL->REQUEST['product_2'])
                         {
-                            $condition .= " AND `orders`.product_id != '".$BL->REQUEST['product_2']."' ";
+                            $condition .= " AND `orders`.product_id != ".intval($BL->REQUEST['product_2'])." ";
                         }
                         else
                         {
@@ -1637,7 +1637,7 @@ switch ($cmd)
         }
     case "delsavedannounce" :
         {
-            $BL->newsletters->delete(array("WHERE `newsletter_id`='".$BL->REQUEST['newsletter_id']."'"));
+            $BL->newsletters->delete(array("WHERE `newsletter_id`=".intval($BL->REQUEST['newsletter_id'])));
             $BL->Redirect("savedannounce");
             break;
         }
@@ -2033,13 +2033,13 @@ switch ($cmd)
         }
     case "delfaqgroup" :
         {
-            $BL->faqgroups->delete(array("WHERE `faqgroup_id`='".$BL->REQUEST['faqgroup_id']."'"));
+            $BL->faqgroups->delete(array("WHERE `faqgroup_id`=".intval($BL->REQUEST['faqgroup_id'])));
             $BL->Redirect("faqgroup");
             break;
         }
     case "delfaq" :
         {
-            $BL->faqs->delete(array("WHERE `faq_id`='".$BL->REQUEST['faq_id']."'"));
+            $BL->faqs->delete(array("WHERE `faq_id`=".intval($BL->REQUEST['faq_id'])));
             $BL->Redirect("faq");
             break;
         }
@@ -2080,7 +2080,7 @@ switch ($cmd)
         }
     case "delannounce" :
         {
-            $BL->announcements->delete(array("WHERE `ann_id`='".$BL->REQUEST['ann_id']."'"));
+            $BL->announcements->delete(array("WHERE `ann_id`=".intval($BL->REQUEST['ann_id'])));
             $BL->Redirect("announce");
             break;
         }
@@ -2229,7 +2229,7 @@ switch ($cmd)
         }
     case "deltax" :
         {
-            $BL->taxes->delete(array("WHERE `tax_id`='".$BL->REQUEST['tax_id']."'"));
+            $BL->taxes->delete(array("WHERE `tax_id`=".intval($BL->REQUEST['tax_id'])));
             $BL->Redirect("tax");
         }
     case "edittld" :
@@ -2307,7 +2307,7 @@ switch ($cmd)
         }
     case "deltld" :
         {
-            $BL->tlds->delete(array("WHERE `price_id`='".$BL->REQUEST['price_id']."'"));
+            $BL->tlds->delete(array("WHERE `price_id`=".intval($BL->REQUEST['price_id'])));
             $BL->Redirect("tld");
         }
     case "tld" :
@@ -2374,7 +2374,7 @@ switch ($cmd)
                 $BL->REQUEST['server_pass'] = $BL->utils->alpencrypt->encrypt($BL->REQUEST['server_pass'], $BL->props->encryptionKey);
                 $BL->REQUEST['server_hash'] = $BL->utils->alpencrypt->encrypt($BL->REQUEST['server_hash'], $BL->props->encryptionKey);
                 $BL->servers->update($BL->REQUEST);
-                $BL->ips->delete(array("WHERE `server_id`='".$BL->REQUEST['server_id']."'"));
+                $BL->ips->delete(array("WHERE `server_id`=".intval($BL->REQUEST['server_id'])));
                 foreach ($additional_ips as $ip)
                 {
                     $BL->ips->insert(array("server_id"=>$BL->REQUEST['server_id'],"ip"=>$ip));
@@ -2382,7 +2382,7 @@ switch ($cmd)
                 $BL->Redirect("servers");
             }
             $additional_ips = "";
-            foreach($BL->ips->find(array("WHERE `server_id`='".$BL->REQUEST['server_id']."'")) as $ip_data)
+            foreach($BL->ips->find(array("WHERE `server_id`=".intval($BL->REQUEST['server_id']))) as $ip_data)
             {
             	$additional_ips .=  $ip_data['ip']." \n";
             }
@@ -2418,8 +2418,8 @@ switch ($cmd)
         }
     case "delserver" :
         {
-            $BL->servers->delete(array("WHERE `server_id`='".$BL->REQUEST['server_id']."'"));
-            $BL->ips->delete(array("WHERE `server_id`='".$BL->REQUEST['server_id']."'"));
+            $BL->servers->delete(array("WHERE `server_id`=".intval($BL->REQUEST['server_id'])));
+            $BL->ips->delete(array("WHERE `server_id`=".intval($BL->REQUEST['server_id'])));
             $BL->Redirect("servers");
             break;
         }
@@ -2510,7 +2510,7 @@ switch ($cmd)
         }
     case "del_user" :
         {
-            $BL->admin_users->delete(array("WHERE `id`='".$BL->REQUEST['id']."'"));
+            $BL->admin_users->delete(array("WHERE `id`=".intval($BL->REQUEST['id'])));
             $BL->Redirect("users");
             break;
         }
@@ -2547,7 +2547,7 @@ switch ($cmd)
             {
                 $users[$user['id']] = $user;
             }
-            $access_ip = $BL->access_ips->hasAnyOne(array("WHERE `id`='".$BL->REQUEST['id']."'"));
+            $access_ip = $BL->access_ips->hasAnyOne(array("WHERE `id`=".intval($BL->REQUEST['id'])));
             include_once $BL->include_page("ip.php");
             break;
         }
@@ -2583,7 +2583,7 @@ switch ($cmd)
         }
     case "del_ip" :
         {
-            $BL->access_ips->delete(array("WHERE `id`='".$BL->REQUEST['id']."'"));
+            $BL->access_ips->delete(array("WHERE `id`=".intval($BL->REQUEST['id'])));
             $access_ips = $BL->access_ips->find();
             if(!count($access_ips))
             {
@@ -2747,7 +2747,7 @@ switch ($cmd)
         }
     case "delcurrency" :
         {
-            $BL->currencies->delete(array("WHERE `curr_id`='".$BL->REQUEST['curr_id']."'"));
+            $BL->currencies->delete(array("WHERE `curr_id`=".intval($BL->REQUEST['curr_id'])));
             $BL->Redirect("currency");
             break;
         }
@@ -2834,7 +2834,7 @@ switch ($cmd)
         }
     case "del_cycle" :
         {
-            $BL->billing_cycles->delete(array("WHERE `id`='".$BL->REQUEST['id']."'"));
+            $BL->billing_cycles->delete(array("WHERE `id`=".intval($BL->REQUEST['id'])));
             $BL->Redirect("billing_cycles");
             break;
         }
@@ -2876,7 +2876,7 @@ switch ($cmd)
         }
     case "del_customfield" :
         {
-            $BL->customfields->delete(array("WHERE `field_id`='".$BL->REQUEST['field_id']."'"));
+            $BL->customfields->delete(array("WHERE `field_id`=".intval($BL->REQUEST['field_id'])));
             $BL->Redirect("customfields");
             break;
         }
@@ -2922,7 +2922,7 @@ switch ($cmd)
             {
             	if(array_search($custom_script['file_name'], $BL->props->cs_array)===false)
                 {
-                	$BL->custom_scripts->delete(array("WHERE `id`='".$custom_script['id']."'"));
+                	$BL->custom_scripts->delete(array("WHERE `id`=".intval($custom_script['id'])));
                 }
                 else
                 {
@@ -2971,7 +2971,7 @@ switch ($cmd)
         }
     case "del_custompage" :
         {
-            $BL->custompages->delete(array("WHERE `id`='".$BL->REQUEST['id']."'"));
+            $BL->custompages->delete(array("WHERE `id`=".intval($BL->REQUEST['id'])));
             $BL->Redirect("custompages");
             break;
         }
@@ -2985,9 +2985,9 @@ switch ($cmd)
         {
             if (isset($BL->REQUEST['submit']) && $BL->REQUEST['submit']==$BL->props->lang['Update'])
             {
-                $sql = "ALTER TABLE `invoices` AUTO_INCREMENT =".$BL->REQUEST['inv_start_no'];
+                $sql = "ALTER TABLE `invoices` AUTO_INCREMENT =".intval($BL->REQUEST['inv_start_no']);
                 $BL->dbL->executeALTER($sql);
-                $sql = "ALTER TABLE `orders` AUTO_INCREMENT =".$BL->REQUEST['order_start_no'];
+                $sql = "ALTER TABLE `orders` AUTO_INCREMENT =".intval($BL->REQUEST['order_start_no']);
                 $BL->dbL->executeALTER($sql);
 
                 $msg = $BL->props->lang['nothing_changed'];
@@ -3021,7 +3021,7 @@ switch ($cmd)
                     foreach ($Packages as $Package)
                     {
                         $Products = $BL->products->find();
-                        if (!count($BL->products->find(array("WHERE `plan_name`='".$Package."'"))))
+                        if (!count($BL->products->find(array("WHERE `plan_name`='".$BL->utils->quoteSmart($Package)."'"))))
                         {
                             $data = array();
                             $data['plan_name'] = $Package;
@@ -3116,8 +3116,8 @@ switch ($cmd)
             $tickets = array();
             foreach ($topics as $val)
             {
-                $open_tickets                        = $BL->support_tickets->find(array("WHERE `topic_id`='".$val['topic_id']."' AND `ticket_status`!='3'"));
-                $close_tickets                       = $BL->support_tickets->find(array("WHERE `topic_id`='".$val['topic_id']."' AND `ticket_status`='3'"));
+                $open_tickets                        = $BL->support_tickets->find(array("WHERE `topic_id`=".intval($val['topic_id'])." AND `ticket_status`!='3'"));
+                $close_tickets                       = $BL->support_tickets->find(array("WHERE `topic_id`=".intval($val['topic_id'])." AND `ticket_status`='3'"));
                 $open_ticket_count                   = $open_ticket_count + count($open_tickets);
                 $close_ticket_count                  = $close_ticket_count + count($close_tickets);
                 $tickets[$val['topic_id']]['open']   = $open_tickets;

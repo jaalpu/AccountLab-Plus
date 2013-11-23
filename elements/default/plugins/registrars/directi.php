@@ -78,7 +78,7 @@ else
     $existing_customer_id = "";
     $existing_contact_id  = "";
     $email                = $this->REQUEST['email'];
-    $orders_for_customer  = $this->orders->get("WHERE `customers`.id='".$this->REQUEST['id']."' ");
+    $orders_for_customer  = $this->orders->get("WHERE `customers`.id=".intval($this->REQUEST['id']));
     foreach ($orders_for_customer as $order_for_customer)
     {
         if (!empty($order_for_customer['di_cust_id']))
@@ -157,12 +157,12 @@ else
 
                     $dom         = $this->REQUEST['domain'];
                     $order       = $this->orders->getByKey($sub_id);
-                    $last_result = $this->dom_reg_logs->hasAnyOne(array("WHERE `domain`='".$dom."' ORDER BY `log_time` DESC"));
+                    $last_result = $this->dom_reg_logs->hasAnyOne(array("WHERE `domain`='".$this->utils->quoteSmart($dom)."' ORDER BY `log_time` DESC"));
                     $registration_result = $this->props->lang['dom_reg_success'].$order['dom_reg_result']."\n".$last_result['log_result'];
                 }
                 else
                 {
-                    $last_result         = $this->dom_reg_logs->hasAnyOne(array("WHERE `domain`='".$dom."' ORDER BY `log_time` DESC"));
+                    $last_result         = $this->dom_reg_logs->hasAnyOne(array("WHERE `domain`='".$this->utils->quoteSmart($dom)."' ORDER BY `log_time` DESC"));
                     $registration_result = $this->props->lang['dom_reg_fail'].$last_result['log_result'];
                 }
             }

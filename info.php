@@ -82,7 +82,7 @@ if(isset($REQUEST['server_ip']) && isset($REQUEST['port']) && isset($REQUEST['ss
 //GET WHOIS ONLINE
 if(isset($REQUEST['whoisonline']) && $REQUEST['whoisonline']=true)
 {
-    $Sec         = isset($REQUEST['secs'])?$REQUEST['secs']:600;
+    $Sec = isset($REQUEST['secs'])?$REQUEST['secs']:600;
     $Whoisonline = $BL->whoisonline($Sec);
     if(!count($Whoisonline))
     {
@@ -201,7 +201,7 @@ if ((isset($REQUEST['subdomain']) && $REQUEST['subdomain']=true) && isset($REQUE
 //GET PRINT INVOICE
 if(isset($REQUEST['cmd']) && $REQUEST['cmd']=='PRINT')
 {
-    $temp    = $BL->invoices->get("WHERE `invoice_no`='".$REQUEST['invoice_no']."'");
+    $temp    = $BL->invoices->get("WHERE `invoice_no`=".intval($REQUEST['invoice_no']));
     $invoice = $temp[0];
     if ($REQUEST['invoice_no']>0 && (
 		($_SESSION['user_id'] == $invoice['customer_id'] && $BL->auth->IsSESSION("user"))
@@ -231,7 +231,7 @@ if(isset($REQUEST['cmd']) && ($REQUEST['cmd']=='PDF' || $REQUEST['cmd']=='VPDF')
 {
     if(isset($REQUEST['invoice_no']))
     {
-        $Invoice  = $BL->invoices->get("WHERE `invoice_no` ='".$REQUEST['invoice_no']."'");
+        $Invoice  = $BL->invoices->get("WHERE `invoice_no` =".intval($REQUEST['invoice_no']));
         if (isset($Invoice[0]['customer_id']) && (
 			(isset($_SESSION['user_id']) && $_SESSION['user_id'] == $Invoice[0]['customer_id'] && $BL->auth->IsSESSION("user"))
 			|| $BL->auth->IsSESSION("admin")

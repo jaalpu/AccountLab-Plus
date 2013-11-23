@@ -53,7 +53,7 @@ class pp_vals extends model
     	$existing_field_list = $this->getFieldList();
         foreach($payment_methods as $payment_method)
         {
-            if(!count($this->find(array("WHERE `pp_name` = '".$payment_method."'"))))
+            if(!count($this->find(array("WHERE `pp_name` = '".$this->utils->quoteSmart($payment_method)."'"))))
             {
                 $this->insert(array("pp_name"=>$payment_method));
             }

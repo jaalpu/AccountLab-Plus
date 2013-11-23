@@ -50,7 +50,7 @@ class servers extends model
 	var $tableName = "servers";
     function additionalIPs($server_id)
     {
-        $sqlSELECT= "SELECT * FROM {$this->props->tbl_ips} WHERE `server_id`='$server_id'";
+        $sqlSELECT= "SELECT * FROM {$this->props->tbl_ips} WHERE `server_id`=".intval($server_id);
         return $this->dbL->executeSELECT($sqlSELECT);
     }
 }

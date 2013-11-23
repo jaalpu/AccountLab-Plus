@@ -54,11 +54,11 @@ class subdomains extends model
     }
     function updateBillingCycles($main_id,$data=array())
     {
-        $sql = "DELETE FROM `billings_products` WHERE `product_id`='".$main_id."' AND `product_table`='subdomains'";
+        $sql = "DELETE FROM `billings_products` WHERE `product_id`=".intval($main_id)." AND `product_table`='subdomains'";
         $this->dbL->executeDELETE($sql);
         foreach($this->dbL->executeSELECT("SELECT * FROM `billing_cycles`") as $cycle)
         {
-            $sql = "INSERT INTO `billings_products` VALUES('".$cycle['id']."','".$main_id."','subdomains','".$data[$cycle['cycle_name']]."')";
+            $sql = "INSERT INTO `billings_products` VALUES(".$cycle['id'].",".intval($main_id).",'subdomains','".$this->utils->quoteSmart($data[$cycle['cycle_name']])."')";
             $this->dbL->executeINSERT($sql);
         }
     }
@@ -68,7 +68,7 @@ class subdomains extends model
         foreach($this->query("SELECT * FROM `billing_cycles` ORDER BY `cycle_month`") as $cycle)
         {
             $sql = "SELECT * FROM `billings_products`
-                    WHERE `product_id` = '".$main_id."' AND `product_table`='subdomains' AND `billing_id`='".$cycle['id']."'";
+                    WHERE `product_id` = ".intval($main_id)." AND `product_table`='subdomains' AND `billing_id`=".intval($cycle['id']);
             $temp_data = $this->query($sql);
             $data_array[$cycle['cycle_name']] = isset($temp_data[0]['amount'])?$temp_data[0]['amount']:0;
         }
@@ -85,12 +85,12 @@ class subdomains extends model
             return 0;
         }
         $temp      = $sld . "." . $tld;
-        $sqlSELECT = "SELECT * FROM `orders` WHERE domain_name='$temp' AND `order_deleted`!='1'";
+        $sqlSELECT = "SELECT * FROM `orders` WHERE domain_name='".$this->utils->quoteSmart($temp)."' AND `order_deleted`!='1'";
         if (count($this->dbL->executeSELECT($sqlSELECT)))
         {
         	return 0;
         }
-        if (count($this->find(array("WHERE `reserved_names` LIKE '%$sld%' && `maindomain`='$tld'"))))
+        if (count($this->find(array("WHERE `reserved_names` LIKE '%".$this->utils->quoteSmart($sld)."%' && `maindomain`='".$this->utils->quoteSmart($tld)."'"))))
         {
         	return 0;
         }

@@ -190,9 +190,9 @@ class linkpointapi
             
             $mylphp  = new lphp;
             $pp_vals = $BL->pp_vals->getByKey("linkpointapi");
-            $temp    = $BL->orphan_orders->hasAnyOne(array("WHERE `item_number`='".$this->item_number."'"));
+            $temp    = $BL->orphan_orders->hasAnyOne(array("WHERE `item_number`=".intval($this->item_number)));
             $O_order = array();
-            foreach($BL->orphan_order_datas->find(array("WHERE `orphan_order_id`='".$temp['orphanorder_id']."'")) as $data)
+            foreach($BL->orphan_order_datas->find(array("WHERE `orphan_order_id`=".intval($temp['orphanorder_id']))) as $data)
             {
             	$O_order[$data['orphan_order_field']] = $data['orphan_order_value'];
             }
@@ -208,7 +208,7 @@ class linkpointapi
             }
             else
             {
-                $invoice = $BL->invoices->get("WHERE `invoice_no`='".$this->item_number."'");
+                $invoice = $BL->invoices->get("WHERE `invoice_no`=".intval($this->item_number));
                 $amount = number_format($invoice[0]['gross_amount'], 2);    
                 # CARD INFO           
                 $myorder["cardnumber"]   = $_POST['lpapi_cardnumber'];

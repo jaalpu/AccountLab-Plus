@@ -605,12 +605,13 @@ class utils extends Date_Calc
 	{
 		if ($html= true)
 		{
-			$str= stripslashes(trim($str));
+			$str= get_magic_quotes_gpc()?stripslashes(trim($str)):trim($str);
 			$str= $this->htmlspecialchars_decode($str);
 		}
 		else
 		{
-			$str= HTMLSpecialChars(stripslashes(trim($str)));
+			$str= get_magic_quotes_gpc()?stripslashes(trim($str)):trim($str);
+			$str= HTMLSpecialChars($str);
 		}
 		if (version_compare(phpversion(), "4.3.0") == "-1")
 		{

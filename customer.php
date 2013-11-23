@@ -183,7 +183,7 @@ switch ($cmd)
                 }
                 $BL->invoices->update(array("pay_curr_name"=>$pay_curr_name, "pay_curr_symbol"=>$pay_curr_symbol, "pay_curr_factor"=>$pay_curr_factor,"invoice_no"=>$BL->REQUEST['invoice_no']));
                 $add_fields = $BL->pp_ext_fields[$payment_method];
-                $temp       = $BL->invoices->get("WHERE `invoices`.invoice_no='".$invoice_no."'");
+                $temp       = $BL->invoices->get("WHERE `invoices`.invoice_no=".intval($invoice_no));
                 $invoice    = $temp[0];
                 if(count($add_fields))
                 {
@@ -193,9 +193,9 @@ switch ($cmd)
                     }
                 }
             }
-            $temp    = $BL->invoices->get("WHERE `invoices`.invoice_no='".$invoice_no."'");
+            $temp    = $BL->invoices->get("WHERE `invoices`.invoice_no=".intval($invoice_no));
             $invoice = $temp[0];
-            $temp    = $BL->orders->get("WHERE `customers`.id='".$invoice['id']."'");
+            $temp    = $BL->orders->get("WHERE `customers`.id=".intval($invoice['id']));
             $order   = $temp[0];
 			if (!empty($invoice['payment_method']))
 			{
@@ -294,7 +294,7 @@ switch ($cmd)
         }
     case "viewInvoice" :
         {
-            $temp    = $BL->invoices->get("WHERE `invoices`.invoice_no='".$BL->REQUEST['invoice_no']."'");
+            $temp    = $BL->invoices->get("WHERE `invoices`.invoice_no=".intval($BL->REQUEST['invoice_no']));
             $invoice = $temp[0];
             if (isset($temp[0]['id']) && 
 				($_SESSION['user_id'] == $invoice['id']) || ($_SESSION['quickpay'] == $invoice['invoice_no']))
@@ -310,7 +310,7 @@ switch ($cmd)
         }
     case "viewOrder" :
         {
-            $order     = $BL->orders->get("WHERE `orders`.sub_id='".$BL->REQUEST['sub_id']."'");
+            $order     = $BL->orders->get("WHERE `orders`.sub_id=".intval($BL->REQUEST['sub_id']));
             $addon_ids = $BL->orders->getAddons($BL->REQUEST['sub_id']);
             $server    = $BL->servers->getByKey($order[0]['server_id']);
             $ip        = $BL->ips->getByKey($order[0]['ip_id']);
@@ -354,7 +354,7 @@ switch ($cmd)
              }
              $ticket  = $BL->support_tickets->getByKey($BL->REQUEST['ticket_id']);
              $topic   = $BL->support_topics->getByKey($ticket['topic_id']);
-             $replies = $BL->support_replies->find(array("WHERE `ticket_id`='".$BL->REQUEST['ticket_id']."'"));
+             $replies = $BL->support_replies->find(array("WHERE `ticket_id`=".intval($BL->REQUEST['ticket_id'])));
              if (isset($ticket['cust_id']) && $ticket['cust_id'] == $_SESSION['user_id'])
              {
                 include $BL->include_page("ticket.php", "user");
@@ -383,7 +383,7 @@ switch ($cmd)
             }
             else
             {
-                $Faqs = $BL->faqs->find(array("WHERE `faqgroup_id`='".$BL->REQUEST['faqgroup_id']."'"));
+                $Faqs = $BL->faqs->find(array("WHERE `faqgroup_id`=".intval($BL->REQUEST['faqgroup_id'])));
             }
             $page = "customer.php";
             include_once $BL->include_page("faq.php", "user");
@@ -409,7 +409,7 @@ switch ($cmd)
         }
     case "orders":
         {
-            $orders = $BL->orders->get("WHERE `customers`.id='".$_SESSION['user_id']."' AND `orders`.order_deleted != '1'");
+            $orders = $BL->orders->get("WHERE `customers`.id=".intval($_SESSION['user_id'])." AND `orders`.order_deleted != '1'");
             include_once $BL->include_page("orders_overview.php", "user");
             break;
         }
@@ -438,9 +438,9 @@ switch ($cmd)
             $BL->customfields->setOrder("customfields_index");
             $custom_fields = $BL->customfields->getAvailable();
             $customer = $BL->customers->getByKey($_SESSION['user_id']);
-            $orders   = $BL->orders->get("WHERE `customers`.id='".$_SESSION['user_id']."' AND `orders`.order_deleted != '1'");
-            $invoices = $BL->invoices->get("WHERE `customers_orders`.customer_id='".$_SESSION['user_id']."' AND `invoices`.status='".$BL->props->invoice_status[0]."'");
-            $tickets  = $BL->support_tickets->find(array("WHERE `cust_id`='".$_SESSION['user_id']."' AND `ticket_status`!=3"));
+            $orders   = $BL->orders->get("WHERE `customers`.id=".intval($_SESSION['user_id'])." AND `orders`.order_deleted != '1'");
+            $invoices = $BL->invoices->get("WHERE `customers_orders`.customer_id=".intval($_SESSION['user_id'])." AND `invoices`.status='".$BL->utils->quoteSmart($BL->props->invoice_status[0])."'");
+            $tickets  = $BL->support_tickets->find(array("WHERE `cust_id`=".intval($_SESSION['user_id'])." AND `ticket_status`!=3"));
             include_once $BL->include_page("index.php", "user");
 			break;
 		}

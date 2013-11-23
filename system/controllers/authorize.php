@@ -64,7 +64,7 @@ class authorize_controller extends controller
         if (!empty($admin_id))
         {
             $this->reset_session_license();
-            $sqlSELECT  = "SELECT `id`,`username`,`topic_id`,`admin_theme`,`email` FROM {$this->props->tbl_admin_users} WHERE `id`='".$admin_id."'";
+            $sqlSELECT  = "SELECT `id`,`username`,`topic_id`,`admin_theme`,`email` FROM {$this->props->tbl_admin_users} WHERE `id`=".intval($admin_id);
             $user       = $this->dbL->executeSELECT($sqlSELECT);
             //Check if the user exists or not.
             if (count($user) == 0)
@@ -124,7 +124,7 @@ class authorize_controller extends controller
 			$this->logout("user");
 			return false;
 		}
-        $sql = "SELECT `field_value` FROM `customers_customfields` WHERE `customer_id`='".$user[0]['id']."' AND `field_id`='1'";
+        $sql = "SELECT `field_value` FROM `customers_customfields` WHERE `customer_id`=".intval($user[0]['id'])." AND `field_id`='1'";
         $custom_fields= $this->dbL->executeSELECT($sql);
 		//Register the variables to the session
         $_SESSION['name']             = $custom_fields[0]['field_value'];
@@ -155,9 +155,9 @@ class authorize_controller extends controller
                     $log_user_type  = 2;
                     $log_user_id    = $_SESSION['admin_id'];
                     $log_user_ip    = $this->utils->realip();
-                    $log_user_name  = $_SESSION['username'];
-                    $log_user_login = $_SESSION['username'];
-                    $log_user_email = $_SESSION['admin_email'];
+                    $log_user_name  = $this->utils->quoteSmart($_SESSION['username']);
+                    $log_user_login = $this->utils->quoteSmart($_SESSION['username']);
+                    $log_user_email = $this->utils->quoteSmart($_SESSION['admin_email']);
 					$entry_time		= date('Y-m-d H:i:s', strtotime($_SESSION['admin_login_time']));
                     if(empty($_SESSION['log_session_id']))
                     {
@@ -165,7 +165,7 @@ class authorize_controller extends controller
                     }
 					$log_session_id = $_SESSION['log_session_id'];
                     $cmd            = isset($this->REQUEST['cmd'])?$this->REQUEST['cmd']:"";         
-                    $log_page       = $cmd;
+                    $log_page       = $this->utils->quoteSmart($cmd);
                     $sqlSELECT = "SELECT * FROM {$this->props->tbl_online_users} WHERE `log_session_id`	= '$log_session_id' AND `user_type`='2' AND `visiting_page` != 'order_page'";
                     if(count($this->dbL->executeSELECT($sqlSELECT)))//update
                     {
@@ -202,11 +202,11 @@ class authorize_controller extends controller
                     //log user
                     $log_time       = date('Y-m-d H:i:s');
                     $log_user_type  = 1;
-                    $log_user_id    = $_SESSION['user_id'];
+                    $log_user_id    = intval($_SESSION['user_id']);
                     $log_user_ip    = $this->utils->realip();
-                    $log_user_name  = $_SESSION['name'];
-                    $log_user_login = $_SESSION['email'];
-                    $log_user_email = $_SESSION['email'];
+                    $log_user_name  = $this->utils->quoteSmart($_SESSION['name']);
+                    $log_user_login = $this->utils->quoteSmart($_SESSION['email']);
+                    $log_user_email = $this->utils->quoteSmart($_SESSION['email']);
 					$entry_time		= date('Y-m-d H:i:s', strtotime($_SESSION['user_login_time']));
 					if(empty($_SESSION['log_session_id']))
                     {
@@ -214,7 +214,7 @@ class authorize_controller extends controller
                     }
                     $log_session_id = $_SESSION['log_session_id'];
                     $cmd            = isset($this->REQUEST['cmd'])?$this->REQUEST['cmd']:"";             
-                    $log_page       = $cmd;
+                    $log_page       = $this->utils->quoteSmart($cmd);
                     $sqlSELECT = "SELECT * FROM {$this->props->tbl_online_users} WHERE `log_session_id`	= '$log_session_id' AND `user_type`='1'";
                     if(count($this->dbL->executeSELECT($sqlSELECT)))//update
                     {

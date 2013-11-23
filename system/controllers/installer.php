@@ -988,7 +988,7 @@ class installer_controller extends controller
         $sql_errors = "";
         if($this->getBuild()<$build)
         {
-            $sql = "UPDATE order_conf SET `build`='".$build."'";
+            $sql = "UPDATE order_conf SET `build`=".intval($build);
             $v   = $this->dbL->executeUPDATE($sql,true);
             if (eregi("MYSQL ERROR",$v))
             {
@@ -1029,7 +1029,7 @@ class installer_controller extends controller
                     }
                     else
                     {
-                        $str2 .= ", '" . $_POST[$x] . "'";
+                        $str2 .= ", '" . $this->utils->quoteSmart($_POST[$x]) . "'";
                     }
                 }
             }
@@ -1055,11 +1055,11 @@ class installer_controller extends controller
                     }
                     else
                     {
-                        $str1 .= "'" .  $_POST[$x] . "'";
+                        $str1 .= "'" .  $this->utils->quoteSmart($_POST[$x]) . "'";
                     }
                 }
             }
-            $sqlUPDATE= "UPDATE extra_fields SET " . $str1 . " WHERE `inv_no`='$inv_no'";
+            $sqlUPDATE= "UPDATE extra_fields SET " . $str1 . " WHERE `inv_no`=".intval($inv_no);
             return $this->dbL->executeUPDATE($sqlUPDATE);
         }
     }

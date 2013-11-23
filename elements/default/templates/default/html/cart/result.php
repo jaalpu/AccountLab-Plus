@@ -201,7 +201,7 @@
         </tr>
         <?php } ?>
         <?php if ($INVOICE_DATA['discount_coupon_amount']>0) { ?>
-        <?php $coupon = $BL->coupons->hasAnyOne(array("WHERE `coupon_name`='".$CUSTOMER_DATA['disc_token_code']."'")); ?>
+        <?php $coupon = $BL->coupons->hasAnyOne(array("WHERE `coupon_name`='".$BL->utils->quoteSmart($CUSTOMER_DATA['disc_token_code'])."'")); ?>
         <tr>
           <td colspan='4'></td>
           <td height='1' bgcolor='#666666'></td>

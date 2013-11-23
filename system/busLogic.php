@@ -254,7 +254,7 @@ class busLogic
         foreach($this->props->dr as $registrar){
             require_once $this->props->get_page("plugins/registrars/" . $registrar . ".php", "file", 1);
             $this->dr_fields[$registrar]=${$registrar."_fields"};
-            $datas = $this->registrars->find(array("WHERE `name`='".$registrar."'"));
+            $datas = $this->registrars->find(array("WHERE `name`='".$this->utils->quoteSmart($registrar)."'"));
             $temp = array ();
             foreach(${$registrar."_fields"} as $field){
                 foreach($datas as $data){
@@ -363,7 +363,7 @@ class busLogic
      */
     function getCustomerFieldValue($field_name,$customer_id)
     {
-        $temp = $this->customfields->hasAnyOne(array("WHERE `field_name`='".$field_name."'"));
+        $temp = $this->customfields->hasAnyOne(array("WHERE `field_name`='".$this->utils->quoteSmart($field_name)."'"));
         return isset($temp['field_id'])?$this->customers->getFieldValue($temp['field_id'],$customer_id):null;
     }
     /*
@@ -386,7 +386,7 @@ class busLogic
         }
         elseif (!empty ($order_id))
         {
-            $order_data  = $this->orders->hasAnyOne(array("WHERE `sub_id`='".$order_id."'"));
+            $order_data  = $this->orders->hasAnyOne(array("WHERE `sub_id`=".intval($order_id)));
             $domain_name = $order_data['domain_name'];
         }
 
@@ -445,7 +445,7 @@ class busLogic
         else
         {
             $thisUser = array ();
-            $thisUser = $this->admin_users->hasAnyOne(array("WHERE `id`='".$_SESSION['admin_id']."'"));
+            $thisUser = $this->admin_users->hasAnyOne(array("WHERE `id`=".intval($_SESSION['admin_id'])));
             $commands = explode("|", $thisUser['permissions']);
         }
         if (!empty($cmd))
@@ -658,7 +658,7 @@ class busLogic
     {
         $sqlDELETE = "DELETE FROM {$this->props->tbl_online_users} WHERE DATE_SUB(CURDATE(),INTERVAL 1 DAY) >= `log_time`";
         $this->dbL->executeDELETE($sqlDELETE); //delete records older than 24 hours
-        $sqlSELECT = "SELECT * FROM {$this->props->tbl_online_users} WHERE `log_time` >= (NOW() - SEC_TO_TIME(" . $sec . ")) ORDER BY `log_time` DESC";
+        $sqlSELECT = "SELECT * FROM {$this->props->tbl_online_users} WHERE `log_time` >= (NOW() - SEC_TO_TIME(" . intval($sec,10) . ")) ORDER BY `log_time` DESC";
         $temp      = $this->dbL->executeSELECT($sqlSELECT);
         $whoisonline= array ();
         foreach ($temp as $k => $v)
@@ -751,7 +751,7 @@ class busLogic
         {
             $return_array[$status] = 0;
         }
-        $Invoices = $this->invoices->get("WHERE `customers_orders`.customer_id='".$customer_id."'");
+        $Invoices = $this->invoices->get("WHERE `customers_orders`.customer_id=".intval($customer_id));
         foreach($Invoices as $Invoice)
         {
             $status = $Invoice['status'];
@@ -767,11 +767,11 @@ class busLogic
         $result = array();
         if(is_numeric($schedule))
         {
-            $cs = $this->custom_scripts->find(array("WHERE `id`='".$schedule."'"));
+            $cs = $this->custom_scripts->find(array("WHERE `id`='".$this->utils->quoteSmart($schedule)."'"));
         }
         else
         {
-            $cs = $this->custom_scripts->find(array("WHERE `run_schedule`='".$schedule."'"));
+            $cs = $this->custom_scripts->find(array("WHERE `run_schedule`='".$this->utils->quoteSmart($schedule)."'"));
         }
         if(count($cs))
         {
@@ -994,7 +994,7 @@ class busLogic
         $data['inv_no']  = $inv_no;
         if ($do == "SELECT")
         {
-            $field_data = $this->extra_fields->hasAnyOne(array("WHERE `inv_no`='".$inv_no."'"));
+            $field_data = $this->extra_fields->hasAnyOne(array("WHERE `inv_no`=".intval($inv_no)));
             foreach ($fields as $field)
             {
                 if ($field[2])//stored or not
@@ -1081,23 +1081,23 @@ class busLogic
 		elseif($action == "_unsuspend"){ $status = 1;}
 		else                           { $status = 0;}
 
-		$sql = "SELECT * FROM {$this->props->tbl_orders_servers_ips} WHERE `sub_id`='$sub_id'";
+		$sql = "SELECT * FROM {$this->props->tbl_orders_servers_ips} WHERE `sub_id`=".intval($sub_id);
 		if (count($this->dbL->executeSELECT($sql)))
 		{
-			$sql = "UPDATE {$this->props->tbl_orders_servers_ips} SET `server_id`='" . $server_id . "', `acct_status`='$status' WHERE `sub_id`='$sub_id'";
+			$sql = "UPDATE {$this->props->tbl_orders_servers_ips} SET `server_id`=" . intval($server_id) . ", `acct_status`='".intval($status)."' WHERE `sub_id`=".intval($sub_id);
 			$this->dbL->executeUPDATE($sql);
 		}
 		else
 		{
-			$sql= "INSERT INTO {$this->props->tbl_orders_servers_ips} VALUES('$sub_id','" . $server_id . "','0','$status')";
+			$sql= "INSERT INTO {$this->props->tbl_orders_servers_ips} VALUES(".intval($sub_id)."," . intval($server_id) . ",0,'".intval($status)."')";
 			$this->dbL->executeINSERT($sql);
 		}
-		$sql= "UPDATE {$this->props->tbl_orders} SET `cust_status`='" . $this->props->order_status[$status] . "' WHERE `sub_id`='$sub_id'";
+		$sql= "UPDATE {$this->props->tbl_orders} SET `cust_status`='" . $this->props->order_status[$status] . "' WHERE `sub_id`=".intval($sub_id);
 		$this->dbL->executeUPDATE($sql);
 	}
     function updateOrderStatus($order_id)
     {
-    	$order_data = $this->orders->get("WHERE `orders`.sub_id='".$order_id."'");
+    	$order_data = $this->orders->get("WHERE `orders`.sub_id=".intval($order_id));
         $data                = array();
         $data['sub_id']      = $order_id;
         $data['cust_status'] = $this->props->order_status[1];
@@ -1149,7 +1149,7 @@ class busLogic
             }
             else
             {
-                $customer = $this->customers->hasAnyOne(array("WHERE `email`='".$customer['existing_email']."'"));
+                $customer = $this->customers->hasAnyOne(array("WHERE `email`='".$this->utils->quoteSmart($customer['existing_email'])."'"));
             }
 			$this->customfields->setOrder("customfields_index");
             foreach($this->customfields->getAvailable() as $customfield)
@@ -1212,7 +1212,7 @@ class busLogic
         $special = $this->specials->getByKey($special_id);
         $temp           = $this->disc_token_codes->getByKey($customer['disc_token_code']);
         $discount_token = $this->disc_tokens->getByKey(isset($temp['disc_token_id'])?$temp['disc_token_id']:0);
-        $coupon         = $this->coupons->hasAnyOne(array("WHERE `coupon_name`='".$customer['disc_token_code']."'"));
+        $coupon         = $this->coupons->hasAnyOne(array("WHERE `coupon_name`='".$this->utils->quoteSmart($customer['disc_token_code'])."'"));
 
         //STEP1  : CALCULATE THE BASE PRICE
         $product            = $this->products->getByKey($product_id);
@@ -1239,12 +1239,12 @@ class busLogic
 
         if($type==1)
         {
-            $domain                  = $this->tlds->hasAnyOne(array("WHERE `dom_ext`='".$tld."' AND `dom_period`='".$year."'"));
+            $domain                  = $this->tlds->hasAnyOne(array("WHERE `dom_ext`='".$this->utils->quoteSmart($tld)."' AND `dom_period`=".intval($year)));
             $INVOICE_DATA['tld_fee'] = $domain['dom_price'];
         }
         elseif($type==2)
         {
-        	$domain                  = $this->subdomains->hasAnyOne(array("WHERE `maindomain`='".$tld."'"));
+        	$domain                  = $this->subdomains->hasAnyOne(array("WHERE `maindomain`='".$this->utils->quoteSmart($tld)."'"));
             $domain_cycle_datas      = $this->subdomains->getCycles($domain['main_id']);
             $INVOICE_DATA['tld_fee'] = $domain_cycle_datas[$cycle];
         }
@@ -1474,11 +1474,11 @@ class busLogic
             $disc_token_code= $this->REQUEST['CUSTOMER_DATA']['disc_token_code'];
             $temp           = $this->disc_token_codes->getByKey($disc_token_code);
             $discount_token = $this->disc_tokens->getByKey(isset($temp['disc_token_id'])?$temp['disc_token_id']:0);
-            $coupon         = $this->coupons->hasAnyOne(array("WHERE `coupon_name`='".$disc_token_code."'"));
+            $coupon         = $this->coupons->hasAnyOne(array("WHERE `coupon_name`='".$this->utils->quoteSmart($disc_token_code)."'"));
 
             if(isset($discount_token['disposable']) && $discount_token['disposable'])
             {
-                $this->disc_token_codes->delete(array("WHERE `disc_token_codes`='".$disc_token_code."'"));
+                $this->disc_token_codes->delete(array("WHERE `disc_token_codes`='".$this->utils->quoteSmart($disc_token_code)."'"));
             }
             elseif(isset($coupon['coupon_id']) && $coupon['coupon_id'])
             {
@@ -1519,7 +1519,7 @@ class busLogic
             $this->REQUEST['special_invoice_no'] = $this->invoices->insert(array("desc"=>$this->REQUEST['desc'],"due_date"=>$this->REQUEST['due_date'],"status"=>$this->props->invoice_status[1]));
             if($this->REQUEST['special_invoice_no'])
             {
-                $sql = "INSERT INTO `orders_invoices` VALUES('".$this->REQUEST['special_order_id']."','".$this->REQUEST['special_invoice_no']."')";
+                $sql = "INSERT INTO `orders_invoices` VALUES(".intval($this->REQUEST['special_order_id']).",".intval($this->REQUEST['special_invoice_no']).")";
                 $this->dbL->executeINSERT($sql);
             }
             $this->recurring_data($this->REQUEST['special_order_id'], $this->REQUEST['bill_cycle'], "INSERT", "", $this->REQUEST['next_bill_date']);
@@ -1528,8 +1528,8 @@ class busLogic
     }
     function processTransaction($item_number, $transaction_id)
     {
-        $pInvoice = $this->invoices->get("WHERE `invoices`.invoice_no='".$item_number."'");
-        $oOrder   = $this->orphan_orders->hasAnyOne(array("WHERE `item_number`='$item_number'"));
+        $pInvoice = $this->invoices->get("WHERE `invoices`.invoice_no=".intval($item_number));
+        $oOrder   = $this->orphan_orders->hasAnyOne(array("WHERE `item_number`='".$this->utils->quoteSmart($item_number)."'"));
 
         if (isset($oOrder['orphanorder_id']))
         {
@@ -1575,7 +1575,7 @@ class busLogic
 	 */
 	function changeStatus($sub_id, $action)
 	{
-		$order                  = $this->orders->get("WHERE `orders`.sub_id='".$sub_id."'");
+		$order                  = $this->orders->get("WHERE `orders`.sub_id=".intval($sub_id));
         $order_data             = $order[0];
 		$order_data['dom_user'] = strtolower($order_data['dom_user']);
 		$order_data['dom_pass'] = $this->utils->alpencrypt->decrypt($order_data['dom_pass'], $this->props->encryptionKey);
@@ -1583,7 +1583,7 @@ class busLogic
 
         $condition  = "LEFT JOIN `cpanel_reseller_profiles` ON `cpanel_reseller_profiles`.cpr_profile_id=`products`.cpr_profile_id " .
                       "LEFT JOIN `plesk_profiles` ON `plesk_profiles`.plesk_profile_id =`products`.plesk_profile_id " .
-                      "WHERE `products`.plan_price_id='".$order_data['product_id']."'";
+                      "WHERE `products`.plan_price_id=".intval($order_data['product_id']);
 
 		$product    = $this->products->hasAnyOne(array($condition));
 		$acc_method = $product['acc_method'];
@@ -1600,7 +1600,7 @@ class busLogic
 			//Get plesk id if its a plesk order
 			if ($server['server_type'] == "plesk")
 			{
-				$temp = $this->plesk_ids->hasAnyOne(array("WHERE `cust_id`='".$order_data['id']."'"));
+				$temp = $this->plesk_ids->hasAnyOne(array("WHERE `cust_id`=".intval($order_data['id'])));
 				$order_data['plesk_id'] = $temp['plesk_id'];
 			}
 			if (!empty ($server['server_type']) && $server['server_auto'] == "yes" && $server['server_type'] != "other")
@@ -1639,7 +1639,7 @@ class busLogic
 					if ($result['result'] == 1)
 					{
 						$status = 1;
-						$sql    = "UPDATE {$this->props->tbl_servers} SET `current_accounts`=(`current_accounts`+1) WHERE `server_id`='" . $server_id . "'";
+						$sql    = "UPDATE {$this->props->tbl_servers} SET `current_accounts`=(`current_accounts`+1) WHERE `server_id`=" . intval($server_id) . "";
 						$this->dbL->executeUPDATE($sql);
 						$addi_ips = array();
 						$temp   = $this->servers->additionalIPs($server_id);
@@ -1660,23 +1660,23 @@ class busLogic
 							$plesk_id = $result['plesk_id'];
                             $this->plesk_ids->insert(array("cust_id"=>$cust_id,"plesk_id"=>$plesk_id));
 						}
-						$sqlSELECT1= "SELECT * FROM {$this->props->tbl_orders_servers_ips} WHERE `sub_id`='$sub_id'";
+						$sqlSELECT1= "SELECT * FROM {$this->props->tbl_orders_servers_ips} WHERE `sub_id`=".intval($sub_id);
 						if (count($this->dbL->executeSELECT($sqlSELECT1)))
 						{
 							if (!empty ($ip_id))
                             {
-								$str = "`ip_id`='$ip_id',";
+								$str = "`ip_id`=".intval($ip_id).",";
                             }
-							$sql = "UPDATE {$this->props->tbl_orders_servers_ips} SET `server_id`='" . $server_id . "', " . $str . " `acct_status`='$status' WHERE `sub_id`='$sub_id'";
+							$sql = "UPDATE {$this->props->tbl_orders_servers_ips} SET `server_id`=" . intval($server_id) . ", " . $str . " `acct_status`='".intval($status)."' WHERE `sub_id`=".intval($sub_id);
 							$this->dbL->executeUPDATE($sql);
 						}
 						else
 						{
 							if (!empty ($ip_id))
                             {
-								$str = "'$ip_id',";
+								$str = intval($ip_id).",";
                             }
-							$sql = "INSERT INTO {$this->props->tbl_orders_servers_ips} VALUES('$sub_id','$server_id'," . $str . "'$status')";
+							$sql = "INSERT INTO {$this->props->tbl_orders_servers_ips} VALUES(".intval($sub_id).",".intval($server_id)."," . $str . "'" . intval($status)."')";
 							$this->dbL->executeINSERT($sql);
 						}
 						$this->markAccounts($sub_id, "_" . $action);
@@ -1712,13 +1712,13 @@ class busLogic
 					if ($result['result'] == 1)
 					{
 						$status = 0;
-						$sqlUPDATE = "UPDATE {$this->props->tbl_servers} SET `current_accounts`=(`current_accounts`-1) WHERE `server_id`='" . $server_id . "'";
+						$sqlUPDATE = "UPDATE {$this->props->tbl_servers} SET `current_accounts`=(`current_accounts`-1) WHERE `server_id`=" . intval($server_id) . "";
 						$this->dbL->executeUPDATE($sqlUPDATE);
 						//Del plesk if
 						if ($server['server_type'] == "plesk")
 						{
 							$cust_id  = $order_data['parent_id'];
-							$this->plesk_ids->delete(array("WHERE `cust_id`='".$cust_id."'"));
+							$this->plesk_ids->delete(array("WHERE `cust_id`=".intval($cust_id)));
 						}
 						$this->markAccounts($sub_id, "_" . $action);
 					}
@@ -1728,7 +1728,7 @@ class busLogic
             {
 				$status = 0;
             }
-			$sqlUPDATE = "UPDATE {$this->props->tbl_orders} SET `cust_status`='" . $this->props->order_status[$status] . "' WHERE `sub_id`='$sub_id'";
+			$sqlUPDATE = "UPDATE {$this->props->tbl_orders} SET `cust_status`='" . $this->props->order_status[$status] . "' WHERE `sub_id`=".intval($sub_id);
 			$this->dbL->executeUPDATE($sqlUPDATE);
             $this->orders->update(array("cust_status"=>$this->props->order_status[$status],"sub_id"=>$sub_id));
 			$this->cp_message = trim($this->cp_message);
@@ -1858,7 +1858,7 @@ class busLogic
 	 */
 	function impPackages($server_id)
 	{
-		$server       = $this->servers->hasAnyOne(array("WHERE `server_id`='".$server_id."'"));
+		$server       = $this->servers->hasAnyOne(array("WHERE `server_id`=".intval($server_id)));
 		$serverHandler= null;
 		//include plugin
 		$plugin_file  = $this->props->get_page("plugins/controlpanels/" . $server['server_type'] . ".php", "file", 1);
@@ -1947,12 +1947,12 @@ class busLogic
 		$next_date= date('Y-m-d', strtotime($next_date));
 		if (count($this->recurring_data($sub_id, 0, "SELECT")))
 		{
-			$sqlUPDATE= "UPDATE {$this->props->tbl_ord_inv_recs} SET `rec_next_date`='" . $next_date . "' WHERE `rec_ord_id`='" . $sub_id . "'";
+			$sqlUPDATE= "UPDATE {$this->props->tbl_ord_inv_recs} SET `rec_next_date`='" . $next_date . "' WHERE `rec_ord_id`=" . intval($sub_id);
             return $this->dbL->executeUPDATE($sqlUPDATE);
 		}
 		else
 		{
-			$sqlINSERT= "INSERT INTO {$this->props->tbl_ord_inv_recs} (`rec_ord_id`, `rec_next_date`)" .			"VALUES ('" . $sub_id . "','" . $next_date . "')";
+			$sqlINSERT= "INSERT INTO {$this->props->tbl_ord_inv_recs} (`rec_ord_id`, `rec_next_date`)" .			"VALUES (" . intval($sub_id) . ",'" . $next_date . "')";
             return $this->dbL->executeINSERT($sqlINSERT);
 		}
 	}
@@ -1971,7 +1971,7 @@ class busLogic
 		$dom_array    = explode(".", $domain_name, 2);
 		$sld          = $dom_array[0];
 		$tld          = $dom_array[1];
-		$tld_data     = $this->tlds->hasAnyOne(array("WHERE `dom_ext`='".$tld."'"));
+		$tld_data     = $this->tlds->hasAnyOne(array("WHERE `dom_ext`='".$this->utils->quoteSmart($tld)."'"));
 		if ($get_registrar == "true")
         {
 			return $tld_data['tld_registrar'];
@@ -1985,7 +1985,7 @@ class busLogic
 			return $this->props->lang['domain_marker_registered'];
 		}
 
-		$temp       = $this->orders->get("WHERE `orders`.sub_id='".$order_id."'");
+		$temp       = $this->orders->get("WHERE `orders`.sub_id=".intval($order_id));
 		$order_data = $temp[0];
 		$conf       = $this->conf;
 
@@ -2067,14 +2067,14 @@ class busLogic
         //echo $next_due_date." == ".$v_day."<br>";
         if ($next_due_date <= $v_day && $intermediate == false && $upcoming == false)
         {
-            $temp  = $this->orders->get("WHERE `orders`.sub_id='".$order_id."'");
+            $temp  = $this->orders->get("WHERE `orders`.sub_id=".intval($order_id));
             $order = $temp[0];
 
             $order['bill_cycle'] = (empty ($order['bill_cycle']) || empty ($order['product_id']))?12:$order['bill_cycle'];
             $cycle_name = $this->props->cycles[$order['bill_cycle']];
             $desc       = $order['product_id'] . "-" . $order['domain_name'] . "-" . $next_due_date;
 
-            $temp = $this->invoices->get("WHERE `invoices`.desc = '" . $order['product_id'] . "-" . $order['domain_name'] . "' AND `orders`.domain_name='".$order['domain_name']."' AND `orders`.product_id='".$order['product_id']."'");
+            $temp = $this->invoices->get("WHERE `invoices`.desc = '" . $this->utils->quoteSmart($order['product_id'] . "-" . $order['domain_name']) . "' AND `orders`.domain_name='".$this->utils->quoteSmart($order['domain_name'])."' AND `orders`.product_id=".intval($order['product_id']));
             $start_invoice = $temp[0];
 
             $dom_array = explode(".", $order['domain_name'], 2);
@@ -2088,7 +2088,7 @@ class busLogic
             //GET DOMAIN REGISTRATION PRICE
             if ($order['dom_reg_type'] == 1)
             {
-                $tld_data   = $this->tlds->find(array("WHERE `dom_ext`='".$tld."'"));
+                $tld_data   = $this->tlds->find(array("WHERE `dom_ext`='".$this->utils->quoteSmart($tld)."'"));
                 $month_diff = $this->utils->count_months($order['sign_date'], $next_due_date);
                 $division   = $month_diff / ($order['dom_reg_year'] * 12);
                 if ($order['dom_reg_year'] * 12 == $month_diff || $division == floor($division))
@@ -2106,7 +2106,7 @@ class busLogic
             //GET SUB-DOMAIN PRICE
             elseif ($order['dom_reg_type'] == 2)
             {
-                $subdomain_data  = $this->subdomains->find(array("WHERE `maindomain`='".$tld."'"));
+                $subdomain_data  = $this->subdomains->find(array("WHERE `maindomain`='".$this->utils->quoteSmart($tld)."'"));
                 $subdomain_cycle = $this->subdomains->getCycles($subdomain_data[0]['main_id']);
                 $echo           .= "RENUE SUB DOMAIN,   ";
                 $tld_amount      = $subdomain_cycle[$cycle_name];
@@ -2176,7 +2176,7 @@ class busLogic
             $this->REQUEST['net_amount']  = $this->REQUEST['tld_fee'] + $this->REQUEST['cycle_fee'] + $addon_amount - $this->REQUEST['other_amount'];
             $this->REQUEST['desc']        = $desc;
             $temp = explode("-",$next_due_date,3);
-            $invoices  = $this->invoices->find(array("WHERE `desc` LIKE '" . $order['product_id'] . "-" . $order['domain_name'] . "-" . trim($temp[0]) . "-" . trim($temp[1]) . "-%'"));
+            $invoices  = $this->invoices->find(array("WHERE `desc` LIKE '" . $this->utils->quoteSmart($order['product_id'] . "-" . $order['domain_name'] . "-" . trim($temp[0]) . "-" . trim($temp[1]) . "-%")."'"));
             if (count($invoices))
             {
                 $order['credit']     = $invoices[0]['debit_credit_amount'];
@@ -2334,7 +2334,7 @@ class busLogic
                     $continue = false;
                 }
             }
-            $sqlUPDATE = "UPDATE {$this->props->tbl_ord_inv_recs} SET `rec_next_date`='" . $restore_actual_due . "' WHERE `rec_ord_id`='" . $order_id . "'";
+            $sqlUPDATE = "UPDATE {$this->props->tbl_ord_inv_recs} SET `rec_next_date`='" . $restore_actual_due . "' WHERE `rec_ord_id`=" . intval($order_id);
             $this->dbL->executeUPDATE($sqlUPDATE);
             echo $echo;
         }
@@ -2351,7 +2351,7 @@ class busLogic
         $tax_names       = array();
         $addons          = array();
 
-        $temp    = $this->invoices->get("WHERE `invoice_no`='".$invoice_no."'");
+        $temp    = $this->invoices->get("WHERE `invoice_no`=".intval($invoice_no));
         $invoice = $temp[0];
         $invoice_template = $this->emails->getByKey(2);
         $body    = $this->utils->entity_decode($this->utils->htmlspecialchars_decode($invoice_template['email_text']));
@@ -2687,9 +2687,9 @@ class busLogic
         }
         else
         {
-            $reply  = $this->support_replies->hasAnyOne(array("WHERE `ticket_id` = '".$ticket_id."' ORDER BY `reply_id` DESC"));
+            $reply  = $this->support_replies->hasAnyOne(array("WHERE `ticket_id` = ".intval($ticket_id)." ORDER BY `reply_id` DESC"));
             $reply_by_user = $reply['reply_by'];
-            $temp_data     = $this->customers->hasAnyOne(array("WHERE `email`='".$reply_by_user."'"));
+            $temp_data     = $this->customers->hasAnyOne(array("WHERE `email`='".$this->utils->quoteSmart($reply_by_user)."'"));
             if(isset($temp_data['id']) && !empty($temp_data['id']))
             {
             	$reply_by_user = $this->getCustomerFieldValue("name",$temp_data['id']);
@@ -2760,7 +2760,7 @@ class busLogic
     {
         $data_array = array();
         $cycle  = $this->props->cycles;
-        $temp   = $this->orders->get("WHERE `orders`.sub_id='".$order_no."'");
+        $temp   = $this->orders->get("WHERE `orders`.sub_id=".intval($order_no));
         $order  = $temp[0];
         $server = $this->servers->getByKey($order['server_id']);
         $ip     = $this->ips->getByKey($order['ip_id']);
@@ -2851,7 +2851,7 @@ class busLogic
     {
         $data_array = array();
         $cycle  = $this->props->cycles;
-        $temp   = $this->orders->get("WHERE `orders`.sub_id='".$order_no."'");
+        $temp   = $this->orders->get("WHERE `orders`.sub_id=".intval($order_no));
         $order  = $temp[0];
         $product= $this->products->getByKey($order['product_id']);
 
@@ -2889,7 +2889,7 @@ class busLogic
     {
         $data_array = array();
         $cycle      = $this->props->cycles;
-        $temp       = $this->invoices->get("WHERE `invoice_no`='".$invoice_no."'");
+        $temp       = $this->invoices->get("WHERE `invoice_no`=".intval($invoice_no));
         $invoice    = $temp[0];
         $data_array1= $this->mailWelcome($invoice['order_id'],true);
         $data_array2= $this->mailInvoice($invoice_no, true, true);

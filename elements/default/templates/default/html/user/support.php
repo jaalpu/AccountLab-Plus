@@ -94,10 +94,10 @@ var t    = ["t1","t2","t3"];
 </form>
 </div>
 <div id="tab2" name="tab2" class="tabContent" style="display:none">
-<?php $tickets  = $BL->support_tickets->find(array("WHERE `cust_id`='".$_SESSION['user_id']."' AND `ticket_status`!=3")); include $BL->props->get_page("templates/".THEMEDIR."/html/user/tickets.php"); ?>
+<?php $tickets  = $BL->support_tickets->find(array("WHERE `cust_id`=".intval($_SESSION['user_id'])." AND `ticket_status`!=3")); include $BL->props->get_page("templates/".THEMEDIR."/html/user/tickets.php"); ?>
 </div>
 <div id="tab3" name="tab3" class="tabContent" style="display:none">
-<?php $tickets  = $BL->support_tickets->find(array("WHERE `cust_id`='".$_SESSION['user_id']."' AND `ticket_status`!=0")); include $BL->props->get_page("templates/".THEMEDIR."/html/user/tickets.php"); ?>
+<?php $tickets  = $BL->support_tickets->find(array("WHERE `cust_id`=".intval($_SESSION['user_id'])." AND `ticket_status`!=0")); include $BL->props->get_page("templates/".THEMEDIR."/html/user/tickets.php"); ?>
 </div>
 </div>
 <script language="JavaScript" type="text/javascript">

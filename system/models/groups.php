@@ -67,11 +67,11 @@ class groups extends model
     }
     function updateAvailableProducts($group_id,$products=array())
     {
-    	$sql = "DELETE FROM `groups_products` WHERE `group_id`='".$group_id."'";
+    	$sql = "DELETE FROM `groups_products` WHERE `group_id`=".intval($group_id);
         $this->dbL->executeDELETE($sql);
         foreach($products as $product_id)
         {
-        	$sql = "INSERT INTO `groups_products` VALUES('".$group_id."','".$product_id."')";
+        	$sql = "INSERT INTO `groups_products` VALUES(".intval($group_id).",".intval($product_id).")";
             $this->dbL->executeINSERT($sql);
         }
     }

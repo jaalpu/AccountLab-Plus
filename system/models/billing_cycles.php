@@ -50,7 +50,7 @@ class billing_cycles extends model
 	var $tableName = "billing_cycles";
     function getCycleMonthFromCycleName($cycle_name)
     {
-    	$temp = $this->hasAnyOne(array("WHERE `cycle_name`='".$cycle_name."'"));
+    	$temp = $this->hasAnyOne(array("WHERE `cycle_name`='".$this->utils->quoteSmart($cycle_name)."'"));
         return isset($temp['cycle_month'])?$temp['cycle_month']:0;
     }
 }

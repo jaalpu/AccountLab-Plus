@@ -50,12 +50,12 @@ class coupons extends model
 	var $tableName = "coupons";
     function getUsedCoupons($cust_id,$coupon_id)
     {
-    	$sql = "SELECT * FROM {$this->props->tbl_used_coupons} WHERE `cust_id`='$cust_id' AND `coupon_id`='$coupon_id'";
+    	$sql = "SELECT * FROM {$this->props->tbl_used_coupons} WHERE `cust_id`=".intval($cust_id)." AND `coupon_id`=".intval($coupon_id);
         return $this->dbL->executeSELECT($sql);
     }
     function useCoupon($cust_id,$sub_id, $coupon_id)
     {
-        $sql = "INSERT INTO {$this->props->tbl_used_coupons} VALUES ('$cust_id', '$sub_id', '$coupon_id')";
+        $sql = "INSERT INTO {$this->props->tbl_used_coupons} VALUES (".intval($cust_id).", ".intval($sub_id).", ".intval($coupon_id).")";
         return $this->dbL->executeINSERT($sql);
     }
 }

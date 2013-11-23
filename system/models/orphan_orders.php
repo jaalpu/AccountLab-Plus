@@ -50,8 +50,8 @@ class orphan_orders extends model
 	var $tableName = "orphan_orders";
     function del($orphanorder_id)
     {
-        $this->delete(array("WHERE `orphanorder_id`='".$orphanorder_id."'"));
-        $sql = "DELETE FROM `orphan_order_datas` WHERE `orphan_order_id`='".$orphanorder_id."'";
+        $this->delete(array("WHERE `orphanorder_id`=".intval($orphanorder_id)));
+        $sql = "DELETE FROM `orphan_order_datas` WHERE `orphan_order_id`=".intval($orphanorder_id);
         $this->query($sql);
     }
     function get($condition="")
@@ -59,7 +59,7 @@ class orphan_orders extends model
         $oOrders = array();
         foreach($this->find(array($condition)) as $orphan_order)
         {
-            $sql = "SELECT * FROM `orphan_order_datas` WHERE `orphan_order_id`='".$orphan_order['orphanorder_id']."'";
+            $sql = "SELECT * FROM `orphan_order_datas` WHERE `orphan_order_id`=".intval($orphan_order['orphanorder_id']);
             foreach($this->dbL->executeSELECT($sql) as $data)
             {
                 $oOrders[$orphan_order['orphanorder_id']][$data['orphan_order_field']] = $data['orphan_order_value'];

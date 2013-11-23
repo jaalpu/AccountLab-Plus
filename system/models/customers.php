@@ -64,14 +64,14 @@ class customers extends model
         {
             if(isset($this->REQUEST[$field['field_name']]))
             {
-                if(count($this->dbL->executeSELECT("SELECT * FROM `customers_customfields` WHERE `customer_id`='".$this->REQUEST['id']."' AND `field_id`='".$field['field_id']."'")))
+                if(count($this->dbL->executeSELECT("SELECT * FROM `customers_customfields` WHERE `customer_id`=".intval($this->REQUEST['id'])." AND `field_id`=".intval($field['field_id']))))
                 {
-                    $sql    = "UPDATE `customers_customfields` SET `field_value`='".$this->utils->quoteSmart($this->REQUEST[$field['field_name']])."' WHERE `customer_id`='".$this->REQUEST['id']."' AND `field_id`='".$field['field_id']."'";
+                    $sql    = "UPDATE `customers_customfields` SET `field_value`='".$this->utils->quoteSmart($this->REQUEST[$field['field_name']])."' WHERE `customer_id`=".intval($this->REQUEST['id'])." AND `field_id`=".intval($field['field_id']);
                     $result = $this->dbL->executeUPDATE($sql);
                 }
                 else
                 {
-                    $sql = "INSERT INTO `customers_customfields` VALUES ('".$this->REQUEST['id']."','".$field['field_id']."','".$this->utils->quoteSmart($this->REQUEST[$field['field_name']])."')";
+                    $sql = "INSERT INTO `customers_customfields` VALUES (".intval($this->REQUEST['id']).",".intval($field['field_id']).",'".$this->utils->quoteSmart($this->REQUEST[$field['field_name']])."')";
                     $this->dbL->executeINSERT($sql);
                 }
             }
@@ -89,7 +89,7 @@ class customers extends model
             {
             	if(isset($this->REQUEST[$field['field_name']]))
                 {
-                	$sql = "INSERT INTO `customers_customfields` VALUES ('".$insert_id."','".$field['field_id']."','".$this->utils->quoteSmart($this->REQUEST[$field['field_name']])."')";
+                	$sql = "INSERT INTO `customers_customfields` VALUES (".intval($insert_id).",".intval($field['field_id']).",'".$this->utils->quoteSmart($this->REQUEST[$field['field_name']])."')";
                     $this->dbL->executeINSERT($sql);
                 }
             }
@@ -109,7 +109,7 @@ class customers extends model
             {
                 return $this->props->lang['err_email'];
             }
-            elseif (!count($this->find(array("WHERE `cust_deleted`='0' AND `email`='".$data['existing_email']."' AND `password`='".md5($data['existing_password'])."'"))))
+            elseif (!count($this->find(array("WHERE `cust_deleted`='0' AND `email`='".$this->utils->quoteSmart($data['existing_email'])."' AND `password`='".md5($data['existing_password'])."'"))))
             {
                 return $this->props->lang['err_user_pass'];
             }
@@ -124,7 +124,7 @@ class customers extends model
             {
                 return $this->props->lang['err_pass'];
             }
-            elseif (count($this->find(array("WHERE `cust_deleted`='0' AND `email`='".$data['email']."'"))))
+            elseif (count($this->find(array("WHERE `cust_deleted`='0' AND `email`='".$this->utils->quoteSmart($data['email'])."'"))))
             {
                 return $this->props->lang['err_email_exists'];
             }
@@ -166,7 +166,7 @@ class customers extends model
     }
     function getFieldValue($field_id,$customer_id)
     {
-    	$sql = "SELECT `field_value` FROM `customers_customfields` WHERE `customer_id`='".$customer_id."' AND `field_id`='".$field_id."'";
+    	$sql = "SELECT `field_value` FROM `customers_customfields` WHERE `customer_id`=".intval($customer_id)." AND `field_id`=".intval($field_id);
         $temp= $this->dbL->executeSELECT($sql);
         return isset($temp[0]['field_value'])?$temp[0]['field_value']:null;
     }

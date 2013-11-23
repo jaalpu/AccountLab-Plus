@@ -124,7 +124,7 @@ class clientexecHandler
 
         foreach($products as $product)
         {
-            $sqlSELECT = "SELECT * FROM `package_variable` WHERE `packageid` = '".$product['id']."' AND `value`!=''";
+            $sqlSELECT = "SELECT * FROM `package_variable` WHERE `packageid` = '".intval($product['id'])."' AND `value`!=''";
             $temp       = $this->dbL->executeSELECT($sqlSELECT);
             $BL->REQUEST['plan_name'] = $temp[0]['value'];
             if(empty($temp[0]['value']))
@@ -181,7 +181,7 @@ class clientexecHandler
         {
             if(array_search($customer['email'],$existing_customer_emails)===false)
             {
-                $sqlSELECT = "SELECT * FROM `user_customuserfields`  WHERE `user_customuserfields`.userid='".$customer['id']."'";
+                $sqlSELECT = "SELECT * FROM `user_customuserfields`  WHERE `user_customuserfields`.userid='".intval($customer['id'])."'";
                 $this->dbReconnect();
                 foreach($this->dbL->executeSELECT($sqlSELECT) as $temp)
                 {
@@ -226,13 +226,13 @@ class clientexecHandler
         }
         foreach($domains as $domain)
         {
-            $temp = $BL->customers->find(array("WHERE `email`='".$domain['email']."'"));
+            $temp = $BL->customers->find(array("WHERE `email`='".$BL->utils->quoteSmart($domain['email'])."'"));
             $BL->REQUEST['id']     = $temp[0]['id'];
             $BL->REQUEST['domain_name'] = trim($domain['DomainName']);
             list($BL->REQUEST['sld'],$BL->REQUEST['tld']) = explode('.',$BL->REQUEST['domain_name'],2);
             if(array_search($BL->REQUEST['domain_name'],$e_orders)===false || empty($BL->REQUEST['domain_name']))
             {
-                $sqlSELECT = "SELECT * FROM `package_variable` WHERE `packageid` = '".$domain['Plan']."' AND `value`!=''";
+                $sqlSELECT = "SELECT * FROM `package_variable` WHERE `packageid` = '".intval($domain['Plan'])."' AND `value`!=''";
                 $this->dbReconnect();
                 $temp = $this->dbL->executeSELECT($sqlSELECT);
                 $BL->REQUEST['product_id'] = $temp[0]['value'];
@@ -254,7 +254,7 @@ class clientexecHandler
                 $BL->REQUEST['dom_pass']     = $domain['password'];
                 $BL->dbReconnect();
                 $insert_id = $BL->orders->add($BL->REQUEST['id']);
-                $sql       = "INSERT INTO {$BL->props->tbl_ord_inv_recs} VALUES('".$insert_id."','".$domain['nextbilldate']."')";
+                $sql       = "INSERT INTO {$BL->props->tbl_ord_inv_recs} VALUES(".intval($insert_id).",'".$domain['nextbilldate']."')";
                 if($insert_id)
                 {
                     $BL->dbL->executeINSERT($sql);
@@ -307,7 +307,7 @@ class clientexecHandler
             if(!$sub_id)
             {
                 $BL->dbReconnect();
-                $temp       = $BL->orders->get("WHERE `customers`.email = '".$inv['email']."'");
+                $temp       = $BL->orders->get("WHERE `customers`.email = '".$BL->utils->quoteSmart($inv['email'])."'");
                 $sub_id     = $temp[0]['sub_id'];
             }
             $BL->REQUEST['desc']        = $inv['description'];

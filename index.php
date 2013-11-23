@@ -267,7 +267,7 @@ switch ($cmd)
         }
         elseif (!is_numeric($special['special_tld_disc']))
         {
-            $tld_array = $BL->tlds->find(array("WHERE `dom_ext`='".$special['special_tld_disc']."'"));
+            $tld_array = $BL->tlds->find(array("WHERE `dom_ext`='".$BL->utils->quoteSmart($special['special_tld_disc'])."'"));
         }
         elseif ($special['special_subdom_disc'] == "1")
         {
@@ -275,7 +275,7 @@ switch ($cmd)
         }
         elseif (!is_numeric($special['special_subdom_disc']))
         {
-            $tld_array = $BL->subdomains->find(array("WHERE `maildomain`='".$special['special_subdom_disc']."'"));
+            $tld_array = $BL->subdomains->find(array("WHERE `maildomain`='".$BL->utils->quoteSmart($special['special_subdom_disc'])."'"));
         }
 
         if ($special['special_plan_disc'] == "ALL")
@@ -316,7 +316,7 @@ switch ($cmd)
         $show_owndomain  = ($BL->conf['en_owndomain']                      )?true:false;
 
         //Check group configuration
-        $group_data = $BL->groups->find(array("WHERE `group_id`='".(isset($_SESSION['group_id'])?$_SESSION['group_id']:0)."'"));
+        $group_data = $BL->groups->find(array("WHERE `group_id`=".(isset($_SESSION['group_id'])?intval($_SESSION['group_id']):0)));
         if(isset($group_data[0]['group_require_domain']) && empty($group_data[0]['group_require_domain']))
         {
             $show_tlds       = false;
@@ -325,7 +325,7 @@ switch ($cmd)
         }
 
         //Check product configuration
-        $product_data = $BL->products->find(array("WHERE `plan_price_id`='".(isset($_SESSION['product_id'])?$_SESSION['product_id']:0)."'"));
+        $product_data = $BL->products->find(array("WHERE `plan_price_id`=".(isset($_SESSION['product_id'])?intval($_SESSION['product_id']):0)));
         if(isset($product_data[0]['domain']) && empty($product_data[0]['domain']))
         {
             $show_tlds       = false;

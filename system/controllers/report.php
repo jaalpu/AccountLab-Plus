@@ -75,15 +75,15 @@ class report_controller extends controller
 		$condition = "";
         if(!empty($status) && !$this->rAllDate)
         {
-            $condition = " AND {$this->props->tbl_invoices}.`due_date` >= '$this->rFromDate' AND {$this->props->tbl_invoices}.`due_date` <= '$this->rToDate' AND {$this->props->tbl_invoices}.`status` = '$status'";
+            $condition = " AND {$this->props->tbl_invoices}.`due_date` >= '".$this->utils->quoteSmart($this->rFromDate)."' AND {$this->props->tbl_invoices}.`due_date` <= '".$this->utils->quoteSmart($this->rToDate)."' AND {$this->props->tbl_invoices}.`status` = '".$this->utils->quoteSmart($status)."'";
         }
         elseif(!empty($status) && $this->rAllDate)
         {
-            $condition = " AND {$this->props->tbl_invoices}.`status` = '$status'";
+            $condition = " AND {$this->props->tbl_invoices}.`status` = '".$this->utils->quoteSmart($status)."'";
         }
 		elseif(!$this->rAllDate)
         {
-            $condition = " AND {$this->props->tbl_invoices}.`due_date` >= '$this->rFromDate' AND {$this->props->tbl_invoices}.`due_date` <= '$this->rToDate'";
+            $condition = " AND {$this->props->tbl_invoices}.`due_date` >= '".$this->utils->quoteSmart($this->rFromDate)."' AND {$this->props->tbl_invoices}.`due_date` <= '".$this->utils->quoteSmart($this->rToDate)."'";
         }
 		$sql = "SELECT * FROM {$this->props->tbl_invoices} "                                                                                                          .
                "LEFT  JOIN {$this->props->tbl_orders_invoices}  ON {$this->props->tbl_orders_invoices}.invoice_id   = {$this->props->tbl_invoices}.invoice_no "       .
@@ -109,22 +109,22 @@ class report_controller extends controller
 	  {
 		  if(!empty($status) && !$this->rAllDate)
           {
-		  	$condition = "AND           {$this->props->tbl_orders}.`sign_date` >= '$this->rFromDate'       ".
-            		 	 "AND           {$this->props->tbl_orders}.`sign_date` <= '$this->rToDate'         ".
-            		 	 "AND           {$this->props->tbl_orders}.`cust_status`='$status'                 ".
+		  	$condition = "AND           {$this->props->tbl_orders}.`sign_date` >= '".$this->utils->quoteSmart($this->rFromDate)."'       ".
+            		 	 "AND           {$this->props->tbl_orders}.`sign_date` <= '".$this->utils->quoteSmart($this->rToDate)."'         ".
+            		 	 "AND           {$this->props->tbl_orders}.`cust_status`='".$this->utils->quoteSmart($status)."'                 ".
             			 "AND			{$this->props->tbl_orders}.`order_deleted` != '1'                  ".
 			             "GROUP BY      {$this->props->tbl_orders}.`sub_id`";
           }
           if(!empty($status) && $this->rAllDate)
           {
-            $condition = "AND           {$this->props->tbl_orders}.`cust_status`='$status'                 ".
+            $condition = "AND           {$this->props->tbl_orders}.`cust_status`='".$this->utils->quoteSmart($status)."'                 ".
                          "AND           {$this->props->tbl_orders}.`order_deleted` != '1'                  ".
                          "GROUP BY      {$this->props->tbl_orders}.`sub_id`";
           }
 		  elseif(!$this->rAllDate)
           {
-            $condition = "AND           {$this->props->tbl_orders}.`sign_date` >= '$this->rFromDate'       ".
-                         "AND           {$this->props->tbl_orders}.`sign_date` <= '$this->rToDate'         ".
+            $condition = "AND           {$this->props->tbl_orders}.`sign_date` >= '".$this->utils->quoteSmart($this->rFromDate)."'       ".
+                         "AND           {$this->props->tbl_orders}.`sign_date` <= '".$this->utils->quoteSmart($this->rToDate)."'         ".
                          "AND           {$this->props->tbl_orders}.`order_deleted` != '1'                  ".
                          "GROUP BY      {$this->props->tbl_orders}.`sub_id`";
           }

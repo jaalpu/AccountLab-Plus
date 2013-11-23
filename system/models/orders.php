@@ -57,21 +57,21 @@ class orders extends model
         $this->REQUEST['ip_id']       = isset($this->REQUEST['ip_id'])?$this->REQUEST['ip_id']:0;
         $this->update($this->REQUEST);
 
-        $sql = "DELETE FROM `orders_addons` WHERE `sub_id`='".$order_id."'";
+        $sql = "DELETE FROM `orders_addons` WHERE `sub_id`=".intval($order_id);
         $this->dbL->executeDELETE($sql);
-        $sql = "DELETE FROM `orders_servers_ips` WHERE `sub_id`='".$order_id."'";
+        $sql = "DELETE FROM `orders_servers_ips` WHERE `sub_id`=".intval($order_id);
         $this->dbL->executeDELETE($sql);
 
         foreach($this->REQUEST['addon_ids'] as $addon_id)
         {
             $activation_date = isset($this->REQUEST['addon_dates'])?$this->REQUEST['addon_dates'][$addon_id]:date('Y-m-d');
-            $sql = "INSERT INTO `orders_addons` VALUES('".$order_id."','".$addon_id."','".$activation_date."')";
+            $sql = "INSERT INTO `orders_addons` VALUES(".intval($order_id).",".intval($addon_id).",'".$this->utils->quoteSmart($activation_date)."')";
             $this->dbL->executeINSERT($sql);
         }
 
         if(isset($this->REQUEST['server_id']) && isset($this->REQUEST['ip_id']))
         {
-            $sql = "INSERT INTO `orders_servers_ips` VALUES('".$order_id."','".$this->REQUEST['server_id']."','".$this->REQUEST['ip_id']."','0')";
+            $sql = "INSERT INTO `orders_servers_ips` VALUES(".intval($order_id).",".intval($this->REQUEST['server_id']).",".intval($this->REQUEST['ip_id']).",0)";
             $this->dbL->executeINSERT($sql);
         }
 
@@ -89,18 +89,18 @@ class orders extends model
         $order_id = $this->insert($this->REQUEST);
         if($order_id)
         {
-        	$sql = "INSERT INTO `customers_orders` VALUES('".$customer_id."','".$order_id."')";
+        	$sql = "INSERT INTO `customers_orders` VALUES(".intval($customer_id).",".intval($order_id).")";
             $this->dbL->executeINSERT($sql);
 
             foreach($this->REQUEST['addon_ids'] as $addon_id)
             {
                 $activation_date = isset($this->REQUEST['addon_dates'])?$this->REQUEST['addon_dates'][$addon_id]:date('Y-m-d');
-                $sql = "INSERT INTO `orders_addons` VALUES('".$order_id."','".$addon_id."','".$activation_date."')";
+                $sql = "INSERT INTO `orders_addons` VALUES(".intval($order_id).",".intval($addon_id).",'".$this->utils->quoteSmart($activation_date)."')";
                 $this->dbL->executeINSERT($sql);
             }
             if(isset($this->REQUEST['server_id']) && isset($this->REQUEST['ip_id']))
             {
-                $sql = "INSERT INTO `orders_servers_ips` VALUES('".$order_id."','".$this->REQUEST['server_id']."','".$this->REQUEST['ip_id']."','0')";
+                $sql = "INSERT INTO `orders_servers_ips` VALUES(".intval($order_id).",".intval($this->REQUEST['server_id']).",".intval($this->REQUEST['ip_id']).",0)";
                 $this->dbL->executeINSERT($sql);
             }
         }
@@ -121,12 +121,12 @@ class orders extends model
     }
     function getAddons($order_id)
     {
-    	$sql = "SELECT * FROM `orders_addons` WHERE `sub_id`='".$order_id."'";
+    	$sql = "SELECT * FROM `orders_addons` WHERE `sub_id`=".intval($order_id);
         return $this->dbL->executeSELECT($sql);
     }
     function getByStatus($status)
     {
-    	return $this->get("WHERE `order_deleted`='0' AND `cust_status`='".$status."'");
+    	return $this->get("WHERE `order_deleted`='0' AND `cust_status`='".$this->utils->quoteSmart($status)."'");
     }
     /*
      * recurring data
@@ -147,12 +147,12 @@ class orders extends model
             }
             $next_date= $date['year'] . "-" . $date['mon'] . "-" . $date['mday'];
             $sql      = "INSERT INTO `ord_inv_recs` (`rec_ord_id`, `rec_next_date`)" .
-                        "VALUES ('" . $sub_id . "','" . $next_date . "')";
+                        "VALUES (" . intval($sub_id) . ",'" . $next_date . "')";
             return $this->dbL->executeINSERT($sql);
         }
         elseif ($do == "DELETE")
         {
-            $sql = "DELETE FROM `ord_inv_recs` WHERE `rec_ord_id`='" . $sub_id . "'";
+            $sql = "DELETE FROM `ord_inv_recs` WHERE `rec_ord_id`=" . intval($sub_id);
             return $this->dbL->executeDELETE($sql);
         }
         elseif ($do == "UPDATE")
@@ -161,12 +161,12 @@ class orders extends model
             $cycle= empty ($order['bill_cycle'])?12:$order['bill_cycle'];
             $date = $this->utils->getXmonthsAfter($cycle, $date);
             $next_date= $date['year'] . "-" . $date['mon'] . "-" . $date['mday'];
-            $sql  = "UPDATE `ord_inv_recs` SET `rec_next_date`='" . $next_date . "' WHERE `rec_ord_id`='" . $sub_id . "'";
+            $sql  = "UPDATE `ord_inv_recs` SET `rec_next_date`='" . $next_date . "' WHERE `rec_ord_id`=" . intval($sub_id);
             return $this->dbL->executeUPDATE($sql);
         }
         else
         {
-            $sql = "SELECT * FROM `ord_inv_recs` WHERE `rec_ord_id`='" . $sub_id . "'";
+            $sql = "SELECT * FROM `ord_inv_recs` WHERE `rec_ord_id`=" . intval($sub_id);
             $temp= $this->dbL->executeSELECT($sql);
             return $temp[0];
         }

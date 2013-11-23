@@ -51,17 +51,17 @@ class taxes extends model
     function moveUp($tax_id,$tax_index)
     {
         $tax_index1 = $tax_index - 1;
-        $sql        = "UPDATE ".$this->tableName." SET `tax_index` = '$tax_index' WHERE `tax_index` = '$tax_index1'";
+        $sql        = "UPDATE ".$this->tableName." SET `tax_index` = ".intval($tax_index)." WHERE `tax_index` = ".intval($tax_index1);
         $this->dbL->executeUPDATE($sql);
-        $sql        = "UPDATE ".$this->tableName." SET `tax_index` = '$tax_index1' WHERE `tax_id`='$tax_id'";
+        $sql        = "UPDATE ".$this->tableName." SET `tax_index` = ".intval($tax_index1)." WHERE `tax_id`=".intval($tax_id);
         $this->dbL->executeUPDATE($sql);
     }
     function moveDown($tax_id,$tax_index)
     {
         $tax_index1 = $tax_index + 1;
-        $sql        = "UPDATE ".$this->tableName." SET `tax_index` = '$tax_index' WHERE `tax_index` = '$tax_index1'";
+        $sql        = "UPDATE ".$this->tableName." SET `tax_index` = ".intval($tax_index)." WHERE `tax_index` = ".intval($tax_index1);
         $this->dbL->executeUPDATE($sql);
-        $sql        = "UPDATE ".$this->tableName." SET `tax_index` = '$tax_index1' WHERE `tax_id`='$tax_id'";
+        $sql        = "UPDATE ".$this->tableName." SET `tax_index` = ".intval($tax_index1)." WHERE `tax_id`=".intval($tax_id);
         $this->dbL->executeUPDATE($sql);
     }
     function getAvailable()

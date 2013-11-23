@@ -74,7 +74,7 @@ if(!count($Faqgroups))
 }
 else
 {
-	$Faqs = $BL->faqs->find(array("WHERE `faqgroup_id`='".$BL->REQUEST['faqgroup_id']."'"));
+	$Faqs = $BL->faqs->find(array("WHERE `faqgroup_id`=".intval($BL->REQUEST['faqgroup_id'])));
 }
 
 include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/faq.php");

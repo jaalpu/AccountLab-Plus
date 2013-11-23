@@ -52,6 +52,8 @@ class whois_controller extends controller
 {
     function checkDomain($name, $ext)
 	{
+		$name = $this->utils->quoteSmart($name);
+		$ext = $this->utils->quoteSmart($ext);
 		$serverArray  = $this->getServerArray($ext, 0);
 		$SERVER       = $serverArray['server'];
 		$NOMATCH      = $serverArray['nomatch'];

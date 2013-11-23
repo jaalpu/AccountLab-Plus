@@ -59,7 +59,7 @@ function updateBasket()
         </tr>   ";
 
     $product_cost = 0;
-    $product_data = $BL->products->hasAnyOne(array("WHERE `plan_price_id`='".$_SESSION['product_id']."'"));
+    $product_data = $BL->products->hasAnyOne(array("WHERE `plan_price_id`=".intval($_SESSION['product_id'])));
     $product_name = $BL->getFriendlyName($_SESSION['product_id']);
     $cycles_data  = $BL->products->getCycles($_SESSION['product_id']);
     $product_desc = $product_data['host_setup_fee']>0?$BL->props->lang['setup_fee'] . " " . $BL->toCurrency($product_data['host_setup_fee'], null, 1):'';
@@ -90,7 +90,7 @@ function updateBasket()
     foreach($_SESSION['addon_ids'] as $addon_id)
     {
         $show_basket= true;
-        $addon_data = $BL->addons->hasAnyOne(array("WHERE `addon_id`='".$addon_id."'"));
+        $addon_data = $BL->addons->hasAnyOne(array("WHERE `addon_id`=".intval($addon_id)));
         $cycles_data= $BL->addons->getCycles($addon_id);
         $addon_desc = $addon_data['addon_setup']>0?$BL->props->lang['setup_fee'] . " " . $BL->toCurrency($addon_data['addon_setup'], null, 1):'';
         $addon_cost = $addon_data['addon_setup'];
@@ -487,7 +487,7 @@ function step1_ShowAddons()
     global $BL;
     $bill_cycle = $_SESSION['bill_cycle'];
     $product_id = $_SESSION['product_id'];
-    $product    = $BL->products->hasAnyOne(array("WHERE `plan_price_id`='".$product_id."'"));
+    $product    = $BL->products->hasAnyOne(array("WHERE `plan_price_id`=".intval($product_id)));
 	$BL->addons->setOrder("addon_index");
     $addons     = $BL->addons->getAvailable($product_id);
     $addon_sec = "&#160;";
@@ -498,7 +498,7 @@ function step1_ShowAddons()
                      "<table width='100%' border='0' cellspacing='0' cellpadding='0' align='center'>";
         foreach($addons as $addon_id)
         {
-        	$addon_data  = $BL->addons->hasAnyOne(array("WHERE `addon_id`='".$addon_id."'"));
+        	$addon_data  = $BL->addons->hasAnyOne(array("WHERE `addon_id`=".intval($addon_id)));
             $cycle_amounts= $BL->addons->getCycles($addon_id);
             $checked     = (is_array($_SESSION['addon_ids']) && array_search($addon_id,$_SESSION['addon_ids'])!==false)?"checked":"";
             $addon_sec .= "<tr>";
@@ -529,7 +529,7 @@ function step1_ShowCycles()
 {
     global $BL;
     $product_id       = $_SESSION['product_id'];
-    $product          = $BL->products->hasAnyOne(array("WHERE `plan_price_id`='".$product_id."'"));
+    $product          = $BL->products->hasAnyOne(array("WHERE `plan_price_id`=".intval($product_id)));
     $products_cycles  = $BL->products->getCycles($product_id);
     $temp_cycle_sum   = 0;
     foreach($BL->props->cycles as $k1=>$v1)
@@ -801,7 +801,7 @@ function step2_whois($type,$sld,$tld)
         if ($isAvailable)
         {
             $whois_result = "<b>".$sld.".".$tld." ".$BL->props->lang['is_available']."</b>";
-            $subdomain    = $BL->subdomains->find(array("WHERE `maindomain`='$tld'"));
+            $subdomain    = $BL->subdomains->find(array("WHERE `maindomain`='".$BL->utils->quoteSmart($tld)."'"));
             $cycle_data   = $BL->subdomains->getCycles(isset($subdomain[0]['main_id'])?$subdomain[0]['main_id']:0);
             $cycle_name   = $BL->props->cycles[($_SESSION['bill_cycle'])?$_SESSION['bill_cycle']:12];
             $objResponse->loadXML(step2_addDomain($type,$sld,$tld,$cycle_data[$cycle_name]));
@@ -880,7 +880,7 @@ function step3_verifyUser($form_data)
 {
 	global $BL,$conf,$custom_fields;
     $err            = $BL->customers->validate($form_data,$custom_fields);
-    $product_data   = $BL->products->find(array("WHERE `plan_price_id`='".(isset($_SESSION['product_id'])?$_SESSION['product_id']:0)."'"));
+    $product_data   = $BL->products->find(array("WHERE `plan_price_id`='".(isset($_SESSION['product_id'])?$BL->utils->quoteSmart($_SESSION['product_id']):0)."'"));
     $server_default = $BL->products->getServerForProduct(isset($_SESSION['product_id'])?$_SESSION['product_id']:0);
     if (empty($err) && isset($product_data[0]['acc_method']) && $product_data[0]['acc_method'] == 2 && !empty ($form_data['dom_user']))
     {
@@ -944,7 +944,7 @@ function getQualifiedSpecials()
     $cust_data = $_SESSION['customer'];
     if($_SESSION['customer']['member']=='1')
     {
-        $cust_data = $BL->customers->hasAnyOne(array("WHERE `email`='".$_SESSION['customer']['existing_email']."'"));
+        $cust_data = $BL->customers->hasAnyOne(array("WHERE `email`='".$BL->utils->quoteSmart($_SESSION['customer']['existing_email'])."'"));
         $cust_data['disc_token_code'] = $_SESSION['customer']['disc_token_code'];
         $cust_data['dom_user'] = $_SESSION['customer']['dom_user'];
         $cust_data['dom_pass'] = $_SESSION['customer']['dom_pass'];
@@ -1173,7 +1173,7 @@ function logUser($items_in_basket)
     $objResponse = new xajaxResponse(CHARSET);
     //log user
     $name        = $BL->utils->quoteSmart(isset($_SESSION['customer']['name'])?$_SESSION['customer']['name']:"");
-    $log_user_id = isset($_SESSION['log_user_id'])?$_SESSION['log_user_id']:0;
+    $log_user_id = isset($_SESSION['log_user_id'])?intval($_SESSION['log_user_id']):0;
     $log_time    = date('Y-m-d H:i:s');
     $log_user_ip = $BL->utils->realip();
     $log_user_name = $BL->utils->quoteSmart(isset($_SESSION['customer']['name'])?$_SESSION['customer']['name']:"");
@@ -1212,7 +1212,7 @@ function logUser($items_in_basket)
                             `log_time` , `user_type` , `user_id` , `user_ip` , `user_name` , `user_login` , `user_email` , `visiting_page` , `items_in_basket` , `entry_time`, `log_session_id`
                             )
                             VALUES (
-                            '$log_time', '0', '$log_user_id', '$log_user_ip', '$log_user_name', '$log_user_login', '$log_user_email', '$log_page', '$items_in_basket', '$entry_time', '$log_session_id'
+                            '$log_time', '0', '$log_user_id', '$log_user_ip', '$log_user_name', '$log_user_login', '$log_user_email', '$log_page', '".$BL->utils->quoteSmart($items_in_basket)."', '$entry_time', '$log_session_id'
                             )";
         $BL->dbL->executeINSERT($sqlINSERT);
     }

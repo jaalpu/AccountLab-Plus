@@ -82,7 +82,7 @@ switch ($cmd)
                 }
                 else
                 {
-                	$temp = $BL->customers->hasAnyOne(array("WHERE `email`='".$BL->REQUEST['email']."' AND `password`='".md5($BL->REQUEST['password'])."'"));
+                	$temp = $BL->customers->hasAnyOne(array("WHERE `email`='".$BL->utils->quoteSmart($BL->REQUEST['email'])."' AND `password`='".md5($BL->REQUEST['password'])."'"));
                     $BL->REQUEST['cust_id'] = $temp['id'];
                 }
                 if(!empty($BL->REQUEST['cust_id']))
