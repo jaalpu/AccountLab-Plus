@@ -61,7 +61,7 @@ if(isset($_SERVER["HTTPS"]) && $_SERVER["SERVER_PORT"]  == 443  )$protocol = "ht
 $host_name =  ((isset($_SERVER["HTTP_HOST"]) && !empty($_SERVER["HTTP_HOST"]))?$_SERVER["HTTP_HOST"]:$_SERVER['SERVER_NAME']);
 
 define("INSTALL_DOMAIN"     , preg_replace('|^www.|', '', $host_name));
-define("INSTALL_URL"        , $protocol.$host_name . str_replace("/".array_pop(explode("/",$_SERVER['REQUEST_URI'])),"/",$_SERVER['REQUEST_URI']));
+define("INSTALL_URL"        , $protocol.$host_name.dirname($_SERVER['PHP_SELF']));
 define("INSTALL_PATH"       , realpath(dirname(__FILE__)));
 define("PATH_SEP"           , (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') ? '\\' : '/');
 define("PATH_BASE"          , realpath(dirname(__FILE__))   . PATH_SEP);
@@ -83,6 +83,8 @@ define("DEFAULT_LANG"       , PATH_ELEMENTS . "default" . PATH_SEP . "language" 
 
 define("ERROR_LOG_FILE"     , LOGS."error_log.txt");
 define("DB_FILE"            , is_file(CUSTOM_SYSVAR . "db.php")?CUSTOM_SYSVAR . "db.php":DEFAULT_SYSVAR . "db.php");
+
+require_once  CONFIG                . "error_handler.php";
 
 require_once is_file(CUSTOM_SYSVAR  . "copyright.php")
               ?CUSTOM_SYSVAR        . "copyright.php"
