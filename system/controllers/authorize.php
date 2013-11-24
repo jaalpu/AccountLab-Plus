@@ -63,7 +63,6 @@ class authorize_controller extends controller
         $secure_text    = "1762DFSD4439Ge74CKd5d5a6B77TC04220AS349"; //This is a text which can not be guessed this is to be packed with the fingerprint
         if (!empty($admin_id))
         {
-            $this->reset_session_license();
             $sqlSELECT  = "SELECT `id`,`username`,`topic_id`,`admin_theme`,`email` FROM {$this->props->tbl_admin_users} WHERE `id`=".intval($admin_id);
             $user       = $this->dbL->executeSELECT($sqlSELECT);
             //Check if the user exists or not.
@@ -95,7 +94,6 @@ class authorize_controller extends controller
 		$secure_text  = "1762DFSD4439Ge74CKd5d5a6B77TC04220AS349"; //This is a text which can not be guessed this is to be packed with the fingerprint
 		if ($user_type == "admin")
 		{
-			$this->reset_session_license();
 			$sql  = sprintf("SELECT `id`,`username`,`topic_id`,`admin_theme`,`email` FROM {$this->props->tbl_admin_users} WHERE `username`='%s' AND `password`='%s'", $this->utils->quoteSmart($this->REQUEST['username']), $this->utils->quoteSmart(md5($this->REQUEST['password'])));
 			$user = $this->dbL->executeSELECT($sql);
 			//Check if the user exists or not.
@@ -301,17 +299,6 @@ class authorize_controller extends controller
 			$_SESSION['user_fingerprint']    = "";
 		}
 		return true;
-	}
-	/*
-	 * reset session license
-	 */
-	function reset_session_license()
-	{
-		//reset license
-		$_SESSION['licensed']             = false;
-		$_SESSION['license_token']        = "";
-		$_SESSION['license_fingerprint']  = "";
-		//reset license
 	}
 }
 ?>
