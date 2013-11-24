@@ -252,7 +252,7 @@ foreach($custom_fields as $cf){
               <select name='state' id='state' class='search'>
                 <option><?php echo $BL->props->lang['select_state']; ?></option>
                 <?php foreach ($BL->props->allstates[$country] as $key => $value) { ?>
-                 <option value='<?php echo $key; ?>'<?php if ((isset($REQUEST[$cf['field_name']]) && ($REQUEST[$cf['field_name']]===$key || $REQUEST[$cf['field_name']]===$value)) || ($REQUEST["cmd"]=="addcustomer" && ($cf['field_value']===$value || $cf['field_value']===$key))) { echo " selected"; }?>><?php echo $value; ?></option>
+                 <option value='<?php echo is_numeric($key)?$value:$key; ?>'<?php if ((isset($REQUEST[$cf['field_name']]) && ($REQUEST[$cf['field_name']]===$key || $REQUEST[$cf['field_name']]===$value)) || ($REQUEST["cmd"]=="addcustomer" && ($cf['field_value']===$value || $cf['field_value']===$key))) { echo " selected"; }?>><?php echo $value; ?></option>
                 <?php } ?>
               </select>
 			<?php
