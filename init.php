@@ -53,15 +53,15 @@ set_include_path(realpath('system'. DIRECTORY_SEPARATOR . 'libraries' . DIRECTOR
 //install paypal sdk
 set_include_path(realpath('system'. DIRECTORY_SEPARATOR . 'libraries' . DIRECTORY_SEPARATOR . 'paypalsdk' . DIRECTORY_SEPARATOR . 'php-sdk' . DIRECTORY_SEPARATOR . 'lib') . PATH_SEPARATOR . get_include_path());
 
-$protocall = "http://";
-if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"]        == "on" )$protocall = "https://";
-if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"]        == 1    )$protocall = "https://";
-if(isset($_SERVER["HTTPS"]) && $_SERVER["SERVER_PORT"]  == 443  )$protocall = "https://";
+$protocol = "http://";
+if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"]        == "on" )$protocol = "https://";
+if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"]        == 1    )$protocol = "https://";
+if(isset($_SERVER["HTTPS"]) && $_SERVER["SERVER_PORT"]  == 443  )$protocol = "https://";
 
 $host_name =  ((isset($_SERVER["HTTP_HOST"]) && !empty($_SERVER["HTTP_HOST"]))?$_SERVER["HTTP_HOST"]:$_SERVER['SERVER_NAME']);
 
 define("INSTALL_DOMAIN"     , preg_replace('|^www.|', '', $host_name));
-define("INSTALL_URL"        , $protocall.$host_name . str_replace("/".array_pop(explode("/",$_SERVER['REQUEST_URI'])),"/",$_SERVER['REQUEST_URI']));
+define("INSTALL_URL"        , $protocol.$host_name . str_replace("/".array_pop(explode("/",$_SERVER['REQUEST_URI'])),"/",$_SERVER['REQUEST_URI']));
 define("INSTALL_PATH"       , realpath(dirname(__FILE__)));
 define("PATH_SEP"           , (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') ? '\\' : '/');
 define("PATH_BASE"          , realpath(dirname(__FILE__))   . PATH_SEP);

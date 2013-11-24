@@ -61,13 +61,13 @@ if (!empty($_SESSION['FTP_USER']) && !empty($_SESSION['FTP_PW']) && ftp_login(ft
    else
    {
         error_reporting(0);
-        $protocall = "http://";
-        if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"]        == "on" )$protocall = "https://";
-        if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"]        == 1    )$protocall = "https://";
-        if(isset($_SERVER["HTTPS"]) && $_SERVER["SERVER_PORT"]  == 443  )$protocall = "https://";
+        $protocol = "http://";
+        if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"]        == "on" )$protocol = "https://";
+        if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"]        == 1    )$protocol = "https://";
+        if(isset($_SERVER["HTTPS"]) && $_SERVER["SERVER_PORT"]  == 443  )$protocol = "https://";
 
         define("INSTALL_DOMAIN"     , preg_replace('|^www.|', '', $host_name));
-        define("INSTALL_URL"        , $protocall.$host_name . str_replace("/".array_pop(explode("/",$_SERVER['REQUEST_URI'])),"/",$_SERVER['REQUEST_URI']));
+        define("INSTALL_URL"        , $protocol.$host_name . str_replace("/".array_pop(explode("/",$_SERVER['REQUEST_URI'])),"/",$_SERVER['REQUEST_URI']));
         define("INSTALL_PATH"       , realpath(dirname(__FILE__)));
         define("PATH_SEP"           , (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') ? '\\' : '/');
         define("PATH_BASE"          , realpath(dirname(__FILE__))   . PATH_SEP);
