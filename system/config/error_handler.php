@@ -14,7 +14,7 @@ $error_types =
 	E_ERROR |
 	E_WARNING |
 	E_PARSE |
-	// E_NOTICE |
+	E_NOTICE |
 	E_CORE_ERROR |
 	E_CORE_WARNING |
 	E_COMPILE_ERROR |
@@ -22,9 +22,9 @@ $error_types =
 	E_USER_ERROR |
 	E_USER_WARNING |
 	E_USER_NOTICE |
-	// E_STRICT |
+	E_STRICT |
 	E_RECOVERABLE_ERROR |
-	// E_DEPRECATED |
+	E_DEPRECATED |
 	E_USER_DEPRECATED |
 	0;
 
@@ -46,9 +46,11 @@ function shutdown_function()
 
 function runtime_error_handler()
 {
-	$error = error_get_last(); 
-	ALP_error_handler($error);
-	die();
+	$error = error_get_last();
+	// Don't call our custom error handler for library includes
+	if (stripos($error['file'],"system".PATHSEP."libraries") !== false)
+		ALP_error_handler($error);
+	call_user_func($old_error_handler);
 }
 
 function ALP_error_handler($error)
