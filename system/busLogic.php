@@ -2445,8 +2445,8 @@ class busLogic
             }
             $data_array["order_addon[".$k."]"] = trim($k);
             $data_array["order_addon_amount[".$k."]"] = $this->toCurrency($v, null, 1);
-            $this->_invoiceValuesTaxAmount($k,$v,& $data_array,$invoice_tax_string, $tax_names);
-            $this->_invoiceValuesTaxAmount("order_addon_amount[".$k."]",$v,& $data_array,$invoice_tax_string, $tax_names);
+            $this->_invoiceValuesTaxAmount($k,$v,$data_array,$invoice_tax_string, $tax_names);
+            $this->_invoiceValuesTaxAmount("order_addon_amount[".$k."]",$v,$data_array,$invoice_tax_string, $tax_names);
             if($i<count($addons))
                 $body= str_replace($str,$new_str.$str,$body);
             else
@@ -2464,13 +2464,13 @@ class busLogic
         }
 
         $data_array['domain_amount']= $this->toCurrency($invoice['tld_fee'], null, 1);
-        $this->_invoiceValuesTaxAmount('domain_amount',$invoice['tld_fee'],& $data_array,$invoice_tax_string, $tax_names);
+        $this->_invoiceValuesTaxAmount('domain_amount',$invoice['tld_fee'],$data_array,$invoice_tax_string, $tax_names);
 
         $data_array['setup_amount'] = $this->toCurrency($invoice['setup_fee'], null, 1);
-        $this->_invoiceValuesTaxAmount('setup_amount',$invoice['setup_fee'],& $data_array,$invoice_tax_string, $tax_names);
+        $this->_invoiceValuesTaxAmount('setup_amount',$invoice['setup_fee'],$data_array,$invoice_tax_string, $tax_names);
 
         $data_array['cycle_amount'] = $this->toCurrency($invoice['cycle_fee'], null, 1);
-        $this->_invoiceValuesTaxAmount('cycle_amount',$invoice['cycle_fee'],& $data_array,$invoice_tax_string, $tax_names);
+        $this->_invoiceValuesTaxAmount('cycle_amount',$invoice['cycle_fee'],$data_array,$invoice_tax_string, $tax_names);
 
         $data_array['cycle']        = $this->props->lang[$cycle[$invoice['bill_cycle']]];
 
@@ -2481,7 +2481,7 @@ class busLogic
         }
         $data_array['debit_credit_reason']= $invoice['debit_credit_reason'];
         $data_array['debit_credit_amount']= $this->toCurrency($invoice['debit_credit_amount'], null, 1);
-        $this->_invoiceValuesTaxAmount('debit_credit_amount',$invoice['debit_credit_amount'],& $data_array,$invoice_tax_string, $tax_names);
+        $this->_invoiceValuesTaxAmount('debit_credit_amount',$invoice['debit_credit_amount'],$data_array,$invoice_tax_string, $tax_names);
 
         if ($invoice['debit_credit'] == $this->props->lang['debit'])
         {
@@ -2493,7 +2493,7 @@ class busLogic
         }
 
         $data_array['discount_amount']  = "- " . $this->toCurrency($invoice['other_amount'], null, 1);
-        $this->_invoiceValuesTaxAmount('discount_amount',$invoice['other_amount'],& $data_array,$invoice_tax_string, $tax_names);
+        $this->_invoiceValuesTaxAmount('discount_amount',$invoice['other_amount'],$data_array,$invoice_tax_string, $tax_names);
 
         $data_array['client_email'] = $invoice['email'];
 		$this->customfields->setOrder("customfields_index");
@@ -2538,11 +2538,11 @@ class busLogic
         $data_array['plan_name']        = $this->getFriendlyName($invoice['product_id']);
         $data_array['prorate_desc']     = $invoice['prorate_desc'];
         $data_array['prorate_amount']   = $this->toCurrency($invoice['prorate_amount'], null, 1);
-        $this->_invoiceValuesTaxAmount('prorate_amount',$invoice['prorate_amount'],& $data_array,$invoice_tax_string, $tax_names);
+        $this->_invoiceValuesTaxAmount('prorate_amount',$invoice['prorate_amount'],$data_array,$invoice_tax_string, $tax_names);
 
         $data_array['net_amount']       = $this->toCurrency($invoice['net_amount'], null, 1);
-        $this->_invoiceValuesTaxAmount('net_amount',$invoice['net_amount'],& $data_array,$invoice_tax_string, $tax_names);
-        $this->_invoiceValuesTaxAmount('subtotal',$invoice['net_amount'],& $data_array,$invoice_tax_string, $tax_names);
+        $this->_invoiceValuesTaxAmount('net_amount',$invoice['net_amount'],$data_array,$invoice_tax_string, $tax_names);
+        $this->_invoiceValuesTaxAmount('subtotal',$invoice['net_amount'],$data_array,$invoice_tax_string, $tax_names);
 
         $data_array['symbol']           = $this->conf['symbol'];
         $data_array['additional_currency']= "";
@@ -2615,7 +2615,7 @@ class busLogic
         $this->ALPmail->Body    = $body;
         return $this->ALPmail->sendMail();
     }
-    function _invoiceValuesTaxAmount($key,$amount,& $data_array,$invoice_tax_string, $tax_names)
+    function _invoiceValuesTaxAmount($key,$amount,$data_array,$invoice_tax_string, $tax_names)
     {
         $data_array["float_amount[".$key."]"] = floatval($amount);
         foreach($tax_names as $tn)
