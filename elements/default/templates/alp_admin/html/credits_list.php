@@ -57,7 +57,7 @@
 					  </td>
                     </tr>
 					<tr> 
-                      <td colspan="4" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="4" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>
             		<form name='form1' id='form1' action="<?php echo $PHP_SELF; ?>" method="POST">
             		<?php if (!count($allCustomers)) { ?>
@@ -78,7 +78,7 @@
                     <?php foreach($allCustomers as $temp) { ?>
 					<tr>
                       <td colspan='4' class='text_grey'>
-					  <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1"></td>
+					  <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1"></td>
                     </tr>					
 					<tr>
 					<td class='text_grey'></td>
@@ -93,7 +93,7 @@
                     </tr>
 					<tr>
                       <td colspan='4' class='text_grey' height="2">
-					  <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+					  <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
 					  </td>
                     </tr>
 					
@@ -108,7 +108,7 @@
 					
                      <?php } } ?>
 					<tr> 
-                      <td colspan="4" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="4" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>			
 					<tr> 
                       <td colspan="4" class="text_grey">
@@ -120,7 +120,7 @@
                     </tr>
 			</form>
 					<tr> 
-                      <td colspan="4" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="4" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>			
                   </table>
 	</div>

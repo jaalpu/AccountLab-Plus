@@ -144,7 +144,6 @@ class properties
 	 */
 	function get_page($page, $mode= "file", $absolute= 0, $gui_component= false)
 	{
-		$page         = str_replace("/",PATH_SEP,$page);
         $theme_dir    = defined("THEMEDIR")?THEMEDIR:"default";
 		$e_dir        = ($absolute)?PATH_ELEMENTS:"elements".PATH_SEP;
 

@@ -51,10 +51,10 @@
 <div id="form_title"><?php echo $BL->props->lang[$BL->REQUEST['chart']]; ?></div>
 <br />
 <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="100%" height="225">
-  <param name="movie" value="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>swf<?php echo PATH_SEP; ?><?php echo $BL->REQUEST['chart']; ?>.swf" />
+  <param name="movie" value="elements/default/swf/<?php echo $BL->REQUEST['chart']; ?>.swf" />
   <param name="quality" value="high" />
   <param name="wmode" value="transparent" />
-  <embed src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>swf<?php echo PATH_SEP; ?><?php echo $BL->REQUEST['chart']; ?>.swf" width="100%" height="225" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent"></embed>
+  <embed src="elements/default/swf/<?php echo $BL->REQUEST['chart']; ?>.swf" width="100%" height="225" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent"></embed>
 </object>
 <br />
 <a href="admin.php?chart=invoices"><b><?php echo $BL->props->lang['invoices']; ?></b></a><br />

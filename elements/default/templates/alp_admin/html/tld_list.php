@@ -63,7 +63,7 @@
 					  </td>
                     </tr>
 					<tr> 
-                      <td colspan="7" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="7" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>
             		<?php
             		if (!count($tlds))
@@ -94,7 +94,7 @@
 					foreach($tlds as $temp){ ?>
 					<tr>
                       <td colspan='7' class='text_grey'>
-					  <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
+					  <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
                     </tr>					
 					<tr>
                       <td class='text_grey'><div align='left'>&nbsp;&nbsp;<?php echo $temp['tld_name']; ?></div></td>
@@ -106,28 +106,28 @@
                       <td class='text_grey'><div align='right'>
                       <?php if($BL->getCmd("edittld")){ ?>
                       <a href='<?php echo $PHP_SELF; ?>?cmd=edittld&price_id=<?php echo $temp['price_id']; ?>' class='text_link'>
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0' /></a>
+					  <img src='elements/default/templates/alp_admin/images/edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0' /></a>
                       &nbsp;
                       <?php } ?>                      
                       <?php if($BL->getCmd("deltld")){ ?>
                       <a href="javascript:if(confirm('<?php echo $BL->props->lang['TLD_DEL']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=deltld&price_id=<?php echo $temp['price_id']; ?>'" class='text_link'>
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0' /></a>
+					  <img src='elements/default/templates/alp_admin/images/delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0' /></a>
                       &nbsp;
                       <?php } ?>					  
                       </div></td>
                     </tr>
                     <?php } } ?>
 					<tr> 
-                      <td colspan="7" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="7" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>			
                   </table>
 				  <br />
 					<table width="100%" border="0" cellspacing="2" cellpadding="2" class="list_table">				
 					<tr> 
                       <td class="text_grey" align="center">
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' /> <?php echo $BL->props->lang['Edit']; ?>
+					  <img src='elements/default/templates/alp_admin/images/edit_all.gif' /> <?php echo $BL->props->lang['Edit']; ?>
 					  &nbsp;
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' /> <?php echo $BL->props->lang['Delete']; ?>
+					  <img src='elements/default/templates/alp_admin/images/delete.gif' /> <?php echo $BL->props->lang['Delete']; ?>
 					  </td>
                     </tr>
 					</table>				  

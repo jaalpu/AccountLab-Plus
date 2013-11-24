@@ -72,7 +72,7 @@
     </tr>
     <tr> 
         <td colspan="9" class="text_grey">
-            <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+            <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
         </td>
     </tr> 
     <tr> 
@@ -92,7 +92,7 @@
     ?>
     <tr>
         <td colspan='9' class='text_grey'>
-            <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1" />
+            <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1" />
         </td>
     </tr>       
     <tr>
@@ -102,7 +102,7 @@
         <?php echo $BL->getFriendlyName($temp['product_id']); ?>
         <?php if($temp['acct_status']!=0) { ?>
         <?php $server = $BL->servers->getByKey($temp['server_id']); ?>
-        <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?><?php echo $server['server_type']."-icon-small"; ?>.gif' alt='' border='0' />
+        <img src='elements/default/templates/alp_admin/images/<?php echo $server['server_type']."-icon-small"; ?>.gif' alt='' border='0' />
         <?php } ?>
         </div>
         </td>
@@ -125,20 +125,20 @@
         <td class='text_grey'><div align='left'>
             <?php if($BL->getCmd("editorder")){ ?>
             <a href='<?php echo $PHP_SELF; ?>?cmd=editorder&sub_id=<?php echo $temp['sub_id']; ?>'>
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' border='0'>
+            <img src='elements/default/templates/alp_admin/images/edit_all.gif' border='0'>
             </a>
             &nbsp;
             <?php } ?>
             <?php if($cmd=="vieworders"){ ?>
             <?php if($BL->getCmd("addinvoice")){ ?>
             <a href="<?php echo $PHP_SELF; ?>?cmd=addinvoice&sub_id=<?php echo $temp['sub_id']; ?>">
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>add_invoice.gif' border='0' />
+            <img src='elements/default/templates/alp_admin/images/add_invoice.gif' border='0' />
             </a>
             &nbsp;
             <?php } ?>
             <?php if($BL->getCmd("delorder")){ ?>
             <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_this_order']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=delorder&sub_id=<?php echo $temp['sub_id']; ?>'">
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' alt='<?php echo $BL->props->lang['Delete']; ?>' border='0'>
+            <img src='elements/default/templates/alp_admin/images/delete.gif' alt='<?php echo $BL->props->lang['Delete']; ?>' border='0'>
             </a>
             &nbsp;
             <?php } ?>
@@ -149,7 +149,7 @@
     <?php } ?>
     <tr> 
       <td colspan="9" class="text_grey">
-        <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+        <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
       </td>
     </tr>       
 </table>

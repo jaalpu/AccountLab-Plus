@@ -904,18 +904,18 @@ class busLogic
         {
             echo "<tr>\n\r
                               <td width=\"1%\">\n\r
-                              <img src=\"elements".PATH_SEP."default".PATH_SEP."templates".PATH_SEP."alp_admin".PATH_SEP."images".PATH_SEP."menu_icon_plus.gif\" width=\"32\" height=\"18\" style=\"cursor:hand; cursor:pointer\">\n\r
+                              <img src=\"elements/default/templates/alp_admin/images/menu_icon_plus.gif\" width=\"32\" height=\"18\" style=\"cursor:hand; cursor:pointer\">\n\r
                               </td>\n\r
                               <td>\n\r
                               <a href=\"admin.php?cmd=main\">" . $this->props->lang['Dashboard'] . "</a>\n\r
                               </td>\n\r
                               <td>\n\r
-                              <img src=\"elements".PATH_SEP."default".PATH_SEP."templates".PATH_SEP."alp_admin".PATH_SEP."images".PATH_SEP."spacer.gif\" width=\"1\" height=\"1\">\n\r
+                              <img src=\"elements/default/templates/alp_admin/images/spacer.gif\" width=\"1\" height=\"1\">\n\r
                               </td>\n\r
                             </tr>\n\r
                             <tr> \n\r
                               <td colspan=\"3\">\n\r
-                              <img src=\"elements".PATH_SEP."default".PATH_SEP."templates".PATH_SEP."alp_admin".PATH_SEP."images".PATH_SEP."menu_line_lightgreen.jpg\" width=\"100%\" height=\"2\">\n\r
+                              <img src=\"elements/default/templates/alp_admin/images/menu_line_lightgreen.jpg\" width=\"100%\" height=\"2\">\n\r
                               </td>\n\r
                             </tr>\n\r
                             ";
@@ -948,35 +948,35 @@ class busLogic
             foreach ($this->props->ext_links as $l1 => $l2)
                 echo "<tr>\n\r
                                   <td width=\"1%\">\n\r
-                                  <img src=\"elements".PATH_SEP."default".PATH_SEP."templates".PATH_SEP."alp_admin".PATH_SEP."images".PATH_SEP."menu_icon_plus.gif\" width=\"32\" height=\"18\" style=\"cursor:hand; cursor:pointer\">\n\r
+                                  <img src=\"elements/default/templates/alp_admin/images/menu_icon_plus.gif\" width=\"32\" height=\"18\" style=\"cursor:hand; cursor:pointer\">\n\r
                                   </td>\n\r
                                   <td>\n\r
                                   <a href=\"" . $l2 . "\" target=\"_blank\">" . $this->props->lang[$l1] . "</a>\n\r
                                   </td>\n\r
                                   <td>\n\r
-                                  <img src=\"elements".PATH_SEP."default".PATH_SEP."templates".PATH_SEP."alp_admin".PATH_SEP."images".PATH_SEP."spacer.gif\" width=\"1\" height=\"1\">\n\r
+                                  <img src=\"elements/default/templates/alp_admin/images/spacer.gif\" width=\"1\" height=\"1\">\n\r
                                   </td>\n\r
                                 </tr>\n\r
                                 <tr> \n\r
                                   <td colspan=\"3\">\n\r
-                                  <img src=\"elements".PATH_SEP."default".PATH_SEP."templates".PATH_SEP."alp_admin".PATH_SEP."images".PATH_SEP."menu_line_lightgreen.jpg\" width=\"100%\" height=\"2\">\n\r
+                                  <img src=\"elements/default/templates/alp_admin/images/menu_line_lightgreen.jpg\" width=\"100%\" height=\"2\">\n\r
                                   </td>\n\r
                                 </tr>\n\r
                                 ";
             echo "<tr>\n\r
                               <td width=\"1%\">\n\r
-                              <img src=\"elements".PATH_SEP."default".PATH_SEP."templates".PATH_SEP."alp_admin".PATH_SEP."images".PATH_SEP."menu_icon_plus.gif\" width=\"32\" height=\"18\" style=\"cursor:hand; cursor:pointer\">\n\r
+                              <img src=\"elements/default/templates/alp_admin/images/menu_icon_plus.gif\" width=\"32\" height=\"18\" style=\"cursor:hand; cursor:pointer\">\n\r
                               </td>\n\r
                               <td>\n\r
                               <a href=\"logout.php?url=admin.php&user=admin\">" . $this->props->lang['Logout'] . "</a>\n\r
                               </td>\n\r
                               <td>\n\r
-                              <img src=\"elements".PATH_SEP."default".PATH_SEP."templates".PATH_SEP."alp_admin".PATH_SEP."images".PATH_SEP."spacer.gif\" width=\"1\" height=\"1\">\n\r
+                              <img src=\"elements/default/templates/alp_admin/images/spacer.gif\" width=\"1\" height=\"1\">\n\r
                               </td>\n\r
                             </tr>\n\r
                             <tr> \n\r
                               <td colspan=\"3\">\n\r
-                              <img src=\"elements".PATH_SEP."default".PATH_SEP."templates".PATH_SEP."alp_admin".PATH_SEP."images".PATH_SEP."menu_line_lightgreen.jpg\" width=\"100%\" height=\"2\">\n\r
+                              <img src=\"elements/default/templates/alp_admin/images/menu_line_lightgreen.jpg\" width=\"100%\" height=\"2\">\n\r
                               </td>\n\r
                             </tr>\n\r
                             ";

@@ -55,7 +55,7 @@
     </tr>
     <tr> 
         <td colspan="7" class="text_grey">
-            <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+            <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
         </td>
     </tr>           
     <tr> 
@@ -76,7 +76,7 @@
     ?>
     <tr>
         <td  colspan='7' class='text_grey'>
-            <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1" />
+            <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1" />
         </td>
     </tr>       
     <tr>
@@ -90,17 +90,17 @@
         <div align='right'>
             <?php if($BL->getCmd("addorder")){ ?>
             <a href="<?php echo $PHP_SELF; ?>?cmd=orphan_orders&action=view&orphanorder_id=<?php echo $orphanorder_id; ?>">
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' border='0'>
+            <img src='elements/default/templates/alp_admin/images/edit_all.gif' border='0'>
             &nbsp;  
             </a>
             <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_confirm_this_orphan_order']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=orphan_orders&action=add&item_number=<?php echo $temp1['item_number']; ?>'">
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>add_order.gif' border='0'>
+            <img src='elements/default/templates/alp_admin/images/add_order.gif' border='0'>
             </a>
             &nbsp;
             <?php } ?>
             <?php if($BL->getCmd("delorder")){ ?>
             <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_this_orphan_order']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=orphan_orders&action=del&orphanorder_id=<?php echo $orphanorder_id; ?>'">
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' alt='<?php echo $BL->props->lang['Do_you_want_to_delete_this_order']; ?>' border='0'>
+            <img src='elements/default/templates/alp_admin/images/delete.gif' alt='<?php echo $BL->props->lang['Do_you_want_to_delete_this_order']; ?>' border='0'>
             </a>
             &nbsp;
             <?php } ?>
@@ -110,7 +110,7 @@
     <?php } ?>
     <tr> 
         <td colspan="7" class="text_grey">
-            <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+            <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
         </td>
     </tr>       
 </table>

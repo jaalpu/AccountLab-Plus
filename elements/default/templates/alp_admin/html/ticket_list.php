@@ -69,9 +69,9 @@
     <tr> 
     <td class="text_grey" align="center">
     <div style="vertical-align:middle">
-    <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif'> <?php echo $BL->props->lang['Edit']; ?>
+    <img src='elements/default/templates/alp_admin/images/edit_all.gif'> <?php echo $BL->props->lang['Edit']; ?>
     &nbsp;
-    <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif'> <?php echo $BL->props->lang['Close']; ?>
+    <img src='elements/default/templates/alp_admin/images/delete.gif'> <?php echo $BL->props->lang['Close']; ?>
     </div>
     </td>
     </tr>
@@ -95,7 +95,7 @@
 		</form>    
         <tr> 
           <td colspan='2'>
-          <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen.jpg' width='180' height='2'>
+          <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen.jpg' width='180' height='2'>
           </td>
         </tr>        
         <?php } ?>					

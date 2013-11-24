@@ -61,11 +61,11 @@
     <tr> 
     <td class="text_grey" align="center">
     <div style="vertical-align:middle">
-    <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>pdf.gif' alt='<?php echo $BL->props->lang['PDF']; ?>' border='0' /> <?php echo $BL->props->lang['PDF']; ?>
+    <img src='elements/default/templates/alp_admin/images/pdf.gif' alt='<?php echo $BL->props->lang['PDF']; ?>' border='0' /> <?php echo $BL->props->lang['PDF']; ?>
     &nbsp;
-    <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif'> <?php echo $BL->props->lang['Edit']; ?>
+    <img src='elements/default/templates/alp_admin/images/edit_all.gif'> <?php echo $BL->props->lang['Edit']; ?>
     &nbsp;
-    <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif'> <?php echo $BL->props->lang['Delete']; ?>
+    <img src='elements/default/templates/alp_admin/images/delete.gif'> <?php echo $BL->props->lang['Delete']; ?>
     </div>
     </td>
     </tr>

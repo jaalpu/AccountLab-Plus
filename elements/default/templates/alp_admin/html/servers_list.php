@@ -65,12 +65,12 @@
                     </tr>                   
 					<tr> 
                       <td class="text_grey" colspan="2">
-                      <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+                      <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
                       </td>
                     </tr>
 					  <tr>
                       <td class="text_grey" width="2%">
-                      <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18'>
+                      <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18'>
                       </td>
 					  <td class='text_grey'>
         				<div id="form1_label">
@@ -87,11 +87,11 @@
                     </tr>
                     <tr>
                       <td colspan='2' class='text_grey'>
-                      <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1"></td>
+                      <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1"></td>
                     </tr>
                     <tr>  
                     <td class="text_grey" width="2%">
-                    <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif' width='32' height='18'>
+                    <img src='elements/default/templates/alp_admin/images/spacer.gif' width='32' height='18'>
                     </td> 
                     <td class="text_grey">
                     <div id="form1_field">
@@ -106,7 +106,7 @@
 				  <br />	
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list_table">
 					<tr> 
-                      <td colspan="6" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="6" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>
 		<?php if (!count($servers)) { ?>
 				<tr>
@@ -128,12 +128,12 @@
                     <?php foreach ($servers as $temp) { ?>
 					<tr>
                       <td colspan='6' class='text_grey'>
-					  <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
+					  <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
                     </tr>					
                     <tr> 
 					  <td class='text_grey'>
 						<div align='center'>
-						<img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?><?php echo $temp['server_type']."-icon-small"; ?>.gif' alt='' border='0' /></div>
+						<img src='elements/default/templates/alp_admin/images/<?php echo $temp['server_type']."-icon-small"; ?>.gif' alt='' border='0' /></div>
 					  </td>
                       <td class='text_grey'>
 						<div align='left'><?php echo $temp['server_name']; ?></div>
@@ -150,17 +150,17 @@
                       <td class='text_grey'>
                       <div align='right'>
                       <a href='<?php echo $PHP_SELF; ?>?cmd=servers&action=sync&server_id=<?php echo $temp['server_id']; ?>'>
-                      <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>sync.png' alt='<?php echo $BL->props->lang['sync']; ?>' border='0' /></a>
+                      <img src='elements/default/templates/alp_admin/images/sync.png' alt='<?php echo $BL->props->lang['sync']; ?>' border='0' /></a>
                       &nbsp;
                       <?php if($BL->getCmd("editserver")){ ?>
                       <a href='<?php echo $PHP_SELF; ?>?cmd=editserver&server_id=<?php echo $temp['server_id']; ?>'>
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0' /></a>
+					  <img src='elements/default/templates/alp_admin/images/edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0' /></a>
                       &nbsp;
                       <?php } ?>
                       
                       <?php if($BL->getCmd("delserver")){ ?>
                       <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_this_server']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=delserver&server_id=<?php echo $temp['server_id']; ?>'">
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0' /></a>
+					  <img src='elements/default/templates/alp_admin/images/delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0' /></a>
                       &nbsp;
                       <?php } ?>
 					  
@@ -169,18 +169,18 @@
                     </tr>
                     <?php } } ?>
 					<tr> 
-                      <td colspan="6" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="6" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>			
                   </table>
 				  <br />
 					<table width="100%" border="0" cellspacing="2" cellpadding="2" class="list_table">				
 					<tr> 
                       <td class="text_grey" align="center">
-                      <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>sync.png'  border='0' /> <?php echo $BL->props->lang['sync']; ?>
+                      <img src='elements/default/templates/alp_admin/images/sync.png'  border='0' /> <?php echo $BL->props->lang['sync']; ?>
                       &nbsp;
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' /> <?php echo $BL->props->lang['Edit']; ?>
+					  <img src='elements/default/templates/alp_admin/images/edit_all.gif' /> <?php echo $BL->props->lang['Edit']; ?>
 					  &nbsp;
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' /> <?php echo $BL->props->lang['Delete']; ?>
+					  <img src='elements/default/templates/alp_admin/images/delete.gif' /> <?php echo $BL->props->lang['Delete']; ?>
 					  </td>
                     </tr>
 					</table>					  

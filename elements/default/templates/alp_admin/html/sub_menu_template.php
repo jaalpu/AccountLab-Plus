@@ -51,7 +51,7 @@
 			  <td width="5%">&nbsp;</td>			  
                 <td>
                 <div align="right">
-                <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif" width="32" height="18">
+                <img src="elements/default/templates/alp_admin/images/menu_icon_dot.gif" width="32" height="18">
                 </div>
                 </td>
                 <td>

@@ -58,7 +58,7 @@
         </tr>
 		<tr> 
             <td class="text_grey" colspan="4">
-                <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+                <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
             </td>
         </tr>
 		<tr> 
@@ -73,7 +73,7 @@
         </tr>
 		<tr> 
             <td class="text_grey" colspan="4">
-		      <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+		      <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
             </td>
         </tr>
     </table>

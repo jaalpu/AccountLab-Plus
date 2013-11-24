@@ -73,7 +73,7 @@
           <td class="text_grey">
 		  <div style="padding:5px;" align="left">
           <a href='http://accountlab.com' target='_blank'>
-		  <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>alp-logo.gif" alt="" width="190" height="24" border="0" />
+		  <img src="elements/default/templates/alp_admin/images/alp-logo.gif" alt="" width="190" height="24" border="0" />
 		  </a>
 		  </div>
 		  </td>

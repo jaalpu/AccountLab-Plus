@@ -63,12 +63,12 @@
                       </td>
                     </tr>
                     <tr> 
-                      <td class="text_grey" colspan="2"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td class="text_grey" colspan="2"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>
                     <form name='form1' id='form1' method='POST' action='<?php echo $PHP_SELF; ?>'>
                     <tr>
                     <td class="text_grey" width="2%">
-                    <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18'>
+                    <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18'>
                     </td> 
                       <td class='text_grey'>
                       <div id="form1_label">                
@@ -84,7 +84,7 @@
                     </tr>
                     <tr>
                       <td colspan='2' class='text_grey'>
-                      <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1"></td>
+                      <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1"></td>
                     </tr>
                     <tr>
                     <td class="text_grey">&nbsp;</td>
@@ -109,12 +109,12 @@
                       </td>
                     </tr>
                     <tr> 
-                      <td class="text_grey" colspan="2"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td class="text_grey" colspan="2"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr> 
                     <form name='form1' id='form1' method='POST' action='<?php echo $PHP_SELF; ?>'>
                     <tr>
                     <td class="text_grey" width="2%">
-                    <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18'>
+                    <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18'>
                     </td> 
                       <td class='text_grey'>
                       <div id="form1_label">                
@@ -131,7 +131,7 @@
                     </tr>
                     <tr>
                       <td colspan='2' class='text_grey'>
-                      <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1"></td>
+                      <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1"></td>
                     </tr>
                     <tr>
                     <td class="text_grey">&nbsp;</td>
@@ -150,7 +150,7 @@
 				  	
 			      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list_table">
 					<tr> 
-                      <td colspan="6" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="6" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>
 					<tr>											
                     <td class='text_grey' width='5%'></td>
@@ -172,18 +172,18 @@
                     <?php foreach($taxes as $k=>$v) { ?>
 					<tr>
                       <td colspan='6' class='text_grey'>
-					  <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
+					  <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
                     </tr>					
                     <tr>
                     <td class='text_grey'>
                     <?php if($v['tax_index'] > 1){ ?>
                     &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=tax&tax_id=<?php echo $v['tax_id']; ?>&tax_index=<?php echo $v['tax_index']; ?>&action=up'>
-					<img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>up.gif' border='0' /></a>
+					<img src='elements/default/templates/alp_admin/images/up.gif' border='0' /></a>
                     <?php }if($v['tax_index'] > 1 && $v['tax_index'] < count($taxes)){ ?>
                     <br>
                     <?php }if($v['tax_index'] < count($taxes)){ ?>
                     &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=tax&tax_id=<?php echo $v['tax_id']; ?>&tax_index=<?php echo $v['tax_index']; ?>&action=down'>
-					<img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>down.gif' border='0' /></a>
+					<img src='elements/default/templates/alp_admin/images/down.gif' border='0' /></a>
                     <?php } ?>
                     </td>
                     <td class='text_grey'><?php echo $v['tax_name']; ?></td>
@@ -200,13 +200,13 @@
                     <td class='text_grey' align='right'>
                     <?php if($BL->getCmd("edittax")){ ?>
                     <a href="<?php echo $PHP_SELF; ?>?cmd=edittax&tax_id=<?php echo $v['tax_id']; ?>">
-                    <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' border='0' />
+                    <img src='elements/default/templates/alp_admin/images/edit_all.gif' border='0' />
                     </a>        
                     <?php } ?>    
                     <?php if($BL->getCmd("deltax")){ ?>        
                     &nbsp;
                     <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_this_tax']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=deltax&tax_id=<?php echo $v['tax_id']; ?>'">
-                    <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' border='0' />
+                    <img src='elements/default/templates/alp_admin/images/delete.gif' border='0' />
                     </a>
                     <?php } ?>
                     &nbsp;
@@ -215,16 +215,16 @@
                     <?php } ?>
                     </form>
 					<tr> 
-                      <td colspan="6" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="6" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>			
                   </table>
 				  <br />
 					<table width="100%" border="0" cellspacing="2" cellpadding="2" class="list_table">				
 					<tr> 
                       <td class="text_grey" align="center">
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' /> <?php echo $BL->props->lang['Edit']; ?>
+					  <img src='elements/default/templates/alp_admin/images/edit_all.gif' /> <?php echo $BL->props->lang['Edit']; ?>
 					  &nbsp;
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' /> <?php echo $BL->props->lang['Delete']; ?>
+					  <img src='elements/default/templates/alp_admin/images/delete.gif' /> <?php echo $BL->props->lang['Delete']; ?>
 					  </td>
                     </tr>
 					</table>				  

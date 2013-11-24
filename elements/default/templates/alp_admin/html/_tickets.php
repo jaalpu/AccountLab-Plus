@@ -54,7 +54,7 @@
                       <td class="tdheading" width="10%">&nbsp;</td>
                     </tr>           
                     <tr> 
-                      <td colspan="6" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="6" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>               
                     <tr>
                         <td class='text_grey'>&nbsp;<b><?php echo $BL->props->lang['Nu']; ?></b></td>
@@ -67,7 +67,7 @@
                     <?php foreach ($tickets[$topic['topic_id']][(($REQUEST['ticket_status']==3)?'closed':'open')] as $ticket) { ?>
                     <tr> 
                         <td colspan='6' class='text_grey'>
-                        <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                        <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                         </td>
                     </tr>
                               <tr> 
@@ -79,11 +79,11 @@
                                 <td class='text_grey'>
                                       <div align='right'>
                                       <?php if($BL->getCmd("viewTicket")){ ?>
-                                      <a href='<?php echo $PHP_SELF; ?>?cmd=viewTicket&ticket_id=<?php echo $ticket['ticket_id']; ?>'><img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0'></a>
+                                      <a href='<?php echo $PHP_SELF; ?>?cmd=viewTicket&ticket_id=<?php echo $ticket['ticket_id']; ?>'><img src='elements/default/templates/alp_admin/images/edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0'></a>
                                       &nbsp;
                                       <?php } ?>                                      
                                       <?php if($BL->getCmd("closeTicket")){ ?>
-                                      <a href='<?php echo $PHP_SELF; ?>?cmd=closeTicket&ticket_id=<?php echo $ticket['ticket_id']; ?>'><img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0'></a>
+                                      <a href='<?php echo $PHP_SELF; ?>?cmd=closeTicket&ticket_id=<?php echo $ticket['ticket_id']; ?>'><img src='elements/default/templates/alp_admin/images/delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0'></a>
                                       &nbsp;
                                       <?php } ?>
                                       </div>

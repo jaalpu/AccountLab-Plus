@@ -67,7 +67,7 @@
 					  </td>
                     </tr>					
 					<tr> 
-                      <td colspan="4" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="4" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>
 		          <?php if (!count($faqs)) { ?>
     				<tr>
@@ -88,7 +88,7 @@
 					<?php foreach ($faqs as $key => $val) { ?>
                     <tr> 
                       <td colspan='4' class='text_grey'>
-                      <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                      <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                       </td>
                     </tr>							
 					<tr>
@@ -101,11 +101,11 @@
                       </td>
                       <td class='text_grey' width='10%'><div align='right'>
                       <?php if($BL->getCmd("editfaq")){ ?>
-                      <a href='<?php echo $PHP_SELF; ?>?cmd=editfaq&faq_id=<?php echo $val['faq_id']; ?>'><img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0'></a>
+                      <a href='<?php echo $PHP_SELF; ?>?cmd=editfaq&faq_id=<?php echo $val['faq_id']; ?>'><img src='elements/default/templates/alp_admin/images/edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0'></a>
                       &nbsp;
                       <?php } ?>                      
                       <?php if($BL->getCmd("delfaq")){ ?>
-                      <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_this_faq']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=delfaq&faq_id=<?php echo $val['faq_id']; ?>'"><img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0'></a>
+                      <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_this_faq']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=delfaq&faq_id=<?php echo $val['faq_id']; ?>'"><img src='elements/default/templates/alp_admin/images/delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0'></a>
                       &nbsp;
                       <?php } ?>
                       </div></td>
@@ -113,16 +113,16 @@
                     <?php } ?>
 		            <?php } ?>
 					<tr> 
-                      <td colspan="4" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="4" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>
                   </table>
 				  <br />
 					<table width="100%" border="0" cellspacing="2" cellpadding="2" class="list_table">				
 					<tr> 
                       <td class="text_grey" align="center">
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif'> <?php echo $BL->props->lang['Edit']; ?>
+					  <img src='elements/default/templates/alp_admin/images/edit_all.gif'> <?php echo $BL->props->lang['Edit']; ?>
 					  &nbsp;
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif'> <?php echo $BL->props->lang['Delete']; ?>
+					  <img src='elements/default/templates/alp_admin/images/delete.gif'> <?php echo $BL->props->lang['Delete']; ?>
 					  </td>
                     </tr>
 					</table>										

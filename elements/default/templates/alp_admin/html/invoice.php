@@ -59,7 +59,7 @@
         </tr>
         <tr> 
             <td colspan="2" class="text_grey">
-            <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+            <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
             </td>
         </tr>
         <?php if($cmd=="editinvoice" && isset($Extra_Fields) && count($Extra_Fields)){ ?>
@@ -70,7 +70,7 @@
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -84,7 +84,7 @@
         </tr> 
         <tr> 
             <td colspan="2" class="text_grey">
-            <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+            <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
             </td>
         </tr>
         <?php } ?>
@@ -94,7 +94,7 @@
             <tr> 
                 <td width="1%" class='text_grey'>
 	            <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -109,13 +109,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -130,13 +130,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" valign="top" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey' valign="top">
@@ -150,14 +150,14 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <?php if($cmd=="editinvoice"){ ?>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -171,13 +171,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -191,13 +191,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -211,14 +211,14 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <?php foreach($Addons as $Addon_Name=>$Addon_Fee){ ?>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -233,14 +233,14 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <?php } ?>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -254,7 +254,7 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
@@ -272,7 +272,7 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
@@ -290,7 +290,7 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
@@ -308,14 +308,14 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <?php } ?>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -334,13 +334,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -354,14 +354,14 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <?php if(($cmd=="editinvoice" && $Invoice[0]['prorate_amount']>0) || ($cmd!="editinvoice" && $BL->conf['en_prorate'])){ ?>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -375,13 +375,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -395,14 +395,14 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <?php } ?>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -416,13 +416,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -436,7 +436,7 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <?php if($cmd=="editinvoice"){?>
@@ -444,7 +444,7 @@
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' /></div></td>
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' /></div></td>
                 <td class='text_grey'>
                 <div id="form1_label">
                 <input name='tax2[]' type='text' value='<?php echo $Tax[2]; ?>' class='search' id='tax2'>
@@ -463,7 +463,7 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <?php } ?>
@@ -471,7 +471,7 @@
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' /></div></td>
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' /></div></td>
                 <td class='text_grey'>
                 <div id="form1_label">
                 <?php echo $BL->props->lang['total_tax']." (".$BL->conf['symbol'].")"; ?> 
@@ -483,13 +483,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -503,7 +503,7 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <?php 
@@ -518,7 +518,7 @@
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -532,13 +532,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -552,13 +552,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -572,13 +572,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -595,13 +595,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -619,13 +619,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -646,13 +646,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -673,13 +673,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -693,14 +693,14 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>                  
             <?php } ?>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -723,13 +723,13 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
                 <td width="1%" class='text_grey'>
                 <div align='center'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                 </div>
                 </td>
                 <td class='text_grey'>
@@ -753,7 +753,7 @@
             </tr>
             <tr> 
                 <td colspan='2' class='text_grey'>
-                <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' />
+                <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' />
                 </td>
             </tr>
             <tr> 
@@ -792,7 +792,7 @@
     </tr>
     <tr> 
         <td class='text_grey'>
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen.jpg' width='100%' height='2' />
+            <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen.jpg' width='100%' height='2' />
         </td>
     </tr>
     <tr>
@@ -807,7 +807,7 @@
     </tr>
     <tr> 
         <td class='text_grey'>
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen.jpg' width='100%' height='2' />
+            <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen.jpg' width='100%' height='2' />
         </td>
     </tr>
     <tr>
@@ -817,7 +817,7 @@
     </tr>
     <tr> 
         <td class='text_grey'>
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen.jpg' width='100%' height='2' />
+            <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen.jpg' width='100%' height='2' />
         </td>
     </tr>
     <tr>
@@ -827,7 +827,7 @@
     </tr>
     <tr> 
         <td class='text_grey'>
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen.jpg' width='100%' height='2' />
+            <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen.jpg' width='100%' height='2' />
         </td>
     </tr>
 </table>

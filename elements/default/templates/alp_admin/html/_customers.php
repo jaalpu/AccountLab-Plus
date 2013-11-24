@@ -66,7 +66,7 @@
     </tr>
     <tr> 
         <td colspan="8" class="text_grey">
-            <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+            <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
         </td>
     </tr>
     <tr> 
@@ -81,7 +81,7 @@
     <?php $accounts = $BL->getAccounts($temp['id']); ?>
     <tr>
         <td colspan='8' class='text_grey'>
-            <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1" />
+            <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1" />
         </td>
     </tr>       
     <tr>
@@ -96,20 +96,20 @@
             <div align='right'>
             <?php if($BL->getCmd("editcustomers")){ ?>
             <a href="<?php echo $PHP_SELF; ?>?cmd=editcustomers&id=<?php echo $temp['id']; ?>">
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>'  border='0' />
+            <img src='elements/default/templates/alp_admin/images/edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>'  border='0' />
             </a>
             &nbsp;
             <?php } ?>
             <?php if($cmd=="viewcustomers"){ ?>
             <?php if($BL->getCmd("addorder")){ ?>
             <a href="<?php echo $PHP_SELF; ?>?cmd=addorder&id=<?php echo $temp['id']; ?>">
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>add_order.gif' alt='<?php echo $BL->props->lang['Add_New_Order']; ?>' border='0' />
+            <img src='elements/default/templates/alp_admin/images/add_order.gif' alt='<?php echo $BL->props->lang['Add_New_Order']; ?>' border='0' />
             </a>
             &nbsp;
             <?php } ?>
             <?php if($BL->getCmd("delcustomers")){ ?>
             <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_this_customer']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=delcustomers&id=<?php echo $temp['id']; ?>'">
-            <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' border='0' />
+            <img src='elements/default/templates/alp_admin/images/delete.gif' border='0' />
             </a>
             &nbsp;
             <?php } ?>
@@ -120,7 +120,7 @@
     <?php } ?>
     <tr> 
         <td colspan="8" class="text_grey">
-            <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+            <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
         </td>
     </tr>   
       </table>

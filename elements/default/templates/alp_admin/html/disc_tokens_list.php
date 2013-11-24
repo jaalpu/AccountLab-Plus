@@ -68,12 +68,12 @@
                     </tr>
 					<tr> 
                       <td class="text_grey" colspan="2">
-					  <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" />
+					  <img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" />
 					  </td>
                     </tr>
                       <tr>
                       <td class="text_grey" width="1%" valign='top'>
-                      <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' />
+                      <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' />
                       </td>
 					  <td class='text_grey'>
  					
@@ -90,12 +90,12 @@
                       
                     <tr>
                       <td colspan='2' class='text_grey'>
-                      <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1"></td>
+                      <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1"></td>
                     </tr>   
                       
                       <tr>
                       <td class="text_grey" width="1%" valign='top'>
-                      <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif' width='32' height='18' />
+                      <img src='elements/default/templates/alp_admin/images/spacer.gif' width='32' height='18' />
                       </td>
                       <td class='text_grey'>
                     
@@ -115,7 +115,7 @@
         <?php } ?>
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="list_table">
 					<tr> 
-                      <td colspan="5" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="5" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>
 		        <?php if (!count($disc_tokens)) { ?>
 				<tr>
@@ -136,7 +136,7 @@
                     <?php foreach($disc_tokens as $temp) { ?>
 					<tr>
                       <td colspan='5' class='text_grey'>
-					  <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1"></td>
+					  <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1"></td>
                     </tr>					
                     <tr>
                       <td class='text_grey'>&nbsp;&nbsp;<?php echo $temp['disc_token_id']; ?></td>
@@ -146,11 +146,11 @@
                       <td class='text_grey'>
                       <div align='right'>
                        <?php if($BL->getCmd("edit_disc_token")){ ?>   
-                      <a href='<?php echo $PHP_SELF; ?>?cmd=edit_disc_token&disc_token_id=<?php echo $temp['disc_token_id']; ?>' class='text_link'><img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0'></a>
+                      <a href='<?php echo $PHP_SELF; ?>?cmd=edit_disc_token&disc_token_id=<?php echo $temp['disc_token_id']; ?>' class='text_link'><img src='elements/default/templates/alp_admin/images/edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0'></a>
                       <?php } ?>
                       &nbsp;
                        <?php if($BL->getCmd("del_disc_token")){ ?>   
-                      <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_this_disc_token']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=del_disc_token&disc_token_id=<?php echo $temp['disc_token_id']; ?>'" class='text_link'><img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0'></a>
+                      <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_this_disc_token']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=del_disc_token&disc_token_id=<?php echo $temp['disc_token_id']; ?>'" class='text_link'><img src='elements/default/templates/alp_admin/images/delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0'></a>
                       <?php } ?>
                       &nbsp;
                       </div>
@@ -167,9 +167,9 @@
 					<tr> 
                       <td class="text_grey" align="center">
 					  <div style="vertical-align:middle">
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif'> <?php echo $BL->props->lang['Edit']; ?>
+					  <img src='elements/default/templates/alp_admin/images/edit_all.gif'> <?php echo $BL->props->lang['Edit']; ?>
 					  &nbsp;
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif'> <?php echo $BL->props->lang['Delete']; ?>
+					  <img src='elements/default/templates/alp_admin/images/delete.gif'> <?php echo $BL->props->lang['Delete']; ?>
 					  </div>
 					  </td>
                     </tr>

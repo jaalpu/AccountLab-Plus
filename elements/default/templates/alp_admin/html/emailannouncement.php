@@ -65,12 +65,12 @@
 					  </td>
                     </tr>
 					<tr> 
-                      <td colspan="2" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="2" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>
                     
                       <tr> 
                         <td width='1%' class='text_grey'><div align='center'>
-                        <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' /></div></td>
+                        <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' /></div></td>
                         <td class='text_grey'>
                         <div id="form1_label">
                         <?php echo $BL->props->lang['newsletter_to']; ?>
@@ -283,7 +283,7 @@
 
                       <tr> 
                         <td colspan='2' class='text_grey'>
-                        <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' /></td>
+                        <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' /></td>
                       </tr>
                       
                       <tr> 
@@ -317,12 +317,12 @@
                       
                       <tr> 
                         <td colspan='2' class='text_grey'>
-                        <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' /></td>
+                        <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' /></td>
                       </tr>
 
                       <tr> 
                         <td width='1%' class='text_grey'><div align='center'>
-                        <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' /></div></td>
+                        <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' /></div></td>
                         <td class='text_grey'>
                         <div id="form1_label">
                         <?php echo $BL->props->lang['send_as_html']; ?>
@@ -337,12 +337,12 @@
                       </tr>
                       <tr> 
                         <td colspan='2' class='text_grey'>
-                        <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' /></td>
+                        <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' /></td>
                       </tr> 
 
                       <tr> 
                         <td width='1%' class='text_grey'><div align='center'>
-                        <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' /></div></td>
+                        <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' /></div></td>
                         <td class='text_grey'>
                         <div id="form1_label">
                         <?php echo $BL->props->lang['save_before_send']; ?>
@@ -357,12 +357,12 @@
                       </tr>
                       <tr> 
                         <td colspan='2' class='text_grey'>
-                        <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' /></td>
+                        <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' /></td>
                       </tr> 
 
                       <tr> 
                         <td width='1%' class='text_grey'><div align='center'>
-                        <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' /></div></td>
+                        <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' /></div></td>
                         <td class='text_grey'>
 						<div id="form1_label">
 						<?php echo $BL->props->lang['subject']; ?>
@@ -373,13 +373,13 @@
                       </tr>
                       <tr> 
                         <td colspan='2' class='text_grey'>
-                        <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' /></td>
+                        <img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' /></td>
                       </tr> 
 					  
 					  <tbody id='body1' name='body1' class='<?php echo (isset($BL->REQUEST['send_as_html']) && !empty($BL->REQUEST['send_as_html']))?"on":"off"; ?>'>
                       <tr> 
                         <td class='text_grey' valign="top"><div align='center'>
-						<img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' /></div></td>
+						<img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' /></div></td>
                         <td class='text_grey' valign="top">
 						<div id="form1_label">
 						<?php echo $BL->props->lang['message_body']; ?>
@@ -392,7 +392,7 @@
                       <tbody id='body2' name='body2' class='<?php echo (!isset($BL->REQUEST['send_as_html']) || empty($BL->REQUEST['send_as_html']))?"on":"off"; ?>'>
                       <tr> 
                         <td class='text_grey' valign="top"><div align='center'>
-                        <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_dot.gif' width='32' height='18' /></div></td>
+                        <img src='elements/default/templates/alp_admin/images/menu_icon_dot.gif' width='32' height='18' /></div></td>
                         <td class='text_grey' valign="top">
                         <div id="form1_label">
                         <?php echo $BL->props->lang['message_body']; ?>
@@ -404,7 +404,7 @@
                       </tbody>
                       <tr> 
                         <td colspan='2' class='text_grey'>
-						<img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg' width='100%' height='1' /></td>
+						<img src='elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg' width='100%' height='1' /></td>
                       </tr>		
 
 

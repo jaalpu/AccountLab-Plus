@@ -63,7 +63,7 @@
 					  </td>
                     </tr>
 					<tr> 
-                      <td colspan="10" class="text_grey"><img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" alt="" width="100%" height="1" /></td>
+                      <td colspan="10" class="text_grey"><img src="elements/default/templates/alp_admin/images/spacer.gif" alt="" width="100%" height="1" /></td>
                     </tr>
 		          <?php if (!count($plans)) { ?>
 				<tr>
@@ -89,18 +89,18 @@
                     <?php foreach($plans as $temp){ ?>
 					<tr>
                       <td colspan='10' class='text_grey'>
-					  <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
+					  <img src="elements/default/templates/alp_admin/images/menu_line_lightgreen-long.jpg" width="100%" height="1" /></td>
                     </tr>					
 					<tr> 
                     <td class='text_grey'>
                     <?php if($temp['plan_index'] > 1){ ?>
                     &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=plans&plan_price_id=<?php echo $temp['plan_price_id']; ?>&plan_index=<?php echo $temp['plan_index']; ?>&action=up'>
-                    <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>up.gif' border='0' /></a>
+                    <img src='elements/default/templates/alp_admin/images/up.gif' border='0' /></a>
                     <?php }if($temp['plan_index'] > 1 && $temp['plan_index'] < count($plans)){ ?>
                     <br />
                     <?php }if($temp['plan_index'] < count($plans)){ ?>
                     &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=plans&plan_price_id=<?php echo $temp['plan_price_id']; ?>&plan_index=<?php echo $temp['plan_index']; ?>&action=down'>
-                    <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>down.gif' border='0' /></a>
+                    <img src='elements/default/templates/alp_admin/images/down.gif' border='0' /></a>
                     <?php } ?>
                     <?php $cycle_data = $BL->products->getCycles($temp['plan_price_id']); ?>
                     </td>
@@ -121,19 +121,19 @@
                             if($server['server_type']=="cpanel"){
                       ?>
                       <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_sync_plan']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=plans&action=sync&plan_price_id=<?php echo $temp['plan_price_id']; ?>'">
-                      <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>sync.png' alt='<?php echo $BL->props->lang['sync']."?"; ?>' border='0' /></a>                       
+                      <img src='elements/default/templates/alp_admin/images/sync.png' alt='<?php echo $BL->props->lang['sync']."?"; ?>' border='0' /></a>                       
                       &nbsp;
                       <?php } ?>
-                      <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?><?php echo $server['server_type']."-icon-small"; ?>.gif' alt='' border='0' />
+                      <img src='elements/default/templates/alp_admin/images/<?php echo $server['server_type']."-icon-small"; ?>.gif' alt='' border='0' />
                       &nbsp;
                       <?php } ?>
                       <a href='<?php echo $PHP_SELF; ?>?cmd=editplan&plan_price_id=<?php echo $temp['plan_price_id']; ?>'>
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0' /></a>
+					  <img src='elements/default/templates/alp_admin/images/edit_all.gif' alt='<?php echo $BL->props->lang['Edit']; ?>' border='0' /></a>
                       <?php } ?>
                       &nbsp;
                       <?php if($BL->getCmd("delplan")){ ?>
                       <a href="javascript:if(confirm('<?php echo $BL->props->lang['Do_you_want_to_delete_this_plan']; ?>'))document.location='<?php echo $PHP_SELF; ?>?cmd=delplan&plan_price_id=<?php echo $temp['plan_price_id']; ?>'">
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0' /></a>
+					  <img src='elements/default/templates/alp_admin/images/delete.gif' alt='<?php echo $BL->props->lang['Delete']."?"; ?>' border='0' /></a>
                       <?php } ?>
 					  &nbsp;
                       </div>
@@ -166,11 +166,11 @@
 					<tr> 
                       <td class="text_grey" align="center">
 					  <div style="vertical-align:middle">
-                      <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>sync.png'  border='0' /> <?php echo $BL->props->lang['sync']; ?>
+                      <img src='elements/default/templates/alp_admin/images/sync.png'  border='0' /> <?php echo $BL->props->lang['sync']; ?>
 					  &nbsp;
-                      <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>edit_all.gif' border="0" /> <?php echo $BL->props->lang['Edit']; ?>
+                      <img src='elements/default/templates/alp_admin/images/edit_all.gif' border="0" /> <?php echo $BL->props->lang['Edit']; ?>
 					  &nbsp;
-					  <img src='elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>delete.gif' border="0" /> <?php echo $BL->props->lang['Delete']; ?>
+					  <img src='elements/default/templates/alp_admin/images/delete.gif' border="0" /> <?php echo $BL->props->lang['Delete']; ?>
 					  </div>
 					  </td>
                     </tr>

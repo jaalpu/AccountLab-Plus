@@ -320,7 +320,7 @@ function changeTheme(page,theme){
 //-->
 </script>
 <?php if($BL->conf['en_html_editor']){ ?>
-<script language="javascript" type="text/javascript" src="system<?php echo PATH_SEP; ?>libraries<?php echo PATH_SEP; ?>tinymce<?php echo PATH_SEP; ?>jscripts<?php echo PATH_SEP; ?>tiny_mce<?php echo PATH_SEP; ?>tiny_mce_gzip.php"></script>
+<script language="javascript" type="text/javascript" src="system/libraries/tinymce/jscripts/tiny_mce/tiny_mce_gzip.php"></script>
 <script language="javascript" type="text/javascript">
 tinyMCE.init({
     mode : "textareas",

@@ -49,13 +49,13 @@
 
         <tr> 
           <td width="1%">
-          <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>menu_icon_plus.gif" width="32" height="18" style="cursor:hand; cursor:pointer" onClick="expandcontent('<?php echo $menu_name; ?>')">
+          <img src="elements/default/templates/alp_admin/images/menu_icon_plus.gif" width="32" height="18" style="cursor:hand; cursor:pointer" onClick="expandcontent('<?php echo $menu_name; ?>')">
           </td>
           <td>
           <a href="#" style="cursor:hand; cursor:pointer" onClick="expandcontent('<?php echo $menu_name; ?>')"><?php echo $this->props->lang["^".$menu_name]; ?></a> 
           </td>
           <td>
-          <img src="elements<?php echo PATH_SEP; ?>default<?php echo PATH_SEP; ?>templates<?php echo PATH_SEP; ?>alp_admin<?php echo PATH_SEP; ?>images<?php echo PATH_SEP; ?>spacer.gif" width="1" height="1">
+          <img src="elements/default/templates/alp_admin/images/spacer.gif" width="1" height="1">
           </td>
         </tr>
         <tr> 
