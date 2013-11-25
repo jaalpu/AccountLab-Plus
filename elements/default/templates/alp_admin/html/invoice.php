@@ -48,6 +48,12 @@
 ?>
 
 <?php include_once $BL->props->get_page("templates/alp_admin/html/header.php"); ?>
+<?php
+	// Get default currency formatting options, and force a few settings for compatibility
+	$curr_array = $BL->curr_conf;
+	$curr_array['str1'] = '.';//force decimal as period
+	$curr_array['str2'] = '';//remove the thousand separator
+?>
 <div id="content">
     <div id="display_list">
         <form name='form1' id='form1' method='POST' action='<?php echo $PHP_SELF; ?>'>
@@ -165,7 +171,7 @@
                 <?php echo $BL->props->lang['Domain']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='inv_tld_fee' type='text' class='search' id='inv_tld_fee' size='20' value='<?php echo $Invoice[0]['tld_fee']; ?>' />
+                <input name='inv_tld_fee' type='text' class='search' id='inv_tld_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['tld_fee'],$BL->curr_conf,1,0); ?>' />
                 </div>
                 </td>
             </tr>
@@ -185,7 +191,7 @@
                 <?php echo $BL->props->lang['setup_fee']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='inv_setup_fee' type='text' class='search' id='inv_setup_fee' size='20' value='<?php echo $Invoice[0]['setup_fee']; ?>' />
+                <input name='inv_setup_fee' type='text' class='search' id='inv_setup_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['setup_fee'],$curr_array,1,0); ?>' />
                 </div>
                 </td>
             </tr>
@@ -205,7 +211,7 @@
                 <?php echo $BL->props->lang['cycle_amount']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='inv_cycle_fee' type='text' class='search' id='inv_cycle_fee' size='20' value='<?php echo $Invoice[0]['cycle_fee']; ?>' />
+                <input name='inv_cycle_fee' type='text' class='search' id='inv_cycle_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['cycle_fee'],$curr_array,1,0); ?>' />
                 </div>
                 </td>
             </tr>
@@ -226,8 +232,8 @@
                 <?php echo $Addon_Name; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <?php echo $BL->props->lang['setup_fee']; ?>&nbsp;<input name='addon_setups[<?php echo $Addon_Name; ?>]' type='text' class='search' id='addon_setups[<?php echo $Addon_Name; ?>]' size='8' value='<?php echo $Addon_Fee['SETUP']; ?>' />
-                <?php echo $BL->props->lang['Recurring']; ?>&nbsp;<input name='addon_cycles[<?php echo $Addon_Name; ?>]' type='text' class='search' id='addon_cycles[<?php echo $Addon_Name; ?>]' size='8' value='<?php echo $Addon_Fee['CYCLE']; ?>' />
+                <?php echo $BL->props->lang['setup_fee']; ?>&nbsp;<input name='addon_setups[<?php echo $Addon_Name; ?>]' type='text' class='search' id='addon_setups[<?php echo $Addon_Name; ?>]' size='8' value='<?php echo $BL->toCurrency($Addon_Fee['SETUP'],$curr_array,1,0); ?>' />
+                <?php echo $BL->props->lang['Recurring']; ?>&nbsp;<input name='addon_cycles[<?php echo $Addon_Name; ?>]' type='text' class='search' id='addon_cycles[<?php echo $Addon_Name; ?>]' size='8' value='<?php echo $BL->toCurrency($Addon_Fee['CYCLE'],$curr_array,1,0); ?>' />
                 </div>
                 </td>
             </tr>
@@ -266,7 +272,7 @@
                 <?php echo $BL->props->lang['tld_discount']; ?> (%)
                 </div>
                 <div id="form1_field">
-                <input name='inv_tld_disc' type='text' class='search' id='inv_tld_disc' size='20' value='<?php echo $Invoice[0]['inv_tld_disc']; ?>' />
+                <input name='inv_tld_disc' type='text' class='search' id='inv_tld_disc' size='20' value='<?php echo rtrim(rtrim($Invoice[0]['inv_tld_disc'],'0'),'.'); ?>' />
                 </div>
                 </td>
             </tr>
@@ -284,7 +290,7 @@
                 <?php echo $BL->props->lang['plan_discount']; ?> (%)
                 </div>
                 <div id="form1_field">
-                <input name='inv_plan_disc' type='text' class='search' id='inv_plan_disc' size='20' value='<?php echo $Invoice[0]['inv_plan_disc']; ?>' />
+                <input name='inv_plan_disc' type='text' class='search' id='inv_plan_disc' size='20' value='<?php echo rtrim(rtrim($Invoice[0]['inv_plan_disc'],'0'),'.'); ?>' />
                 </div>
                 </td>
             </tr>
@@ -302,7 +308,7 @@
                 <?php echo $BL->props->lang['addon_discount']; ?> (%)
                 </div>
                 <div id="form1_field">
-                <input name='inv_addon_disc' type='text' class='search' id='inv_addon_disc' size='20' value='<?php echo $Invoice[0]['inv_addon_disc']; ?>' />
+                <input name='inv_addon_disc' type='text' class='search' id='inv_addon_disc' size='20' value='<?php echo rtrim(rtrim($Invoice[0]['inv_addon_disc'],'0'),'.'); ?>' />
                 </div>
                 </td>
             </tr>
@@ -323,7 +329,7 @@
                 <?php echo $BL->props->lang['Credit_Debit']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='debit_credit_amount' type='text' class='search' id='debit_credit_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $Invoice[0]['debit_credit_amount'];}else echo "0.00"; ?>' />
+                <input name='debit_credit_amount' type='text' class='search' id='debit_credit_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $BL->toCurrency($Invoice[0]['debit_credit_amount'],$curr_array,1,0);}else echo "0.00"; ?>' />
                 	  <select name="debit_credit" size="1" class='search'>
                 	  <option></option>
                 	    <option value="credit" <?php if($cmd=="editinvoice" && $Invoice[0]['debit_credit'] == "credit")echo "selected=\"selected\""; ?>><?php echo $BL->props->lang['credit']; ?></option>
@@ -389,7 +395,7 @@
                 <?php echo $BL->props->lang['prorate_amount']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='prorate_amount' type='text' class='search' id='prorate_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $Invoice[0]['prorate_amount'];}else echo "0.00"; ?>' />
+                <input name='prorate_amount' type='text' class='search' id='prorate_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $BL->toCurrency($Invoice[0]['prorate_amount'],$curr_array,1,0);}else echo "0.00"; ?>' />
                 </div>
                 </td>
             </tr>
@@ -410,7 +416,7 @@
                 <?php echo $BL->props->lang['discount']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">                      
-                <input name='other_amount' type='text' class='search' id='other_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $Invoice[0]['other_amount'];}else echo "0.00"; ?>' />
+                <input name='other_amount' type='text' class='search' id='other_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $BL->toCurrency($Invoice[0]['other_amount'],$curr_array,1,0);}else echo "0.00"; ?>' />
                 </div>
                 </td>
             </tr>
@@ -430,7 +436,7 @@
                 <?php echo $BL->props->lang['Net_Amount']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='net_amount' type='text' class='search' id='net_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $Invoice[0]['net_amount'];}else echo "0.00"; ?>' />
+                <input name='net_amount' type='text' class='search' id='net_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $BL->toCurrency($Invoice[0]['net_amount'],$curr_array,1,0);}else echo "0.00"; ?>' />
                 </div>
                 </td>
             </tr>
@@ -457,7 +463,7 @@
                 %<input name='tax0[]' type='text' value='<?php echo number_format($Tax[0],2); ?>' class='search' id='tax0' size='5' />
                 =
                 <?php echo $BL->conf['symbol']; ?>
-                <input name='tax1[]' type='text' value='<?php echo $BL->toCurrency($Tax[1]); ?>' class='search' id='tax1' size='10' />
+                <input name='tax1[]' type='text' value='<?php echo $BL->toCurrency($Tax[1],$curr_array,1,0); ?>' class='search' id='tax1' size='10' />
                 </div>
                 </td>
             </tr>
@@ -477,7 +483,7 @@
                 <?php echo $BL->props->lang['total_tax']." (".$BL->conf['symbol'].")"; ?> 
                 </div>
                 <div id="form1_field">
-                <input name='tax_amount' type='text' value='<?php if($cmd=="editinvoice"){echo $Invoice[0]['tax_amount'];}else echo "0"; ?>' class='search' id='tax_amount' size='20' />
+                <input name='tax_amount' type='text' value='<?php if($cmd=="editinvoice"){echo $BL->toCurrency($Invoice[0]['tax_amount'],$curr_array,1,0);}else echo "0"; ?>' class='search' id='tax_amount' size='20' />
                 </div>
                 </td>
             </tr>
@@ -497,7 +503,7 @@
                 <?php echo $BL->props->lang['Gross_Amount']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='gross_amount' type='text' class='search' id='gross_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $Invoice[0]['gross_amount'];} ?>' />
+                <input name='gross_amount' type='text' class='search' id='gross_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $BL->toCurrency($Invoice[0]['gross_amount'],$curr_array,1,0);} ?>' />
                 </div>
                 </td>
             </tr>
