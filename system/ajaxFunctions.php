@@ -860,11 +860,11 @@ function step3_listStates($CC, $SS)
     {
         $str  = "<select name='state".$SS."' id='state".$SS."' class='accountlabInput'>";
         $str .= "<option>" . $BL->props->lang['select_state'] . "</option>";
-        foreach ($states as $v)
+        foreach ($states as $k=>$v)
         {
             if (!empty ($v))
             {
-                $str .= "<option value='" . trim($v) . "'>" . trim($v) . "</option>";
+                $str .= "<option value='" . (is_numeric($k)?trim($v):trim($k)) . "'>" . trim($v) . "</option>";
             }
         }
         $str .= "</select>";

@@ -523,16 +523,19 @@ function ajax(){
                 var key_added = 0;
                 for(i=0; i<xmlDoc.getElementsByTagName('count').item(0).firstChild.data; i++)
                 {
-                    var state = xmlDoc.getElementsByTagName('state').item(i).firstChild.data;
+					var elem = xmlDoc.getElementsByTagName('state').item(i);
+                    var state = elem.firstChild.data;
+					var abbr = elem.getAttribute('abbr');
+
                     if(escape(Trim(state)).charAt(0)!='%' && Trim(state)!='')
                     {
-                        if(state == key)
+                        if((state == key) || (abbr == key))
                         {
-                            state_obj.options[count++] = new Option(Trim(state), Trim(state), true, true);
+                            state_obj.options[count++] = new Option(Trim(state), Trim(abbr ? abbr : state), true, true);
                             key_added = 1;
                         }
                         else
-                            state_obj.options[count++] = new Option(Trim(state), Trim(state), false);
+                            state_obj.options[count++] = new Option(Trim(state), Trim(abbr ? abbr : state), false);
                     }
                 }
                 if(key_added == 0 && key!='0')

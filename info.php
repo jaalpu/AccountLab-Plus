@@ -52,12 +52,15 @@ if(isset($REQUEST['cc']))
     $STATES= isset($BL->props->allstates[$REQUEST['cc']])?$BL->props->allstates[$REQUEST['cc']]:array();
     $count = 0;
     $str   = "<data><states>";
-    foreach($STATES as $v)
+    foreach($STATES as $k=>$v)
     {
         $state = trim($v);
         if(!empty($state))
         {
-            $str .= '<state>'.$state.'</state>';
+			if (is_numeric($k))
+				$str .= "<state>$state</state>";
+			else
+				$str .= "<state abbr=\"$k\">$state</state>";
             $count++;
         }
     }
