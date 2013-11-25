@@ -99,7 +99,23 @@
         <td class='text_grey'><div align='left'>[<a href="<?php echo $PHP_SELF; ?>?cmd=viewinvoice&id=<?php echo $Invoice['customer_id']; ?>"><?php echo $BL->props->lang['^invoices']; ?></a>]</div></td>
         <td class='text_grey'><div align='right'><b><?php echo $BL->toCurrency($Invoice['gross_amount'],null,1); ?>&nbsp;&nbsp;</b></div></td>
         <td class='text_grey'><div align='left'><?php echo $BL->fDate($Invoice['due_date']); ?></div></td>
-        <td class='text_grey'><div align='left'><?php echo $BL->props->lang[$Invoice['status']]; ?></div></td>
+        <td class='text_grey'><div align='left'>
+			<span id="confirm<?php echo $Invoice['invoice_no'];?>" style="display:none;"><?php 
+					echo $BL->props->lang["confirm_markas_paid"]."<br><br>".
+						$BL->props->lang['Invoice_No'].': '.$conf['invoice_prefix'].$Invoice['invoice_no'].$conf['invoice_suffix']."<br />".
+						$BL->props->lang['Name'].': '.htmlspecialchars($BL->getCustomerFieldValue("name",$Invoice['customer_id']))."<br />".
+						$BL->props->lang['Description'].': '.htmlspecialchars($BL->getFriendlyDesc($Invoice['desc'],$Invoice['order_id']))."<br />".
+						$BL->props->lang['Amount'].': '.$BL->toCurrency($Invoice['gross_amount'],null,1)."<br />";
+			?></span><?php 
+		if ($Invoice['status']=="Pending")
+		{
+			echo "<a href=\"$PHP_SELF?cmd=viewinvoice&invoice_no={$Invoice['invoice_no']}&markas=Paid\" ".
+				"onclick=\"return confirm(document.getElementById('confirm{$Invoice['invoice_no']}').innerText);\" ".
+				"class=\"text_link\">".$BL->props->lang[$Invoice['status']]."</a>";
+		}
+		else
+			echo $BL->props->lang[$Invoice['status']]; 
+			?></div></td>
         <td class='text_grey'>
             <div align='left'>
             <a href='info.php?cmd=VPDF&invoice_no=<?php echo $Invoice['invoice_no']; ?>' target='_blank'>          

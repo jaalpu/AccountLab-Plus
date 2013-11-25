@@ -229,6 +229,10 @@ switch ($cmd)
             $BL->REQUEST['orderby1']  = isset($BL->REQUEST['orderby1'])?$BL->REQUEST['orderby1']:"invoice_no";
             $BL->REQUEST['orderby2']  = isset($BL->REQUEST['orderby2'])?$BL->REQUEST['orderby2']:"DESC";
             $filter    = '';
+			if(isset($BL->REQUEST['markas']) && isset($BL->REQUEST['invoice_no']))
+			{
+				$BL->invoices->update(array("status"=>$BL->REQUEST['markas'], "invoice_no"=>$BL->REQUEST['invoice_no']), 'invoice_no');
+			}
             if(isset($BL->REQUEST['id']) && !empty($BL->REQUEST['id']))
             {
             	$filter .= " AND `customers`.id=".intval($BL->REQUEST['id'])." ";
