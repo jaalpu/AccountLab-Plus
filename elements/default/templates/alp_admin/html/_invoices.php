@@ -105,7 +105,7 @@
             <a href='info.php?cmd=VPDF&invoice_no=<?php echo $Invoice['invoice_no']; ?>' target='_blank'>          
             <img src='elements/default/templates/alp_admin/images/pdf.gif' alt='<?php echo $BL->props->lang['PDF']; ?>' border='0' /></a>
             <a href='info.php?cmd=PDF&invoice_no=<?php echo $Invoice['invoice_no']; ?>' target='_blank'>          
-            <img src='elements/default/templates/alp_admin/images/down.gif' alt='<?php echo $BL->props->lang['Download_PDF']; ?>' border='0' /></a>
+            <img src='elements/default/templates/alp_admin/images/download.png' alt='<?php echo $BL->props->lang['Download_PDF']; ?>' border='0' /></a>
             &nbsp;
             <?php if($BL->getCmd("editinvoice")){ ?>
             <a href='<?php echo $PHP_SELF; ?>?cmd=editinvoice&invoice_no=<?php echo $Invoice['invoice_no']; ?>'class='text_link'><img src='elements/default/templates/alp_admin/images/edit_all.gif' border='0'></a>&nbsp;

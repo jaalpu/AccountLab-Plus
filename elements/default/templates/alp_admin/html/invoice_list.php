@@ -63,6 +63,8 @@
     <div style="vertical-align:middle">
     <img src='elements/default/templates/alp_admin/images/pdf.gif' alt='<?php echo $BL->props->lang['PDF']; ?>' border='0' /> <?php echo $BL->props->lang['PDF']; ?>
     &nbsp;
+    <img src='elements/default/templates/alp_admin/images/download.png' alt='<?php echo $BL->props->lang['Download_PDF']; ?>' border='0' /> <?php echo $BL->props->lang['Download_PDF']; ?>
+    &nbsp;
     <img src='elements/default/templates/alp_admin/images/edit_all.gif' border="0" /> <?php echo $BL->props->lang['Edit']; ?>
     &nbsp;
     <img src='elements/default/templates/alp_admin/images/delete.gif' border="0" /> <?php echo $BL->props->lang['Delete']; ?>
