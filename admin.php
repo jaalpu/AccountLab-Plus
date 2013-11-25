@@ -170,12 +170,12 @@ switch ($cmd)
             if(isset($BL->REQUEST['submit']) && $BL->REQUEST['submit']==$BL->props->lang['Update'])
             {
             	$BL->REQUEST['due_date'] = $BL->REQUEST['year_field']."-".$BL->REQUEST['month_field']."-".$BL->REQUEST['date_field'];
-                $BL->REQUEST['inv_addon_fee'] = "";
+                $BL->REQUEST['addon_fee'] = "";
                 if(isset($BL->REQUEST['addon_setups']))
                 {
                 	foreach($BL->REQUEST['addon_setups'] as $Addon_Name=>$Addon_Setup)
                     {
-                    	$BL->REQUEST['inv_addon_fee'] .= $Addon_Name.">".$BL->utils->toFloat($Addon_Setup).">".$BL->utils->toFloat($BL->REQUEST['addon_cycles'][$Addon_Name])."<&>";
+                    	$BL->REQUEST['addon_fee'] .= $Addon_Name.">".$BL->utils->toFloat($Addon_Setup).">".$BL->utils->toFloat($BL->REQUEST['addon_cycles'][$Addon_Name])."<&>";
                     }
                 }
                 $BL->REQUEST['tax_percent'] = "";

@@ -171,7 +171,7 @@
                 <?php echo $BL->props->lang['Domain']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='inv_tld_fee' type='text' class='search' id='inv_tld_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['tld_fee'],$BL->curr_conf,1,0); ?>' />
+                <input name='tld_fee' type='text' class='search' id='tld_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['tld_fee'],$BL->curr_conf,1,0); ?>' />
                 </div>
                 </td>
             </tr>
@@ -191,7 +191,7 @@
                 <?php echo $BL->props->lang['setup_fee']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='inv_setup_fee' type='text' class='search' id='inv_setup_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['setup_fee'],$curr_array,1,0); ?>' />
+                <input name='setup_fee' type='text' class='search' id='setup_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['setup_fee'],$curr_array,1,0); ?>' />
                 </div>
                 </td>
             </tr>
@@ -211,7 +211,7 @@
                 <?php echo $BL->props->lang['cycle_amount']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='inv_cycle_fee' type='text' class='search' id='inv_cycle_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['cycle_fee'],$curr_array,1,0); ?>' />
+                <input name='cycle_fee' type='text' class='search' id='cycle_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['cycle_fee'],$curr_array,1,0); ?>' />
                 </div>
                 </td>
             </tr>
