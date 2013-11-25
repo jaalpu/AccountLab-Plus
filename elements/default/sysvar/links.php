@@ -46,5 +46,5 @@
  */ 
 
 $ext_links               = array();
-$ext_links['Forum']      = "http://www.netenberg.com/forum/index.php?c=6";
+$ext_links['Forum']      = "https://sourceforge.net/p/accountlabplus/discussion/1002365";
 ?>
