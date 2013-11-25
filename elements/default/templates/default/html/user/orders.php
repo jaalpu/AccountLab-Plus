@@ -58,7 +58,6 @@
           <td class='accountlabPlanDataHTD'><?php echo $BL->props->lang['Status']; ?></td>
           <td class='accountlabPlanDataHTD'><?php echo $BL->props->lang['Order_Date']; ?></td>
           <td class='accountlabPlanDataHTD'><?php echo $BL->props->lang['next_bill_date']; ?></td>
-          <td class='accountlabPlanDataHTD'><?php echo $BL->props->lang['IP']; ?></td>
           <td class='accountlabPlanDataHTD'></td>
         </tr>
         <?php
@@ -80,7 +79,6 @@
           <td class='<?php echo $bgcolor; ?>'><?php echo $BL->props->lang[$value['cust_status']]; ?></td>
           <td class='<?php echo $bgcolor; ?>'><?php echo $BL->fDate($value['sign_date']); ?></td>
           <td class='<?php echo $bgcolor; ?>'><?php echo $BL->fDate($value['rec_next_date']); ?></td>          
-          <td class='<?php echo $bgcolor; ?>'><?php echo $value['remote_ip']; ?></td>
           <td class='<?php echo $bgcolor; ?>'><div align='right'>
           <a class='accountlabPlanLink' href='<?php echo $PHP_SELF; ?>?cmd=viewOrder&sub_id=<?php echo $value['sub_id']; ?>'><?php echo $BL->props->lang['View']; ?></a>
           </div></td>
