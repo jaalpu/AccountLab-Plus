@@ -298,6 +298,7 @@ class authorize_controller extends controller
 			$_SESSION['user_token']          = uniqid(rand(), true);
 			$_SESSION['user_fingerprint']    = "";
 		}
+		session_destroy();	// Delete all session data
 		return true;
 	}
 }
