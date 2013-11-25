@@ -115,9 +115,9 @@ if (isset($BL->REQUEST['email']) && isset($BL->REQUEST['password']))
     }
     else
     {
-        if(md5($BL->REQUEST['captcha_value'])==$_SESSION['cpatcha_key'] && $BL->auth->login("user"))
+        if(md5($BL->REQUEST['captcha_value'])==$_SESSION['captcha_key'] && $BL->auth->login("user"))
         {
-            $_SESSION['cpatcha_key'] = '';
+            $_SESSION['captcha_key'] = '';
         }
         else
         {
@@ -131,7 +131,7 @@ elseif (isset ($BL->REQUEST['get_pass']) && $BL->REQUEST['get_pass'])
 {
 	$msg = ($BL->get_pass($BL->REQUEST['email']))?$BL->props->lang['pass_send']:$BL->props->lang['err_improper_email'];
 }
-unset($_SESSION['cpatcha_key']);
+unset($_SESSION['captcha_key']);
 if (!$skiplogin && !$BL->auth->IsAuth("user"))
 {
 	$BL->auth->logout();

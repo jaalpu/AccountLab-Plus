@@ -312,7 +312,7 @@ if(isset($REQUEST['cmd']) && $REQUEST['cmd']=='IV')
 {
     $verify_code = $BL->utils->random_password();
     $BL->utils->rndImage($verify_code);
-    $_SESSION['cpatcha_key'] = md5($verify_code);
+    $_SESSION['captcha_key'] = md5($verify_code);
     $BL->Disconnect();
 }
 if(isset($REQUEST['cmd']) && $REQUEST['cmd']=='REPORT_IMAGE')

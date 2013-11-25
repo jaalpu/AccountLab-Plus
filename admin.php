@@ -80,7 +80,7 @@ if (!empty ($BL->REQUEST['username']) && !empty ($BL->REQUEST['password']))
     }
     else
     {
-        if(md5($BL->REQUEST['captcha_value'])==$_SESSION['cpatcha_key'] && $BL->auth->login("admin"))
+        if(md5($BL->REQUEST['captcha_value'])==$_SESSION['captcha_key'] && $BL->auth->login("admin"))
         {
             $just_login = true;
             $BL->runCS('W_L');
