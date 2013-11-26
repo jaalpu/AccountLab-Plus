@@ -46,7 +46,6 @@
  */
 
 ?>
-
 <?php include_once $BL->props->get_page("templates/alp_admin/html/header.php"); ?>
 <?php
 	// Get default currency formatting options, and force a few settings for compatibility
@@ -54,6 +53,45 @@
 	$curr_array['str1'] = '.';//force decimal as period
 	$curr_array['str2'] = '';//remove the thousand separator
 ?>
+<script><!--
+function updateTotal() {
+	var total=0;
+	total += parseFloat(document.getElementById('tld_fee').value);
+	total += parseFloat(document.getElementById('setup_fee').value);
+	total += parseFloat(document.getElementById('cycle_fee').value);
+
+	<?php foreach($Addons as $Addon_Name=>$Addon_Fee){ ?>
+	total += parseFloat(document.getElementById('addon_setups[<?php echo $Addon_Name; ?>]').value);
+	total += parseFloat(document.getElementById('addon_cycles[<?php echo $Addon_Name; ?>]').value);
+	<?php } ?>
+
+	if (document.getElementsByName('debit_credit')[0].value == "debit") {
+		total += parseFloat(document.getElementById('debit_credit_amount').value);
+	}
+	if (document.getElementsByName('debit_credit')[0].value == "credit") {
+		total -= parseFloat(document.getElementById('debit_credit_amount').value);
+	}
+	total -= parseFloat(document.getElementById('other_amount').value);
+
+	document.getElementById('net_amount').value=total.toFixed(<?php echo $curr_array['decimals'] ?>);
+
+	var totaltax = 0;
+	for(var i=0; i < document.getElementsByName('tax1[]').length;i++) {
+		// We .toFixed early, because hidden decimals make the math look dishonest
+		var thistax = (total * parseFloat(document.getElementsByName('tax0[]')[i].value)/100).toFixed(<?php echo $curr_array['decimals']; ?>);
+		document.getElementsByName('tax1[]')[i].value = thistax;
+		if (document.getElementsByName('tax3[]')[i].value == '+') {
+			totaltax += parseFloat(thistax);
+		}
+		if (document.getElementsByName('tax3[]')[i].value == '-') {
+			totaltax -= parseFloat(thistax);
+		}
+	}
+	document.getElementById('tax_amount').value=totaltax.toFixed(<?php echo $curr_array['decimals'] ?>);
+	total += totaltax;
+	document.getElementById('gross_amount').value=total.toFixed(<?php echo $curr_array['decimals'] ?>);
+}
+//--></script>
 <div id="content">
     <div id="display_list">
         <form name='form1' id='form1' method='POST' action='<?php echo $PHP_SELF; ?>'>
@@ -171,7 +209,7 @@
                 <?php echo $BL->props->lang['Domain']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='tld_fee' type='text' class='search' id='tld_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['tld_fee'],$BL->curr_conf,1,0); ?>' />
+                <input name='tld_fee' type='text' class='search' id='tld_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['tld_fee'],$BL->curr_conf,1,0); ?>' onblur='updateTotal();'/>
                 </div>
                 </td>
             </tr>
@@ -191,7 +229,7 @@
                 <?php echo $BL->props->lang['setup_fee']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='setup_fee' type='text' class='search' id='setup_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['setup_fee'],$curr_array,1,0); ?>' />
+                <input name='setup_fee' type='text' class='search' id='setup_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['setup_fee'],$curr_array,1,0); ?>' onblur='updateTotal();' />
                 </div>
                 </td>
             </tr>
@@ -211,7 +249,7 @@
                 <?php echo $BL->props->lang['cycle_amount']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='cycle_fee' type='text' class='search' id='cycle_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['cycle_fee'],$curr_array,1,0); ?>' />
+                <input name='cycle_fee' type='text' class='search' id='cycle_fee' size='20' value='<?php echo $BL->toCurrency($Invoice[0]['cycle_fee'],$curr_array,1,0); ?>' onblur='updateTotal();' />
                 </div>
                 </td>
             </tr>
@@ -232,8 +270,8 @@
                 <?php echo $Addon_Name; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <?php echo $BL->props->lang['setup_fee']; ?>&nbsp;<input name='addon_setups[<?php echo $Addon_Name; ?>]' type='text' class='search' id='addon_setups[<?php echo $Addon_Name; ?>]' size='8' value='<?php echo $BL->toCurrency($Addon_Fee['SETUP'],$curr_array,1,0); ?>' />
-                <?php echo $BL->props->lang['Recurring']; ?>&nbsp;<input name='addon_cycles[<?php echo $Addon_Name; ?>]' type='text' class='search' id='addon_cycles[<?php echo $Addon_Name; ?>]' size='8' value='<?php echo $BL->toCurrency($Addon_Fee['CYCLE'],$curr_array,1,0); ?>' />
+                <?php echo $BL->props->lang['setup_fee']; ?>&nbsp;<input name='addon_setups[<?php echo $Addon_Name; ?>]' type='text' class='search' id='addon_setups[<?php echo $Addon_Name; ?>]' size='8' value='<?php echo $BL->toCurrency($Addon_Fee['SETUP'],$curr_array,1,0); ?>' onblur='updateTotal();' />
+                <?php echo $BL->props->lang['Recurring']; ?>&nbsp;<input name='addon_cycles[<?php echo $Addon_Name; ?>]' type='text' class='search' id='addon_cycles[<?php echo $Addon_Name; ?>]' size='8' value='<?php echo $BL->toCurrency($Addon_Fee['CYCLE'],$curr_array,1,0); ?>' onblur='updateTotal();' />
                 </div>
                 </td>
             </tr>
@@ -272,7 +310,7 @@
                 <?php echo $BL->props->lang['tld_discount']; ?> (%)
                 </div>
                 <div id="form1_field">
-                <input name='inv_tld_disc' type='text' class='search' id='inv_tld_disc' size='20' value='<?php echo rtrim(rtrim($Invoice[0]['inv_tld_disc'],'0'),'.'); ?>' />
+                <input name='inv_tld_disc' type='text' class='search' id='inv_tld_disc' size='20' value='<?php echo rtrim(rtrim($Invoice[0]['inv_tld_disc'],'0'),'.'); ?>' onblur='updateTotal();' />
                 </div>
                 </td>
             </tr>
@@ -290,7 +328,7 @@
                 <?php echo $BL->props->lang['plan_discount']; ?> (%)
                 </div>
                 <div id="form1_field">
-                <input name='inv_plan_disc' type='text' class='search' id='inv_plan_disc' size='20' value='<?php echo rtrim(rtrim($Invoice[0]['inv_plan_disc'],'0'),'.'); ?>' />
+                <input name='inv_plan_disc' type='text' class='search' id='inv_plan_disc' size='20' value='<?php echo rtrim(rtrim($Invoice[0]['inv_plan_disc'],'0'),'.'); ?>' onblur='updateTotal();' />
                 </div>
                 </td>
             </tr>
@@ -308,7 +346,7 @@
                 <?php echo $BL->props->lang['addon_discount']; ?> (%)
                 </div>
                 <div id="form1_field">
-                <input name='inv_addon_disc' type='text' class='search' id='inv_addon_disc' size='20' value='<?php echo rtrim(rtrim($Invoice[0]['inv_addon_disc'],'0'),'.'); ?>' />
+                <input name='inv_addon_disc' type='text' class='search' id='inv_addon_disc' size='20' value='<?php echo rtrim(rtrim($Invoice[0]['inv_addon_disc'],'0'),'.'); ?>' onblur='updateTotal();' />
                 </div>
                 </td>
             </tr>
@@ -329,8 +367,8 @@
                 <?php echo $BL->props->lang['Credit_Debit']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='debit_credit_amount' type='text' class='search' id='debit_credit_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $BL->toCurrency($Invoice[0]['debit_credit_amount'],$curr_array,1,0);}else echo "0.00"; ?>' />
-                	  <select name="debit_credit" size="1" class='search'>
+                <input name='debit_credit_amount' type='text' class='search' id='debit_credit_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $BL->toCurrency($Invoice[0]['debit_credit_amount'],$curr_array,1,0);}else echo "0.00"; ?>' onblur='updateTotal();' />
+                	  <select name="debit_credit" size="1" class='search' onblur='updateTotal();' onchange='updateTotal();'>
                 	  <option></option>
                 	    <option value="credit" <?php if($cmd=="editinvoice" && $Invoice[0]['debit_credit'] == "credit")echo "selected=\"selected\""; ?>><?php echo $BL->props->lang['credit']; ?></option>
                 	    <option value="debit" <?php if($cmd=="editinvoice" && $Invoice[0]['debit_credit'] == "debit")echo "selected=\"selected\""; ?>><?php echo $BL->props->lang['debit']; ?></option>
@@ -395,7 +433,7 @@
                 <?php echo $BL->props->lang['prorate_amount']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">
-                <input name='prorate_amount' type='text' class='search' id='prorate_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $BL->toCurrency($Invoice[0]['prorate_amount'],$curr_array,1,0);}else echo "0.00"; ?>' />
+                <input name='prorate_amount' type='text' class='search' id='prorate_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $BL->toCurrency($Invoice[0]['prorate_amount'],$curr_array,1,0);}else echo "0.00"; ?>' onblur='updateTotal();'/>
                 </div>
                 </td>
             </tr>
@@ -416,7 +454,7 @@
                 <?php echo $BL->props->lang['discount']; ?> (<?php echo $BL->conf['symbol']; ?>)
                 </div>
                 <div id="form1_field">                      
-                <input name='other_amount' type='text' class='search' id='other_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $BL->toCurrency($Invoice[0]['other_amount'],$curr_array,1,0);}else echo "0.00"; ?>' />
+                <input name='other_amount' type='text' class='search' id='other_amount' size='20' value='<?php if($cmd=="editinvoice"){echo $BL->toCurrency($Invoice[0]['other_amount'],$curr_array,1,0);}else echo "0.00"; ?>' onblur='updateTotal();' />
                 </div>
                 </td>
             </tr>
@@ -456,14 +494,14 @@
                 <input name='tax2[]' type='text' value='<?php echo $Tax[2]; ?>' class='search' id='tax2'>
                 </div>
                 <div id="form1_field">
-                <select name='tax3[]' id='tax3' class='search'>
+                <select name='tax3[]' id='tax3' class='search' onblur='updateTotal();' onchange='updateTotal();'>
                 <option value='+' <?php if($Tax[3]=="+")echo "selected=\"selected\""; ?>>+</option>
                 <option value='-' <?php if($Tax[3]=="-")echo "selected=\"selected\""; ?>>-</option>
                 </select>
-                %<input name='tax0[]' type='text' value='<?php echo number_format($Tax[0],2); ?>' class='search' id='tax0' size='5' />
+                %<input name='tax0[]' type='text' value='<?php echo number_format($Tax[0],2); ?>' class='search' id='tax0' size='5' onblur='updateTotal();' />
                 =
                 <?php echo $BL->conf['symbol']; ?>
-                <input name='tax1[]' type='text' value='<?php echo $BL->toCurrency($Tax[1],$curr_array,1,0); ?>' class='search' id='tax1' size='10' />
+                <input name='tax1[]' type='text' value='<?php echo $BL->toCurrency($Tax[1],$curr_array,1,0); ?>' class='search' id='tax1' size='10' onblur='updateTotal();' />
                 </div>
                 </td>
             </tr>
