@@ -85,9 +85,10 @@ else
     }
     foreach ($BL->pg as $key => $value)
     {
-        if ($BL->pp_active[$value] == "Yes" && $BL->pp_send_method[$value]  != "DIRECT")
+        if (($BL->pp_active[$value] == "Yes") && !$result)
         {
-            $BL->REQUEST['skip_auto_creation'] = 0;
+			// Skip auto creation if payment is "DIRECT"
+            $BL->REQUEST['skip_auto_creation'] = ($BL->pp_send_method[$value] == "DIRECT");
             $result = false;
             $pay    = $BL->pp_objs[$value];
             $result = $pay->ipn($BL);

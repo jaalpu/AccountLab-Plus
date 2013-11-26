@@ -45,7 +45,7 @@
  * holders.
  */ 
 
-$order_status   = array ("Pending"          , "Active"          , "Suspended"   , "Canceled"    , "Completed");
-$invoice_status = array ("Pending"          , "Paid"            , "Refunded"    , "Canceled"    , "Deleted"     ,"Upcoming");
-$ticket_status  = array ("Awaiting user"    , "Awaiting staff"  , "Resolved"    , "Closed");
+$order_status   = array ("Pending", "Active", "Suspended", "Canceled", "Completed");
+$invoice_status = array ("Pending", "Paid", "Refunded", "Canceled", "Deleted", "Upcoming", "Submitted");
+$ticket_status  = array ("Awaiting user", "Awaiting staff", "Resolved", "Closed");
 ?>

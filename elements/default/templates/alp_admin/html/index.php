@@ -56,24 +56,28 @@ var t    = [<?php echo $str2; ?>];
     <div id="display_list">
       <div class="tabs" name='t1' id='t1' onclick="javascript:showTab('tab1', tabs, 't1', t);" onmouseover="javascript:overTab('t1', t);" onmouseout="javascript:outTab(t);" ><?php echo $BL->props->lang['General']; ?></div>
       <div class="tab_separator">&nbsp;</div>
+      <?php if($BL->getCmd("viewinvoice") && count($sInvoices)){ ?>
+      <div class="tabs" name='t2' id='t2' onclick="javascript:showTab('tab2', tabs, 't2', t);" onmouseover="javascript:overTab('t2', t);" onmouseout="javascript:outTab(t);" ><?php echo count($sInvoices)." ".$BL->props->lang['Submitted_Invoices']; ?></div>
+      <div class="tab_separator">&nbsp;</div>
+      <?php } ?>
       <?php if($BL->getCmd("manual_payments") && count($mInvoices)){ ?>
-      <div class="tabs" name='t2' id='t2' onclick="javascript:showTab('tab2', tabs, 't2', t);" onmouseover="javascript:overTab('t2', t);" onmouseout="javascript:outTab(t);" ><?php echo count($mInvoices)." ".$BL->props->lang['~manual_payments']; ?></div>
+      <div class="tabs" name='t3' id='t3' onclick="javascript:showTab('tab3', tabs, 't3', t);" onmouseover="javascript:overTab('t3', t);" onmouseout="javascript:outTab(t);" ><?php echo count($mInvoices)." ".$BL->props->lang['~manual_payments']; ?></div>
       <div class="tab_separator">&nbsp;</div>
       <?php } ?>
       <?php if($BL->getCmd("viewinvoice") && count($pInvoices)){ ?>
-      <div class="tabs" name='t3' id='t3' onclick="javascript:showTab('tab3', tabs, 't3', t);" onmouseover="javascript:overTab('t3', t);" onmouseout="javascript:outTab(t);" ><?php echo count($pInvoices)." ".$BL->props->lang['Pending_Invoices']; ?></div>
+      <div class="tabs" name='t4' id='t4' onclick="javascript:showTab('tab3', tabs, 't4', t);" onmouseover="javascript:overTab('t4', t);" onmouseout="javascript:outTab(t);" ><?php echo count($pInvoices)." ".$BL->props->lang['Pending_Invoices']; ?></div>
       <div class="tab_separator">&nbsp;</div>
       <?php } ?>
       <?php if($BL->getCmd("orphan_orders") && count($oOrders)){ ?>
-      <div class="tabs" name='t4' id='t4' onclick="javascript:showTab('tab4', tabs, 't4', t);" onmouseover="javascript:overTab('t4', t);" onmouseout="javascript:outTab(t);" ><?php echo count($oOrders)." ".$BL->props->lang['Orphan_Order(s)']; ?></div>
+      <div class="tabs" name='t5' id='t5' onclick="javascript:showTab('tab4', tabs, 't5', t);" onmouseover="javascript:overTab('t5', t);" onmouseout="javascript:outTab(t);" ><?php echo count($oOrders)." ".$BL->props->lang['Orphan_Order(s)']; ?></div>
       <div class="tab_separator">&nbsp;</div>
       <?php } ?>
       <?php if($BL->getCmd("vieworders") && count($pOrders)){ ?>
-      <div class="tabs" name='t5' id='t5' onclick="javascript:showTab('tab5', tabs, 't5', t);" onmouseover="javascript:overTab('t5', t);" onmouseout="javascript:outTab(t);" ><?php echo count($pOrders)." ".$BL->props->lang['Pending_Orders']; ?></div>
+      <div class="tabs" name='t6' id='t6' onclick="javascript:showTab('tab6', tabs, 't6', t);" onmouseover="javascript:overTab('t6', t);" onmouseout="javascript:outTab(t);" ><?php echo count($pOrders)." ".$BL->props->lang['Pending_Orders']; ?></div>
       <div class="tab_separator">&nbsp;</div>
       <?php } ?>
       <?php if($BL->getCmd("viewTicket") && $open_ticket_count){ ?>
-      <div class="tabs" name='t6' id='t6' onclick="javascript:showTab('tab6', tabs, 't6', t);" onmouseover="javascript:overTab('t6', t);" onmouseout="javascript:outTab(t);" ><?php echo $open_ticket_count." ".$BL->props->lang['open_tickets']; ?></div>
+      <div class="tabs" name='t7' id='t7' onclick="javascript:showTab('tab7', tabs, 't7', t);" onmouseover="javascript:overTab('t7', t);" onmouseout="javascript:outTab(t);" ><?php echo $open_ticket_count." ".$BL->props->lang['open_tickets']; ?></div>
       <div class="tab_separator">&nbsp;</div>
       <?php } ?>      
     </div>
@@ -82,32 +86,38 @@ var t    = [<?php echo $str2; ?>];
     <?php include_once $BL->props->get_page("templates/alp_admin/html/_server_status.php"); ?>
     </div>
     
-    <?php if($BL->getCmd("manual_payments")){ $Invoices = $mInvoices;?>
+    <?php if($BL->getCmd("viewinvoice")){ $Invoices = $sInvoices;?>
     <div id="tab2" name="tab2" class="tabContent" style="display:none">	
     <?php include $BL->props->get_page("templates/alp_admin/html/_invoices.php"); ?>
     </div>
 	<?php } ?>	 
      
+    <?php if($BL->getCmd("manual_payments")){ $Invoices = $mInvoices;?>
+    <div id="tab3" name="tab3" class="tabContent" style="display:none">	
+    <?php include $BL->props->get_page("templates/alp_admin/html/_invoices.php"); ?>
+    </div>
+	<?php } ?>	 
+     
     <?php if($BL->getCmd("viewinvoice")){ $Invoices = $pInvoices;?>
-    <div id="tab3" name="tab3" class="tabContent" style="display:none">
+    <div id="tab4" name="tab4" class="tabContent" style="display:none">
     <?php include $BL->props->get_page("templates/alp_admin/html/_invoices.php"); ?>
     </div>     
     <?php } ?>
      
 	<?php if($BL->getCmd("orphan_orders")){ ?>   
-    <div id="tab4" name="tab4" class="tabContent" style="display:none">     
+    <div id="tab5" name="tab5" class="tabContent" style="display:none">     
     <?php include_once $BL->props->get_page("templates/alp_admin/html/_orphan_orders.php"); ?>            
     </div>    
 	<?php } ?>     
      
     <?php if($BL->getCmd("vieworders")){ $Orders = $pOrders; ?>
-    <div id="tab5" name="tab5" class="tabContent" style="display:none">
+    <div id="tab6" name="tab6" class="tabContent" style="display:none">
     <?php include_once $BL->props->get_page("templates/alp_admin/html/_orders.php"); ?>
     </div>
     <?php } ?>  
      
 	<?php if($BL->getCmd("viewTicket")){ ?>
-    <div id="tab6" name="tab6" class="tabContent" style="display:none">        
+    <div id="tab7" name="tab7" class="tabContent" style="display:none">        
     <?php include_once $BL->props->get_page("templates/alp_admin/html/_tickets.php"); ?>
     </div>    
 	<?php } ?>

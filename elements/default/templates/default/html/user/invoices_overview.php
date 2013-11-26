@@ -67,7 +67,7 @@ var t    = ["t1","t2","t3"<?php if($conf['u_invoice_date']){ ?>,"t4"<?php } ?>];
 <?php $invoices = $BL->invoices->get("WHERE `customers_orders`.customer_id=".intval($_SESSION['user_id'])." AND `invoices`.status='".$BL->utils->quoteSmart($BL->props->invoice_status[0])."'"); include $BL->props->get_page("templates/".THEMEDIR."/html/user/invoices.php"); ?>
 </div>
 <div id="tab2" name="tab2" class="tabContent" style="display:none">
-<?php $invoices = $BL->invoices->get("WHERE `customers_orders`.customer_id=".intval($_SESSION['user_id'])." AND `invoices`.status='".$BL->utils->quoteSmart($BL->props->invoice_status[1])."'"); include $BL->props->get_page("templates/".THEMEDIR."/html/user/invoices.php"); ?>
+<?php $invoices = $BL->invoices->get("WHERE `customers_orders`.customer_id=".intval($_SESSION['user_id'])." AND (`invoices`.status='".$BL->utils->quoteSmart($BL->props->invoice_status[1])."' OR `invoices`.status='".$BL->utils->quoteSmart($BL->props->invoice_status[6])."')"); include $BL->props->get_page("templates/".THEMEDIR."/html/user/invoices.php"); ?>
 </div>
 <div id="tab3" name="tab3" class="tabContent" style="display:none">
 <?php $invoices = $BL->invoices->get("WHERE `customers_orders`.customer_id=".intval($_SESSION['user_id'])." AND `invoices`.status='".$BL->utils->quoteSmart($BL->props->invoice_status[2])."'"); include $BL->props->get_page("templates/".THEMEDIR."/html/user/invoices.php"); ?>

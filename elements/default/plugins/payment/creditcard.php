@@ -50,6 +50,7 @@ $name           = "Credit Card";
 $creditcard     = array (
                         array ("Instructions message"       , "disp_msg"),
                         array ("Show additional currencies" , "add_curr", "No", "Yes"),
+						array ("Status after payment submission" , "submitted_status", "Pending", "Submitted"), 
                         array ("Active"                     , "active", "No", "Yes"),
                         array ("Title"                      , "title"),
 						array ("Submit label"               , "submit_label")
@@ -148,7 +149,7 @@ class creditcard
 	 */
 	function creditcard()
 	{
-		//Do nothing
+        $this->pay_url   = 'ipn.php';
 	}
     /*
      * Function to send variables
@@ -167,7 +168,14 @@ class creditcard
      */
     function ipn(& $BL)
     {
-        return false;
+		$res = $BL->pp_vals->find(array("WHERE `pp_name`='".get_class()."'"));
+		$status_after_submit = $res[0]['submitted_status'];
+
+		if ($status_after_submit == 'Submitted')
+		{
+			$BL->invoices->update(array("invoice_no"=>intval($BL->REQUEST['item_number']), "status"=>$BL->props->invoice_status[6]));
+		}
+        return true;
     }
 }
 ?>

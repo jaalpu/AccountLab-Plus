@@ -3087,6 +3087,7 @@ switch ($cmd)
             }
             $conf      = $BL->conf;
             $Servers   = $BL->servers->find();
+            $sInvoices = $BL->invoices->getByStatus($BL->props->invoice_status[6]);
             $pInvoices = $BL->invoices->getByStatus($BL->props->invoice_status[0]);
             $mInvoices = array();
             foreach($pInvoices as $Invoice)
@@ -3135,25 +3136,29 @@ switch ($cmd)
 
             $str1 = "\"tab1\"";
             $str2 = "\"t1\"";
+            if($BL->getCmd("viewinvoice") && count($sInvoices)){
+                $str1 .= ", \"tab2\"";
+                $str2 .= ", \"t2\"";
+            }
             if($BL->getCmd("manual_payments") && count($mInvoices)){
-                $str1 .= ",\"tab2\"";
-                $str2 .= ",\"t2\"";
+                $str1 .= ",\"tab3\"";
+                $str2 .= ",\"t3\"";
             }
             if($BL->getCmd("viewinvoice") && count($pInvoices)){
-                $str1 .= ", \"tab3\"";
-                $str2 .= ", \"t3\"";
-            }
-            if($BL->getCmd("orphan_orders") && count($oOrders)){
                 $str1 .= ", \"tab4\"";
                 $str2 .= ", \"t4\"";
             }
-            if($BL->getCmd("vieworders") && count($pOrders)){
+            if($BL->getCmd("orphan_orders") && count($oOrders)){
                 $str1 .= ", \"tab5\"";
                 $str2 .= ", \"t5\"";
             }
-            if($BL->getCmd("viewTicket") && $open_ticket_count){
+            if($BL->getCmd("vieworders") && count($pOrders)){
                 $str1 .= ", \"tab6\"";
                 $str2 .= ", \"t6\"";
+            }
+            if($BL->getCmd("viewTicket") && $open_ticket_count){
+                $str1 .= ", \"tab7\"";
+                $str2 .= ", \"t7\"";
             }
 			include_once $BL->include_page("index.php");
 			break;
