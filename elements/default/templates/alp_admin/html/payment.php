@@ -58,12 +58,12 @@
 		$int = $int+1;
 	?>
 	<tr> 
+        <td class="tdheading" width="20">
+            <a href="#" onClick="expandcontent('section_<?php echo $val; ?>')"><img src="elements/default/templates/alp_admin/images/top_arrow.gif" alt="" border="0" /></a>
+        </td>	  
         <td class="tdheading">
             <b>&nbsp;<?php echo $BL->pg_name[$val]; ?> <?php if($BL->pp_active[$val]=="Yes")echo "(*".$BL->props->lang['active'].")"; ?></b>
 	    </td>
-        <td class="tdheading" align="right">
-            <a href="#" onClick="expandcontent('section_<?php echo $val; ?>')"><img src="elements/default/templates/alp_admin/images/top_arrow.gif" alt="" border="0" /></a>
-        </td>	  
     </tr>
 	<tr> 
         <td class="text_grey" colspan="2">
