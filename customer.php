@@ -409,7 +409,6 @@ switch ($cmd)
         }
     case "orders":
         {
-            $orders = $BL->orders->get("WHERE `customers`.id=".intval($_SESSION['user_id'])." AND `orders`.order_deleted != '1'");
             include_once $BL->include_page("orders_overview.php", "user");
             break;
         }

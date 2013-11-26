@@ -48,19 +48,56 @@
 ?>
 
 <?php include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/header.php"); ?>
-<script language="JavaScript" type="text/javascript">
-var tabs = ["tab1"];
-var t    = ["t1"];
-</script>  
 <!--tabs//-->
-<div class="tabs" name='t1' id='t1' onclick="javascript:showTab('tab1', tabs, 't1', t);" onmouseover="javascript:overTab('t1', t);" onmouseout="javascript:outTab(t);" ><?php echo $BL->props->lang['Orders']; ?></div>
+
+<?php
+	foreach($BL->props->order_status as $status)
+	{
+		$allorders[$status] = $BL->orders->get("WHERE `customers`.id=".intval($_SESSION['user_id'])." AND `orders`.order_deleted != '1' AND `cust_status`='".$status."'");
+	}
+
+	$t=1;
+	$orders = $BL->orders->get("WHERE `customers`.id=".intval($_SESSION['user_id'])." AND `orders`.order_deleted != '1'");
+?>
+<div class="tabs" name='t<?php echo $t ?>' id='t<?php echo $t ?>' onclick="javascript:showTab('tab<?php echo $t ?>', tabs, 't<?php echo $t ?>', t);" onmouseover="javascript:overTab('t<?php echo $t ?>', t);" onmouseout="javascript:outTab(t);" ><?php echo $BL->props->lang['Orders']; ?></div>
 <div class="tab_separator">&nbsp;</div>
+<?php
+	foreach($allorders as $k=>$v) {
+		if (!empty($v)) {
+			$t+=1;
+?>
+<div class="tabs" name='t<?php echo $t ?>' id='t<?php echo $t ?>' onclick="javascript:showTab('tab<?php echo $t ?>', tabs, 't<?php echo $t ?>', t);" onmouseover="javascript:overTab('t<?php echo $t ?>', t);" onmouseout="javascript:outTab(t);" ><?php echo $BL->props->lang[$k]; ?></div>
+<div class="tab_separator">&nbsp;</div>
+<?php
+		}
+	}
+?>
+<!-- pages -->
+<?php $t=1; ?>
 <div>
-<div id="tab1" name="tab1" class="tabContent" style="display:none">
+<div id="tab<?php echo $t ?>" name="tab<?php echo $t ?>" class="tabContent" style="display:none">
 <?php include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/orders.php"); ?>
 </div>
+<?php
+	foreach($allorders as $k=>$v) {
+		if (!empty($v)) {
+			$t+=1;
+			$orders = $v;
+?>
+<div id="tab<?php echo $t ?>" name="tab<?php echo $t ?>" class="tabContent" style="display:none">
+<?php include $BL->props->get_page("templates/".THEMEDIR."/html/user/orders.php"); ?>
+</div>
+<?php
+		}
+	}
+?>
+
+
+
 </div>
 <script language="JavaScript" type="text/javascript">
+  var tabs = ["tab1"<?php for($i=2; $i<=$t; $i++) { echo ", \"tab$i\""; } ?>];
+  var t    = ["t1"<?php for($i=2; $i<=$t; $i++) { echo ", \"t$i\""; } ?>];
   showTab('tab1', tabs, 't1', t);
 </script>
 <?php include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/footer.php"); ?>
