@@ -2989,10 +2989,16 @@ switch ($cmd)
         {
             if (isset($BL->REQUEST['submit']) && $BL->REQUEST['submit']==$BL->props->lang['Update'])
             {
-                $sql = "ALTER TABLE `invoices` AUTO_INCREMENT =".intval($BL->REQUEST['inv_start_no']);
-                $BL->dbL->executeALTER($sql);
-                $sql = "ALTER TABLE `orders` AUTO_INCREMENT =".intval($BL->REQUEST['order_start_no']);
-                $BL->dbL->executeALTER($sql);
+				if ($BL->REQUEST['inv_start_no'] !== '')
+				{
+					$sql = "ALTER TABLE `invoices` AUTO_INCREMENT =".intval($BL->REQUEST['inv_start_no']);
+					$BL->dbL->executeALTER($sql);
+				}
+                if ($BL->REQUEST['order_start_no'] !== '')
+				{
+					$sql = "ALTER TABLE `orders` AUTO_INCREMENT =".intval($BL->REQUEST['order_start_no']);
+					$BL->dbL->executeALTER($sql);
+				}
 
                 $msg = $BL->props->lang['nothing_changed'];
                 $BL->REQUEST['email_charset']= (isset($BL->REQUEST['email_charset']) && !empty($BL->REQUEST['email_charset']))?$BL->REQUEST['email_charset']:$BL->props->lang['charset'];

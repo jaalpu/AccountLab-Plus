@@ -613,7 +613,7 @@ var t    = ["t1","t2","t3","t4","t5"];
 		<?php echo $BL->props->lang['order_start_no']; ?>
 		</div>
 		<div id="form1_field">
-        <input name='order_start_no' type='text' class='search' value='<?php echo $conf[0]['order_start_no']; ?>' size='20' />
+        <input name='order_start_no' type='text' class='search' value='' size='20' />
         </div>
         </td>
       </tr>
@@ -633,7 +633,7 @@ var t    = ["t1","t2","t3","t4","t5"];
 		<?php echo $BL->props->lang['inv_start_no']; ?>
 		</div>
 		<div id="form1_field">
-        <input name='inv_start_no' type='text' class='search' value='<?php echo $conf[0]['inv_start_no']; ?>' size='20' />
+        <input name='inv_start_no' type='text' class='search' value='' size='20' />
         </div>
         </td>
       </tr>
