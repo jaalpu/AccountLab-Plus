@@ -65,7 +65,7 @@
         $temp_sub_id= 0;
         foreach ($orders as $key => $value)
         {
-            if ($temp_sub_id != $value['sub_id'] && ($value['cust_status']==$BL->props->order_status[0] || $cmd=="orders"))
+            if ($temp_sub_id != $value['sub_id'])
             {
                 if ($bgcolor == "accountlabAltDataTD")
                     $bgcolor= "accountlabDataTD";

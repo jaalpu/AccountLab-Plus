@@ -438,8 +438,11 @@ switch ($cmd)
             $BL->customfields->setOrder("customfields_index");
             $custom_fields = $BL->customfields->getAvailable();
             $customer = $BL->customers->getByKey($_SESSION['user_id']);
-            $orders   = $BL->orders->get("WHERE `customers`.id=".intval($_SESSION['user_id'])." AND `orders`.order_deleted != '1'");
-            $invoices = $BL->invoices->get("WHERE `customers_orders`.customer_id=".intval($_SESSION['user_id'])." AND `invoices`.status='".$BL->utils->quoteSmart($BL->props->invoice_status[0])."'");
+			$activeorders = $BL->orders->get("WHERE `customers`.id=".intval($_SESSION['user_id'])." AND `orders`.order_deleted != '1' AND `cust_status`='".$BL->props->order_status[1]."' ");
+            $suspendedorders = $BL->orders->get("WHERE `customers`.id=".intval($_SESSION['user_id'])." AND `orders`.order_deleted != '1' AND `cust_status`='".$BL->props->order_status[2]."' ");
+            $pendingorders   = $BL->orders->get("WHERE `customers`.id=".intval($_SESSION['user_id'])." AND `orders`.order_deleted != '1' AND `cust_status`='".$BL->props->order_status[0]."' ");
+            $pendinginvoices = $BL->invoices->get("WHERE `customers_orders`.customer_id=".intval($_SESSION['user_id'])." AND `invoices`.status='".$BL->utils->quoteSmart($BL->props->invoice_status[0])."'");
+            $upcominginvoices = $BL->invoices->get("WHERE `customers_orders`.customer_id=".intval($_SESSION['user_id'])." AND `invoices`.status='".$BL->utils->quoteSmart($BL->props->invoice_status[5])."'");
             $tickets  = $BL->support_tickets->find(array("WHERE `cust_id`=".intval($_SESSION['user_id'])." AND `ticket_status`!=3"));
             include_once $BL->include_page("index.php", "user");
 			break;
