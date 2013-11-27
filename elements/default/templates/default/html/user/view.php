@@ -98,10 +98,6 @@ var t    = ["t1"];
                 <td  height='22' class='accountlabDataTD'><?php echo $BL->props->lang['username']; ?></td>
                 <td  height='22' class='accountlabDataTD'><?php echo $order[0]['dom_user']; ?></td>
               </tr>
-              <tr> 
-                <td height='22' class='accountlabAltDataTD'><?php echo $BL->props->lang['password']; ?></td>
-                <td class='accountlabAltDataTD'><?php echo $BL->utils->alpencrypt->decrypt($order[0]['dom_pass'], $BL->props->encryptionKey); ?></td>
-              </tr>
             <?php if (count($addon_ids)){ ?>     
               <tr> 
                 <td height='22' class='accountlabDataTD'></td>
