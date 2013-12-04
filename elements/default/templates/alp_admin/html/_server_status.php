@@ -153,7 +153,7 @@
       <br />
       <script language="javascript">updateServers();</script>
         <?php if($conf['s_status_refresh']>0){ ?>
-        <meta http-equiv="refresh" content="<?php echo $conf['s_status_refresh']; ?>;URL=admin.php?cmd_prev=<?php echo $BL->REQUEST['cmd_prev'] ?>&cmd=main">
+        <meta http-equiv="refresh" content="<?php echo $conf['s_status_refresh']; ?>;URL=admin.php?cmd_prev=<?php echo isset($BL->REQUEST['cmd_prev'])?urlencode($BL->REQUEST['cmd_prev']):'' ?>&cmd=main">
         <?php } ?>  
         <form name='form2' id='form2' action="admin.php" method="post">
         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list_table">

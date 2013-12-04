@@ -85,7 +85,7 @@ elseif($cmd=='quickpay' && $BL->conf['en_quickpay'])
 	include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/quickpay.php");
     $BL->Disconnect();
 }
-elseif($cmd=='pay' && $_SESSION['quickpay'] == $BL->REQUEST['invoice_no'] && $BL->conf['en_quickpay'])
+elseif($cmd=='pay' && isset($_SESSION['quickpay']) && $_SESSION['quickpay'] == $BL->REQUEST['invoice_no'] && $BL->conf['en_quickpay'])
 {
 	$skiplogin = true;
 }

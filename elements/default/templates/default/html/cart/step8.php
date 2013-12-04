@@ -48,7 +48,9 @@
 ?>
 
 <?php include_once $BL->props->get_page("templates/".THEMEDIR."/html/cart/header.php"); ?>
-<form name='order_form' id='order_form' method='<?php echo ($send_method=="DIRECT")?"POST":$send_method; ?>' action="<?php echo $post_url; ?>">
+<form name='order_form' id='order_form' 
+	method='<?php echo (empty($send_method) || $send_method=="DIRECT")?"POST":$send_method; ?>' 
+	action="<?php echo isset($post_url)?$post_url:'ipn.php'; ?>">
 <table width='100%' border="0" align="center" cellpadding="2" cellspacing="2">
 <?php include_once $BL->props->get_page("templates/".THEMEDIR."/html/cart/finish.php"); ?>
 <tr>

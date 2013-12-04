@@ -51,7 +51,7 @@
 <script language="JavaScript" type="text/javascript">
 var tabs = ["tab1"];
 var t    = ["t1"];
-<?php echo $BL->pg_validate[$payment_method]; ?>
+<?php echo (isset($payment_method)&&isset($BL->pg_validate[$payment_method]))?$BL->pg_validate[$payment_method]:''; ?>
 </script>  
 <!--tabs//-->
 <div class="tabs" name='t1' id='t1' onclick="javascript:showTab('tab1', tabs, 't1', t);" onmouseover="javascript:overTab('t1', t);" onmouseout="javascript:outTab(t);" ><?php echo $BL->props->lang['Invoice']; ?></div>

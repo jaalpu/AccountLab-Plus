@@ -172,7 +172,7 @@
                         <option><?php echo $BL->props->lang['manual']; ?></option>
                             <?php
                             foreach($BL->dr as $k=>$v){
-                                if($BL->dr_vals[$v]['active']=="yes"){
+                                if(isset($BL->dr_vals[$v]['active']) && $BL->dr_vals[$v]['active']=="yes"){
                                 ?>
                             	<option value='<?php echo $v; ?>' <?php if($cmd=="edittld" && $tld['tld_registrar']==$v) echo "selected=\"selected\""; ?>><?php echo ucfirst($v); ?></option>
                             <?php

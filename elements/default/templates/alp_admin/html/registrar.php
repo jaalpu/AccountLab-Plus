@@ -59,7 +59,7 @@
     ?>
     <tr>
         <td class="tdheading">
-            <b>&nbsp;<?php echo $BL->props->parseLang($key); ?> <?php if($BL->dr_vals[$key]['active']=="yes")echo "(*".$BL->props->lang['active'].")"; ?></b>
+            <b>&nbsp;<?php echo $BL->props->parseLang($key); ?> <?php if(isset($BL->dr_vals[$key]['active']) && $BL->dr_vals[$key]['active']=="yes")echo "(*".$BL->props->lang['active'].")"; ?></b>
         </td>
         <td class="tdheading" align="right">
             <a href="#" onClick="expandcontent('section_<?php echo $key; ?>')"><img src="elements/default/templates/alp_admin/images/top_arrow.gif" alt="" border="0" /></a>
@@ -84,13 +84,13 @@
                 if (!is_array($v[2])) {
                 ?>
                 <div id="form1_field">
-                <input class='search' type='text' value='<?php echo $BL->dr_vals[$key][$v[0]]; ?>' name='<?php echo $key."[".$v[0]."]"; ?>' id='<?php echo $key."[".$v[0]."]"; ?>' size='30' />
+                <input class='search' type='text' value='<?php echo isset($BL->dr_vals[$key][$v[0]]) ? $BL->dr_vals[$key][$v[0]] :''; ?>' name='<?php echo $key."[".$v[0]."]"; ?>' id='<?php echo $key."[".$v[0]."]"; ?>' size='30' />
                 </div>
                 <?php } else { ?>
                 <div id="form1_field">
                 <select name='<?php echo $key."[".$v[0]."]"; ?>' id='<?php echo $key."[".$v[0]."]"; ?>' class='search'>
                 <?php foreach ($v[2] as $a=>$b) { ?>
-                <option value='<?php echo $a; ?>' <?php if($a==$BL->dr_vals[$key][$v[0]])echo "selected=\"selected\""; ?>><?php echo $b; ?></option>
+                <option value='<?php echo $a; ?>' <?php if(isset($BL->dr_vals[$key][$v[0]]) && $a==$BL->dr_vals[$key][$v[0]])echo "selected=\"selected\""; ?>><?php echo $b; ?></option>
                 <?php } ?>
                 </select>
                 </div>

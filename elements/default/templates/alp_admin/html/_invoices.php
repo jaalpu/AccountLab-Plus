@@ -52,7 +52,7 @@
     <form name='form2' id='form2' action="admin.php" method="post">
       <input type='hidden' name='search_term' id='search_term' value='<?php echo isset($BL->REQUEST['search_term'])?$BL->REQUEST['search_term']:""; ?>' >
       <input type='hidden' name='cmd' id='cmd' value='<?php echo $cmd; ?>' />
-      <input type='hidden' name='status' id='status' value='<?php echo $status; ?>' />
+      <input type='hidden' name='status' id='status' value='<?php echo isset($status)?$status:''; ?>' />
       <input type='hidden' name='id' id='id' value='<?php echo isset($BL->REQUEST['id'])?$BL->REQUEST['id']:0; ?>' />
         <td colspan="8" class="tdheading" align='right'>
             <?php if($cmd=="viewinvoice"){ ?>

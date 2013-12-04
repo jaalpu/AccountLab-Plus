@@ -79,9 +79,9 @@ class model
     function setLimit($limit=false)
     {
         // Sanity check and client min and max
-        $min = preg_replace('/\D/','',$this->REQUEST['l1']);
+        $min = isset($this->REQUEST['l1']) ? preg_replace('/\D/','',$this->REQUEST['l1']) : 0;
         $min = empty($min)?0:$min;
-        $max = preg_replace('/\D/','',$this->REQUEST['l2']);
+        $max = isset($this->REQUEST['l2']) ? preg_replace('/\D/','',$this->REQUEST['l2']) : 50;
         $max = empty($max)?50:$max;
 
         if($limit)

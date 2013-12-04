@@ -1010,7 +1010,9 @@ class busLogic
             {
                 if ($field[2])//stored or not
                 {
-                    $data[$field[1]] = ($field[3])?$this->utils->alpencrypt->encrypt($this->REQUEST[$field[1]], $this->props->encryptionKey):$this->REQUEST[$field[1]];
+					$data[$field[1]] = isset($this->REQUEST[$field[1]])?$this->REQUEST[$field[1]]:'';
+					if ($field[3])
+						$data[$field[1]] = $this->utils->alpencrypt->encrypt($data[$field[1]], $this->props->encryptionKey);
                 }
             }
             if ($do == "INSERT")
@@ -1731,6 +1733,7 @@ class busLogic
 			$sqlUPDATE = "UPDATE {$this->props->tbl_orders} SET `cust_status`='" . $this->props->order_status[$status] . "' WHERE `sub_id`=".intval($sub_id);
 			$this->dbL->executeUPDATE($sqlUPDATE);
             $this->orders->update(array("cust_status"=>$this->props->order_status[$status],"sub_id"=>$sub_id));
+			$this->cp_message = isset($this->cp_message)?$this->cp_message:'';
 			$this->cp_message = trim($this->cp_message);
 			if (empty ($this->cp_message))
             {
