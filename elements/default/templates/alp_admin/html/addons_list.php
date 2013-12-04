@@ -101,9 +101,9 @@
 					  <?php if($temp['addon_index'] > 1){ ?>
 					  &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=addons&addon_id=<?php echo $temp['addon_id']; ?>&addon_index=<?php echo $temp['addon_index']; ?>&action=up'>
 					  <img src='elements/default/templates/alp_admin/images/up.gif' border='0' /></a>
-					  <?php }if($temp['addon_index'] > 1 && $temp['addon_index '] < count($addons)){ ?>
+					  <?php } if(($temp['addon_index'] > 1) && ($temp['addon_index'] < count($addons))){ ?>
 					  <br />
-					  <?php }if($temp['addon_index'] < count($addons)){ ?>
+					  <?php } if($temp['addon_index'] < count($addons)){ ?>
 					  &nbsp;<a href='<?php echo $PHP_SELF; ?>?cmd=addons&addon_id=<?php echo $temp['addon_id']; ?>&addon_index=<?php echo $temp['addon_index']; ?>&action=down'>
 					  <img src='elements/default/templates/alp_admin/images/down.gif' border='0' /></a>
 					  <?php } ?>
