@@ -677,8 +677,8 @@ function step2_buyNow()
 {
     global $cmd;
     $_SESSION['type']= isset($_SESSION['type'])?$_SESSION['type']:(isset($_SESSION['subdomain'])?2:1);
-    $_SESSION['sld']= isset($_SESSION['sld'])?$_SESSION['sld']:$_SESSION['domain'];
-    $_SESSION['tld']= isset($_SESSION['tld'])?$_SESSION['tld']:$_SESSION['ext'];
+    $_SESSION['sld']= isset($_SESSION['sld'])?$_SESSION['sld']:(isset($_SESSION['domain'])?$_SESSION['domain']:'');
+    $_SESSION['tld']= isset($_SESSION['tld'])?$_SESSION['tld']:(isset($_SESSION['ext'])?$_SESSION['ext']:'');
     $objResponse = new xajaxResponse(CHARSET);
     if(!empty($_SESSION['sld']) && !empty($_SESSION['tld']) && $cmd=="step2")
     {
