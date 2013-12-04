@@ -268,7 +268,8 @@ switch ($cmd)
             }
             $add_cur = $BL->currencies->find();
 
-            if (isset($invoice['customer_id']) && $_SESSION['user_id'] == $invoice['customer_id'])
+            if (isset($invoice['customer_id']) && isset($_SESSION['user_id']) && 
+			    $_SESSION['user_id'] == $invoice['customer_id'])
             {
                 $html_buffer = $BL->mailInvoice($BL->REQUEST['invoice_no'],true);
                 include_once $BL->include_page("invoice_view.php", "user");
