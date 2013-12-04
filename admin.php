@@ -1834,6 +1834,7 @@ switch ($cmd)
                 $Amounts              = array();
                 $BL->report->rColumns = array('gross_amount','due_date');
                 $Datas                = $BL->report->invoiceReport($BL->props->invoice_status[1]);
+				$year = date('Y'); // default
                 foreach($Datas as $Data)
                 {
                     $date = $BL->utils->getDateArray($Data['due_date']);
@@ -1845,7 +1846,10 @@ switch ($cmd)
                 $Amounts[date('Y')-1] = isset($Amounts[date('Y')-1])?$Amounts[date('Y')-1]:0;
                 $Amounts[date('Y')-2] = isset($Amounts[date('Y')-2])?$Amounts[date('Y')-2]:0;
                 //growth rate
-                $growth_rate            = 100*(($Amounts[(date('Y')-1)]- $Amounts[(date('Y')-2)])/$Amounts[(date('Y')-2)]);//%
+				if (!empty($Amounts[(date('Y')-2)]))
+					$growth_rate = 100*(($Amounts[(date('Y')-1)]- $Amounts[(date('Y')-2)])/$Amounts[(date('Y')-2)]);//%
+				else
+					$growth_rate = 0;
                 //this year projected
                 $Amounts[date('Y')]     = $Amounts[(date('Y')-1)]+($Amounts[(date('Y')-1)]*($growth_rate/100));
                 //next year projected
@@ -1908,7 +1912,10 @@ switch ($cmd)
                 }
                 $month_duration = $BL->report->rFromDate."->".$BL->report->rToDate;
                 //average growth
-                $avg_growth = array_sum($growth)/count($growth);
+				if (count($growth) > 0)
+					$avg_growth = array_sum($growth)/count($growth);
+				else
+					$avg_growth = 0;
                 //calculate this year income
                 $currentyearincome = 0;
                 $Amounts[date('Y')] = isset($Amounts[date('Y')])?$Amounts[date('Y')]:array();
