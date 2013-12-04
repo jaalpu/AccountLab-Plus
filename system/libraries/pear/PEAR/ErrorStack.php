@@ -253,7 +253,7 @@ class PEAR_ErrorStack {
      * @static
      * @return PEAR_ErrorStack
      */
-    function &singleton($package, $msgCallback = false, $contextCallback = false,
+    static function &singleton($package, $msgCallback = false, $contextCallback = false,
                          $throwPEAR_Error = false, $stackClass = 'PEAR_ErrorStack')
     {
         if (isset($GLOBALS['_PEAR_ERRORSTACK_SINGLETON'][$package])) {
