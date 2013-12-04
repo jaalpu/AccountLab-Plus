@@ -2652,10 +2652,10 @@ class busLogic
             }
 
             $tax_data_for_calcutation[$i]['tax_id']         = $k+1;
-            $tax_data_for_calcutation[$i]['tax_name']       = $temp_v[2];
-            $tax_data_for_calcutation[$i]['tax_amount']     = $temp_v[0];
-            $tax_data_for_calcutation[$i]['tax_add_sub']    = $temp_v[3];
-            $tax_data_for_calcutation[$i]['tax_net_comp']   = $temp_v[4];
+            $tax_data_for_calcutation[$i]['tax_name']       = isset($temp_v[2])?$temp_v[2]:0;
+            $tax_data_for_calcutation[$i]['tax_amount']     = isset($temp_v[0])?$temp_v[0]:0;
+            $tax_data_for_calcutation[$i]['tax_add_sub']    = isset($temp_v[3])?$temp_v[3]:0;
+            $tax_data_for_calcutation[$i]['tax_net_comp']   = isset($temp_v[4])?$temp_v[4]:0;
             $tax_data_for_calcutation[$i]['tax_country']    = 'ALL';
             $tax_data_for_calcutation[$i]['tax_state']      = 'ALL';
             $tax_data_for_calcutation[$i]['tax_enable']     = 1;
