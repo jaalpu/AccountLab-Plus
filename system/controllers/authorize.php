@@ -249,7 +249,7 @@ class authorize_controller extends controller
         //check for finger print against session hijack and it will ensure that session is maximum valid for 24 hours
         if ($user_type == "admin")
         {
-            if ($_SESSION['admin_fingerprint'] == md5($_SERVER['HTTP_USER_AGENT'].$secure_text.date('d-M-Y').$_SESSION['admin_token']))
+            if (isset($_SESSION['admin_fingerprint']) && $_SESSION['admin_fingerprint'] == md5($_SERVER['HTTP_USER_AGENT'].$secure_text.date('d-M-Y').$_SESSION['admin_token']))
             {
                 if ($_SESSION['admin_logged_in'] == true && is_numeric($_SESSION['admin_id']) && $_SESSION['admin_id'] > 0 && $this->utils->chkUserFormat($_SESSION['username']))
                 {
