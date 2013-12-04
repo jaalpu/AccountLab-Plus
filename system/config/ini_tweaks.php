@@ -45,9 +45,9 @@
  * holders.
  */ 
 
-ini_set('error_reporting'               , 0);
+// Uncomment the next line if you want to turn error messages off, and can't control php.ini
+//ini_set('error_reporting'               , 0);
 ini_set('memory_limit'                  , '128M');
 ini_set('arg_separator.output'          , '&');
 ini_set('max_execution_time'            , '300');
-ini_set('zend.ze1_compatibility_mode'   , 1);
 ?>

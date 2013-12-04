@@ -46,7 +46,6 @@
  */ 
 
 session_start();
-error_reporting(0);
 
 //install pear
 set_include_path(realpath('system'. DIRECTORY_SEPARATOR . 'libraries' . DIRECTORY_SEPARATOR . 'pear') . PATH_SEPARATOR . get_include_path());
@@ -83,8 +82,6 @@ define("DEFAULT_LANG"       , PATH_ELEMENTS . "default" . PATH_SEP . "language" 
 
 define("ERROR_LOG_FILE"     , LOGS."error_log.txt");
 define("DB_FILE"            , is_file(CUSTOM_SYSVAR . "db.php")?CUSTOM_SYSVAR . "db.php":DEFAULT_SYSVAR . "db.php");
-
-require_once  CONFIG                . "error_handler.php";
 
 require_once is_file(CUSTOM_SYSVAR  . "copyright.php")
               ?CUSTOM_SYSVAR        . "copyright.php"
@@ -131,8 +128,6 @@ define("ALP_DEBUG"      , $debug_mode);
 define("ALP_VERSION"    , $ALPversion);
 define("ALP_BUILD"      , $ALPBuild);
 define("ALP_COPYRIGHT"  , $copyright);
-
-error_reporting(ALP_DEBUG);
 
 $REQUEST        = array_merge($_GET, $_POST);
 $PHP_SELF       = isset($PHP_SELF)?$PHP_SELF:$_SERVER['PHP_SELF'];
