@@ -47,51 +47,55 @@
 
 $myChart    = new BJCBarChart();
 $uptime     = @ exec('uptime');
-preg_match("/averages?: ([0-9\.]+),[\s]+([0-9\.]+),[\s]+([0-9\.]+)/", $uptime, $avgs);
-$uptime = explode(' up ', $uptime);
-$uptime = explode(',', $uptime[1]);
-$uptime = $uptime[0].', '.$uptime[1];
-$start  = mktime(0, 0, 0, 1, 1, date("Y"), 0);
-$end    = mktime(0, 0, 0, date("m"), date("j"), date("y"), 0);
-$diff   = $end - $start;
-$days   = $diff / 86400;
-#$percentage=($uptime/$days) * 100;
-$load   = $avgs[1].",".$avgs[2].",".$avgs[3]."";
-#echo 'Average Load: '.$load;
-#echo '<BR>Uptime: '.$uptime;
-#echo "<BR>$avgs[1]";
-#echo "<BR>$avgs[2]";
-#echo "<BR>$avgs[3]";
-// Set the properties
-$myChart->max           = "500";
-$myChart->min           = "0";
-$myChart->barWidth      = "1000"; // As wide bars as possible
-$myChart->barPadding    = "5";
-$myChart->gridLines     = "5";
-$myChart->printTitle    = "Server Uptime";
-$myChart->printXTitle   = "Poll Time";
-$myChart->printYTitle   = "Amount";
-$myChart->printFooter   = "Server Load Average";
-if ($avgs[1] == "")
+if ($uptime)
 {
-	$avgs[1] = 0;
+	preg_match("/averages?: ([0-9\.]+),[\s]+([0-9\.]+),[\s]+([0-9\.]+)/", $uptime, $avgs);
+	$uptime = explode(' up ', $uptime);
+	$uptime = explode(',', $uptime[1]);
+	$uptime = $uptime[0].', '.$uptime[1];
+	$start  = mktime(0, 0, 0, 1, 1, date("Y"));
+	$end    = mktime(0, 0, 0, date("m"), date("j"), date("y"));
+	$diff   = $end - $start;
+	$days   = $diff / 86400;
+	#$percentage=($uptime/$days) * 100;
+	$load   = $avgs[1].",".$avgs[2].",".$avgs[3]."";
+	#echo 'Average Load: '.$load;
+	#echo '<BR>Uptime: '.$uptime;
+	#echo "<BR>$avgs[1]";
+	#echo "<BR>$avgs[2]";
+	#echo "<BR>$avgs[3]";
+
+	// Set the properties
+	$myChart->max           = "500";
+	$myChart->min           = "0";
+	$myChart->barWidth      = "1000"; // As wide bars as possible
+	$myChart->barPadding    = "5";
+	$myChart->gridLines     = "5";
+	$myChart->printTitle    = "Server Uptime";
+	$myChart->printXTitle   = "Poll Time";
+	$myChart->printYTitle   = "Amount";
+	$myChart->printFooter   = "Server Load Average";
+	if ($avgs[1] == "")
+	{
+		$avgs[1] = 0;
+	}
+	if ($avgs[2] == "")
+	{ 
+		$avgs[2] = 0;
+	}
+	if ($avgs[3] == "")
+	{
+		$avgs[3] = 0;
+	}
+	$myChart->max = (1/5);
+	if($avgs[1]>$myChart->max)$myChart->max = $avgs[1]+(1/5);
+	if($avgs[2]>$myChart->max)$myChart->max = $avgs[2]+(1/5);
+	if($avgs[3]>$myChart->max)$myChart->max = $avgs[3]+(1/5);
+	// Call the addBar method to add a new bar to the chart
+	$myChart->addBar("1 min", "0xFF0000", $avgs[1]);
+	$myChart->addBar("5 min", "0x00FF00", $avgs[2]);
+	$myChart->addBar("15 min", "0x0000FF", $avgs[3]);
+	// Call the toXML method to output the XML data
+	$myChart->toXML();
 }
-if ($avgs[2] == "")
-{ 
-	$avgs[2] = 0;
-}
-if ($avgs[3] == "")
-{
-	$avgs[3] = 0;
-}
-$myChart->max = (1/5);
-if($avgs[1]>$myChart->max)$myChart->max = $avgs[1]+(1/5);
-if($avgs[2]>$myChart->max)$myChart->max = $avgs[2]+(1/5);
-if($avgs[3]>$myChart->max)$myChart->max = $avgs[3]+(1/5);
-// Call the addBar method to add a new bar to the chart
-$myChart->addBar("1 min", "0xFF0000", $avgs[1]);
-$myChart->addBar("5 min", "0x00FF00", $avgs[2]);
-$myChart->addBar("15 min", "0x0000FF", $avgs[3]);
-// Call the toXML method to output the XML data
-$myChart->toXML();
 ?>
