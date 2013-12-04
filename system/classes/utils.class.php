@@ -283,7 +283,7 @@ class utils extends Date_Calc
 	 */
 	function url2link($text)
 	{
-		return ereg_replace("[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]", "<a href=\"\\0\">\\0</a>", $text);
+		return preg_replace("|[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]|", "<a href=\"\\0\">\\0</a>", $text);
 	}
 	/*
 	 * Alert
@@ -409,8 +409,8 @@ class utils extends Date_Calc
 	 */
 	function onlyStr($str)
 	{
-		$text = eregi_replace("<br>", "||", $str);
-		$text = ereg_replace('(<[^>]+>([^<]+<\/[^>]+>)?)', ' ', $text);
+		$text = preg_replace("|<br>|i", "||", $str);
+		$text = preg_replace('|(<[^>]+>([^<]+<\/[^>]+>)?)|', ' ', $text);
 		$text = str_replace(";", "", $text);
 		$text = str_replace("\r", "", $text);
 		$text = str_replace("||", "\n", $text);
@@ -559,7 +559,7 @@ class utils extends Date_Calc
 	 */
 	function chksubDomainFormat($domain)
 	{
-		if (eregi("^[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+\.[a-zA-Z0-9.]{2,10}$", $domain))
+		if (preg_match("/^[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+\.[a-zA-Z0-9.]{2,10}$/i", $domain))
 		{
 			return true;
 		}
@@ -570,7 +570,7 @@ class utils extends Date_Calc
 	     */
 	function chkDomainFormat($domain)
 	{
-		if (eregi("^[a-zA-Z0-9-]+\.[a-zA-Z0-9.]{2,10}$", $domain))
+		if (preg_match("/^[a-zA-Z0-9-]+\.[a-zA-Z0-9.]{2,10}$/i", $domain))
 		{
 			return true;
 		}
@@ -581,7 +581,7 @@ class utils extends Date_Calc
 	 */
 	function chkUserFormat($str)
 	{
-		if (eregi("^[a-zA-Z0-9~!@#$%^&*()_+-=]{0,255}$", $str))
+		if (preg_match("/^[a-zA-Z0-9~!@#$%^&*()_+-=]{0,255}$/i", $str))
 		{
 			return true;
 		}
@@ -592,7 +592,7 @@ class utils extends Date_Calc
 	 */
 	function chkEmailFormat($email)
 	{
-		if (eregi("^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,10})$", $email))
+		if (preg_match("/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,10})$/i", $email))
 		{
 			return true;
 		}
@@ -721,7 +721,7 @@ class utils extends Date_Calc
 			}
 			for ($i= 0; $i < count($ips); $i++)
 			{
-				if (!eregi("^(10|172\.16|192\.168)\.", $ips[$i]))
+				if (!preg_match("/^(10|172\.16|192\.168)\./i", $ips[$i]))
 				{
 					if (version_compare(phpversion(), "5.0.0", ">="))
 					{

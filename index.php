@@ -68,7 +68,7 @@ $GET_STR      = '?';
 $BUY_NOW_DATA = (count($_GET))?$_GET:$_POST;
 foreach($BUY_NOW_DATA as $key=>$value)
 {
-    if(!eregi("xajax",$key) && !is_array($key) && !is_array($value) && $key!="cmd")
+    if(!preg_match("/xajax/i",$key) && !is_array($key) && !is_array($value) && $key!="cmd")
     {
         $GET_STR .= trim($key)."=".trim($value).'&';
     }

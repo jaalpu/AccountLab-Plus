@@ -77,7 +77,7 @@ if($BL->conf['en_ticket_by_email']){
                 $customer = $BL->customers->getByKey($from,'email');
                 $admin    = $BL->admin_users->getByKey($from,'email');
                 //reply
-                if(eregi("[TICKET NO:",$subject)){
+                if(preg_match("/\[TICKET NO:/i",$subject)){
                     $Reply_Array = array();
                     $Reply_Array['ticket_id'] = trim(str_replace("]", "", str_replace("[TICKET NO:", "", strstr($subject, "[TICKET NO:"))));
                     $Ticket_Data = $BL->support_tickets->getByKey($Reply_Array['ticket_id']);                    
@@ -100,7 +100,7 @@ if($BL->conf['en_ticket_by_email']){
                         error_reporting(E_ALL);                   
                         $Ticket_Array = array();
                         foreach($BL->support_topics->find() as $topic){
-                        	if(!empty($topic['topic_regexp']) && (eregi($topic['topic_regexp'],$body['message']) || eregi($topic['topic_regexp'],$subject))){
+                        	if(!empty($topic['topic_regexp']) && (preg_match('/'.$topic['topic_regexp'].'/',$body['message']) || preg_match('/'.$topic['topic_regexp'].'/',$subject))){
                         		$Ticket_Array['topic_id'] = $topic['topic_id'];
                         	}
                         }

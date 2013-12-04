@@ -64,7 +64,7 @@ class SOAP_Type_dateTime
         else if (gettype($datestr) == 'integer')
             $datestr = $this->toString($datestr);
             
-        if (ereg($this->ereg_iso8601,$datestr,$regs)) {
+        if (preg_match("/".$this->ereg_iso8601."/",$datestr,$regs)) {
             if ($regs[8] != '' && $regs[8] != 'Z') {
                 $op = substr($regs[8],0,1);
                 $h = substr($regs[8],1,2);

@@ -116,7 +116,7 @@ curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $result = curl_exec($ch);
 curl_close($ch);
-ereg("<STRONG>OrderID: </STRONG>[0-9]+", $result, $reg_array);
+preg_match("/<STRONG>OrderID: <\/STRONG>[0-9]+/", $result, $reg_array);
 $oid    = $reg_array[0];
 $time   = date('Y-m-d H:i:s');
 $domain = $this->REQUEST['domain'];

@@ -77,7 +77,7 @@ class lxadminHandler
 			$result= $this->lxreq("login-class=client&action=update&subaction=disble&class=client&name=${suspenduser}&parent-class=client&parent-name=${user}", $host, $user, $password, $usessl);
         $return['result'] = 0;
         $return['response'] = $result;
-        if(eregi("__success_",$result))
+        if(preg_match("/__success_/i",$result))
         {
             $return['result'] = 1;
         }
@@ -93,7 +93,7 @@ class lxadminHandler
 			$result= $this->lxreq("login-class=client&action=update&subaction=enable&class=client&name=${suspenduser}&parent-class=client&parent-name=${user}", $host, $user, $password, $usessl);
         $return['result'] = 0;
         $return['response'] = $result;
-        if(eregi("__success_",$result))
+        if(preg_match("/__success_/i",$result))
         {
             $return['result'] = 1;
         }
@@ -109,7 +109,7 @@ class lxadminHandler
 			$result= $this->lxreq("login-class=client&action=delete&class=client&name=${killuser}&parent-class=client&parent-name=${user}", $host, $user, $password, $usessl);
         $return['result'] = 0;
         $return['response'] = $result;
-        if(eregi("__success_",$result))
+        if(preg_match("/__success_/i",$result))
         {
             $return['result'] = 1;
         }
@@ -122,14 +122,14 @@ class lxadminHandler
 		$return['result']=0;
         $result= $this->createclient($host, $user, $password, $usessl, $acctdomain, $acctuser, $acctpass, $acctplan);
         $return['response']=str_replace("+"," ",$result);
-        if(eregi("__error_",$result))
+        if(preg_match("/__error_/i",$result))
         {
             $return['response']=str_replace("__error_","<b>Error:</b> ",$return['response']);
             return $return;
         }
 		$result = $this->lxreq("login-class=client&action=add&class=domain&name=${acctdomain}&v-template_name=${acctplan}&v-password=${acctpass}&parent-class=client&parent-name=${acctuser}", $host, $user, $password, $usessl);
         $return['response'] .= "<br />".str_replace("+"," ",$result);
-        if(eregi("__success_",$result))
+        if(preg_match("/__success_/i",$result))
         {
             $return['response']=str_replace("__success_","<b>Success:</b> ",$return['response']);
             $return['result'] = 1;

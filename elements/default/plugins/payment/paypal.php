@@ -133,7 +133,7 @@ class paypal
 		curl_setopt($Connection, CURLOPT_RETURNTRANSFER, 1);
 		$Response   = curl_exec($Connection);
 		curl_close($Connection);
-		if (eregi("VERIFIED", $Response))
+		if (preg_match("/VERIFIED/i", $Response))
         {
 			return 1;
         }

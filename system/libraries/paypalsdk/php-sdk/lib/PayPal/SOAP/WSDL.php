@@ -782,7 +782,7 @@ class SOAP_WSDL extends SOAP_Base
     {
         static $trail = array();
 
-        $arrayType = ereg_replace('\[\]$', '', $arrayType);
+        $arrayType = preg_replace('/\[\]$/', '', $arrayType);
 
         // Protect against circular references
         // XXX We really need to remove trail from this altogether (it's very inefficient and
@@ -2109,7 +2109,7 @@ class SOAP_WSDL_ObjectParser extends SOAP_Base
                 $this->wsdl->namespaces[$ns_pref] = $m[1][0];
             }
             $typens = $this->wsdl->ns[$m[1][0]];
-            $type = ereg_replace($m[0][0], '', $type);
+            $type = preg_replace('/'.$m[0][0].'/', '', $type);
         } else {
             $typens = 'xsd';
         }

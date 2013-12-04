@@ -80,7 +80,7 @@ class taxes extends model
         $temp   = $this->find(array($condition));
         foreach ($temp as $k => $v)
         {
-            if (empty ($v['tax_state']) || eregi("ALL", $v['tax_state']) || $v['tax_state'] == "|" || empty($state) || eregi($state, $v['tax_state']))
+            if (empty ($v['tax_state']) || preg_match("/ALL/", $v['tax_state']) || $v['tax_state'] == "|" || empty($state) || preg_match("/$state/", $v['tax_state']))
             {
                 $taxes[] = $v;
             }

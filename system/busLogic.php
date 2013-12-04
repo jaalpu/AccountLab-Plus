@@ -390,7 +390,7 @@ class busLogic
             $domain_name = $order_data['domain_name'];
         }
 
-        if (eregi($domain_name, $desc))
+        if (preg_match("/$domain_name/", $desc))
         {
             $temp1 = stristr($desc, $domain_name);
             $temp2 = str_replace($temp1, '', $desc);
@@ -1592,7 +1592,7 @@ class busLogic
 		{
 			$server = $this->getServerForProduct($product_id);
             //check and correction for cpanel
-            if($server['server_type']=="cpanel" && (($server['server_user']!="root" && !eregi($server['server_user']."_",$product['plan_name'])) || eregi(" ",$product['plan_name'])))
+            if($server['server_type']=="cpanel" && (($server['server_user']!="root" && !preg_match('|'.$server['server_user']."_|i",$product['plan_name'])) || preg_match("/ /",$product['plan_name'])))
             {
                 $this->syncPackage($product_id);
                 $product = $this->products->hasAnyOne(array($condition));
@@ -1810,7 +1810,7 @@ class busLogic
         if($server['server_type']=="cpanel")
         {
         	$product['plan_name'] = str_replace(" ","_",$product['plan_name']);
-            if($server['server_user']!="root" && !eregi($server['server_user']."_",$product['plan_name']))
+            if($server['server_user']!="root" && !preg_match('|'.$server['server_user']."_|i",$product['plan_name']))
             {
             	$product['plan_name'] = $server['server_user']."_".$product['plan_name'];
             }

@@ -58,7 +58,7 @@ for ($i= 1; $i < $argc; $i++)
 $arguments  = compact('force');
 $force  = (isset ($arguments['force']) && trim($arguments['force']) == 'uncheck') ? 1 : 0;
 $uname  = `uname`;
-$FREEBSD= eregi("freebsd", strtolower($uname)) ? 1 : 0;
+$FREEBSD= preg_match("/freebsd/i", $uname);
 $BASE   = realpath(dirname(__FILE__)) . "/";
 $PARENT = realpath(dirname(__FILE__) . "/../") . "/";
 require_once dirname(__FILE__) . "/system/config/version.php";
@@ -155,7 +155,7 @@ if ($current_version != $latest_version && ($latest_version_array[0] > $current_
 }
 function splitVersionNo($version_no)
 {
-	if (ereg("r", $version_no))
+	if (preg_match("/r/", $version_no))
 	{
 		$temp= explode("r", $version_no, 2);
 		$version[0]= trim($temp[0]);

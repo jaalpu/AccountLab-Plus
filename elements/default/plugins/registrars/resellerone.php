@@ -239,13 +239,13 @@ $response_text = "";
 $id            = "";
 foreach ($out[0] as $k => $v)
 {
-    if (ereg("\"response_text\"", $v))
+    if (preg_match("/\"response_text\"/", $v))
     {
         $v1 = str_replace("<item key=\"response_text\">", "", $v);
         $v1 = str_replace("</item>", "", $v1);
         $response_text = $v1;
     }
-    if (ereg("\"id\"", $v))
+    if (preg_match("/\"id\"/", $v))
     {
         $v2 = str_replace("<item key=\"id\">", "", $v);
         $v2 = str_replace("</item>", "", $v2);

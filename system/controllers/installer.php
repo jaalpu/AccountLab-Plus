@@ -354,7 +354,7 @@ class installer_controller extends controller
             {
                 $sql2   = "UPDATE customers SET `creation_date`='$v' WHERE `id`='$k'";
                 $r      = $this->dbL->executeUPDATE($sql2,true);
-                if (eregi("MYSQL ERROR", $r))
+                if (preg_match("/MYSQL ERROR/i", $r))
                 {
                     $sql_errors .= "<b>SQL:</b>\"" . $sql2 . "\";<br />".$r."<br />";
                 }
@@ -454,11 +454,11 @@ class installer_controller extends controller
                 foreach ($temp as $t)
                 {
                     $new_desc= $t['desc'];
-                    if (ereg($plan_name . "-", $new_desc))
+                    if (preg_match("/". $plan_name . "-/", $new_desc))
                     {
                         $new_desc= str_replace($plan_name . "-", $plan_id . "-", $t['desc']);
                     }
-                    elseif (ereg($plan_friendly_name . "-", $new_desc))
+                    elseif (preg_match("/".$plan_friendly_name . "-/", $new_desc))
                     {
                         $new_desc= str_replace($plan_friendly_name . "-", $plan_id . "-", $t['desc']);
                     }
@@ -821,7 +821,7 @@ class installer_controller extends controller
                     $temp1 = split("<&&>", $temp_order['text_detail']);
                     foreach ($temp1 as $key => $val)
                     {
-                        if(ereg("=>",$val))
+                        if(preg_match("/=>/",$val))
                         {
                             list ($a, $b) = split("=>", $val);
                             if($a=="plan_id")$a="product_id";
@@ -851,7 +851,7 @@ class installer_controller extends controller
                             }
 
                             $sql = "INSERT INTO `orphan_order_datas` VALUES('".$orphan_order_id."','".$this->utils->quoteSmart($a)."','".$this->utils->quoteSmart($b)."')";
-                            if(!eregi("xajax",$a) && $b!="none" && $b!='')$this->dbL->executeINSERT($sql);
+                            if(!preg_match("/xajax/",$a) && $b!="none" && $b!='')$this->dbL->executeINSERT($sql);
                         }
                     }
                 }
@@ -990,7 +990,7 @@ class installer_controller extends controller
         {
             $sql = "UPDATE order_conf SET `build`=".intval($build);
             $v   = $this->dbL->executeUPDATE($sql,true);
-            if (eregi("MYSQL ERROR",$v))
+            if (preg_match("/MYSQL ERROR/i",$v))
             {
                 $sql_errors .= "<b>SQL:</b>\"" . $sql . "\"; <br />".$v."<br />";
             }
@@ -1004,7 +1004,7 @@ class installer_controller extends controller
         $array  = $this->dbL->executeMixedSQLArray($sqls,array(),true);
         foreach ($array as $k => $v)
         {
-            if (!is_array($v) && eregi("MYSQL ERROR",$v))
+            if (!is_array($v) && preg_match("/MYSQL ERROR/i",$v))
             {
                 $sql_errors .= "<b>SQL:</b>\"" . $sqls[$k] . "\"; <br />".$v."<br />";
             }

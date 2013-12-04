@@ -122,12 +122,12 @@ class whois_controller extends controller
         {
 			return $this->props->parseLang('err_whois');
         }
-        if(ereg('[!]',$NOMATCH))
+        if(preg_match('"/[!]/"',$NOMATCH))
         {
         	$NOMATCH = str_replace("[!]","",$NOMATCH);
-            return ereg($NOMATCH, $Response)?1:0;
+            return preg_match("/$NOMATCH/", $Response)?1:0;
         }
-        return ereg($NOMATCH, $Response)?0:1;
+        return preg_match("/$NOMATCH/", $Response)?0:1;
 	}
 	function getServerArray($ext, $from_list= 1)
 	{

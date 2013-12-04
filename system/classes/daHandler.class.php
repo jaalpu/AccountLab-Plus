@@ -76,7 +76,7 @@ class daHandler
         $post_content= "";
         $port= 2222;
         $retval= $this->DA_SSL_Request($user, $accesshash, $request, $method, $post_content, $host, $port, $usessl);
-        if(!$this->error && !eregi("error",$retval))
+        if(!$this->error && !preg_match("/error/",$retval))
         {
             $result['result']   = 1;
             $result['response'] = "Suspended";
@@ -98,7 +98,7 @@ class daHandler
         $post_content= "";
         $port= 2222;
         $retval= $this->DA_SSL_Request($user, $accesshash, $request, $method, $post_content, $host, $port,$usessl);
-        if(!$this->error && !eregi("error",$retval))
+        if(!$this->error && !preg_match("/error/i",$retval))
         {
             $result['result']   = 1;
             $result['response'] = "Activated";
@@ -120,7 +120,7 @@ class daHandler
         $post_content= "";
         $port= 2222;
         $retval= $this->DA_SSL_Request($user, $accesshash, $request, $method, $post_content, $host, $port,$usessl);
-        if(!$this->error && eregi("Remove",$retval))
+        if(!$this->error && preg_match("/Remove/i",$retval))
         {
             $result['result']   = 1;
         }
@@ -159,7 +159,7 @@ class daHandler
             $post_content= "username=$acctuser&email=$email&passwd=$acctpass&passwd2=$acctpass&domain=$acctdomain&package=$acctplan&ip=$ip&notify=yes&add=Submit&action=create";
         }        
         $retval     = $this->DA_SSL_Request($user, $accesshash, $request, $method, $post_content, $host, $port, $usessl);
-        if($this->error || eregi("cannot",$retval) || eregi("unable",$retval))
+        if($this->error || preg_match("/cannot/i",$retval) || preg_match("/unable/i",$retval))
         {
             $result['result']   = 0;
         }

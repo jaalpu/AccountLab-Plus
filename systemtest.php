@@ -433,7 +433,7 @@ if (!empty($_SESSION['FTP_USER']) && !empty($_SESSION['FTP_PW']) && ftp_login(ft
          </td>
          <td align="center" style="border: 1px solid #000000;">
          <?php $status = getModuleSetting("cURL", "cURL Information"); ?>
-         <font color=<?php echo (ereg("openssl", strtolower($status)) && ereg("zlib", strtolower($status)))?"green":"red";  ?>><b><?php echo $status; ?></b></font>
+         <font color=<?php echo (preg_match("/openssl/", strtolower($status)) && preg_match("/zlib/", strtolower($status)))?"green":"red";  ?>><b><?php echo $status; ?></b></font>
          </td>
          <td style="border: 1px solid #000000;">
          "cURL" must be installed with OpenSSL and Zlib.

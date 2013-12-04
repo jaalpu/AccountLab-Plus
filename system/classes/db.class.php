@@ -244,7 +244,7 @@ class db
 				foreach ($values as $k => $v)
 				{
 					$pattern= "~" . $k;
-					$temp= ereg_replace($pattern, $v, $temp);
+					$temp= preg_replace("|$pattern|", $v, $temp);
 				}
 				$sql= $temp;
 			}

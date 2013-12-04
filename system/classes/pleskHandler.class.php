@@ -219,31 +219,31 @@ EOF;
         foreach ($out[0] as $k => $v)
         {
             //echo strip_tags($v)."\n\r";
-            if (ereg("status", $v))
+            if (preg_match("/status/", $v))
             {
                 $v1= str_replace("<status>", "", $v);
                 $v1= str_replace("</status>", "", $v1);
                 $return['status'] = strip_tags($v1);
             }
-            if (ereg("id", $v))
+            if (preg_match("/id/", $v))
             {
                 $v1= str_replace("<id>", "", $v);
                 $v1= str_replace("</id>", "", $v1);
                 $return['id'] = strip_tags($v1);
             }
-            if (ereg("errcode", $v))
+            if (preg_match("/errcode/", $v))
             {
                 $v1= str_replace("<errcode>", "", $v);
                 $v1= str_replace("</errcode>", "", $v1);
                 $return['error_code'] = strip_tags($v1);
             }
-            if (ereg("errtext", $v))
+            if (preg_match("/errtext/", $v))
             {
                 $v1= str_replace("<errtext>", "", $v);
                 $v1= str_replace("</errtext>", "", $v1);
                 $return['error_text'] = strip_tags($v1);
             }
-            if(!empty($ext_tag) && ereg($ext_tag, $v))
+            if(!empty($ext_tag) && preg_match("|$ext_tag|", $v))
             {
                 $v1= str_replace("<".$ext_tag.">", "", $v);
                 $v1= str_replace("</".$ext_tag.">", "", $v1);
