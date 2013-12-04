@@ -59,7 +59,7 @@ require_once "init.php";
 <?php
 if($BL->conf['en_ticket_by_email']){
     $connection = $BL->conf['ticket_email_proto']."://".urlencode($BL->conf['ticket_email_user']).":".$BL->conf['ticket_email_pass']."@".$BL->conf['ticket_email_host'].":".$BL->conf['ticket_email_port']."/".$BL->conf['ticket_email_mbox'];
-    $msg        = & new Mail_IMAPv2();
+    $msg        = new Mail_IMAPv2();
     if (!$msg->connect($connection)) {    
         echo 'Error: Unable to build a connection.';
     }else{

@@ -299,7 +299,7 @@ class paypalwpp
                                                         'subject'         => null,
                                                         'environment'     => ENVIRONMENT ));
             $pid          = ProfileHandler::generateID();
-            $profile      = & new APIProfile($pid, $handler);
+            $profile      = new APIProfile($pid, $handler);
                                                           
             $profile->setAPIUsername($pp_vals['paypalwpp_apiUsername']);
             $profile->setAPIPassword($pp_vals['paypalwpp_apiPassword']); 

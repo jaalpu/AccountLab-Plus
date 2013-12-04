@@ -40,7 +40,7 @@
 //	include('../URL.php');
 	include('Net/URL.php');
 
-	//$url = &new Net_URL('https://www.example.com/foo/bar/index.php?foo=bar');
+	//$url = new Net_URL('https://www.example.com/foo/bar/index.php?foo=bar');
 	$url = new Net_URL('https://example.com/pls/portal30/PORTAL30.wwpob_page.changetabs?p_back_url=http%3A%2F%2Fexample.com%2Fservlet%2Fpage%3F_pageid%3D360%2C366%2C368%2C382%26_dad%3Dportal30%26_schema%3DPORTAL30&foo=bar');
 ?>
 <html>

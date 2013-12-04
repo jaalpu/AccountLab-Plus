@@ -327,7 +327,7 @@ class Mail_IMAPv2 {
 
         $opt = (isset($this->option['open']))? $this->option['open'] : null;
 
-        $net_url =& new Net_URL($uri);
+        $net_url = new Net_URL($uri);
 
         $uri  = '{'.$net_url->host;
 

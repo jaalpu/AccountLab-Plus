@@ -41,7 +41,7 @@ if(isset($_POST['submitted']))
             
    $pid = ProfileHandler::generateID();
    
-   $profile = & new APIProfile($pid, $handler);
+   $profile = new APIProfile($pid, $handler);
    $logger->_log('Profile: '. print_r($profile, true));
    
    $save_file;

@@ -64,9 +64,9 @@ class XSDSimpleType extends XSDType
             $value = utf8_encode($value);
         }
         if (count($this->_attributeValues)) {
-            $v =& new SOAP_Value($name, '', $value, $this->_attributeValues);
+            $v = new SOAP_Value($name, '', $value, $this->_attributeValues);
         } else {
-            $v =& new SOAP_Value($name, '', $value);
+            $v = new SOAP_Value($name, '', $value);
         }
         return $v;
     }
