@@ -682,7 +682,6 @@ $lang['err_no_licence']= "Serverul dumneavoastra nu are licenta.";
 $lang['err_bad_login']= "Utilizator si/sau parola eronate.";
 $lang['err_bad_login_hosting']= "Utilizator de hosting si parola eronate.";
 $lang['err_db_php']= "<b>Nu am putut scrie in db.php</b><br>Trebuie sa modificati permisiunea pentru  elements/default/sysvar/db.php in 666, in caz contrar scriptul nu va putea rula in continuare.";
-$lang['err_licensing_php']= "<b>Nu am putut scrie in licensing_server.php</b><br>Trebuie sa modificati permisiunea pentru elements/default/sysvar/licensing_server.php in 666, in caz contrar scriptul nu va putea rula in continuare.";
 $lang['err_domain']= "Nume de domeniu invalid.";
 $lang['err_subdomain']= "Nume subdomeniu invalid.";
 $lang['err_email']= "Adresa de email invalida.";

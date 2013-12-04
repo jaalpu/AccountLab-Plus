@@ -685,7 +685,6 @@ $lang['err_no_licence']= "Your server does not have a license.";
 $lang['err_bad_login']= "Geçersiz kullanýcý adý ve þifre.";
 $lang['err_bad_login_hosting']= "Geçersiz hosting kullanýcý adý ve þifre.";
 $lang['err_db_php']= "<b>db.php yazýlamýyor</b><br>You must chmod elements/default/sysvar/db.php to 666 otherwise the script cannot continue.";
-$lang['err_licensing_php']= "<b>Unable to write on licensing_server.php</b><br>You must chmod elements/default/sysvar/licensing_server.php to 666 otherwise the script cannot continue.";
 $lang['err_domain']= "Geçersiz domain adý.";
 $lang['err_subdomain']= "Geçersiz subdomain adý.";
 $lang['err_email']= "Geçersiz email adres.";

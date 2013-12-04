@@ -594,7 +594,6 @@ $lang['err_no_licence']= "Uw Server heeft geen licentie.";
 $lang['err_bad_login']= "Ongeldige gebruikersnaam of wachtwoord.";
 $lang['err_bad_login_hosting']= "Ongeldige hosting gebruikersnaam en wachtwoord.";
 $lang['err_db_php']= "<b>kan niet schrijven in db.php</b><br>U moet de permissies veranderen naar (chmod) elements/default/sysvar/db.php  (666) anders kan het script niet doorgaan.";
-$lang['err_licensing_php']= "<b>Kan niet schrijven in licensing_server.php</b><br>U moet de permissies veranderen naar(chmod) elements/default/sysvar/licensing_server.php (666) anders kan het script niet doorgaan.";
 $lang['err_domain']= "Ongeldige domein naam.";
 $lang['err_subdomain']= "Ongeldige subdomein naam.";
 $lang['err_email']= "Ongeldig email adres.";

@@ -687,7 +687,6 @@ $lang['err_no_licence']= "Ihr Server besitzt keine Lizenz.";
 $lang['err_bad_login']= "Ungültiger Username und Passwort.";
 $lang['err_bad_login_hosting']= "Ungültiger Hosting Username und Passwort.";
 $lang['err_db_php']= "<b>Die Datei db.php kann nicht aktualisiert werden</b><br>Sie müssen elements/default/sysvar/db.php mittels chmod die Rechte auf 666 ändern, anderenfalls kann das Script nicht fortsetzen.";
-$lang['err_licensing_php']= "<b>Die Datei licensing_server.php kann nicht aktualisiert werden</b><br>Sie müssen  elements/default/sysvar/licensing_server.php mittels chmod die Rechte auf 666 ändern, anderenfalls kann das Script nicht fortsetzen.";
 $lang['err_domain']= "Ungültiger Domainname.";
 $lang['err_subdomain']= "Ungültiger Subdomainname.";
 $lang['err_email']= "Ungültige Emailadresse.";

@@ -595,7 +595,6 @@ $lang['err_no_licence']= "Votre serveur n'a pas de licence.";
 $lang['err_bad_login']= "Pseudo et mot de passe invalide.";
 $lang['err_bad_login_hosting']= "Pseudo et mot de passe d'hébergement invalide.";
 $lang['err_db_php']= "<b>Impossible d'écrire sur db.php</b><br>Vous devez mettre le chmod elements/default/sysvar/db.php à 666 autrement le script ne fonctionnera pas.";
-$lang['err_licensing_php']= "<b>Impossible d'écrire sur licensing_server.php</b><br>Vous devez mettre le chmod elements/default/sysvar/licensing_server.php à 666 autrement le script ne fonctionnera pas.";
 $lang['err_domain']= "Domaine invalide.";
 $lang['err_subdomain']= "Sous-domaine invalide.";
 $lang['err_email']= "Adresse email invalide.";
