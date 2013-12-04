@@ -82,7 +82,7 @@ $http_code="";
 $ac = new alpcurl(); //create an instance
 $ac->getHeaders = false;
 $ac->getContent = true;
-$contents = $ac->post($url, $post, 0, & $http_code);
+$contents = $ac->post($url, $post, 0, $http_code);
 $success = $ac->get_parsed($contents,"<success>","</success>");
 if($sucess=="TRUE"){
     $user_id = $ac->get_parsed($contents,"<user.id>", "</user.id>");
@@ -101,7 +101,7 @@ $post['reseller.id'] = $this->dr_vals['planetdomain']['reseller_id'];
 $post['response.format'] = "XML";
 
 $post['domain.name'] = $this->REQUEST['domain'];
-$contents = $ac->post($url, $post, 0, & $http_code);
+$contents = $ac->post($url, $post, 0, $http_code);
 $success = $ac->get_parsed($contents,"<success>","</success>");
 
 //Add domain
@@ -123,7 +123,7 @@ $post['ns.ip.0'] = $this->REQUEST['ns1'];
 $post['ns.name.1'] = $this->REQUEST['ns2'];
 $post['ns.ip.1'] = $this->REQUEST['ns2'];
 
-$contents = $ac->post($url, $post, 0, & $http_code);
+$contents = $ac->post($url, $post, 0, $http_code);
 $this->dom_reg_logs->insert(array("log_time"=>date('Y-m-d H:i:s'),"sub_id"=>$this->REQUEST['sub_id'],"domain"=>$this->REQUEST['domain'],"log_result"=>$contents));
 $success = $ac->get_parsed($contents,"<success>","</success>");
 if($sucess=="TRUE"){
@@ -150,7 +150,7 @@ $post['reseller.id'] = $this->dr_vals['planetdomain']['reseller_id'];
 $post['response.format'] = "XML";
 
 $post['domain.name'] = $this->REQUEST['domain'];
-$contents = $ac->post($url, $post, 0, & $http_code);
+$contents = $ac->post($url, $post, 0, $http_code);
 $success = $ac->get_parsed($contents,"<success>","</success>");
 
 
