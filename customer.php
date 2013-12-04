@@ -194,6 +194,10 @@ switch ($cmd)
                 }
             }
             $temp    = $BL->invoices->get("WHERE `invoices`.invoice_no=".intval($invoice_no));
+			if (empty($temp))
+			{
+				$BL->Redirect($cmd,"");
+			}
             $invoice = $temp[0];
             $temp    = $BL->orders->get("WHERE `customers`.id=".intval($invoice['id']));
             $order   = $temp[0];
