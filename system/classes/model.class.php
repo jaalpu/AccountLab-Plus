@@ -65,16 +65,15 @@ class model
         $this->utils            = & $utils;
         $this->errorHandler     = & $errorHandler;
     }
-    function setOrder($orderby=false, $asc_or_desc='')
+    function setOrder($orderby=false, $asc_or_desc='', $tablename='')
     {
         if($orderby && in_array($orderby, $this->getFieldList()) && in_array(strtolower($asc_or_desc), array('', 'asc', 'desc')))
         {
-            $this->orderby = " ORDER BY $orderby $asc_or_desc";
+            $this->orderby = " ORDER BY ".(isset($tablename)?"`$tablename`.":'')."$orderby $asc_or_desc";
         }
         else
         {
-            throw new Exception('Invalid sort order field.');
-            //$this->orderby = " ORDER BY ".($this->tableName?'`'.$this->tableName.'`':'').'`'.$this->getPrimaryKey().'`';
+            throw new Exception('Invalid sort order.');
         }
     }
     function setLimit($limit=false)

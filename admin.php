@@ -604,7 +604,7 @@ switch ($cmd)
                            "     `customers`.email      LIKE '%".$BL->utils->quoteSmart($BL->REQUEST['search_term'])."%'   " .
                            "     )";
             }
-            $BL->orders->setOrder($BL->REQUEST['orderby1'],$BL->REQUEST['orderby2']);
+            $BL->orders->setOrder($BL->REQUEST['orderby1'],$BL->REQUEST['orderby2'],'orders');
 
             $BL->orders->setLimit(false);
             if(!empty($BL->conf['records_per_page']))
