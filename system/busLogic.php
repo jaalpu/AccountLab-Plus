@@ -43,7 +43,7 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 /*
  * A class to do all toplevel operations
@@ -2355,6 +2355,10 @@ class busLogic
         $addons          = array();
 
         $temp    = $this->invoices->get("WHERE `invoice_no`=".intval($invoice_no));
+        if (empty($temp))
+        {
+            return false;
+        }
         $invoice = $temp[0];
         $invoice_template = $this->emails->getByKey(2);
         $body    = $this->utils->entity_decode($this->utils->htmlspecialchars_decode($invoice_template['email_text']));
