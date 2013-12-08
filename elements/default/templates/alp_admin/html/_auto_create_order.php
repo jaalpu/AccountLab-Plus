@@ -136,7 +136,7 @@
     <td class='text_grey'>&nbsp;</td>
     <td class='text_grey'><?php echo $BL->props->lang['Account_Status']; ?></td>
     <td class='text_grey'>
-    <font color='<?php echo $txt_color; ?>'><b><?php  echo $BL->props->lang[$BL->props->order_status[$REQUEST['acct_status']]]; ?></b></font>
+    <font color='<?php echo $txt_color; ?>'>    <b><?php  echo empty($REQUEST['acct_status'])?'':$BL->props->lang[$BL->props->order_status[$REQUEST['acct_status']]]; ?></b></font>
     </td>
     <td class='text_grey'>
     <?php echo $BL->props->lang['Change_status_to']; ?>
