@@ -99,13 +99,13 @@ if(!isset($BL->REQUEST['action']) || empty($BL->REQUEST['action']))
         {
             echo "<br />".nl2br($echo)."<br />";
         }
-    }  
+    }
     $BL->runCS('A_B');
 }
 /*
  * Generate upcoming invoices
  */
-if($conf['u_invoice_date']>0 && $BL->REQUEST['action']=="gen_upcoming")
+if($conf['u_invoice_date']>0 && isset($BL->REQUEST['action']) && $BL->REQUEST['action']=="gen_upcoming")
 {
     foreach($orders as $order)
     {
@@ -116,8 +116,8 @@ if($conf['u_invoice_date']>0 && $BL->REQUEST['action']=="gen_upcoming")
         {
             echo "<br />".nl2br($echo)."<br />";
         }
-    }  
-}    
+    }
+}
 /*
  * Repeated Invoice
  */
@@ -155,8 +155,8 @@ if(isset($BL->REQUEST['action']) && $conf['suspend_after_due']>0 && $BL->REQUEST
                 echo "<font color='red'><b>*** Suspending account, Description : ".$inv['desc']."</b></font><br />";
                 flush();
                 ob_flush();
-                sleep(1);  
-                $echo = $BL->changeStatus($inv['sub_id'],"suspend");     
+                sleep(1);
+                $echo = $BL->changeStatus($inv['sub_id'],"suspend");
                 echo nl2br($echo);
                 $suspended_ids[] = $inv['sub_id'];
             }
