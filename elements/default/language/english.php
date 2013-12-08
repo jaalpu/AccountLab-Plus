@@ -43,7 +43,7 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 /*
  * Language: English
@@ -1575,4 +1575,6 @@ $lang['confirm_markas_paid']="Mark this invoice as paid?";
 $lang['Subscriptions']="Subscriptions";
 $lang['Submitted']="Payment Submitted";
 $lang['Submitted_Invoices']="Payment Submitted Invoices";
+//lang below was added Dec 2013
+$lang['-invoices']= "Invoices";
 ?>
