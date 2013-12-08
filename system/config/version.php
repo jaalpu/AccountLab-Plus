@@ -43,12 +43,12 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
-$ALPversion= "2.9.1";
+$ALPversion= "2.9.2";
 
 // $ALPBuild is formatted as:
 //	(one or more digits - major version)(exactly two digits - minor version)(exactly two digits - patch version)
 //	eg. v2.9.0 is 020900 and v12.34.56 would be 123456
-$ALPBuild  = 20901;
+$ALPBuild  = 20902;
 ?>
