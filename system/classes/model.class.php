@@ -57,13 +57,14 @@ class model
     var $indexname='index';
     var $keyname='id';
 
-    function model(& $dbL, & $props, & $utils, &$REQUEST, & $errorHandler)
+    function model(& $dbL, & $props, & $utils, &$REQUEST, & $errorHandler, & $BL)
     {
         $this->REQUEST          = & $REQUEST;
         $this->dbL              = & $dbL;
         $this->props            = & $props;
         $this->utils            = & $utils;
         $this->errorHandler     = & $errorHandler;
+        $this->BL               = & $BL;
     }
     function setOrder($orderby=false, $asc_or_desc='', $tablename='')
     {

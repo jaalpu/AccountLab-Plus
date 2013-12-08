@@ -43,24 +43,24 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name           = "LinkPoint API Based";
 $linkpointapi   = array (
-                    array ("Store Number"   , "lpapi_storenumber"), 
-                    array ("PEM FILE"       , "lpapi_pemfile"), 
-                    array ("Active"         , "active", "No", "Yes"), 
+                    array ("Store Number"   , "lpapi_storenumber"),
+                    array ("PEM FILE"       , "lpapi_pemfile"),
+                    array ("Active"         , "active", "No", "Yes"),
                     array ("Title"          , "title"),
 					array ("Submit label"   , "submit_label")
                     );
-//Extra fields for order form and customer backend                
+//Extra fields for order form and customer backend
 $ext_fields     = array (
                         // 0=$lang ,1=var, 2=store 3=encrypt, 4=type, 5=size, 6=required, 7=show in [, options]
                         array("Card_Number"         ,"lpapi_cardnumber"      ,1,0,"text"     ,35 ,1,2),
                         array("Exp_Month"           ,"lpapi_cardexpmonth"    ,1,0,"select"   ,1  ,1,2,"01","02","03","04","05","06","07","08","09","10","11","12"),
                         array("Exp_Year"            ,"lpapi_cardexpyear"     ,1,0,"select"   ,1  ,1,2),
                         array("CVV2_Code"           ,"lpapi_cvmvalue"        ,1,0,"text"     ,4  ,1,2)
-                        );   
+                        );
 for($i=date('Y');$i<(date('Y')+20);$i++)$ext_fields[2][]=substr($i,2,2);
 $send_method = "POST";
 $validate       = "
@@ -105,11 +105,11 @@ function validatepayment(btn) {
 
 function isNumeric(sText) {
    var ValidChars = '0123456789';
-   for (i = 0; i < sText.length && isNumeric == true; i++) 
-      if (ValidChars.indexOf(sText.charAt(i)) == -1) 
+   for (i = 0; i < sText.length && isNumeric == true; i++)
+      if (ValidChars.indexOf(sText.charAt(i)) == -1)
          return false;
    return true;
-   
+
 }
 
 function luhnCheck(CardNumber) {
@@ -157,7 +157,7 @@ class linkpointapi
 	function sendVariables($path_url, $pp_vals)
 	{
 		$this->pay_url  = $path_url.'/ipn.php';
-        
+
         $this->_POST1   = $_POST;
         $this->_POST1['item_number'] = time().rand(0, 1000);
         if (isset ($_POST['force_inv_no']))
@@ -165,13 +165,13 @@ class linkpointapi
             $this->_POST1['item_number'] = $_POST['force_inv_no'];
         }
         $this->_POST1['ipn_type'] = 2;
-        $this->_POST1['pp']       = 'linkpointapi'; 
+        $this->_POST1['pp']       = 'linkpointapi';
         $this->_POST1['item_name']= $_POST['friendly_desc'];
         if(empty($this->_POST1['item_name']))
         {
             $this->_POST1['item_name'] = $_POST['desc'];
         }
-            
+
         $this->_POST1['cardnumber']    = $_POST['lpapi_cardnumber'];
         $this->_POST1['cardexpmonth']  = $_POST['lpapi_cardexpmonth'];
         $this->_POST1['cardexpyear']   = $_POST['lpapi_cardexpyear'];
@@ -187,7 +187,7 @@ class linkpointapi
             $this->item_number    = $_POST['item_number'];
             $this->transaction_id = 0;
             $this->payment_status = '';
-            
+
             $mylphp  = new lphp;
             $pp_vals = $BL->pp_vals->getByKey("linkpointapi");
             $temp    = $BL->orphan_orders->hasAnyOne(array("WHERE `item_number`=".intval($this->item_number)));
@@ -198,8 +198,8 @@ class linkpointapi
             }
             if(count($O_order))
             {
-                $amount = number_format($O_order['gross_amount'], 2);    
-                # CARD INFO           
+                $amount = number_format($O_order['gross_amount'], 2);
+                # CARD INFO
                 $myorder["cardnumber"]   = $_POST['cardnumber'];
                 $myorder["cardexpmonth"] = $_POST['cardexpmonth'];
                 $myorder["cardexpyear"]  = $_POST['cardexpyear'];
@@ -209,8 +209,8 @@ class linkpointapi
             else
             {
                 $invoice = $BL->invoices->get("WHERE `invoice_no`=".intval($this->item_number));
-                $amount = number_format($invoice[0]['gross_amount'], 2);    
-                # CARD INFO           
+                $amount = number_format($invoice[0]['gross_amount'], 2);
+                # CARD INFO
                 $myorder["cardnumber"]   = $_POST['lpapi_cardnumber'];
                 $myorder["cardexpmonth"] = $_POST['lpapi_cardexpmonth'];
                 $myorder["cardexpyear"]  = $_POST['lpapi_cardexpyear'];
@@ -228,31 +228,31 @@ class linkpointapi
             $myorder["fax"]      = isset($_POST["fax"])?$_POST["fax"]:$_POST["telephone"];
             $myorder["email"]    = $_POST["email"];
             $myorder["zip"]      = $_POST["zip"];
-            
+
             $myorder["host"]       = "secure.linkpt.net";
             $myorder["port"]       = "1129";
             $myorder["keyfile"]    = $pp_vals['lpapi_pemfile'];
             $myorder["configfile"] = $pp_vals['lpapi_storenumber'];
-        
+
             $myorder["ordertype"]         = "SALE";
             $myorder["result"]            = "LIVE";              # For test transactions, set to GOOD, DECLINE, or DUPLICATE
             $myorder["transactionorigin"] = "MOTO";              # For credit card retail txns, set to RETAIL, for Mail order/telephone order, set to MOTO, for e-commerce, leave out or set to ECI
             $myorder["oid"]               = $this->item_number;  # Order ID number must be unique. If not set, gateway will assign one.
 
             $myorder["chargetotal"]  = $amount;
-        
+
             # ITEMS AND OPTIONS
             $myorder["items"]["item1"]["id"]          = $this->item_number;
             $myorder["items"]["item1"]["description"] = $_POST['item_name'];
             $myorder["items"]["item1"]["quantity"]    = "1";
             $myorder["items"]["item1"]["price"]       = $amount;
 
-            $myorder["debugging"] = "false";  # for development only - not intended for production use      
+            $myorder["debugging"] = "false";  # for development only - not intended for production use
             if($this->demo_mode)
             {
                 $myorder["debugging"] = "true";
             }
-            
+
             # Send transaction. Use one of two possible methods  #
             $result               = $mylphp->curl_process($myorder);  # use curl methods
             $this->payment_status = $result["r_approved"];
@@ -260,7 +260,7 @@ class linkpointapi
 
     		if (!empty ($this->item_number) && !empty ($this->transaction_id) && $this->payment_status == "APPROVED")
     		{
-    			$BL->processTransaction($this->item_number, $this->transaction_id);
+    			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
     			return true;
     		}
         }
@@ -270,14 +270,14 @@ class linkpointapi
 
 
 /* lphp.php  LINKPOINT PHP MODULE */
-    
+
 /* A php interlocutor CLASS for
 LinkPoint: LINKPOINT LSGS API using
 libcurl, liblphp.so and liblpssl.so
 v3.0.005  20 Aug. 2003  smoffet */
 
 # Copyright 2003 LinkPoint International, Inc. All Rights Reserved.
-# 
+#
 # This software is the proprietary information of LinkPoint International, Inc.
 # Use is subject to license terms.
 
@@ -290,9 +290,9 @@ class lphp
 
     ###########################################
     #
-    #   F U N C T I O N    p r o c e s s ( ) 
+    #   F U N C T I O N    p r o c e s s ( )
     #
-    #   process a hash table or XML string 
+    #   process a hash table or XML string
     #   using LIBLPHP.SO and LIBLPSSL.SO
     #
     ###########################################
@@ -313,24 +313,24 @@ class lphp
             if ($data["debugging"] == "true" || $data["debug"] == "true"  )
             {
                 $this->debugging = 1;
-                
+
                 # print out incoming hash
                 if ($webspace)  // use html-friendly output
                 {
                     echo "at process, incoming data: <br>";
-                
+
                     while (list($key, $value) = each($data))
                          echo htmlspecialchars($key) . " = " . htmlspecialchars($value) . "<BR>\n";
                 }
                 else      // don't use html output
                 {
                     echo "at process, incoming data: \n";
-                    
+
                     while (list($key, $value) = each($data))
-                        echo "$key = $value\n"; 
+                        echo "$key = $value\n";
                 }
 
-                reset($data); 
+                reset($data);
             }
         }
 
@@ -352,7 +352,7 @@ class lphp
 
 
         # FOR PERFORMANCE, Use the 'extensions' statement in your php.ini to load
-        # this library at PHP startup, then comment out the next seven lines 
+        # this library at PHP startup, then comment out the next seven lines
 
         // load library
         if (!extension_loaded('liblphp'))
@@ -366,7 +366,7 @@ class lphp
         if ($this->debugging)
         {
             if ($webspace)
-                echo "<br>sending xml string:<br>" . htmlspecialchars($xml) . "<br><br>";    
+                echo "<br>sending xml string:<br>" . htmlspecialchars($xml) . "<br><br>";
             else
                 echo "\nsending xml string:\n$xml\n\n";
         }
@@ -377,20 +377,20 @@ class lphp
 
         if (strlen($retstg) < 4)
             exit ("cannot connect to lsgs, exiting");
-        
+
         if ($this->debugging)
-        {   
+        {
             if ($this->webspace)    // we're web space
                 echo "<br>server responds:<br>" . htmlspecialchars($retstg) . "<br><br>";
             else                        // not html output
                 echo "\nserver responds:\n $retstg\n\n";
         }
-    
+
         if ($using_xml != 1)
         {
             // convert xml response back to hash
             $retarr = $this->decodeXML($retstg);
-            
+
             // and send it back to caller
             return ($retarr);
         }
@@ -404,14 +404,14 @@ class lphp
 
     #####################################################
     #
-    #   F U N C T I O N    c u r l _ p r o c e s s ( ) 
+    #   F U N C T I O N    c u r l _ p r o c e s s ( )
     #
-    #   process hash table or xml string table using 
-    #   curl, either with PHP built-in curl methods 
+    #   process hash table or xml string table using
+    #   curl, either with PHP built-in curl methods
     #   or binary executable curl
     #
     #####################################################
-    
+
     function curl_process($data)
     {
         $using_xml = 0;
@@ -440,12 +440,12 @@ class lphp
                 else      // don't use html output
                 {
                     echo "at curl_process, incoming data: \n";
-                    
+
                     while (list($key, $value) = each($data))
                         echo "$key = $value\n";
                 }
 
-                reset($data); 
+                reset($data);
             }
         }
 
@@ -463,7 +463,7 @@ class lphp
         if ($this->debugging)
         {
             if ($webspace)
-                echo "<br>sending xml string:<br>" . htmlspecialchars($xml) . "<br><br>";    
+                echo "<br>sending xml string:<br>" . htmlspecialchars($xml) . "<br><br>";
             else
                 echo "\nsending xml string:\n$xml\n\n";
         }
@@ -480,7 +480,7 @@ class lphp
             {
                 if (isset($data["cpath"]))
                     $cpath = $data["cpath"];
-                        
+
                 else // curl path has not been set, try to find curl binary
                 {
                     if (getenv("OS") == "Windows_NT")
@@ -505,7 +505,7 @@ class lphp
                     else
                         $result = exec ("$cpath -d \"$xml\" -E $key  -k $host", $retarr, $retnum);
                 }
-                
+
                 else    //*nix string
                 {
                     if ($this->debugging)
@@ -518,7 +518,7 @@ class lphp
 
                 if (strlen($result) < 2)    // no response
                 {
-                    $result = "<r_approved>FAILURE</r_approved><r_error>Could not connect.</r_error>"; 
+                    $result = "<r_approved>FAILURE</r_approved><r_error>Could not connect.</r_error>";
                     return $result;
                 }
 
@@ -531,7 +531,7 @@ class lphp
                 }
 
                 if ($using_xml == 1)
-                { 
+                {
                     // return xml string straight from server
                     return ($result);
                 }
@@ -539,7 +539,7 @@ class lphp
                 {
                     // convert xml response back to hash
                     $retarr = $this->decodeXML($result);
-                    
+
                     // and send it back to caller. Done.
                     return ($retarr);
                 }
@@ -550,7 +550,7 @@ class lphp
         {
             $ch = curl_init ();
             curl_setopt ($ch, CURLOPT_URL,$host);
-            curl_setopt ($ch, CURLOPT_POST, 1); 
+            curl_setopt ($ch, CURLOPT_POST, 1);
             curl_setopt ($ch, CURLOPT_POSTFIELDS, $xml);
             curl_setopt ($ch, CURLOPT_SSLCERT, $key);
 #           curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);
@@ -567,12 +567,12 @@ class lphp
 
             if (strlen($result) < 2)    # no response
             {
-                $result = "<r_approved>FAILURE</r_approved><r_error>Could not connect.</r_error>"; 
+                $result = "<r_approved>FAILURE</r_approved><r_error>Could not connect.</r_error>";
                 return $result;
             }
 
             if ($this->debugging)
-            {   
+            {
                 if ($webspace)  // html-friendly output
                     echo "<br>server responds:<br>" . htmlspecialchars($result) . "<br><br>";
                 else
@@ -588,7 +588,7 @@ class lphp
             {
                 #convert xml response to hash
                 $retarr = $this->decodeXML($result);
-                
+
                 # and send it back
                 return ($retarr);
             }
@@ -596,11 +596,11 @@ class lphp
     }
 
 
-    #############################################   
+    #############################################
     #
-    #   F U N C T I O N   d e c o d e X M L ( ) 
+    #   F U N C T I O N   d e c o d e X M L ( )
     #
-    #   converts the LSGS response xml string   
+    #   converts the LSGS response xml string
     #   to a hash of name-value pairs
     #
     #############################################
@@ -608,12 +608,12 @@ class lphp
     function decodeXML($xmlstg)
     {
         preg_match_all ("/<(.*?)>(.*?)\</", $xmlstg, $out, PREG_SET_ORDER);
-        
+
         $n = 0;
         while (isset($out[$n]))
         {
             $retarr[$out[$n][1]] = strip_tags($out[$n][0]);
-            $n++; 
+            $n++;
         }
 
         return $retarr;
@@ -622,7 +622,7 @@ class lphp
 
     ############################################
     #
-    #   F U N C T I O N    b u i l d X M L ( ) 
+    #   F U N C T I O N    b u i l d X M L ( )
     #
     #   converts a hash of name-value pairs
     #   to the correct XML format for LSGS
@@ -691,10 +691,10 @@ class lphp
 
         if (isset($pdata["city"]))
             $xml .= "<city>" . $pdata["city"] . "</city>";
-            
+
         if (isset($pdata["state"]))
             $xml .= "<state>" . $pdata["state"] . "</state>";
-            
+
         if (isset($pdata["zip"]))
             $xml .= "<zip>" . $pdata["zip"] . "</zip>";
 
@@ -718,7 +718,7 @@ class lphp
 
         $xml .= "</billing>";
 
-        
+
         ## SHIPPING NODE ##
         $xml .= "<shipping>";
 
@@ -838,7 +838,7 @@ class lphp
         $xml .= "</payment>";
 
 
-        ### CHECK NODE ### 
+        ### CHECK NODE ###
 
 
         if (isset($pdata["voidcheck"]))
@@ -855,7 +855,7 @@ class lphp
 
             if (isset($pdata["bankname"]))
                 $xml .= "<bankname>" . $pdata["bankname"] . "</bankname>";
-    
+
             if (isset($pdata["bankstate"]))
                 $xml .= "<bankstate>" . $pdata["bankstate"] . "</bankstate>";
 
@@ -870,7 +870,7 @@ class lphp
 
             if (isset($pdata["checknumber"]))
                 $xml .= "<checknumber>" . $pdata["checknumber"] . "</checknumber>";
-                
+
             if (isset($pdata["accounttype"]))
                 $xml .= "<accounttype>" . $pdata["accounttype"] . "</accounttype>";
 
@@ -921,7 +921,7 @@ class lphp
         }
 
         ### ITEMS AND OPTIONS NODES ###
-    
+
         if ($this->debugging)   // make it easy to see
         {                       // LSGS doesn't mind whitespace
             reset($pdata);
@@ -954,7 +954,7 @@ class lphp
 
                                 $xml .= "\t\t\t<option>\n";
                                 $otag = 1;
-                                
+
                                 while (list($key3, $val3) = each ($val2))
                                     $xml .= "\t\t\t\t<$key3>$val3</$key3>\n";
                             }
@@ -1008,7 +1008,7 @@ class lphp
 
                                 $xml .= "<option>";
                                 $otag = 1;
-                                
+
                                 while (list($key3, $val3) = each ($val2))
                                     $xml .= "<$key3>$val3</$key3>";
                             }

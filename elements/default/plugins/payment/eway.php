@@ -43,13 +43,13 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name    = "eWAY";
 $eway = array (
-            array ("Customer ID", "eway_CustomerID"), 
+            array ("Customer ID", "eway_CustomerID"),
             array ("Site Title" , "eway_SiteTitle"),
-            array ("Active"     , "active", "No", "Yes"), 
+            array ("Active"     , "active", "No", "Yes"),
             array ("Title"      , "title"),
 			array ("Submit label", "submit_label")
             );
@@ -57,7 +57,7 @@ $send_method = "POST";
 $pay         = new eway($demo_mode);
 /*
  * Class to do all eway
- * eway Version 
+ * eway Version
  */
 class eway
 {
@@ -92,8 +92,8 @@ class eway
         }
         $this->_POST1['ewayCustomerInvoiceRef'] = $this->_POST1['item_number'];
         $this->_POST1['ewayTrxnNumber'] = $this->_POST1['item_number'];
-            
-		$this->_POST1['ewayURL'] = $path_url."/ipn.php";        
+
+		$this->_POST1['ewayURL'] = $path_url."/ipn.php";
 		$this->_POST1['ewayAutoRedirect']= 1;
         $this->_POST1['btnProcessPayment']= "Process Payment";
 
@@ -103,7 +103,7 @@ class eway
 		$this->_POST1['ewayCustomerLastName'] = $array_name[1];
         $this->_POST1['ewayCustomerEmail'] = $_POST['email'];
 		$this->_POST1['ewayCustomerAddress']  = $_POST['address'].", ".$_POST['city'].", ".$_POST['state'].", ".$_POST['country'];
-		$this->_POST1['ewayCustomerPostcode'] = $_POST['zip'];      
+		$this->_POST1['ewayCustomerPostcode'] = $_POST['zip'];
 	}
 	/*
 	 * IPN=Internet Payment Notifier
@@ -115,7 +115,7 @@ class eway
 		$this->payment_status = $_POST['ewayTrxnStatus'];
 		if (!empty ($this->item_number) && !empty ($this->transaction_id) && $this->payment_status=="True")
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

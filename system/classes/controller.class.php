@@ -43,7 +43,7 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 class controller
 {
@@ -52,8 +52,9 @@ class controller
     var $props;
     var $utils;
     var $error;
-    
-    function controller(& $dbL, & $props, & $utils, &$REQUEST, & $errorHandler)
+    var $BL;
+
+    function controller(& $dbL, & $props, & $utils, &$REQUEST)
     {
         $this->REQUEST          = & $REQUEST;
         $this->dbL              = & $dbL;

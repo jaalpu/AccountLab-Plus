@@ -43,13 +43,13 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name               = "PayPal Subscriptions";
 $paypalsubscription = array (
-                        array ("Email"      , "paypal_s_email"), 
-                        array ("Currency"   , "paypal_s_currency", "USD", "GBP", "EUR", "CAD", "JPY", "AUD"), 
-                        array ("Active"     , "active", "No", "Yes"), 
+                        array ("Email"      , "paypal_s_email"),
+                        array ("Currency"   , "paypal_s_currency", "USD", "GBP", "EUR", "CAD", "JPY", "AUD"),
+                        array ("Active"     , "active", "No", "Yes"),
                         array ("Title"      , "title"),
                         array ("Submit label", "submit_label")
                         );
@@ -57,7 +57,7 @@ $send_method        = "POST";
 $pay                = new paypalsubscription($demo_mode);
 /*
  * Class to do all paypal
- * paypal Version 
+ * paypal Version
  */
 class paypalsubscription
 {
@@ -79,7 +79,7 @@ class paypalsubscription
 	function sendVariables($path_url, $pp_vals)
 	{
 		global $BL;
-        $tax_data                     = $BL->calculateTax($_POST['total_recurring_fee'],$_POST['country'],$_POST['state']);
+        $tax_data                     = $BL->invoices->calculateTax($_POST['total_recurring_fee'],$_POST['country'],$_POST['state']);
         $this->_POST1                 = array ();
 		$this->_POST1['cmd']          = "_xclick-subscriptions";
 		$this->_POST1['redirect_cmd'] = "_xclick";
@@ -99,7 +99,7 @@ class paypalsubscription
         $next_bill_date = $BL->utils->getDateArray($_POST['next_bill_date']);
         $initial_days   = $BL->utils->dateDiff(date('d'),date('m'),date('Y'),$next_bill_date['mday'],$next_bill_date['mon'],$next_bill_date['year']);
         if(!empty($_POST['total_recurring_fee']) && !empty($_POST['bill_cycle']) && $_POST['bill_cycle']!='none')
-        {        
+        {
     		$this->_POST1['a1'] = number_format($_POST['gross_amount'],2);
             if ($BL->conf['en_prorate'])
             {
@@ -128,19 +128,19 @@ class paypalsubscription
               $this->_POST1['p1'] = $_POST['dom_reg_year'];
               $this->_POST1['t1'] = "Y";
             }
-    
+
             $this->_POST1['a3'] = number_format($_POST['gross_amount'],2);
             $this->_POST1['p3'] = $_POST['dom_reg_year'];
             $this->_POST1['t3'] = "Y";
         }
-        
-		$this->_POST1['src'] = 1;    
+
+		$this->_POST1['src'] = 1;
 		$this->_POST1['item_number'] = time().rand(0, 1000);
 		if (isset ($_POST['force_inv_no']))
         {
 			$this->_POST1['item_number'] = $_POST['force_inv_no'];
         }
-        
+
 		$array_name                = array ();
 		$array_name                = explode(' ', $_POST['name'], 2);
 		$this->_POST1['first_name']= $array_name[0];
@@ -190,7 +190,7 @@ class paypalsubscription
         $this->payment_status   =$_POST['payment_status'];
 		if ($this->postBack() && !empty ($this->item_number) && !empty ($this->transaction_id) && $this->payment_status=="Completed")
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

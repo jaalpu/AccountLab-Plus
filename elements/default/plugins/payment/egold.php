@@ -43,15 +43,15 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name       = "e-gold";
 $egold      = array (
-                array ("Account"            , "eg_payee_account"), 
-                array ("Your company name"  , "eg_payee_account_name"), 
-                array ("Metal for Payment"  , "eg_metal", "Any", "Gold", "Silver", "Platinum", "Palladium"), 
-                array ("Currency"           , "eg_currency", "USD", "CAD", "FRF", "CHF", "GBP", "DEM", "AUD", "JPY", "EUR", "BEF", "ATS", "GRD", "ESP", "IEP", "ITL", "LUF", "NLG", "PTE", "FIM", "EEK", "LTL", "g", "oz"), 
-                array ("Active"             , "active", "No", "Yes"), 
+                array ("Account"            , "eg_payee_account"),
+                array ("Your company name"  , "eg_payee_account_name"),
+                array ("Metal for Payment"  , "eg_metal", "Any", "Gold", "Silver", "Platinum", "Palladium"),
+                array ("Currency"           , "eg_currency", "USD", "CAD", "FRF", "CHF", "GBP", "DEM", "AUD", "JPY", "EUR", "BEF", "ATS", "GRD", "ESP", "IEP", "ITL", "LUF", "NLG", "PTE", "FIM", "EEK", "LTL", "g", "oz"),
+                array ("Active"             , "active", "No", "Yes"),
                 array ("Title"              , "title"),
 				array ("Submit label"       , "submit_label")
                 );
@@ -77,9 +77,9 @@ class egold
 	{
 		$curr_array   = array ("1" => "USD", "2" => "CAD", "33" => "FRF", "41" => "CHF", "44" => "GBP", "49" => "DEM", "61" => "AUD", "81" => "JPY", "85" => "EUR", "86" => "BEF", "87" => "ATS", "88" => "GRD", "89" => "ESP", "90" => "IEP", "91" => "ITL", "92" => "LUF", "93" => "NLG", "94" => "PTE", "95" => "FIM", "96" => "EEK", "97" => "LTL", "8888" => "g", "9999" => "oz");
 		$metals       = array ("Any" => 0, "Gold" => 1, "Silver" => 2, "Platinum" => 3, "Palladium" => 4);
-        
+
 		$this->eg_metal= $metals[$pp_vals['eg_metal']];
-        
+
 		foreach ($curr_array as $k => $v)
         {
 			if ($v == $pp_vals['eg_currency'])
@@ -87,18 +87,18 @@ class egold
 				$this->eg_currency = $k;
             }
         }
-                
+
 		$this->eg_payee_account       = $pp_vals['eg_payee_account'];
 		$this->eg_payee_account_name  = $pp_vals['eg_payee_account_name'];
-        
+
 		$this->_POST1                 = array ();
-        
+
 		$this->_POST1['item_number']  = time().rand(0, 1000);
 		if (isset ($_POST['force_inv_no']))
         {
 			$this->_POST1['item_number']= $_POST['force_inv_no'];
         }
-            
+
 		$this->_POST1['PAYEE_ACCOUNT']    = $this->eg_payee_account;
 		$this->_POST1['PAYEE_NAME']       = $this->eg_payee_account_name;
 		$this->_POST1['STATUS_URL']       = $path_url."/ipn.php";
@@ -123,7 +123,7 @@ class egold
         $this->payment_status ="OK";
 		if ($_POST['PAYMENTPROCESSOR'] == "EGOLD" && !empty ($this->item_number) && !empty ($this->transaction_id))
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

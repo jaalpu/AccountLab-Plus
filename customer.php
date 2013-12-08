@@ -43,7 +43,7 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 require_once "init.php";
 if(isset($BL->REQUEST['force_theme']) || isset($BL->REQUEST['force_lang']))
@@ -272,23 +272,23 @@ switch ($cmd)
             }
             $add_cur = $BL->currencies->find();
 
-            if (isset($invoice['customer_id']) && isset($_SESSION['user_id']) && 
+            if (isset($invoice['customer_id']) && isset($_SESSION['user_id']) &&
 			    $_SESSION['user_id'] == $invoice['customer_id'])
             {
-                $html_buffer = $BL->mailInvoice($BL->REQUEST['invoice_no'],true);
+                $html_buffer = $BL->invoices->mailInvoice($BL->REQUEST['invoice_no'],true);
                 include_once $BL->include_page("invoice_view.php", "user");
                 break;
             }
             elseif (isset($invoice['customer_id']) && $BL->REQUEST['email'] == $invoice['email'] && $BL->conf['en_quickpay'])
             {
 				$_SESSION['quickpay'] = $BL->REQUEST['invoice_no'];
-                $html_buffer = $BL->mailInvoice($BL->REQUEST['invoice_no'],true);
+                $html_buffer = $BL->invoices->mailInvoice($BL->REQUEST['invoice_no'],true);
 				include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/invoice_view.php");
                 break;
             }
             elseif (isset($invoice['customer_id']) && $_SESSION['quickpay'] == $BL->REQUEST['invoice_no'])
             {
-                $html_buffer = $BL->mailInvoice($BL->REQUEST['invoice_no'],true);
+                $html_buffer = $BL->invoices->mailInvoice($BL->REQUEST['invoice_no'],true);
 				include_once $BL->props->get_page("templates/".THEMEDIR."/html/user/invoice_view.php");
                 break;
             }
@@ -301,10 +301,10 @@ switch ($cmd)
         {
             $temp    = $BL->invoices->get("WHERE `invoices`.invoice_no=".intval($BL->REQUEST['invoice_no']));
             $invoice = $temp[0];
-            if (isset($temp[0]['id']) && 
+            if (isset($temp[0]['id']) &&
 				($_SESSION['user_id'] == $invoice['id']) || ($_SESSION['quickpay'] == $invoice['invoice_no']))
             {
-                $html_buffer = $BL->mailInvoice($BL->REQUEST['invoice_no'],true);
+                $html_buffer = $BL->invoices->mailInvoice($BL->REQUEST['invoice_no'],true);
                 include_once $BL->include_page("invoice_view.php", "user");
                 break;
             }

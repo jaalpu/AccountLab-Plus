@@ -43,14 +43,14 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name   = "cashu";
 $cashu  = array (
-            array ("Merchant ID"    , "cu_merchant_id"), 
-            array ("Currency"       , "cu_currency", "USD", "CSH"), 
-            array ("Encryption Key" , "cu_enkey"), 
-            array ("Active"         , "active", "No", "Yes"), 
+            array ("Merchant ID"    , "cu_merchant_id"),
+            array ("Currency"       , "cu_currency", "USD", "CSH"),
+            array ("Encryption Key" , "cu_enkey"),
+            array ("Active"         , "active", "No", "Yes"),
             array ("Title"          , "title"),
 			array ("Submit label"   , "submit_label")
             );
@@ -111,7 +111,7 @@ class cashu
         $this->payment_status ="OK";
 		if ($_POST['txt3'] == "CASHU" && !empty ($this->item_number) && !empty ($this->transaction_id))
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

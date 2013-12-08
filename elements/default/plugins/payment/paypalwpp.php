@@ -43,20 +43,20 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name           = "PayPal Website Payments Pro";
 $paypalwpp      = array (
-                    array ("API Username"   , "paypalwpp_apiUsername"), 
-                    array ("API Password"   , "paypalwpp_apiPassword"), 
-                    array ("API Credentials", "paypalwpp_api-type", "cert", "tokens"), 
-                    array ("Signature"      , "paypalwpp_signature"), 
-                    array ("Encrypted API Certificate" , "paypalwpp_certFile"), 
-                    array ("Active"         , "active", "No", "Yes"), 
+                    array ("API Username"   , "paypalwpp_apiUsername"),
+                    array ("API Password"   , "paypalwpp_apiPassword"),
+                    array ("API Credentials", "paypalwpp_api-type", "cert", "tokens"),
+                    array ("Signature"      , "paypalwpp_signature"),
+                    array ("Encrypted API Certificate" , "paypalwpp_certFile"),
+                    array ("Active"         , "active", "No", "Yes"),
                     array ("Title"          , "title"),
 					array ("Submit label"   , "submit_label")
                     );
-//Extra fields for order form and customer backend                
+//Extra fields for order form and customer backend
 $ext_fields     = array (
                         // 0=$lang ,1=var, 2=store 3=encrypt, 4=type, 5=size, 6=required, 7=show in [, options]
                         array("Card_First_Name"     ,"paypalwpp_firstName"       ,1,0,"text"     ,35 ,1,2),
@@ -70,7 +70,7 @@ $ext_fields     = array (
                         array("City"                ,"paypalwpp_city"            ,1,0,"text"     ,35 ,1,2),
                         array("State"               ,"paypalwpp_state"           ,1,0,"select"   ,1  ,1,2 , "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY", "AA", "AE", "AP", "AS", "FM", "GU", "MH", "MP", "PR", "PW", "VI"),
                         array("Zip"                 ,"paypalwpp_zip"             ,1,0,"text"     ,35 ,1,2),
-                        );   
+                        );
 
 $validate = "
 function validatepayment(btn) {
@@ -144,11 +144,11 @@ function validatepayment(btn) {
 
 function isNumeric(sText) {
    var ValidChars = '0123456789';
-   for (i = 0; i < sText.length && isNumeric == true; i++) 
-      if (ValidChars.indexOf(sText.charAt(i)) == -1) 
+   for (i = 0; i < sText.length && isNumeric == true; i++)
+      if (ValidChars.indexOf(sText.charAt(i)) == -1)
          return false;
    return true;
-   
+
 }
 
 function luhnCheck(CardNumber) {
@@ -173,8 +173,8 @@ function luhnCheck(CardNumber) {
     else
         return false;
 }
-";						
-						
+";
+
 for($i=date('Y');$i<(date('Y')+20);$i++)
 {
     $ext_fields[5][]=$i;
@@ -203,7 +203,7 @@ class paypalwpp
 	function sendVariables($path_url, $pp_vals)
 	{
 		$this->pay_url  = $path_url.'/ipn.php';
-        
+
         $this->_POST1   = $_POST;
         $this->_POST1['item_number'] = time().rand(0, 1000);
         if (isset ($_POST['force_inv_no']))
@@ -211,21 +211,21 @@ class paypalwpp
             $this->_POST1['item_number'] = $_POST['force_inv_no'];
         }
         $this->_POST1['ipn_type'] = 2;
-        $this->_POST1['pp']       = 'paypalwpp'; 
+        $this->_POST1['pp']       = 'paypalwpp';
         $this->_POST1['item_name']= $_POST['friendly_desc'];
         if(empty($this->_POST1['item_name']))
         {
             $this->_POST1['item_name'] = $_POST['desc'];
         }
-            
+
         $this->_POST1['firstName']        = $_POST['paypalwpp_firstName'];
         $this->_POST1['lastName']         = $_POST['paypalwpp_lastName'];
         $this->_POST1['creditCardType']   = $_POST['paypalwpp_creditCardType'];
         $this->_POST1['creditCardNumber'] = $_POST['paypalwpp_creditCardNumber'];
         $this->_POST1['expDateMonth']     = $_POST['paypalwpp_expDateMonth'];
         $this->_POST1['expDateYear']      = $_POST['paypalwpp_expDateYear'];
-        $this->_POST1['cvv2Number']       = $_POST['paypalwpp_cvv2Number'];        
-        $this->_POST1['address1']         = $_POST['paypalwpp_address1']; 
+        $this->_POST1['cvv2Number']       = $_POST['paypalwpp_cvv2Number'];
+        $this->_POST1['address1']         = $_POST['paypalwpp_address1'];
         $this->_POST1['city']             = $_POST['paypalwpp_city'];
         $this->_POST1['state']            = $_POST['paypalwpp_state'];
         $this->_POST1['zip']              = $_POST['paypalwpp_zip'];
@@ -251,12 +251,12 @@ class paypalwpp
             }
             if(count($O_order))
             {
-                $amount = number_format($O_order['gross_amount'], 2);    
+                $amount = number_format($O_order['gross_amount'], 2);
             }
             else
             {
                 $invoice = $BL->invoices->get("WHERE `invoice_no`=".intval($this->item_number));
-                $amount  = number_format($invoice[0]['gross_amount'], 2);    
+                $amount  = number_format($invoice[0]['gross_amount'], 2);
             }
 
             require_once 'PayPal.php';
@@ -273,24 +273,24 @@ class paypalwpp
             require_once 'PayPal/Type/CreditCardDetailsType.php';
             require_once 'PayPal/Type/PayerInfoType.php';
             require_once 'PayPal/Type/PersonNameType.php';
-            
+
             // Ack related constants
             define('ACK_SUCCESS', 'Success');
             define('ACK_SUCCESS_WITH_WARNING', 'SuccessWithWarning');
-            
+
             // Refund related constants
             define('REFUND_PARTIAL', 'Partial');
             define('REFUND_FULL', 'Full');
-            
+
             // Profile
             if($this->demo_mode)
                 define('ENVIRONMENT', 'sandbox');
             else
                 define('ENVIRONMENT', 'live');
-            
+
             define('UNITED_STATES', 'US');
-            
-            
+
+
             $dummy        = @new APIProfile();
             $environments = $dummy->getValidEnvironments();
             $handler      = & ProfileHandler_Array::getInstance(array(
@@ -300,19 +300,19 @@ class paypalwpp
                                                         'environment'     => ENVIRONMENT ));
             $pid          = ProfileHandler::generateID();
             $profile      = new APIProfile($pid, $handler);
-                                                          
+
             $profile->setAPIUsername($pp_vals['paypalwpp_apiUsername']);
-            $profile->setAPIPassword($pp_vals['paypalwpp_apiPassword']); 
+            $profile->setAPIPassword($pp_vals['paypalwpp_apiPassword']);
             if(is_file($pp_vals['paypalwpp_certFile']))
-                $profile->setCertificateFile($pp_vals['paypalwpp_certFile']); 
+                $profile->setCertificateFile($pp_vals['paypalwpp_certFile']);
             $profile->setSignature($pp_vals['paypalwpp_signature']);
-            $profile->setEnvironment(ENVIRONMENT);       
-                                       
+            $profile->setEnvironment(ENVIRONMENT);
+
             $caller       = & PayPal::getCallerServices($profile);
-                           
+
             $_SESSION['APIProfile'] = $profile;
             $_SESSION['caller']     = $caller;
-            
+
             $dp_request   = & PayPal::getType('DoDirectPaymentRequestType');
             /**
              * Get posted request values
@@ -332,7 +332,7 @@ class paypalwpp
             $state                  = $_POST['paypalwpp_state'];
             $zip                    = $_POST['paypalwpp_zip'];
             $amount                 = $amount;
-            
+
             // Populate SOAP request information
             // Payment details
             $OrderTotal             = & PayPal::getType('BasicAmountType');
@@ -377,17 +377,17 @@ class paypalwpp
             $dp_details->setPaymentAction($paymentType);
 
             $dp_request->setDoDirectPaymentRequestDetails($dp_details);
-            
+
             $caller     = & PayPal::getCallerServices($profile);
             $response   = $caller->DoDirectPayment($dp_request);
             $ack        = $response->getAck();
 
             $this->payment_status = $ack;
             $this->transaction_id = $response->TransactionID;
-            
+
     		if (!empty ($this->item_number) && !empty ($this->transaction_id) && ($this->payment_status == ACK_SUCCESS || $this->payment_status == ACK_SUCCESS_WITH_WARNING))
     		{
-    			$BL->processTransaction($this->item_number, $this->transaction_id);
+    			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
     			return true;
     		}
         }

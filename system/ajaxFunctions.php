@@ -43,7 +43,7 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 function updateBasket()
 {
@@ -184,7 +184,7 @@ function updateBasket()
     }
 
     $sub_total = $product_cost+$total_addon_cost+$tld_cost;
-    $tax_data  = $BL->calculateTax($sub_total);
+    $tax_data  = $BL->invoices->calculateTax($sub_total);
     $tax       = $tax_data['total_tax_amount'];
     $total_text= ($tax>0)?$BL->props->lang['estimated_total']:$BL->props->lang['Total'];
 	if ($tax != 0) {

@@ -43,13 +43,13 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name       = "Stormpay";
 $stormpay   = array (
-                array ("Stormpay email" , "payee_email"), 
+                array ("Stormpay email" , "payee_email"),
                 array ("Secret Code"    , "sp_secret_code"),
-                array ("Active"         , "active", "No", "Yes"), 
+                array ("Active"         , "active", "No", "Yes"),
                 array ("Title"          , "title"),
 				array ("Submit label"   , "submit_label")
                 );
@@ -105,14 +105,14 @@ class stormpay
 		$this->item_number    = $_POST['transaction_ref'];
 		$this->transaction_id = $_POST['transaction_id'];
 		$this->payment_status = $_POST['status'];
-        
+
         $sqlSELECT = "SELECT  * FROM {$BL->props->tbl_payment_processors} WHERE `pp_name` ='stormpay'";
         $temp      = $BL->dbL->executeSELECT($sqlSELECT);
-        $pp_vals   = $temp[0];         
-        
+        $pp_vals   = $temp[0];
+
 		if (!empty ($_POST['user1']) && ($this->payment_status == "SUCCESS" || $this->payment_status == "TEST") && is_int($this->transaction_id) && !empty ($_POST['user1']) && !empty ($this->item_number) && $_POST['user1'] == $this->item_number && $_POST['user2'] == "stormpay" && $pp_vals['sp_secret_code']==$_POST['secret_code'])
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

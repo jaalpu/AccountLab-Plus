@@ -43,15 +43,15 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name       = "ProxyPay";
 $proxypay   = array (
-                array ("ProxyPay Server Url"    , "server_url"), 
-                array ("Merchant ID"            , "merchant_id"), 
-                array ("Confirmation Password"  , "pp3_conf_pass"), 
-                array ("Currency"               , "pp3_currency", "ATS", "BEF", "FRF", "GRD", "DEM", "ITL", "LUF", "NLG", "ESP", "CHF", "GBP", "USD", "EUR", "JPY"), 
-                array ("Active"                 , "active", "No", "Yes"), 
+                array ("ProxyPay Server Url"    , "server_url"),
+                array ("Merchant ID"            , "merchant_id"),
+                array ("Confirmation Password"  , "pp3_conf_pass"),
+                array ("Currency"               , "pp3_currency", "ATS", "BEF", "FRF", "GRD", "DEM", "ITL", "LUF", "NLG", "ESP", "CHF", "GBP", "USD", "EUR", "JPY"),
+                array ("Active"                 , "active", "No", "Yes"),
                 array ("Title"                  , "title"),
 				array ("Submit label"           , "submit_label")
                 );
@@ -112,7 +112,7 @@ class proxypay
 		$pp_vals      = $temp[0];
 		if (!empty ($this->item_number) && !empty ($this->transaction_id) && trim($_POST['var1']) == "ProxyPay3" && trim($_POST["Password"]) == $pp_vals['pp_conf_pass'])
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

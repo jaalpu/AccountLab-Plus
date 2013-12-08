@@ -43,14 +43,14 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name           = "Authorize.net";
 $authorizenet   = array (
-                    array ("Login ID"       , "auth_id"), 
-                    array ("Transaction Key", "auth_tid"), 
-                    array ("Currency"       , "auth_currency"), 
-                    array ("Active"         , "active", "No", "Yes"), 
+                    array ("Login ID"       , "auth_id"),
+                    array ("Transaction Key", "auth_tid"),
+                    array ("Currency"       , "auth_currency"),
+                    array ("Active"         , "active", "No", "Yes"),
                     array ("Title"          , "title"),
 					array ("Submit label"   , "submit_label")
                     );
@@ -114,7 +114,7 @@ class authorizenet
 		$this->_POST1['x_state']          = $_POST['state'];
 		$this->_POST1['x_zip']            = $_POST['zip'];
 		$this->_POST1['x_country']        = $_POST['country'];
-		$this->_POST1['x_invoice_num']    = $this->_POST1['item_number'];		
+		$this->_POST1['x_invoice_num']    = $this->_POST1['item_number'];
 		$this->_POST1['gateway']          = "Authorizenet";
 	}
 	/*
@@ -142,7 +142,7 @@ class authorizenet
 		$verifyamount         = $BL->verifyAmount($this->item_number,$_POST["x_amount"]);
 		if (!empty ($this->item_number) && !empty ($this->transaction_id) && $this->payment_status == 1 && $verifyamount && $_POST['gateway'] == "Authorizenet")
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

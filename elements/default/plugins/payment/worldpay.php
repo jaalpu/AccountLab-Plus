@@ -43,13 +43,13 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name       = "Worldpay";
 $worldpay   = array (
-                array ("WorldPay Installation ID", "wp_instId"), 
-                array ("Currency", "wp_currency"), 
-                array ("Active", "active", "No", "Yes"), 
+                array ("WorldPay Installation ID", "wp_instId"),
+                array ("Currency", "wp_currency"),
+                array ("Active", "active", "No", "Yes"),
                 array ("Title", "title"),
 				array ("Submit label", "submit_label")
                 );
@@ -110,7 +110,7 @@ class worldpay
 		$this->payment_status = $_POST['transStatus'];
 		if (!empty ($this->item_number) && $this->payment_status == "Y" && $_POST['M_pp'] == "WorldPay")
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

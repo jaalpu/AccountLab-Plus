@@ -89,11 +89,11 @@ if(!isset($BL->REQUEST['action']) || empty($BL->REQUEST['action']))
         $desc = $BL->getCustomerFieldValue("name",$order['id'])." (".$order['domain_name']."->".$BL->getFriendlyName($order['product_id']).")";
         if(empty($date))
         {
-            $echo = $BL->genInvoices($order['sub_id']);
+            $echo = $BL->invoices->genInvoices($order['sub_id']);
         }
         else
         {
-            $echo = $BL->genInvoices($order['sub_id'],false,$date,false,true);
+            $echo = $BL->invoices->genInvoices($order['sub_id'],false,$date,false,true);
         }
         if(!empty($echo))
         {
@@ -111,7 +111,7 @@ if($conf['u_invoice_date']>0 && isset($BL->REQUEST['action']) && $BL->REQUEST['a
     {
         $desc = $BL->getCustomerFieldValue("name",$order['id'])." (".$order['domain_name']."->".$BL->getFriendlyName($order['product_id']).")";
         echo "<font color='red'><b>*** Generating upcoming invoice for ".$desc."</b></font><br />";
-        $echo = $BL->genInvoices($order['sub_id'],false,"",true);
+        $echo = $BL->invoices->genInvoices($order['sub_id'],false,"",true);
         if(!empty($echo))
         {
             echo "<br />".nl2br($echo)."<br />";
@@ -131,7 +131,7 @@ if(isset($BL->REQUEST['action']) && $BL->REQUEST['action']=="send_pending" && $c
         if($date_compare==1)
         {
             echo "<font color='red'><b>*** Sending Invoice, Description : ".$inv['desc']."</b></font><br />";
-            $BL->mailInvoice($inv['invoice_no']);
+            $BL->invoices->mailInvoice($inv['invoice_no']);
             echo "<br />";
         }
     }

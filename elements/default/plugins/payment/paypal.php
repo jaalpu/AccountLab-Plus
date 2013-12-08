@@ -43,13 +43,13 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name   = "PayPal";
 $paypal = array (
-            array ("Email"      , "paypal_email"), 
-            array ("Currency"   , "paypal_currency", "USD", "GBP", "EUR", "CAD", "JPY", "AUD"), 
-            array ("Active"     , "active", "No", "Yes"), 
+            array ("Email"      , "paypal_email"),
+            array ("Currency"   , "paypal_currency", "USD", "GBP", "EUR", "CAD", "JPY", "AUD"),
+            array ("Active"     , "active", "No", "Yes"),
             array ("Title"      , "title"),
             array ("Submit label", "submit_label")
             );
@@ -57,7 +57,7 @@ $send_method = "POST";
 $pay         = new paypal($demo_mode);
 /*
  * Class to do all paypal
- * paypal Version 
+ * paypal Version
  */
 class paypal
 {
@@ -89,17 +89,17 @@ class paypal
         {
             $this->_POST1['item_name'] = $_POST['desc'];
         }
-        
+
 		$this->_POST1['item_number'] = time().rand(0, 1000);
 		if (isset ($_POST['force_inv_no']))
         {
 			$this->_POST1['item_number'] = $_POST['force_inv_no'];
         }
-            
+
 		$this->_POST1['notify_url']   = $path_url."/ipn.php";
 		$this->_POST1['return']       = $path_url."/OK.php";
 		$this->_POST1['cancel_return']= $path_url."/NOK.php";
-        
+
 		$this->_POST1['no_shipping']= 1;
 		$this->_POST1['no_note']    = 1;
 		$this->_POST1['rm']         = 2;
@@ -152,7 +152,7 @@ class paypal
 		$this->payment_status = $_POST['payment_status'];
 		if ($this->postBack() && !empty ($this->item_number) && !empty ($this->transaction_id) && $this->payment_status=="Completed")
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

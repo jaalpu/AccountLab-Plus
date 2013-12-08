@@ -43,7 +43,7 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 require_once "init.php";
 require_once(LIBRARIES."xajax".PATH_SEP."xajax.inc.php");
@@ -133,7 +133,7 @@ switch ($cmd)
         $BL->REQUEST['item_number']        = isset($_SESSION['item_number'])?$_SESSION['item_number']:0;
         if($BL->REQUEST['item_number'])
         {
-            $BL->processTransaction($BL->REQUEST['item_number'], 0);
+            $BL->invoices->processTransaction($BL->REQUEST['item_number'], 0);
         }
         $BL->session_restart();
         $cmd = isset($cmd)?$cmd:"step8";
@@ -230,7 +230,7 @@ switch ($cmd)
         }
         $_SESSION['payment_method'] = (!isset($_SESSION['payment_method']) || empty($_SESSION['payment_method']))?$ACTIVE_PAYMENT_METHODS[0]:$_SESSION['payment_method'];
 
-        $INVOICE_DATA  = $BL->calcuateAll();
+        $INVOICE_DATA  = $BL->invoices->calcuateAll();
         $ORDER_DATA    = $INVOICE_DATA['ORDER_DATA'];
         $CUSTOMER_DATA = $INVOICE_DATA['CUSTOMER_DATA'];
         $TAX_DATA      = $INVOICE_DATA['TAX_DATA'];

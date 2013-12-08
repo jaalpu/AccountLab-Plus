@@ -43,7 +43,7 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name       = "clickbank";
 $clickbank  = array (
@@ -98,7 +98,7 @@ class clickbank
         $sqlSELECT  = "SELECT  * FROM {$BL->props->tbl_payment_processors} WHERE `pp_name` ='proxypay'";
         $temp       = $BL->dbL->executeSELECT($sqlSELECT);
         $pp_vals    = $temp[0];
-        
+
         $this->item_number      = $_POST['item_number'];
 		$this->transaction_id   = $_POST['item_number'];
 		$this->payment_status   = "OK";
@@ -108,7 +108,7 @@ class clickbank
 		$secret_key   = $pp_vals['cb_sk'];
 		if ($_POST['gateway'] == "clickbank" && !empty ($this->item_number) && !empty ($this->transaction_id) && $this->cbValid($seed, $cbpop, $secret_key))
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

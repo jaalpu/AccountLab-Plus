@@ -43,13 +43,13 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name       = "Paymate";
 $paymate    = array (
-            array ("ID"         , "mid"), 
-            array ("Currency"   , "paymate_currency", "USD", "AUD"), 
-            array ("Active"     , "active", "No", "Yes"), 
+            array ("ID"         , "mid"),
+            array ("Currency"   , "paymate_currency", "USD", "AUD"),
+            array ("Active"     , "active", "No", "Yes"),
             array ("Title"      , "title"),
             array ("Submit label", "submit_label")
             );
@@ -122,7 +122,7 @@ class paymate
             {
 				$_POST['skip_auto_creation']= 1;
             }
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

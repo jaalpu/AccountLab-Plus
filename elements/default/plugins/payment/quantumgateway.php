@@ -43,12 +43,12 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name   = "Quantum Gateway";
 $quantumgateway = array (
-            array ("Gateway Login" , "quantumgateway_gwlogin"), 
-            array ("Active" , "active", "No", "Yes"), 
+            array ("Gateway Login" , "quantumgateway_gwlogin"),
+            array ("Active" , "active", "No", "Yes"),
             array ("Title" , "title"),
 			array ("Submit label", "submit_label")
             );
@@ -56,7 +56,7 @@ $send_method = "POST";
 $pay         = new quantumgateway($demo_mode);
 /*
  * Class to do all quantumgateway
- * quantumgateway Version 
+ * quantumgateway Version
  */
 class quantumgateway
 {
@@ -77,13 +77,13 @@ class quantumgateway
 		$this->_POST1['gwlogin'] = $pp_vals['quantumgateway_gwlogin'];
         $this->_POST1['post_return_url_approved'] = $path_url."/ipn.php";
         $this->_POST1['post_return_url_declined'] = $path_url."/NOK.php";
-		$this->_POST1['amount'] = number_format($_POST['gross_amount'],2);       
+		$this->_POST1['amount'] = number_format($_POST['gross_amount'],2);
 		$this->_POST1['item_number'] = time().rand(0, 1000);
 		if (isset ($_POST['force_inv_no']))
         {
 			$this->_POST1['item_number'] = $_POST['force_inv_no'];
-        }            
-        $this->_POST1['ID'] = $this->_POST1['item_number'];    
+        }
+        $this->_POST1['ID'] = $this->_POST1['item_number'];
         $this->_POST1['BADDR1']  = $_POST['address'];
         $this->_POST1['BZIP1'] = $_POST['city'];
         $this->_POST1['BCUST_EMAIL'] = $_POST['email'];
@@ -98,7 +98,7 @@ class quantumgateway
 		$this->payment_status = $_POST['trans_result'];
 		if (!empty ($this->item_number) && !empty ($this->transaction_id) && $this->payment_status=="APPROVED")
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

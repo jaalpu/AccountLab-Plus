@@ -43,15 +43,15 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name       = "Mokejimai";
 $mokejimai  = array (
-                    array ("Mokejimai Merchant ID"  , "mokejimai_MerchantID"), 
-                    array ("Mokejimai Password"     , "mokejimai_Password"), 
-                    array ("Mokejimai Language"     , "mokejimai_Lang", "ENG", "ESP", "EST", "FIN", "FRE", "GEO", "GER", "ITA", "LAV", "LIT", "NOR", "POL", "ROU", "RUS", "SPA", "SWE"), 
-                    array ("Mokejimai Currency"     , "mokejimai_Currency", "LTL","USD","EUR"), 
-                    array ("Active"                 , "active", "No", "Yes"), 
+                    array ("Mokejimai Merchant ID"  , "mokejimai_MerchantID"),
+                    array ("Mokejimai Password"     , "mokejimai_Password"),
+                    array ("Mokejimai Language"     , "mokejimai_Lang", "ENG", "ESP", "EST", "FIN", "FRE", "GEO", "GER", "ITA", "LAV", "LIT", "NOR", "POL", "ROU", "RUS", "SPA", "SWE"),
+                    array ("Mokejimai Currency"     , "mokejimai_Currency", "LTL","USD","EUR"),
+                    array ("Active"                 , "active", "No", "Yes"),
                     array ("Title"                  , "title"),
 					array ("Submit label"           , "submit_label")
                     );
@@ -81,26 +81,26 @@ class mokejimai
         $this->_POST1['Lang']         = $pp_vals['mokejimai_Lang'];
         $this->_POST1['Currency']     = $pp_vals['mokejimai_Currency'];
 		$this->_POST1['Amount']       = number_format(($_POST['gross_amount']*100),2);
-        
+
 		$this->_POST1['item_number']  = time().rand(0, 1000);
 		if (isset ($_POST['force_inv_no']))
-        {   
+        {
 			$this->_POST1['item_number']= $_POST['force_inv_no'];
         }
 		$this->_POST1['OrderID']      = $this->_POST1['item_number'];
-        
+
         $this->_POST1['AcceptURL']    = $path_url."/OK.php";
         $this->_POST1['CancelURL']    = $path_url."/NOK.php";
-        $this->_POST1['CallbackURL']  = $path_url."/ipn.php";   
-        
+        $this->_POST1['CallbackURL']  = $path_url."/ipn.php";
+
         $this->_POST1['item_name']    = $_POST['friendly_desc'];
         if(empty($this->_POST1['item_name']))
         {
-            $this->_POST1['item_name']= $_POST['desc'];   
-        }  
-        
+            $this->_POST1['item_name']= $_POST['desc'];
+        }
+
 		$this->_POST1['PayText']      = $this->_POST1['item_name'];
-        
+
         if ($this->demo_mode)
         {
             $this->_POST1['Test']= "1";
@@ -114,16 +114,16 @@ class mokejimai
 		$this->item_number    = $_GET['orderid'];
 		$this->transaction_id = $_GET['transaction'];
         $this->payment_status = $_GET['status'];
-        
-        
+
+
         $sqlSELECT = "SELECT  * FROM {$BL->props->tbl_payment_processors} WHERE `pp_name` ='mokejimai'";
         $temp      = $BL->dbL->executeSELECT($sqlSELECT);
         $pp_vals   = $temp[0];
-        $your_mokejimai_pass  = $pp_vals['mokejimai_pass'];        
-        
+        $your_mokejimai_pass  = $pp_vals['mokejimai_pass'];
+
 		if (!empty ($this->item_number) && !empty ($this->transaction_id) && $this->payment_status == "1" && $this->TestTransaction( $_GET['transaction'], $your_mokejimai_pass, $_GET['orderid'], $this->demo_mode, $this->payment_status ) )
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

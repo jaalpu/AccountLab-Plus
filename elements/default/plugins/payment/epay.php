@@ -43,13 +43,13 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name     = "Epay";
 $epay = array (
-                array ("Merchant ID"    , "epay_id"), 
-                array ("Currency"       , "epay_currency", "USD", "EUR"), 
-                array ("Active"         , "active", "No", "Yes"), 
+                array ("Merchant ID"    , "epay_id"),
+                array ("Currency"       , "epay_currency", "USD", "EUR"),
+                array ("Active"         , "active", "No", "Yes"),
                 array ("Title"          , "title"),
 				array ("Submit label"   , "submit_label")
                 );
@@ -101,14 +101,14 @@ class epay
 		$this->item_number    = $_POST['EPAY_ORDER_PARAMS'];
 		$this->transaction_id = $_POST['batch'];
 		$this->payment_status = $_POST['status'];
-        
+
 		if (!empty ($this->item_number) && isset($_POST['EPAY_ORDER_PARAMS']))
 		{
             if($this->payment_status == 0)
             {
                 $_POST['skip_auto_creation'] = 1;
             }
-            $BL->processTransaction($this->item_number, $this->transaction_id);
+            $BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

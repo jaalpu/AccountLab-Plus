@@ -155,14 +155,14 @@ switch ($cmd)
         {
             if (isset($BL->REQUEST['action']) && $BL->REQUEST['action'] == "sendinvoice")
             {
-                if($BL->mailInvoice($BL->REQUEST['invoice_no']))
+                if($BL->invoices->mailInvoice($BL->REQUEST['invoice_no']))
                 {
                     $BL->utils->alert($BL->props->lang['Invoice_Send']);
                 }
             }
             if (isset($BL->REQUEST['action']) && $BL->REQUEST['action'] == "sendpaymentnotice")
             {
-                if($BL->mailPaymentReciept($BL->REQUEST['invoice_no']))
+                if($BL->invoices->mailPaymentReceipt($BL->REQUEST['invoice_no']))
                 {
                     $BL->utils->alert($BL->props->lang['Reciept_Send']);
                 }
@@ -281,7 +281,7 @@ switch ($cmd)
             }
             if (isset($BL->REQUEST['action']) && $BL->REQUEST['action'] == "add")
             {
-                $transaction = $BL->processTransaction($BL->REQUEST['item_number'], 0);
+                $transaction = $BL->invoices->processTransaction($BL->REQUEST['item_number'], 0);
                 if(!empty($transaction))
                 {
                     $BL->utils->alert($transaction,false,true,true);
@@ -499,7 +499,7 @@ switch ($cmd)
                 $BL->REQUEST['customer']['disc_token_code'] = "";
                 //PREPARE ORDER DATA END
 
-                $INVOICE_DATA = $BL->calcuateAll(false,false, $BL->REQUEST);
+                $INVOICE_DATA = $BL->invoices->calcuateAll(false,false, $BL->REQUEST);
 
                 foreach($INVOICE_DATA as $key=>$value)
                 {
@@ -523,7 +523,7 @@ switch ($cmd)
                 {
                     $BL->REQUEST['invoice_status'] = $BL->REQUEST['mark_as'];
                     $temp = $BL->recurring_data($BL->REQUEST['order_id'],0,"SELECT");
-                    $BL->genInvoices($BL->REQUEST['order_id'],true,$temp['rec_next_date']);
+                    $BL->invoices->genInvoices($BL->REQUEST['order_id'],true,$temp['rec_next_date']);
                 }
                 $BL->Redirect("viewinvoice");
                 break;
@@ -586,7 +586,7 @@ switch ($cmd)
                     $temp = $BL->utils->getDateArray($date);
                     if($BL->utils->compareDates(date('d'),date('m'),date('Y'),$temp['mday'],$temp['mon'],$temp['year'])!=-1)
                     {
-                        $return = $BL->genInvoices($BL->REQUEST['sub_id'],false,$date,false,true);
+                        $return = $BL->invoices->genInvoices($BL->REQUEST['sub_id'],false,$date,false,true);
                         $BL->utils->alert($BL->getFriendlyDesc($return,$BL->REQUEST['sub_id']));
                     }
                 }

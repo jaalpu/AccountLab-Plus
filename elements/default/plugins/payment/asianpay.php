@@ -43,15 +43,15 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name     = "Asianpay";
 $asianpay = array (
-                array ("Receiver Email" , "ap_receiver"), 
-                array ("Receiver ID"    , "ap_receiverid"), 
-                array ("Account ID"     , "ap_account_id"), 
+                array ("Receiver Email" , "ap_receiver"),
+                array ("Receiver ID"    , "ap_receiverid"),
+                array ("Account ID"     , "ap_account_id"),
                 array ("Secret Code"    , "ap_secretcode"),
-                array ("Active"         , "active", "No", "Yes"), 
+                array ("Active"         , "active", "No", "Yes"),
                 array ("Title"          , "title"),
 				array ("Submit label"   , "submit_label")
                 );
@@ -82,17 +82,17 @@ class asianpay
         $this->_POST1['account_id'] = $pp_vals['ap_account_id'];
 		$this->_POST1['prod_name']  = $_POST['desc'];
 		$this->_POST1['prod_price'] = number_format($_POST['gross_amount'],2);
-        
+
 		$this->_POST1['notifyurl']  = $path_url."/ipn.php";
         $this->_POST1['successurl'] = $path_url."/OK.php";
         $this->_POST1['cancelurl']  = $path_url."/NOK.php";
-        
+
 		$this->_POST1['item_number']= time().rand(0, 1000);
 		if (isset ($_POST['force_inv_no']))
         {
 			$this->_POST1['item_number'] = $_POST['force_inv_no'];
         }
-            
+
 		$this->_POST1['custom_1'] = $this->_POST1['item_number'];
 		$this->_POST1['custom_2'] = "AsianPay";
 	}
@@ -107,15 +107,15 @@ class asianpay
 
         $sqlSELECT = "SELECT  * FROM {$BL->props->tbl_payment_processors} WHERE `pp_name` ='asianpay'";
         $temp      = $BL->dbL->executeSELECT($sqlSELECT);
-        $pp_vals   = $temp[0]; 
-        
+        $pp_vals   = $temp[0];
+
 		if (!empty ($this->item_number) && ($this->payment_status == 1 || $this->payment_status == 0)  && $_POST['custom_2'] == "AsianPay" && $_POST['receiverid']==$pp_vals['ap_receiverid'] && $_POST['secretcode']==$pp_vals['ap_ecretcode'])
 		{
             if($this->payment_status == 0)
             {
                 $_POST['skip_auto_creation'] = 1;
             }
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

@@ -43,13 +43,13 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name       = "ChronoPay";
 $chronopay  = array (
-                array ("Product Id"     , "chronopay_product_id"), 
-                array ("Currency"       , "chronopay_currency", "USD"), 
-                array ("Active"         , "active", "No", "Yes"), 
+                array ("Product Id"     , "chronopay_product_id"),
+                array ("Currency"       , "chronopay_currency", "USD"),
+                array ("Active"         , "active", "No", "Yes"),
                 array ("Title"          , "title"),
 				array ("Submit label"   , "submit_label")
                 );
@@ -57,7 +57,7 @@ $send_method= "POST";
 $pay        = new chronopay($demo_mode);
 /*
  * Class to do all chronopay
- * chronopay Version 
+ * chronopay Version
  */
 class chronopay
 {
@@ -83,13 +83,13 @@ class chronopay
         {
             $this->_POST1['product_name'] = $_POST['desc'];
         }
-            
+
 		$this->_POST1['item_number']              = time().rand(0, 1000);
 		if (isset ($_POST['force_inv_no']))
         {
 			$this->_POST1['item_number'] = $_POST['force_inv_no'];
         }
-            
+
 		$this->_POST1['cb_url']       = $path_url."/ipn.php";
 		$this->_POST1['decline_url']  = $path_url."/NOK.php";
 
@@ -101,7 +101,7 @@ class chronopay
         $this->_POST1['country']    = $_POST['country'];
         $this->_POST1['phone']      = $_POST['telephone'];
         $this->_POST1['email']      = $_POST['email'];
-        
+
         $this->_POST1['cs1']        = $this->_POST1['item_number'];
         $this->_POST1['cs2']        = "Chronopay";
         $this->_POST1['cb_type']    = "P";
@@ -117,7 +117,7 @@ class chronopay
 		$this->payment_status = $_POST['transaction_type'];
 		if (!empty ($this->item_number) && !empty ($this->transaction_id) && $_POST['cs2']=="Chronopay" && $BL->verifyAmount($this->item_number,$_POST['total']))
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

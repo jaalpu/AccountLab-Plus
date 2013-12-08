@@ -43,13 +43,13 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name           = "Moneybookers";
 $moneybookers   = array (
-                    array ("Email"      , "pay_to_email"), 
-                    array ("Currency"   , "mb_currency"), 
-                    array ("Active"     , "active", "No", "Yes"), 
+                    array ("Email"      , "pay_to_email"),
+                    array ("Currency"   , "mb_currency"),
+                    array ("Active"     , "active", "No", "Yes"),
                     array ("Title"      , "title"),
                     array ("Submit label", "submit_label")
                     );
@@ -74,13 +74,13 @@ class moneybookers
 	 */
 	function sendVariables($path_url, $pp_vals)
 	{
-		$this->_POST1 = array ();        
+		$this->_POST1 = array ();
 		$this->_POST1['item_number']= time().rand(0, 1000);
 		if (isset ($_POST['force_inv_no']))
         {
 			$this->_POST1['item_number'] = $_POST['force_inv_no'];
         }
-            
+
 		$this->_POST1['pay_to_email']     = $pp_vals['pay_to_email'];
 		$this->_POST1['transaction_id']   = $this->_POST1['item_number'];
 		$this->_POST1['cancel_url']       = $path_url."/NOK.php";
@@ -96,7 +96,7 @@ class moneybookers
         {
             $this->_POST1['detail1_text'] = $_POST['desc'];
         }
-            
+
 		$array_name                   = array ();
 		$array_name                   = explode(' ', $_POST['name'], 2);
 		$this->_POST1['firstname']    = $array_name[0];
@@ -122,7 +122,7 @@ class moneybookers
             {
 				$_POST['skip_auto_creation']= 1;
             }
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

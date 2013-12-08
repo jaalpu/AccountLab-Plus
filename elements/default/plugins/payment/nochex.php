@@ -43,12 +43,12 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name       = "NOCHEX";
 $nochex     = array (
-            array ("Email"  , "nc_email"), 
-            array ("Active" , "active", "No", "Yes"), 
+            array ("Email"  , "nc_email"),
+            array ("Active" , "active", "No", "Yes"),
             array ("Title"  , "title"),
             array ("Submit label", "submit_label")
             );
@@ -138,7 +138,7 @@ class nochex
         $this->payment_status = "OK";
 		if (!empty ($this->item_number) && $this->postBack())
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

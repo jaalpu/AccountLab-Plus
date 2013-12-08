@@ -211,7 +211,7 @@ if(isset($REQUEST['cmd']) && $REQUEST['cmd']=='PRINT')
 		|| $BL->auth->IsSESSION("admin")
 		|| (isset($_SESSION['quickpay']) && $_SESSION['quickpay'] == $REQUEST['invoice_no'] )))
     {
-        $html_buffer = $BL->mailInvoice($REQUEST['invoice_no'],true);
+        $html_buffer = $BL->invoices->mailInvoice($REQUEST['invoice_no'],true);
         ?>
         <html>
         <body onload="javascript:window.print();" onfocus="window.close()">
@@ -239,7 +239,7 @@ if(isset($REQUEST['cmd']) && ($REQUEST['cmd']=='PDF' || $REQUEST['cmd']=='VPDF')
 			|| $BL->auth->IsSESSION("admin")
 			|| (isset($_SESSION['quickpay']) && $_SESSION['quickpay'] == $REQUEST['invoice_no'])))
         {
-            $html_buffer = $BL->mailInvoice($REQUEST['invoice_no'],true);
+            $html_buffer = $BL->invoices->mailInvoice($REQUEST['invoice_no'],true);
             $file_name   = $BL->conf['invoice_prefix'] . $REQUEST['invoice_no'] . $BL->conf['invoice_suffix'].".pdf";
             require_once  LIBRARIES  . "tcpdf_min".PATH_SEP."tcpdf.php";
             $pdf         = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);

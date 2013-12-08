@@ -43,14 +43,14 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name           = "2 Checkout";
 $twocheckout    = array (
-                    array ("ID"             , "tco_id"), 
-                    array ("Secret Word"    , "tco_secret_word"), 
+                    array ("ID"             , "tco_id"),
+                    array ("Secret Word"    , "tco_secret_word"),
 		            array ("Parameters"     ,"tco_params", "Own", "Authorize.net"),
-                    array ("Active"         , "active", "No", "Yes"), 
+                    array ("Active"         , "active", "No", "Yes"),
                     array ("Title"          , "title"),
 					array ("Submit label"   , "submit_label")
                     );
@@ -74,26 +74,26 @@ class twocheckout
 	 * Function to send variables
 	 */
 	function sendVariables($path_url, $pp_vals)
-	{          
-        $this->_POST1                = array ();        
+	{
+        $this->_POST1                = array ();
         $this->_POST1['item_number'] = time().rand(0, 1000);
         if (isset ($_POST['force_inv_no']))
         {
-            $this->_POST1['item_number']= $_POST['force_inv_no'];  
+            $this->_POST1['item_number']= $_POST['force_inv_no'];
         }
         $this->_POST1['gateway']     = "twocheckout";
         if ($this->demo_mode)
         {
             $this->_POST1['demo'] = "Y";
-        } 
-        $this->_POST1['fixed']  = "Y";                     
+        }
+        $this->_POST1['fixed']  = "Y";
         $this->_POST1['lang']   = "en";
         if($pp_vals['tco_params'] != "Authorize.net")
         {
             $this->_POST1['sid']            = $pp_vals['tco_id'];
-            $this->_POST1['total']          = number_format($_POST['gross_amount'],2);  
-            $this->_POST1['cart_order_id']  = $this->_POST1['item_number'];     
-            $this->_POST1['return_url']     = $path_url."/ipn.php"; 
+            $this->_POST1['total']          = number_format($_POST['gross_amount'],2);
+            $this->_POST1['cart_order_id']  = $this->_POST1['item_number'];
+            $this->_POST1['return_url']     = $path_url."/ipn.php";
             $this->_POST1['card_holder_name']= $_POST['name'];
             $this->_POST1['street_address'] = $_POST['address'];
             $this->_POST1['city']           = $_POST['city'];
@@ -107,7 +107,7 @@ class twocheckout
         {
             $this->_POST1['x_login']            = $pp_vals['tco_id'];
             $this->_POST1['x_amount']           = number_format($_POST['gross_amount'],2);
-            $this->_POST1['x_invoice_num']      = $this->_POST1['item_number'];        
+            $this->_POST1['x_invoice_num']      = $this->_POST1['item_number'];
             $this->_POST1['x_Receipt_Link_URL'] = $path_url."/ipn.php";
             $array_name                         = array ();
             $array_name                         = explode(' ', $_POST['name'], 2);
@@ -119,8 +119,8 @@ class twocheckout
             $this->_POST1['x_City']             = $_POST['city'];
             $this->_POST1['x_State']            = $_POST['state'];
             $this->_POST1['x_Zip']              = $_POST['zip'];
-            $this->_POST1['x_Country']          = $_POST['country'];  
-            $this->_POST1['x_email_merchant']   = TRUE; 
+            $this->_POST1['x_Country']          = $_POST['country'];
+            $this->_POST1['x_email_merchant']   = TRUE;
         }
         $this->_POST1['c_prod']         = $this->_POST1['item_number'];
         $this->_POST1['c_name']         = $_POST['desc'];
@@ -136,7 +136,7 @@ class twocheckout
         $sqlSELECT = "SELECT  * FROM {$BL->props->tbl_payment_processors} WHERE `pp_name` ='twocheckout'";
         $temp      = $BL->dbL->executeSELECT($sqlSELECT);
         $pp_vals   = $temp[0];
-        
+
         if($pp_vals['tco_params'] != "Authorize.net")
         {
             $this->transaction_id   = $_POST['order_number'];
@@ -161,14 +161,14 @@ class twocheckout
         {
             $md5hash = md5($pp_vals['tco_secret_word'].$pp_vals['tco_id']."1".number_format($amount,2));
         }
-        
+
 		if ((empty($pp_vals['tco_secret_word']) || strtoupper($key)==strtoupper($md5hash)) && $_POST['gateway'] == "twocheckout" && !empty ($this->item_number) && !empty ($this->transaction_id) && ($this->payment_status == "Y" || $this->payment_status == "K"))
 		{
 			if ($this->payment_status == "K")
             {
 				$_POST['skip_auto_creation'] = 1;
             }
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;

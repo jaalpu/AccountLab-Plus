@@ -43,12 +43,12 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 $name       = "WebMoney Transfer";
 $wmtransfer = array (
-                array ("Merchant's purse"   , "purse_id"), 
-                array ("Active"             , "active", "No", "Yes"), 
+                array ("Merchant's purse"   , "purse_id"),
+                array ("Active"             , "active", "No", "Yes"),
                 array ("Title"              , "title"),
 				array ("Submit label"       , "submit_label")
                 );
@@ -103,7 +103,7 @@ class wmtransfer
 		$this->payment_status = "OK";
 		if (!empty ($this->item_number) && !empty ($this->transaction_id) && $_POST['PP'] == "wmtransfer")
 		{
-			$BL->processTransaction($this->item_number, $this->transaction_id);
+			$BL->invoices->processTransaction($this->item_number, $this->transaction_id);
 			return true;
 		}
 		return false;
