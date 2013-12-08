@@ -43,7 +43,7 @@
  * written prior permission. Title to copyright in this software and any
  * associated documentation will at all times remain with copyright
  * holders.
- */ 
+ */
 
 class model
 {
@@ -65,14 +65,15 @@ class model
         $this->utils            = & $utils;
         $this->errorHandler     = & $errorHandler;
     }
-    function setOrder($orderby=false)
+    function setOrder($orderby=false, $asc_or_desc='')
     {
-        if($orderby && array_search($orderby, $this->getFieldList()))
+        if($orderby && in_array($orderby, $this->getFieldList()) && in_array(strtolower($asc_or_desc), array('', 'asc', 'desc')))
         {
-            $this->orderby = " ORDER BY $orderby";
+            $this->orderby = " ORDER BY $orderby $asc_or_desc";
         }
         else
         {
+            throw new Exception('Invalid sort order field.');
             //$this->orderby = " ORDER BY ".($this->tableName?'`'.$this->tableName.'`':'').'`'.$this->getPrimaryKey().'`';
         }
     }
