@@ -523,7 +523,7 @@
                 {
                     $BL->REQUEST['invoice_status'] = $BL->REQUEST['mark_as'];
                     $temp = $BL->recurring_data($BL->REQUEST['order_id'],0,"SELECT");
-                    $BL->invoices->genInvoices($BL->REQUEST['order_id'],true,$temp['rec_next_date']);
+                    $BL->invoices->genIntermediateInvoices($BL->REQUEST['order_id']);
                 }
                 $BL->Redirect("viewinvoice");
                 break;
@@ -586,7 +586,7 @@
                     $temp = $BL->utils->getDateArray($date);
                     if($BL->utils->compareDates(date('d'),date('m'),date('Y'),$temp['mday'],$temp['mon'],$temp['year'])!=-1)
                     {
-                        $return = $BL->invoices->genInvoices($BL->REQUEST['sub_id'],false,$date,false,true);
+                        $return = $BL->invoices->genInvoices($BL->REQUEST['sub_id'],$date,true);
                         $BL->utils->alert($BL->getFriendlyDesc($return,$BL->REQUEST['sub_id']));
                     }
                 }

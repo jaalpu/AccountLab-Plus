@@ -461,10 +461,13 @@
             return $tax_amt_name[$taxname];
         }
 
+        // May be useful to do something like this:
+        //   function genInvoices($order_id, $target_date='TODAY', $mark_as='PENDING')
+
         /*
         * Generate Invoices
         */
-        function genInvoices($order_id, $intermediate= false, $date1= null, $upcoming= false, $prev_bill= false)
+        function genInvoices($order_id, $date1= null, $prev_bill= false)
         {
             $conf = $this->BL->conf;
             //DATES
@@ -487,8 +490,7 @@
             $v_day = date('Y-m-d', strtotime($today['year'] . "-" . $today['mon'] . "-" . $today['mday']));
 
             //CHECK AND GENERATE INVOICE
-            //echo $next_due_date." == ".$v_day."<br>";
-            if ($next_due_date <= $v_day && $intermediate == false && $upcoming == false)
+            if ($next_due_date == $v_day)
             {
                 $temp  = $this->BL->orders->get("WHERE `orders`.sub_id=".intval($order_id));
                 $order = $temp[0];
@@ -699,21 +701,34 @@
                 }
                 return $desc;
             }
-            elseif ($intermediate == true)
+            return null;
+        }
+
+        /*
+         * Generate all invoices between order date and today for the given order
+         */
+        function genIntermediateInvoices($order_id)
+        {
+            $this->REQUEST['force_status'] = $this->REQUEST['mark_as'];
+            $return_string = '';
+            $temp          = $this->BL->recurring_data($order_id, 0, "SELECT");
+            $next_due_date = $temp['rec_next_date'];
+            while ($next_due_date <= date('Y-m-d'))
             {
-                $this->REQUEST['force_status'] = $this->REQUEST['mark_as'];
-                $return_string = '';
-                $temp          = $this->BL->recurring_data($order_id, 0, "SELECT");
-                $next_due_date = $temp['rec_next_date'];
-                while ($next_due_date <= date('Y-m-d'))
-                {
-                    $return_string .= $this->genInvoices($order_id, false, $next_due_date) . "\n";
-                    $temp           = $this->BL->recurring_data($order_id, 0, "SELECT");
-                    $next_due_date  = $temp['rec_next_date'];
-                }
-                return $return_string;
+                $return_string .= $this->genInvoices($order_id, $next_due_date) . "\n";
+                $temp           = $this->BL->recurring_data($order_id, 0, "SELECT");
+                $next_due_date  = $temp['rec_next_date'];
             }
-            elseif ($upcoming == true && $conf['u_invoice_date'] > 0)
+            return $return_string;
+        }
+
+        /*
+         * Generate 'upcoming' invoices for the given order
+         */
+        function genUpcomingInvoices($order_id)
+        {
+            $conf = $this->BL->conf;
+            if ($conf['u_invoice_date'] > 0)
             {
                 $this->REQUEST['force_status'] = $this->props->invoice_status[5];
 
@@ -727,27 +742,22 @@
                 $today              = $this->utils->getXmonthsAfter($d1, getdate());
                 $max_upcoming_date  = date('Y-m-d', strtotime($today['year'] . "-" . $today['mon'] . "-" . $today['mday']));
                 $next_due_date_array= $this->utils->getDateArray($next_due_date);
-                //echo $max_upcoming_date. "<br />";
-                //echo $next_due_date. "<br />";
                 if($this->utils->compareDates($today['mday'],$today['mon'],$today['year'],$next_due_date_array['mday'],$next_due_date_array['mon'],$next_due_date_array['year'])!=-1)
                 {
                     $continue = true;
                 }
                 while ($continue && $next_due_date<$max_upcoming_date)
                 {
-                    $echo .= $this->genInvoices($order_id, false, $next_due_date,false,'U') . "<br />";
+                    $echo .= $this->genInvoices($order_id, $next_due_date,'U') . "<br />";
                     $temp  = $this->BL->recurring_data($order_id, 0, "SELECT");
 
                     $rec_next_date_array     = $this->utils->getDateArray($temp['rec_next_date']);
                     $max_upcoming_date_array = $this->utils->getDateArray($max_upcoming_date);
                     $next_due_date_array     = $this->utils->getDateArray($next_due_date);
 
-                    //echo $temp['rec_next_date']."<br />";
-
                     $date_compare1 = $this->utils->compareDates($max_upcoming_date_array['mday'],$max_upcoming_date_array['mon'],$max_upcoming_date_array['year'],$rec_next_date_array['mday'],$rec_next_date_array['mon'],$rec_next_date_array['year']);
                     $date_compare2 = $this->utils->compareDates($rec_next_date_array['mday'],$rec_next_date_array['mon'],$rec_next_date_array['year'],$next_due_date_array['mday'],$next_due_date_array['mon'],$next_due_date_array['year']);
 
-                    //if ($date_compare1 != -1 && $date_compare2 == -1)
                     if($temp['rec_next_date']<$max_upcoming_date && $temp['rec_next_date']!=$next_due_date)
                     {
                         $next_due_date = $temp['rec_next_date'];
@@ -763,6 +773,7 @@
             }
             return null;
         }
+
 
         /*
         * Mail Invoice

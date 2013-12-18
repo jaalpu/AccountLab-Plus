@@ -93,7 +93,7 @@
                         }
                         else
                         {
-                            $echo = $BL->invoices->genInvoices($order['sub_id'],false,$date,false,true);
+                            $echo = $BL->invoices->genInvoices($order['sub_id'],$date,true);
                         }
                         if(!empty($echo))
                         {
@@ -111,7 +111,7 @@
                     {
                         $desc = $BL->getCustomerFieldValue("name",$order['id'])." (".$order['domain_name']."->".$BL->getFriendlyName($order['product_id']).")";
                         echo "<font color='red'><b>*** Generating upcoming invoice for ".$desc."</b></font><br />";
-                        $echo = $BL->invoices->genInvoices($order['sub_id'],false,"",true);
+                        $echo = $BL->invoices->genUpcomingInvoices($order['sub_id']);
                         if(!empty($echo))
                         {
                             echo "<br />".nl2br($echo)."<br />";
