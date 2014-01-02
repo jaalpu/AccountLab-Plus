@@ -461,261 +461,323 @@
             return $tax_amt_name[$taxname];
         }
 
-        // May be useful to do something like this:
-        //   function genInvoices($order_id, $target_date='TODAY', $mark_as='PENDING')
-
         /*
-        * Generate Invoices
-        */
-        function genInvoices($order_id, $date1= null, $prev_bill= false)
+         * Generate invoice for the given order id
+         */
+        function genInvoice($order_id)
         {
-            $conf = $this->BL->conf;
-            //DATES
-            $todays_date_array = getdate();
-            $temp              = $this->BL->recurring_data($order_id, 0, "SELECT");
-            $next_due_date     = $temp['rec_next_date'];
-            $today             = $this->utils->getXdayAfter($conf['send_before_due'], $todays_date_array);
-            if (!empty ($date1) && $this->utils->checkDateFormat($date1))
-            {
-                $todays_date_array = $this->utils->getDateArray($date1);
-                if (!$prev_bill && $prev_bill!='U')
-                {
-                    $today = $this->utils->getXdayAfter($conf['send_before_due'], $todays_date_array);
-                }
-                else
-                {
-                    $today = $todays_date_array;
-                }
-            }
-            $v_day = date('Y-m-d', strtotime($today['year'] . "-" . $today['mon'] . "-" . $today['mday']));
-
             //CHECK AND GENERATE INVOICE
-            if ($next_due_date == $v_day)
+            $conf = $this->BL->conf;
+
+            $temp  = $this->BL->orders->get("WHERE `orders`.sub_id=".intval($order_id));
+            $order = $temp[0];
+
+            $temp              = $this->BL->orders->recurring_data($order_id, 0, "SELECT");
+            $next_due_date     = $temp['rec_next_date'];
+
+            $order['bill_cycle'] = (empty ($order['bill_cycle']) || empty ($order['product_id']))?12:$order['bill_cycle'];
+            $cycle_name = $this->props->cycles[$order['bill_cycle']];
+            $desc       = $order['product_id'] . "-" . $order['domain_name'] . "-" . $next_due_date;
+
+            // Use the first invoice for this order and domain to generate a template.
+            $temp = $this->BL->invoices->get("WHERE `invoices`.desc = '" . $this->utils->quoteSmart($order['product_id'] . "-" . $order['domain_name']) . "' AND `orders`.domain_name='".$this->utils->quoteSmart($order['domain_name'])."' AND `orders`.product_id=".intval($order['product_id']));
+            $start_invoice = $temp[0];
+            $this->REQUEST['pay_text'] = "";
+            $echo       = "";
+
+
+            //GET DOMAIN REGISTRATION PRICE
+            $dom_array = explode(".", $order['domain_name'], 2);
+            $sld       = $dom_array[0];
+            $tld       = $dom_array[1];
+            $tld_amount = 0;
+            if ($order['dom_reg_type'] == 1)
             {
-                $temp  = $this->BL->orders->get("WHERE `orders`.sub_id=".intval($order_id));
-                $order = $temp[0];
-
-                $order['bill_cycle'] = (empty ($order['bill_cycle']) || empty ($order['product_id']))?12:$order['bill_cycle'];
-                $cycle_name = $this->props->cycles[$order['bill_cycle']];
-                $desc       = $order['product_id'] . "-" . $order['domain_name'] . "-" . $next_due_date;
-
-                $temp = $this->BL->invoices->get("WHERE `invoices`.desc = '" . $this->utils->quoteSmart($order['product_id'] . "-" . $order['domain_name']) . "' AND `orders`.domain_name='".$this->utils->quoteSmart($order['domain_name'])."' AND `orders`.product_id=".intval($order['product_id']));
-                $start_invoice = $temp[0];
-
-                $dom_array = explode(".", $order['domain_name'], 2);
-                $sld       = $dom_array[0];
-                $tld       = $dom_array[1];
-
-                $this->REQUEST['pay_text'] = "";
-
-                $tld_amount = 0;
-                $echo       = "";
-                //GET DOMAIN REGISTRATION PRICE
-                if ($order['dom_reg_type'] == 1)
+                $tld_data   = $this->BL->tlds->find(array("WHERE `dom_ext`='".$this->utils->quoteSmart($tld)."'"));
+                $month_diff = $this->utils->count_months($order['sign_date'], $next_due_date);
+                $division   = $month_diff / ($order['dom_reg_year'] * 12);
+                if ($order['dom_reg_year'] * 12 == $month_diff || $division == floor($division))
                 {
-                    $tld_data   = $this->BL->tlds->find(array("WHERE `dom_ext`='".$this->utils->quoteSmart($tld)."'"));
-                    $month_diff = $this->utils->count_months($order['sign_date'], $next_due_date);
-                    $division   = $month_diff / ($order['dom_reg_year'] * 12);
-                    if ($order['dom_reg_year'] * 12 == $month_diff || $division == floor($division))
+                    $echo .= "RENEW DOMAIN,   ";
+                    foreach ($tld_data as $t)
                     {
-                        $echo .= "RENUE DOMAIN,   ";
-                        foreach ($tld_data as $t)
+                        if ($order['dom_reg_year'] == $t['dom_period'])
                         {
-                            if ($order['dom_reg_year'] == $t['dom_period'])
-                            {
-                                $tld_amount = $t['dom_price'];
-                            }
+                            $tld_amount = $t['dom_price'];
                         }
                     }
                 }
-                //GET SUB-DOMAIN PRICE
-                elseif ($order['dom_reg_type'] == 2)
+            }
+            //GET SUB-DOMAIN PRICE
+            elseif ($order['dom_reg_type'] == 2)
+            {
+                $subdomain_data  = $this->BL->subdomains->find(array("WHERE `maindomain`='".$this->utils->quoteSmart($tld)."'"));
+                $subdomain_cycle = $this->BL->subdomains->getCycles($subdomain_data[0]['main_id']);
+                $echo           .= "RENEW SUB DOMAIN,   ";
+                $tld_amount      = $subdomain_cycle[$cycle_name];
+            }
+            else
+            {
+                $tld_amount = 0;
+            }
+            if ($tld_amount > 0)
+            {
+                $this->REQUEST['pay_text'] .= $order['domain_name'] . " => <b>" . $this->BL->toCurrency($tld_amount,null,1);
+                $this->REQUEST['pay_text'] .= "</b><br>";
+            }
+            $this->REQUEST['tld_fee'] = $tld_amount;
+
+
+            //GET PRODUCT PRICE
+            $cycle_amount   = 0;
+            $product_cycles = $this->BL->products->getCycles($order['product_id']);
+            $cycle_amount   = $product_cycles[$cycle_name];
+            if ($cycle_amount > 0)
+            {
+                $this->REQUEST['pay_text'] .= $this->BL->getFriendlyName($order['product_id']) . " => <b>" . $this->BL->toCurrency($cycle_amount,null,1);
+                $this->REQUEST['pay_text'] .= "</b><br>";
+            }
+            $this->REQUEST['cycle_fee']= $cycle_amount;
+
+
+            //GET ADDON PRICE
+            $pay_text1     = "";
+            $order_addons  = $this->BL->orders->getAddons($order_id);
+            $inv_addon_fee = "<&>";
+            $addon_amount  = 0;
+            foreach ($order_addons as $order_addon)
+            {
+                $addon_data   = $this->BL->addons->getByKey($order_addon['addon_id']);
+                $addon_cycles = $this->BL->addons->getCycles($order_addon['addon_id']);
+                if (isset($addon_data['addon_name']))
                 {
-                    $subdomain_data  = $this->BL->subdomains->find(array("WHERE `maindomain`='".$this->utils->quoteSmart($tld)."'"));
-                    $subdomain_cycle = $this->BL->subdomains->getCycles($subdomain_data[0]['main_id']);
-                    $echo           .= "RENUE SUB DOMAIN,   ";
-                    $tld_amount      = $subdomain_cycle[$cycle_name];
+                    $inv_addon_fee .= $addon_data['addon_name'] . ">0.00>" . $this->utils->toFloat($addon_cycles[$cycle_name]) . "<&>";
+                    $addon_amount   = $addon_amount + $addon_cycles[$cycle_name];
+                    $pay_text1     .= $addon_data['addon_name'] . " => <b>" . $this->BL->toCurrency($addon_cycles[$cycle_name],null,1);
+                    $pay_text1     .= "</b><br>";
+                }
+            }
+            if ($addon_amount > 0)
+            {
+                $this->REQUEST['addon_fee'] = $inv_addon_fee;
+                $this->REQUEST['pay_text']     .= $pay_text1;
+            }
+
+            //GET DISCOUNTS
+            $this->REQUEST['inv_tld_disc']  = 0;
+            $this->REQUEST['inv_plan_disc'] = 0;
+            $this->REQUEST['inv_addon_disc']= 0;
+            if ($conf['include_sp_rec'] == 1)
+            {
+                $this->REQUEST['inv_tld_disc']  = $start_invoice['inv_tld_disc'];
+                $this->REQUEST['inv_plan_disc'] = $start_invoice['inv_plan_disc'];
+                $this->REQUEST['inv_addon_disc']= $start_invoice['inv_addon_disc'];
+            }
+
+            //calculate subtotal
+            $this->REQUEST['other_amount']= 0;
+            $this->REQUEST['other_amount']= $this->REQUEST['other_amount'] + ($this->REQUEST['tld_fee'] * ($this->REQUEST['inv_tld_disc'] / 100));
+            $this->REQUEST['other_amount']= $this->REQUEST['other_amount'] + ($this->REQUEST['cycle_fee'] * ($this->REQUEST['inv_plan_disc'] / 100));
+            $this->REQUEST['other_amount']= $this->REQUEST['other_amount'] + ($addon_amount * ($this->REQUEST['inv_addon_disc'] / 100));
+            $this->REQUEST['net_amount']  = $this->REQUEST['tld_fee'] + $this->REQUEST['cycle_fee'] + $addon_amount - $this->REQUEST['other_amount'];
+            $this->REQUEST['desc']        = $desc;
+            $temp = explode("-",$next_due_date,3);
+            $invoices  = $this->BL->invoices->find(array("WHERE `desc` LIKE '" . $this->utils->quoteSmart($order['product_id'] . "-" . $order['domain_name'] . "-" . trim($temp[0]) . "-" . trim($temp[1]) . "-%")."'"));
+            if (count($invoices))
+            {
+                $order['credit']     = $invoices[0]['debit_credit_amount'];
+                $order['credit_desc']= $invoices[0]['debit_credit_reason'];
+                $order['credit_type']= 0;
+                if ($invoices[0]['debit_credit'] == $this->props->lang['credit'])
+                {
+                    $order['credit_type']= 1;
+                }
+            }
+
+            //Count credit
+            if ($order['credit'] > 0)
+            {
+                //negetive credit
+                if ($order['credit_type'] == 0)
+                {
+                    $this->REQUEST['net_amount'] = $this->REQUEST['net_amount'] + $order['credit'];
+                    $this->REQUEST['pay_text']  .= $this->props->lang['and'] . " " . $this->props->lang['debit'] . " = <b>" . $this->utils->toFloat($order['credit']);
+                    $this->REQUEST['pay_text']  .= "</b> " . $this->props->lang['reason'] . " : <b>" . $order['credit_desc'] . "<b>";
+                    $credit_balance              = 0;
+                    $this->REQUEST['debit_credit']       = $this->props->lang['debit'];
+                    $this->REQUEST['debit_credit_amount']= $order['credit'];
+                    $this->REQUEST['credit_desc']        = $order['credit_desc'];
                 }
                 else
                 {
-                    $tld_amount = 0;
-                }
-                if ($tld_amount > 0)
-                {
-                    $this->REQUEST['pay_text'] .= $order['domain_name'] . " => <b>" . $this->BL->toCurrency($tld_amount,null,1);
-                    $this->REQUEST['pay_text'] .= "</b><br>";
-                }
-                $this->REQUEST['tld_fee'] = $tld_amount;
-
-
-                //GET PRODUCT PRICE
-                $cycle_amount   = 0;
-                $product_cycles = $this->BL->products->getCycles($order['product_id']);
-                $cycle_amount   = $product_cycles[$cycle_name];
-                if ($cycle_amount > 0)
-                {
-                    $this->REQUEST['pay_text'] .= $this->BL->getFriendlyName($order['product_id']) . " => <b>" . $this->BL->toCurrency($cycle_amount,null,1);
-                    $this->REQUEST['pay_text'] .= "</b><br>";
-                }
-                $this->REQUEST['cycle_fee']= $cycle_amount;
-
-
-                //GET ADDON PRICE
-                $pay_text1     = "";
-                $order_addons  = $this->BL->orders->getAddons($order_id);
-                $inv_addon_fee = "<&>";
-                $addon_amount  = 0;
-                foreach ($order_addons as $order_addon)
-                {
-                    $addon_data   = $this->BL->addons->getByKey($order_addon['addon_id']);
-                    $addon_cycles = $this->BL->addons->getCycles($order_addon['addon_id']);
-                    if (isset($addon_data['addon_name']))
+                    if ($this->REQUEST['net_amount'] > $order['credit'])
                     {
-                        $inv_addon_fee .= $addon_data['addon_name'] . ">0.00>" . $this->utils->toFloat($addon_cycles[$cycle_name]) . "<&>";
-                        $addon_amount   = $addon_amount + $addon_cycles[$cycle_name];
-                        $pay_text1     .= $addon_data['addon_name'] . " => <b>" . $this->BL->toCurrency($addon_cycles[$cycle_name],null,1);
-                        $pay_text1     .= "</b><br>";
-                    }
-                }
-                if ($addon_amount > 0)
-                {
-                    $this->REQUEST['addon_fee'] = $inv_addon_fee;
-                    $this->REQUEST['pay_text']     .= $pay_text1;
-                }
-
-                //GET DISCOUNTS
-                $this->REQUEST['inv_tld_disc']  = 0;
-                $this->REQUEST['inv_plan_disc'] = 0;
-                $this->REQUEST['inv_addon_disc']= 0;
-                if ($conf['include_sp_rec'] == 1)
-                {
-                    $this->REQUEST['inv_tld_disc']  = $start_invoice['inv_tld_disc'];
-                    $this->REQUEST['inv_plan_disc'] = $start_invoice['inv_plan_disc'];
-                    $this->REQUEST['inv_addon_disc']= $start_invoice['inv_addon_disc'];
-                }
-                //calculate subtotal
-                $this->REQUEST['other_amount']= 0;
-                $this->REQUEST['other_amount']= $this->REQUEST['other_amount'] + ($this->REQUEST['tld_fee'] * ($this->REQUEST['inv_tld_disc'] / 100));
-                $this->REQUEST['other_amount']= $this->REQUEST['other_amount'] + ($this->REQUEST['cycle_fee'] * ($this->REQUEST['inv_plan_disc'] / 100));
-                $this->REQUEST['other_amount']= $this->REQUEST['other_amount'] + ($addon_amount * ($this->REQUEST['inv_addon_disc'] / 100));
-                $this->REQUEST['net_amount']  = $this->REQUEST['tld_fee'] + $this->REQUEST['cycle_fee'] + $addon_amount - $this->REQUEST['other_amount'];
-                $this->REQUEST['desc']        = $desc;
-                $temp = explode("-",$next_due_date,3);
-                $invoices  = $this->BL->invoices->find(array("WHERE `desc` LIKE '" . $this->utils->quoteSmart($order['product_id'] . "-" . $order['domain_name'] . "-" . trim($temp[0]) . "-" . trim($temp[1]) . "-%")."'"));
-                if (count($invoices))
-                {
-                    $order['credit']     = $invoices[0]['debit_credit_amount'];
-                    $order['credit_desc']= $invoices[0]['debit_credit_reason'];
-                    $order['credit_type']= 0;
-                    if ($invoices[0]['debit_credit'] == $this->props->lang['credit'])
-                    {
-                        $order['credit_type']= 1;
-                    }
-                }
-                //Count credit
-                if ($order['credit'] > 0)
-                {
-                    //negetive credit
-                    if ($order['credit_type'] == 0)
-                    {
-                        $this->REQUEST['net_amount'] = $this->REQUEST['net_amount'] + $order['credit'];
-                        $this->REQUEST['pay_text']  .= $this->props->lang['and'] . " " . $this->props->lang['debit'] . " = <b>" . $this->utils->toFloat($order['credit']);
-                        $this->REQUEST['pay_text']  .= "</b> " . $this->props->lang['reason'] . " : <b>" . $order['credit_desc'] . "<b>";
-                        $credit_balance              = 0;
-                        $this->REQUEST['debit_credit']       = $this->props->lang['debit'];
+                        $this->REQUEST['net_amount']= $this->REQUEST['net_amount'] - $order['credit'];
+                        $credit_balance             = 0;
+                        $this->REQUEST['debit_credit']       = $this->props->lang['credit'];
                         $this->REQUEST['debit_credit_amount']= $order['credit'];
                         $this->REQUEST['credit_desc']        = $order['credit_desc'];
                     }
                     else
                     {
-                        if ($this->REQUEST['net_amount'] > $order['credit'])
-                        {
-                            $this->REQUEST['net_amount']= $this->REQUEST['net_amount'] - $order['credit'];
-                            $credit_balance             = 0;
-                            $this->REQUEST['debit_credit']       = $this->props->lang['credit'];
-                            $this->REQUEST['debit_credit_amount']= $order['credit'];
-                            $this->REQUEST['credit_desc']        = $order['credit_desc'];
-                        }
-                        else
-                        {
-                            $credit_balance  = $order['credit'] - $this->REQUEST['net_amount'];
-                            $this->REQUEST['debit_credit']       = $this->props->lang['credit'];
-                            $this->REQUEST['debit_credit_amount']= $this->REQUEST['net_amount'];
-                            $this->REQUEST['net_amount']         = 0;
-                            $this->REQUEST['credit_desc']        = $order['credit_desc'];
-                        }
-                        $this->REQUEST['pay_text'] .= $this->props->lang['and'] . " " . $this->props->lang['credit'] . " = <b>" . $this->BL->toCurrency($order['credit'],null,1);
-                        $this->REQUEST['pay_text'] .= "</b> " . $this->props->lang['reason'] . " : <b>" . $order['credit_desc'] . "<b>";
+                        $credit_balance  = $order['credit'] - $this->REQUEST['net_amount'];
+                        $this->REQUEST['debit_credit']       = $this->props->lang['credit'];
+                        $this->REQUEST['debit_credit_amount']= $this->REQUEST['net_amount'];
+                        $this->REQUEST['net_amount']         = 0;
+                        $this->REQUEST['credit_desc']        = $order['credit_desc'];
                     }
-                    $data       = array();
-                    $data['id'] = $order['id'];
-                    if($credit_balance)
-                    {
-                        $data['credit']  = $credit_balance;
-                    }
-                    else
-                    {
-                        $data['credit']      = 0;
-                        $data['credit_type'] = '';
-                        $data['credit_desc'] = '';
-                    }
-                    $this->BL->customers->update($data);
+                    $this->REQUEST['pay_text'] .= $this->props->lang['and'] . " " . $this->props->lang['credit'] . " = <b>" . $this->BL->toCurrency($order['credit'],null,1);
+                    $this->REQUEST['pay_text'] .= "</b> " . $this->props->lang['reason'] . " : <b>" . $order['credit_desc'] . "<b>";
                 }
-                //calculate tax
-                //get tax data
-                $tax_string       = null;
-                $total_tax_amount = 0;
-                foreach ($this->calculateTax($this->REQUEST['net_amount'], $this->BL->getCustomerFieldValue("country",$order['id']), $this->BL->getCustomerFieldValue("state",$order['id'])) as $r_k => $r_v)
+                $data       = array();
+                $data['id'] = $order['id'];
+                if($credit_balance)
                 {
-                    ${ $r_k }= $r_v;
+                    $data['credit']  = $credit_balance;
                 }
-                $this->REQUEST['tax_percent']     = $tax_string;
-                $this->REQUEST['tax_amount']      = $total_tax_amount;
-                $this->REQUEST['gross_amount']    = $this->REQUEST['net_amount'] + $this->REQUEST['tax_amount'];
-                $this->REQUEST['status']          = $this->props->invoice_status[0];
-                $this->REQUEST['order_id']        = $order_id;
-                $this->REQUEST['due_date']        = $next_due_date;
-                if (isset ($this->REQUEST['force_status']))
+                else
                 {
-                    $this->REQUEST['status'] = $this->REQUEST['force_status'];
+                    $data['credit']      = 0;
+                    $data['credit_type'] = '';
+                    $data['credit_desc'] = '';
                 }
-                $echo .= $this->REQUEST['desc'] . "<br />";
-
-                $this->REQUEST['invoice_no'] = 0;
-                if (!count($invoices))
-                {
-                    $this->REQUEST['invoice_no'] = $this->BL->invoices->add($this->REQUEST['order_id']);
-                }
-                elseif ($invoices[0]['status'] == $this->props->invoice_status[5])
-                {
-                    $this->REQUEST['invoice_no'] = $invoices[0]['invoice_no'];
-                    $this->BL->invoices->update($this->REQUEST);
-                }
-                if (!empty ($this->REQUEST['invoice_no']))
-                {
-                    $this->BL->recurring_data($this->REQUEST['order_id'], 0, "UPDATE", $this->REQUEST['due_date']);
-                }
-                if ($conf['en_automail'] && $this->REQUEST['status']==$this->props->invoice_status[0])
-                {
-                    $this->mailInvoice($this->REQUEST['invoice_no']);
-                }
-                return $desc;
+                $this->BL->customers->update($data);
             }
-            return null;
+
+            //calculate tax
+            //get tax data
+            $tax_string       = null;
+            $total_tax_amount = 0;
+            foreach ($this->calculateTax($this->REQUEST['net_amount'], $this->BL->getCustomerFieldValue("country",$order['id']), $this->BL->getCustomerFieldValue("state",$order['id'])) as $r_k => $r_v)
+            {
+                ${ $r_k }= $r_v;
+            }
+            $this->REQUEST['tax_percent']     = $tax_string;
+            $this->REQUEST['tax_amount']      = $total_tax_amount;
+            $this->REQUEST['gross_amount']    = $this->REQUEST['net_amount'] + $this->REQUEST['tax_amount'];
+            $this->REQUEST['status']          = $this->props->invoice_status[0];
+            $this->REQUEST['order_id']        = $order_id;
+            $this->REQUEST['due_date']        = $next_due_date;
+
+            // Set status if specified (otherwise we use the default)
+            if (isset ($this->REQUEST['force_status']))
+            {
+                $this->REQUEST['status'] = $this->REQUEST['force_status'];
+            }
+            $echo .= $this->REQUEST['desc'] . "<br />";
+
+            $this->REQUEST['invoice_no'] = 0;
+            if (!count($invoices))
+            {
+                $this->REQUEST['invoice_no'] = $this->BL->invoices->add($this->REQUEST['order_id']);
+            }
+            elseif ($invoices[0]['status'] == $this->props->invoice_status[5])
+            {
+                $this->REQUEST['invoice_no'] = $invoices[0]['invoice_no'];
+                $this->BL->invoices->update($this->REQUEST);
+            }
+            // Set the new due date
+            if (!empty ($this->REQUEST['invoice_no']))
+            {
+                $this->BL->recurring_data($this->REQUEST['order_id'], 0, "UPDATE", $this->REQUEST['due_date']);
+            }
+            // Email invoice if necessary
+            if ($conf['en_automail'] && $this->REQUEST['status']==$this->props->invoice_status[0])
+            {
+                $this->mailInvoice($this->REQUEST['invoice_no']);
+            }
+            return $desc;
+        }
+
+
+        /*
+        * Generate invoices scheduled to be sent today, or on a specified date
+        */
+        function genInvoicesForDay($order_id, $date1= null, $prev_bill= false)
+        {
+            $conf = $this->BL->conf;
+            //DATES
+            $today = getdate();
+            $temp              = $this->BL->recurring_data($order_id, 0, "SELECT");
+            $next_due_date     = $temp['rec_next_date'];
+
+            // Calculate what day we're generating invoices for.
+            if (!empty ($date1) && $this->utils->checkDateFormat($date1))
+            {
+                // $prev_bill='U' if we're generating upcoming invoices.
+                if (!$prev_bill && $prev_bill!='U')
+                {
+                    $gen_for_date = $this->utils->getXdayAfter($conf['send_before_due'], $this->utils->getDateArray($date1));
+                }
+                else
+                {
+                    $gen_for_date = $today;
+                }
+            } else {
+                $gen_for_date = $this->utils->getXdayAfter($conf['send_before_due'], $today);
+            }
+
+            $v_day = date('Y-m-d', strtotime($gen_for_date ['year'] . "-" . $gen_for_date ['mon'] . "-" . $gen_for_date ['mday']));
+
+            // Generate invoice if it is scheduled to be generated for this order
+            if ($next_due_date == $v_day)
+            {
+                return genInvoice($order_id);
+            } else {
+                return null;
+            }
+
         }
 
         /*
-         * Generate all invoices between order date and today for the given order
+         * Generate all new invoices currently due for the given account.
+         */
+        function genNewInvoices($order_id)
+        {
+            $conf = $this->BL->conf;
+
+            // Calculate what day we're generating invoices for.
+            $today = getdate();
+            $gen_for_date = $this->utils->getXdayAfter($conf['send_before_due'], $today);
+            $v_day = date('Y-m-d', strtotime($gen_for_date ['year'] . "-" . $gen_for_date ['mon'] . "-" . $gen_for_date ['mday']));
+
+            // Generate invoices
+            $echo = "";
+            $temp              = $this->BL->recurring_data($order_id, 0, "SELECT");
+            $next_due_date     = $temp['rec_next_date'];
+            while ($next_due_date <= $v_day)
+            {
+                echo $order_id . " - " . $next_due_date  . "<br/>\n";
+                $echo .= $this->genInvoice($order_id);
+
+                $temp              = $this->BL->recurring_data($order_id, 0, "SELECT");
+                if ($next_due_date == $temp['rec_next_date'])
+                {
+                    break; // Break out if next due date wasn't updated.
+                }
+                $next_due_date     = $temp['rec_next_date'];
+            }
+
+            return $echo;
+        }
+
+        /*
+         * Generate all invoices between order date and today for the given order, including ones that were already generated.
          */
         function genIntermediateInvoices($order_id)
         {
-            $this->REQUEST['force_status'] = $this->REQUEST['mark_as'];
+            if (!empty( $this->REQUEST['mark_as']))
+            {
+                $this->REQUEST['force_status'] = $this->REQUEST['mark_as'];
+            }
+
             $return_string = '';
             $temp          = $this->BL->recurring_data($order_id, 0, "SELECT");
             $next_due_date = $temp['rec_next_date'];
             while ($next_due_date <= date('Y-m-d'))
             {
-                $return_string .= $this->genInvoices($order_id, $next_due_date) . "\n";
+                echo $order_id . ' - '. $next_due_date . "<br/>\n";
+                $return_string .= $this->genInvoicesForDay($order_id, $next_due_date) . "\n";
                 $temp           = $this->BL->recurring_data($order_id, 0, "SELECT");
                 $next_due_date  = $temp['rec_next_date'];
             }
@@ -748,7 +810,7 @@
                 }
                 while ($continue && $next_due_date<$max_upcoming_date)
                 {
-                    $echo .= $this->genInvoices($order_id, $next_due_date,'U') . "<br />";
+                    $echo .= $this->genInvoicesForDay($order_id, $next_due_date,'U') . "<br />";
                     $temp  = $this->BL->recurring_data($order_id, 0, "SELECT");
 
                     $rec_next_date_array     = $this->utils->getDateArray($temp['rec_next_date']);
