@@ -685,7 +685,7 @@
                 || ($this->REQUEST['status'] != $this->props->invoice_status[5]
                     && count($invoices) && $invoices[0]['status'] != $this->props->invoice_status[5]))
             {
-                $echo .= ", Updated due date.\n";
+                $echo .= "Updated due date.\n";
                 $this->BL->recurring_data($this->REQUEST['order_id'], 0, "UPDATE", $this->REQUEST['due_date']);
             }
 
