@@ -586,7 +586,7 @@
                     $temp = $BL->utils->getDateArray($date);
                     if($BL->utils->compareDates(date('d'),date('m'),date('Y'),$temp['mday'],$temp['mon'],$temp['year'])!=-1)
                     {
-                        $return = $BL->invoices->genInvoices($BL->REQUEST['sub_id'],$date,true);
+                        $return = $BL->invoices->genInvoicesForDay($BL->REQUEST['sub_id'],$date,true);
                         $BL->utils->alert($BL->getFriendlyDesc($return,$BL->REQUEST['sub_id']));
                     }
                 }

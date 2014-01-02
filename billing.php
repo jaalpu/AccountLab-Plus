@@ -89,11 +89,11 @@
                         $desc = $BL->getCustomerFieldValue("name",$order['id'])." (".$order['domain_name']."->".$BL->getFriendlyName($order['product_id']).")";
                         if(empty($date))
                         {
-                            $echo = $BL->invoices->genInvoices($order['sub_id']);
+                            $echo = $BL->invoices->genNewInvoices($order['sub_id']);
                         }
                         else
                         {
-                            $echo = $BL->invoices->genInvoices($order['sub_id'],$date,true);
+                            $echo = $BL->invoices->genInvoicesForDay($order['sub_id'],$date,true);
                         }
                         if(!empty($echo))
                         {
