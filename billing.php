@@ -135,9 +135,9 @@
                         $date_compare     = $BL->utils->compareDates(date('d'),date('m'),date('Y'),$v_due_date_array['mday'],$v_due_date_array['mon'],$v_due_date_array['year']);
                         if($date_compare==1)
                         {
-                            echo "<font color='red'><b>*** Sending Invoice, Description : ".$inv['desc']."</b></font><br />";
+                            echo "Sending Invoice: Description : ".$inv['desc']."<br />";
                             $BL->invoices->mailInvoice($inv['invoice_no']);
-                            echo "<br />";
+                            echo "<br />\n";
                         }
                     }
                 }
@@ -157,7 +157,7 @@
                             $date_compare     = $BL->utils->compareDates(date('d'),date('m'),date('Y'),$v_due_date_array['mday'],$v_due_date_array['mon'],$v_due_date_array['year']);
                             if($date_compare==1 && array_search($inv['sub_id'],$suspended_ids)===false)
                             {
-                                echo "<font color='red'><b>*** Suspending account, Description : ".$inv['desc']."</b></font><br />";
+                                echo "<font color='red'><b>*** Suspending account, Description : ".$inv['desc']."</b></font><br />\n";
                                 flush();
                                 ob_flush();
                                 sleep(1);
