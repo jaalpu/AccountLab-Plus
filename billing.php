@@ -97,7 +97,9 @@
                         }
                         if(!empty($echo))
                         {
-                            echo "<br />".nl2br($echo)."<br />";
+                            echo "<hr />\n".nl2br($echo);
+                        } else {
+                            echo "<hr/>Nothing to do for order #" . $order['sub_id'] . "\n";
                         }
                     }
                     $BL->runCS('A_B');

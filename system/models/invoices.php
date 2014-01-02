@@ -466,6 +466,7 @@
          */
         function genInvoice($order_id)
         {
+
             //CHECK AND GENERATE INVOICE
             $conf = $this->BL->conf;
 
@@ -498,7 +499,7 @@
                 $division   = $month_diff / ($order['dom_reg_year'] * 12);
                 if ($order['dom_reg_year'] * 12 == $month_diff || $division == floor($division))
                 {
-                    $echo .= "RENEW DOMAIN,   ";
+                    $echo .= "RENEW DOMAIN, ";
                     foreach ($tld_data as $t)
                     {
                         if ($order['dom_reg_year'] == $t['dom_period'])
@@ -666,27 +667,34 @@
             }
             $echo .= $this->REQUEST['desc'] . "<br />";
 
+            // If the invoice doesn't exist, create it.
             $this->REQUEST['invoice_no'] = 0;
             if (!count($invoices))
             {
                 $this->REQUEST['invoice_no'] = $this->BL->invoices->add($this->REQUEST['order_id']);
             }
+            // Otherwise, if the invoice already exists, but the status is 'Upcoming', update it.
             elseif ($invoices[0]['status'] == $this->props->invoice_status[5])
             {
                 $this->REQUEST['invoice_no'] = $invoices[0]['invoice_no'];
                 $this->BL->invoices->update($this->REQUEST);
             }
-            // Set the new due date
-            if (!empty ($this->REQUEST['invoice_no']))
+
+            // Set new due date if an invoice was created or if a non-Upcoming invoice already exists
+            if (!empty ($this->REQUEST['invoice_no'])
+                || ($this->REQUEST['status'] != $this->props->invoice_status[5]
+                    && count($invoices) && $invoices[0]['status'] != $this->props->invoice_status[5]))
             {
+                $echo .= ", Updated due date.\n";
                 $this->BL->recurring_data($this->REQUEST['order_id'], 0, "UPDATE", $this->REQUEST['due_date']);
             }
-            // Email invoice if necessary
+
+            // Email invoice if configured to do so, and if the invoice was created, and it is "Pending"
             if ($conf['en_automail'] && $this->REQUEST['status']==$this->props->invoice_status[0])
             {
                 $this->mailInvoice($this->REQUEST['invoice_no']);
             }
-            return $desc;
+            return $echo;
         }
 
 
@@ -743,16 +751,18 @@
 
             // Generate invoices
             $echo = "";
-            $temp              = $this->BL->recurring_data($order_id, 0, "SELECT");
+            $temp              = $this->BL->orders->recurring_data($order_id, 0, "SELECT");
             $next_due_date     = $temp['rec_next_date'];
+
             while ($next_due_date <= $v_day)
             {
-                echo $order_id . " - " . $next_due_date  . "<br/>\n";
+                $echo .= "Processing Order #$order_id - For invoice due date: $next_due_date\n";
                 $echo .= $this->genInvoice($order_id);
 
                 $temp              = $this->BL->recurring_data($order_id, 0, "SELECT");
                 if ($next_due_date == $temp['rec_next_date'])
                 {
+                    $echo .= "No change in due date, done processing.\n";
                     break; // Break out if next due date wasn't updated.
                 }
                 $next_due_date     = $temp['rec_next_date'];
