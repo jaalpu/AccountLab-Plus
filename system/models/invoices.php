@@ -680,10 +680,8 @@
                 $this->BL->invoices->update($this->REQUEST);
             }
 
-            // Set new due date if an invoice was created or if a non-Upcoming invoice already exists
-            if (!empty ($this->REQUEST['invoice_no'])
-                || ($this->REQUEST['status'] != $this->props->invoice_status[5]
-                    && count($invoices) && $invoices[0]['status'] != $this->props->invoice_status[5]))
+            // Set new due date if an invoice was created or updated
+            if (!empty ($this->REQUEST['invoice_no']) || (count($invoices)))
             {
                 $echo .= "Updated due date.\n";
                 $this->BL->recurring_data($this->REQUEST['order_id'], 0, "UPDATE", $this->REQUEST['due_date']);
@@ -800,31 +798,39 @@
         function genUpcomingInvoices($order_id)
         {
             $conf = $this->BL->conf;
+            // $conf['u_invoice_date'] is how many months in advance to generate upcoming invoices
             if ($conf['u_invoice_date'] > 0)
             {
+                // Force generated invoices to be status "Upcoming"
                 $this->REQUEST['force_status'] = $this->props->invoice_status[5];
 
                 $echo               = "";
                 $continue           = false;
+
                 $temp               = $this->BL->recurring_data($order_id, 0, "SELECT");
                 $next_due_date      = $temp['rec_next_date'];
-                $restore_actual_due = $next_due_date; //restore later
-                $max_upcoming_date  = date('Y-m-d');
-                $d1                 = ($conf['u_invoice_date'] > 12)?floor($conf['u_invoice_date'] / 30):$conf['u_invoice_date'];
-                $today              = $this->utils->getXmonthsAfter($d1, getdate());
-                $max_upcoming_date  = date('Y-m-d', strtotime($today['year'] . "-" . $today['mon'] . "-" . $today['mday']));
                 $next_due_date_array= $this->utils->getDateArray($next_due_date);
-                if($this->utils->compareDates($today['mday'],$today['mon'],$today['year'],$next_due_date_array['mday'],$next_due_date_array['mon'],$next_due_date_array['year'])!=-1)
+                $restore_actual_due = $next_due_date; //restore later
+
+                $delta_date         = ($conf['u_invoice_date'] > 12)?floor($conf['u_invoice_date'] / 30):$conf['u_invoice_date'];
+                $max_upcoming_date_array  = $this->utils->getXmonthsAfter($delta_date, getdate());
+                $max_upcoming_date  = date('Y-m-d', strtotime($max_upcoming_date_array['year'] . "-" . $max_upcoming_date_array['mon'] . "-" . $max_upcoming_date_array['mday']));
+
+                if ($this->utils->compareDates(
+                    $max_upcoming_date_array['mday'],$max_upcoming_date_array['mon'],$max_upcoming_date_array['year'],
+                    $next_due_date_array['mday'], $next_due_date_array['mon'],$next_due_date_array['year'])
+                        !=-1) // If $max_upcoming_date_arr >= $next_due_date_array
                 {
                     $continue = true;
                 }
+
                 while ($continue && $next_due_date<$max_upcoming_date)
                 {
-                    $echo .= $this->genInvoicesForDay($order_id, $next_due_date,'U') . "<br />";
+                    $echo .= "$next_due_date\n";
+                    $echo .= $this->genInvoice($order_id);
                     $temp  = $this->BL->recurring_data($order_id, 0, "SELECT");
 
                     $rec_next_date_array     = $this->utils->getDateArray($temp['rec_next_date']);
-                    $max_upcoming_date_array = $this->utils->getDateArray($max_upcoming_date);
                     $next_due_date_array     = $this->utils->getDateArray($next_due_date);
 
                     $date_compare1 = $this->utils->compareDates($max_upcoming_date_array['mday'],$max_upcoming_date_array['mon'],$max_upcoming_date_array['year'],$rec_next_date_array['mday'],$rec_next_date_array['mon'],$rec_next_date_array['year']);
@@ -839,11 +845,13 @@
                         $continue = false;
                     }
                 }
+
+                // Restore proper due date
                 $sqlUPDATE = "UPDATE {$this->props->tbl_ord_inv_recs} SET `rec_next_date`='" . $restore_actual_due . "' WHERE `rec_ord_id`=" . intval($order_id);
                 $this->dbL->executeUPDATE($sqlUPDATE);
-                echo $echo;
+                $echo .= "Restored due date\n";
             }
-            return null;
+            return $echo;
         }
 
 

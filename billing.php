@@ -85,6 +85,8 @@
                     $BL->runCS('W_B');
                     foreach($orders as $order)
                     {
+                        echo "<hr/>Processing order #".$order['sub_id']." for ".$BL->getCustomerFieldValue("name",$order['id'])
+                            ." (".$order['domain_name']." -> ".$BL->getFriendlyName($order['product_id']).")<br />";
                         $desc = $BL->getCustomerFieldValue("name",$order['id'])." (".$order['domain_name']."->".$BL->getFriendlyName($order['product_id']).")";
                         if(empty($date))
                         {
@@ -110,12 +112,14 @@
                 {
                     foreach($orders as $order)
                     {
-                        $desc = $BL->getCustomerFieldValue("name",$order['id'])." (".$order['domain_name']."->".$BL->getFriendlyName($order['product_id']).")";
-                        echo "<font color='red'><b>*** Generating upcoming invoice for ".$desc."</b></font><br />";
+                        echo "<hr/>Processing order #".$order['sub_id']." for ".$BL->getCustomerFieldValue("name",$order['id'])
+                            ." (".$order['domain_name']." -> ".$BL->getFriendlyName($order['product_id']).")<br />";
                         $echo = $BL->invoices->genUpcomingInvoices($order['sub_id']);
                         if(!empty($echo))
                         {
                             echo "<br />".nl2br($echo)."<br />";
+                        } else {
+                            echo "Nothing to do for order #" . $order['sub_id'] . "\n";
                         }
                     }
                 }
